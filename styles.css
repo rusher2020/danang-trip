@@ -1195,6 +1195,20 @@ article p,
   clip-path: polygon(50% 0, 100% 38%, 86% 38%, 86% 100%, 58% 100%, 58% 67%, 42% 67%, 42% 100%, 14% 100%, 14% 38%, 0 38%);
 }
 
+.legend-dot.hotel-option {
+  width: 12px;
+  height: 12px;
+  background: var(--warm);
+  clip-path: polygon(50% 0, 100% 38%, 86% 38%, 86% 100%, 58% 100%, 58% 67%, 42% 67%, 42% 100%, 14% 100%, 14% 38%, 0 38%);
+}
+
+.legend-dot.hotel-upgrade {
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  clip-path: polygon(50% 0, 100% 38%, 86% 38%, 86% 100%, 58% 100%, 58% 67%, 42% 67%, 42% 100%, 14% 100%, 14% 38%, 0 38%);
+}
+
 .legend-dot.attraction {
   background: var(--blue);
 }

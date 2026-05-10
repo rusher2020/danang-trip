@@ -146,6 +146,7 @@ const hotelFlowCompactRoot = document.querySelector("#hotel-flow-compact");
 const hotelFlowRoot = document.querySelector("#hotel-flow");
 const hotelDecisionBoardRoot = document.querySelector("#hotel-decision-board");
 const hotelRecommendationListRoot = document.querySelector("#hotel-recommendation-list");
+const hotelMapCardRoot = document.querySelector("#hotel-map-card");
 const hyattProgramListRoot = document.querySelector("#hyatt-program-list");
 const expertSummaryRoot = document.querySelector("#expert-summary");
 const dayListRoot = document.querySelector("#day-list");
@@ -1222,11 +1223,12 @@ function renderHotels(hotels) {
 
 function renderHotelRecommendations(items) {
   if (!hotelDecisionBoardRoot || !hotelRecommendationListRoot) return;
+  renderHotelMap(items);
   const top = items.find((item) => item.status === "추천") || items[0];
   hotelDecisionBoardRoot.innerHTML = `
     <article class="hotel-decision-card">
       <div class="meta-row">
-        <span class="pill">현재 판단</span>
+        <span class="pill">숙소 메모</span>
         <span class="pill status">Happy Day 재검토</span>
       </div>
       <h3>마지막 0.5박은 위치보다 샤워·휴식 안정성이 우선입니다.</h3>
@@ -1244,7 +1246,7 @@ function renderHotelRecommendations(items) {
         <p>${hotel.fit}</p>
         <div class="hotel-grid">
           <div>
-            <span>왜 보기</span>
+            <span>선택 이유</span>
             <strong>${hotel.why}</strong>
           </div>
           <div>
@@ -1256,16 +1258,133 @@ function renderHotelRecommendations(items) {
             <strong>${hotel.risk}</strong>
           </div>
           <div>
-            <span>판단</span>
+            <span>최근 후기 신호</span>
+            <strong>${hotel.reviewSignal || "최근 후기 확인 필요"}</strong>
+          </div>
+          <div>
+            <span>후기 주의 신호</span>
+            <strong>${hotel.reviewWatch || "방 타입과 소음 후기를 예약 직전에 확인하세요."}</strong>
+          </div>
+          <div>
+            <span>추천 방향</span>
             <strong>${hotel.recommendation}</strong>
           </div>
         </div>
         <div class="card-actions">
-          <a class="primary" href="${hotel.sourceUrl}" target="_blank" rel="noreferrer">지도/정보</a>
+          <a class="primary" href="${getHotelMapSearchUrl(hotel)}" target="_blank" rel="noreferrer">지도</a>
+          <a href="${hotel.sourceUrl}" target="_blank" rel="noreferrer">후기/정보</a>
         </div>
       </article>
     `)
     .join("");
+}
+
+function renderHotelMap(items) {
+  if (!hotelMapCardRoot) return;
+  hotelMapCardRoot.innerHTML = `
+    <div class="places-map-head">
+      <div>
+        <span>숙소 후보 지도</span>
+        <strong>공항 전 0.5박 비교</strong>
+      </div>
+      <button type="button" data-hotel-map-refresh>지도 새로고침</button>
+    </div>
+    <div id="hotel-map" class="places-map" role="img" aria-label="숙소 후보 지도">
+      <div class="map-loading">숙소 후보 지도를 불러오는 중입니다.</div>
+    </div>
+    <div class="places-map-legend" aria-label="숙소 지도 범례">
+      <span><i class="legend-dot hotel"></i>확정 숙소</span>
+      <span><i class="legend-dot hotel-option"></i>0.5박 후보</span>
+      <span><i class="legend-dot hotel-upgrade"></i>상향 후보</span>
+    </div>
+  `;
+  hydrateHotelMap(items);
+}
+
+async function hydrateHotelMap(items) {
+  const mapElement = document.querySelector("#hotel-map");
+  if (!mapElement) return;
+  if (!googlePlacesEnabled) {
+    mapElement.innerHTML = '<div class="map-loading">Google Maps 키를 연결하면 숙소 후보 위치를 지도에 표시합니다.</div>';
+    return;
+  }
+  try {
+    const { Map } = await getGoogleMapsLibrary();
+    const map = new Map(mapElement, {
+      center: { lat: 16.0678, lng: 108.2208 },
+      zoom: 12,
+      disableDefaultUI: true,
+      zoomControl: true,
+      streetViewControl: false,
+      fullscreenControl: true,
+      gestureHandling: "greedy"
+    });
+    const bounds = new google.maps.LatLngBounds();
+    let markerCount = 0;
+    const currentHotels = getMapHotelPlaces();
+    const currentHotelIds = new Set(currentHotels.map((hotel) => hotel.id));
+    const hotelPlaces = [
+      ...currentHotels,
+      ...items.filter((item) => !currentHotelIds.has(item.id)).map((item) => ({
+        id: item.id,
+        name: item.name,
+        category: "hotel-option",
+        area: item.area,
+        mapUrl: getHotelMapSearchUrl(item),
+        sourceUrl: item.sourceUrl,
+        status: item.status
+      }))
+    ];
+    for (const hotel of hotelPlaces) {
+      await fetchGooglePlacePhoto(hotel);
+      const livePlace = googlePlaceState.get(hotel.id);
+      const location = livePlace?.location;
+      if (!location) continue;
+      const marker = new google.maps.Marker({
+        map,
+        position: location,
+        title: hotel.name,
+        zIndex: hotel.category === "hotel" ? 1000 : 800,
+        icon: getHotelMarkerIcon(hotel)
+      });
+      marker.addListener("click", () => {
+        if (hotel.mapUrl) {
+          window.open(hotel.mapUrl, "_blank", "noreferrer");
+          return;
+        }
+        const point = getMapPoint(hotel.id);
+        if (point?.mapsUrl) window.open(point.mapsUrl, "_blank", "noreferrer");
+      });
+      bounds.extend(location);
+      markerCount += 1;
+    }
+    if (markerCount > 1) map.fitBounds(bounds, { top: 34, right: 34, bottom: 34, left: 34 });
+    if (!markerCount) {
+      mapElement.innerHTML = '<div class="map-loading">숙소 위치를 찾지 못했습니다. 후보 카드의 지도/정보 버튼을 사용하세요.</div>';
+    }
+  } catch (error) {
+    mapElement.innerHTML = '<div class="map-loading">숙소 지도를 불러오지 못했습니다. API 키 제한을 확인하세요.</div>';
+  }
+}
+
+function getHotelMarkerIcon(hotel) {
+  const isCurrent = hotel.category === "hotel";
+  const color = isCurrent ? "#087b72" : hotel.status === "상향 후보" ? "#2368a8" : "#e8754f";
+  return {
+    path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
+    fillColor: color,
+    fillOpacity: 1,
+    strokeColor: "#ffffff",
+    strokeOpacity: 1,
+    strokeWeight: 1.5,
+    scale: isCurrent ? 1.12 : 1,
+    anchor: new google.maps.Point(12, 20)
+  };
+}
+
+function getHotelMapSearchUrl(hotel) {
+  const query = [hotel.name, hotel.area, "Da Nang Vietnam"].filter(Boolean).join(" ");
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
 function renderHyattPrograms(programs) {
@@ -1928,6 +2047,11 @@ document.body.addEventListener("click", (event) => {
   const mapRefreshButton = event.target.closest("[data-map-refresh]");
   if (mapRefreshButton) {
     renderCards(allPlaces);
+    return;
+  }
+  const hotelMapRefreshButton = event.target.closest("[data-hotel-map-refresh]");
+  if (hotelMapRefreshButton) {
+    loadJson("data/hotel-recommendations.json", []).then(renderHotelRecommendations);
   }
 });
 
