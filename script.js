@@ -1232,7 +1232,7 @@ function renderHotelRecommendations(items) {
         <span class="pill status">Happy Day 재검토</span>
       </div>
       <h3>마지막 0.5박은 위치보다 샤워·휴식 안정성이 우선입니다.</h3>
-      <p>7/29 00:25 출국편이라 7/28 밤에 아이들이 씻고 누울 수 있는지가 중요합니다. Happy Day가 마음에 걸린다면, ${top?.name || "HAIAN Riverfront"}부터 가격을 비교하는 쪽이 맞습니다.</p>
+      <p>7/29 00:25 출국편이라 7/28 밤에 아이들이 씻고 누울 수 있는지가 중요합니다. 아래 후보별 최신 후기 신호를 앱 안에서 바로 비교하고, 외부 링크는 예약 전 최종 확인용으로만 사용하세요.</p>
     </article>
   `;
   hotelRecommendationListRoot.innerHTML = items
@@ -1244,6 +1244,16 @@ function renderHotelRecommendations(items) {
         </div>
         <h3>${hotel.name}</h3>
         <p>${hotel.fit}</p>
+        <div class="hotel-review-summary">
+          <div>
+            <span>좋은 후기 신호</span>
+            <strong>${hotel.reviewSignal || "최근 후기 확인 필요"}</strong>
+          </div>
+          <div>
+            <span>주의 후기 신호</span>
+            <strong>${hotel.reviewWatch || "방 타입과 소음 후기를 예약 직전에 확인하세요."}</strong>
+          </div>
+        </div>
         <div class="hotel-grid">
           <div>
             <span>선택 이유</span>
@@ -1258,21 +1268,13 @@ function renderHotelRecommendations(items) {
             <strong>${hotel.risk}</strong>
           </div>
           <div>
-            <span>최근 후기 신호</span>
-            <strong>${hotel.reviewSignal || "최근 후기 확인 필요"}</strong>
-          </div>
-          <div>
-            <span>후기 주의 신호</span>
-            <strong>${hotel.reviewWatch || "방 타입과 소음 후기를 예약 직전에 확인하세요."}</strong>
-          </div>
-          <div>
             <span>추천 방향</span>
             <strong>${hotel.recommendation}</strong>
           </div>
         </div>
         <div class="card-actions">
           <a class="primary" href="${getHotelMapSearchUrl(hotel)}" target="_blank" rel="noreferrer">지도</a>
-          <a href="${hotel.sourceUrl}" target="_blank" rel="noreferrer">후기/정보</a>
+          <a href="${hotel.sourceUrl}" target="_blank" rel="noreferrer">출처 확인</a>
         </div>
       </article>
     `)

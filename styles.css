@@ -633,6 +633,42 @@ h2 {
   margin-top: 12px;
 }
 
+.hotel-review-summary {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hotel-review-summary div {
+  border: 1px solid #cfe9e6;
+  border-radius: 8px;
+  padding: 11px;
+  background: #f0fbfa;
+}
+
+.hotel-review-summary div + div {
+  border-color: #f0d2c2;
+  background: #fff7f2;
+}
+
+.hotel-review-summary span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.hotel-review-summary div + div span {
+  color: #b24d2f;
+}
+
+.hotel-review-summary strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .hotel-grid div {
   border: 1px solid var(--line);
   border-radius: 8px;
