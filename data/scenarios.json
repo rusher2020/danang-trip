@@ -1,0 +1,98 @@
+[
+  {
+    "id": "scenario-ba-na",
+    "label": "A안",
+    "name": "바나힐 포함",
+    "status": "candidate",
+    "bestFor": "날씨가 맑고 대표 놀거리 하나를 확실히 하고 싶을 때",
+    "tradeoff": "비용, 이동, 대기, 아이 피로도가 큽니다.",
+    "slots": [
+      {
+        "day": "Day 1",
+        "date": "7/25 토",
+        "focus": "도착 회복 + 하얏트 체크인",
+        "placeIds": ["hyatt-resort-time", "dragon-bridge-show"]
+      },
+      {
+        "day": "Day 2",
+        "date": "7/26 일",
+        "focus": "하얏트 휴식 + 오행산/용다리 선택",
+        "placeIds": ["hyatt-resort-time", "marble-mountains", "dragon-bridge-show"]
+      },
+      {
+        "day": "Day 3",
+        "date": "7/27 월",
+        "focus": "대표 하루 일정",
+        "placeIds": ["ba-na-hills"]
+      },
+      {
+        "day": "Day 4-5",
+        "date": "7/28-29",
+        "focus": "호이안 저녁 + 시내 쇼핑 + 귀국 준비",
+        "placeIds": ["hoi-an-evening", "morning-glory-hoian", "han-market", "an-thoi-danang", "madame-lan-danang"]
+      }
+    ]
+  },
+  {
+    "id": "scenario-resort",
+    "label": "B안",
+    "name": "리조트 중심",
+    "status": "shortlisted",
+    "bestFor": "아이 컨디션과 휴식을 가장 우선할 때",
+    "tradeoff": "상징적인 관광지는 줄어들 수 있습니다.",
+    "slots": [
+      {
+        "day": "Day 1",
+        "date": "7/25 토",
+        "focus": "하얏트 적응 + 수영장",
+        "placeIds": ["hyatt-resort-time"]
+      },
+      {
+        "day": "Day 2",
+        "date": "7/26 일",
+        "focus": "오전 근거리 산책 + 오후 휴식",
+        "placeIds": ["marble-mountains", "hyatt-resort-time"]
+      },
+      {
+        "day": "Day 3",
+        "date": "7/27 월",
+        "focus": "리조트 완전 회복일 또는 바나힐 대체 휴식",
+        "placeIds": ["hyatt-resort-time", "hyatt-camp-hyatt"]
+      },
+      {
+        "day": "Day 4-5",
+        "date": "7/28-29",
+        "focus": "호이안 저녁 + 시내 식사 + 쇼핑 + 샤워",
+        "placeIds": ["hoi-an-evening", "cargo-club-hoian", "han-market", "lotte-mart-danang", "an-thoi-danang"]
+      }
+    ]
+  },
+  {
+    "id": "scenario-rain-heat",
+    "label": "C안",
+    "name": "더위/우천 대응",
+    "status": "backup",
+    "bestFor": "비, 폭염, 아이 피로 때문에 야외 일정이 어려울 때",
+    "tradeoff": "사진 명소보다 편의성과 회복을 우선합니다.",
+    "slots": [
+      {
+        "day": "Day 1-2",
+        "date": "7/25-26",
+        "focus": "호텔 휴식 + 실내 식사",
+        "placeIds": ["hyatt-resort-time", "hyatt-xanh-house", "hyatt-osteria", "hyatt-junior-cafe"]
+      },
+      {
+        "day": "Day 3",
+        "date": "7/27 월",
+        "focus": "날씨 회복 시 호이안, 아니면 실내에서 쉬기",
+        "placeIds": ["hoi-an-evening", "lim-dining-room-hoian", "museum-cham-sculpture"]
+      },
+      {
+        "day": "Day 4-5",
+        "date": "7/28-29",
+        "focus": "시내 실내 쇼핑 + 쉬운 식사",
+        "placeIds": ["lotte-mart-danang", "mm-mega-market-danang", "pizza-4ps-danang", "fatfish"]
+      }
+    ]
+  }
+]

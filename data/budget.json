@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ba-na",
+    "name": "바나힐",
+    "level": "high",
+    "notes": "공식 가격 정책은 시점별 공지가 달라 구매 직전 재확인이 필요합니다. 최근 공식 공지 기준으로는 입장권, 케이블카, 골든브릿지, Fantasy Park 주요 시설이 포함되고 일부 유료 시설은 제외됩니다.",
+    "decision": "날씨가 나쁘면 비용 대비 만족도가 떨어지므로, 취소 가능한 차량/티켓 구조를 우선합니다."
+  },
+  {
+    "id": "hyatt-meals",
+    "name": "하얏트 내부 식사",
+    "level": "medium-high",
+    "notes": "Xanh House, Osteria, Vive Océane, Baguette, Junior Cafe를 쓰면 외부 이동 피로를 줄일 수 있지만 리조트 가격입니다.",
+    "decision": "바나힐 당일 저녁과 도착 첫날은 비용보다 컨디션을 우선해 리조트 안에서 해결합니다."
+  },
+  {
+    "id": "city-meals",
+    "name": "시내 식사",
+    "level": "medium",
+    "notes": "Ăn Thôi, Madame Lân, Bếp Hên, Mì Quảng 1A는 현지성/가족 적합성/동선을 비교해 고릅니다.",
+    "decision": "한시장 전후 식사는 안토이 또는 마담란을 1순위로 두고, Pizza 4P's는 아이 식사 백업으로만 둡니다."
+  },
+  {
+    "id": "hoi-an-meals",
+    "name": "호이안 저녁",
+    "level": "medium",
+    "notes": "Morning Glory, Cargo Club, Lim Dining Room, Madam Kieu 중에서 예약 가능성과 아이 컨디션 기준으로 고릅니다.",
+    "decision": "17:30-18:30 식사 확정 후 등불 산책을 붙이는 구조가 가장 안정적입니다."
+  },
+  {
+    "id": "transport",
+    "name": "차량",
+    "level": "medium",
+    "notes": "호이안과 바나힐은 왕복 전용차가 안정적입니다. 시내 이동은 GrabCar 7 또는 짧은 택시로 충분합니다.",
+    "decision": "절약보다 심야/장거리 복귀 안정성을 우선합니다."
+  },
+  {
+    "id": "shopping",
+    "name": "쇼핑",
+    "level": "variable",
+    "notes": "한시장은 망고, 커피, 건과일, 기념품, 의류 등 쇼핑 리스트가 있을 때 효율적입니다. 실내 쉬운 선택은 롯데마트/MM Mega Market입니다.",
+    "decision": "아이 동반이면 시장은 60-90분 제한, 더위가 심하면 실내 마트로 전환합니다."
+  },
+  {
+    "id": "comfort-buffer",
+    "name": "컨디션 유지 비용",
+    "level": "medium",
+    "notes": "카페, 아이스크림, 짧은 택시, 호텔 내 간식, 포장/배달, 샤워/대기 비용이 실제 만족도를 높입니다.",
+    "decision": "아이 컨디션 유지를 위한 버퍼를 별도 예산으로 둡니다."
+  }
+]

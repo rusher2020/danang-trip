@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ba-na-weather",
+    "title": "바나힐은 전날 정하기",
+    "status": "날씨 보고",
+    "when": "7/26 밤 또는 7/27 아침",
+    "go": "비 예보가 약하고, 안개/강풍 리스크가 낮고, 전날 아이들이 충분히 잤다면 가도 좋습니다.",
+    "skip": "비, 짙은 안개, 전날 늦은 취침, 아이 컨디션 저하가 있으면 쉬는 편이 좋습니다.",
+    "fallback": "하얏트 수영장, Camp Hyatt, Baguette/Junior Cafe, 리조트 저녁으로 가볍게 보냅니다.",
+    "relatedPlaceIds": ["ba-na-hills", "hyatt-resort-time", "hyatt-camp-hyatt"]
+  },
+  {
+    "id": "dragon-bridge",
+    "title": "용다리 쇼는 아이 컨디션 보고",
+    "status": "아이 컨디션",
+    "when": "7/26 일요일 19:00 전후",
+    "go": "아이들이 낮잠을 잤고, 21시까지 깨어 있어도 다음 날 일정이 무너지지 않을 때만 갑니다.",
+    "skip": "졸림, 짜증, 수영 후 피로가 있으면 숙소에서 쉬는 편이 좋습니다.",
+    "fallback": "하얏트 안에서 간식, 산책, 일찍 취침으로 마무리합니다.",
+    "relatedPlaceIds": ["dragon-bridge-show", "son-tra-night-market", "hyatt-resort-time"]
+  },
+  {
+    "id": "hoi-an-dinner",
+    "title": "호이안 저녁 식당 선택",
+    "status": "식사 예약",
+    "when": "7/28 오후 출발 전",
+    "go": "베트남식을 먹을 수 있고 예약이 가능하면 Morning Glory를 우선합니다. 디저트/익숙한 메뉴가 필요하면 Cargo Club을 씁니다.",
+    "skip": "아이들이 현지식에 지쳤거나 대기 시간이 길면 Lim Dining Room 또는 호텔 복귀 후 간단식으로 바꿉니다.",
+    "fallback": "Lim Dining Room, Cargo Club, 또는 호이안 산책만 짧게 하고 다낭으로 돌아옵니다.",
+    "relatedPlaceIds": ["morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "hoi-an-evening"]
+  },
+  {
+    "id": "han-market-shopping",
+    "title": "한시장은 살 것 있을 때만",
+    "status": "쇼핑 메모",
+    "when": "7/29 오전",
+    "go": "커피, 건과일, 아이 기념품처럼 살 품목이 명확하고 아이 컨디션이 좋으면 60-90분 제한으로 갑니다.",
+    "skip": "더위가 강하거나 쇼핑 리스트가 없거나 아이들이 지쳤다면 한시장 대신 실내 마트가 편합니다.",
+    "fallback": "롯데마트 또는 MM Mega Market에서 정찰제 쇼핑으로 가볍게 해결합니다.",
+    "relatedPlaceIds": ["han-market", "lotte-mart-danang", "mm-mega-market-danang"]
+  },
+  {
+    "id": "food-fatigue",
+    "title": "현지식 피로도 대응",
+    "status": "식사 메모",
+    "when": "매 식사 전",
+    "go": "아이들이 현지식을 잘 먹으면 안토이, 마담란, Morning Glory 같은 베트남식으로 갑니다.",
+    "skip": "매운맛, 향, 피로 때문에 식사가 길어질 것 같으면 익숙한 음식으로 바로 바꿉니다.",
+    "fallback": "하얏트 Osteria, Lim Dining Room, Pizza 4P's, Junior Cafe를 사용합니다.",
+    "relatedPlaceIds": ["madame-lan-danang", "an-thoi-danang", "hyatt-osteria", "pizza-4ps-danang"]
+  }
+]

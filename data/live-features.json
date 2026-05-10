@@ -1,0 +1,58 @@
+[
+  {
+    "id": "airport-flight-status",
+    "name": "다낭 공항 항공편/대기시간",
+    "status": "manual-first",
+    "source": "Da Nang International Airport official website",
+    "currentMode": "공식 공항 사이트 링크로 수동 확인",
+    "useCase": "귀국일 터미널, 체크인 카운터, 게이트, 지연 상태, 보안/출입국 대기시간 확인"
+  },
+  {
+    "id": "quick-reservation-wallet",
+    "name": "예약정보 빠른 카드",
+    "status": "planned-ui",
+    "source": "Apple Wallet / boarding pass style reference",
+    "currentMode": "항공·호텔 예약번호는 체크리스트와 메모에 분산",
+    "useCase": "항공편명, 예약번호, 여권 영문명, 호텔 주소, 차량 예약 정보를 첫 화면 또는 준비 탭 상단에서 즉시 확인"
+  },
+  {
+    "id": "open-status",
+    "name": "현재 영업 여부",
+    "status": "planned-api",
+    "source": "Google Places API or official websites",
+    "currentMode": "출처 링크로 수동 확인",
+    "useCase": "식당, 카페, 마켓 방문 전 문 열었는지 확인"
+  },
+  {
+    "id": "maps-routes",
+    "name": "지도와 이동",
+    "status": "partial",
+    "source": "Google Maps search links",
+    "currentMode": "지도 열기 버튼 제공",
+    "useCase": "현재 숙소 기준으로 장소를 바로 지도에서 확인"
+  },
+  {
+    "id": "weather",
+    "name": "날씨와 더위 확인",
+    "status": "planned-api",
+    "source": "OpenWeather or WeatherAPI",
+    "currentMode": "7월 말 더위 기준으로 수동 확인",
+    "useCase": "야외 일정, 실내 쉬운 선택, 수영장 시간을 자동 추천"
+  },
+  {
+    "id": "exchange-rate",
+    "name": "환율",
+    "status": "planned-api",
+    "source": "Exchange-rate API",
+    "currentMode": "예산 레벨만 표시",
+    "useCase": "VND 비용을 KRW로 빠르게 환산"
+  },
+  {
+    "id": "live-prices",
+    "name": "실시간 가격",
+    "status": "manual-first",
+    "source": "Official sites and activity platforms",
+    "currentMode": "수동 가격 범위 입력 예정",
+    "useCase": "바나힐, 누이탄타이, 차량, 식사 비용 비교"
+  }
+]

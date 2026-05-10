@@ -1,0 +1,1717 @@
+[
+  {
+    "id": "ba-na-hills",
+    "name": "바나힐 & 골든브릿지",
+    "category": "activity",
+    "status": "candidate",
+    "priority": "높음",
+    "area": "바나산 / 산악권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Golden%20Bridge%2C%20Ba%20Na%20Hills%2C%20Vietnam.jpg?width=900",
+      "alt": "바나힐 골든브릿지",
+      "credit": ". Ray in Manila / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Golden_Bridge,_Ba_Na_Hills,_Vietnam.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "케이블카, 골든브릿지, 산 위의 선선한 공기, 실내 Fantasy Park가 아이들에게 기억에 남기 쉽습니다. 다만 6세 남아는 키에 따라 탈 수 있는 놀이기구가 꽤 제한될 수 있습니다.",
+    "summary": "다낭 대표 풀데이 놀거리입니다. 공식 Fantasy Park 규정상 100-130cm 전후 키 제한이 많아, 놀이기구보다 케이블카·골든브릿지·실내 구경 중심으로 기대치를 잡는 편이 안전합니다.",
+    "bestTime": "오전 출발",
+    "duration": "6-8시간",
+    "transfer": {
+      "fromHyatt": "전용차 왕복 권장. 하얏트에서 편도 이동 시간이 길어 하루 일정으로 봅니다.",
+      "fromHappyDay": "전용차 왕복 권장"
+    },
+    "budgetLevel": "높음",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "풀데이"
+    ],
+    "caution": "주말 혼잡, 안개/비, 아이 피로도가 만족도를 크게 떨어뜨릴 수 있습니다. 일부 유료 놀이기구와 키 제한이 있어 '모든 놀이기구를 탄다'는 기대는 낮춥니다.",
+    "decisionNeeded": "전날 밤 날씨와 아이 컨디션을 보고 갈지를 결정합니다. 간다면 7/27 월요일 오전 출발, 왕복 전용차, 저녁 외부 일정 없음으로 고정합니다.",
+    "sourceUrl": "https://banahills.sunworld.vn/en/news-da-nang/game-and-ride-rules-in-fantasy-park.html"
+  },
+  {
+    "id": "hoi-an-evening",
+    "name": "호이안 등불 저녁",
+    "category": "activity",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "호이안 올드타운",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi%20An%20lanterns%20at%20night.jpg?width=900",
+      "alt": "호이안 야간 등불",
+      "credit": "viajar24h.com / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hoi_An_lanterns_at_night.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "등불 거리, 강변 산책, 짧은 소원배, 기념품 구경은 아이들이 직관적으로 즐기기 좋습니다.",
+    "summary": "호텔에서 충분히 쉰 뒤 저녁 반일로 가는 코스입니다. 식사를 먼저 하고 등불 거리와 야시장을 짧게 보는 흐름이 가장 안정적입니다.",
+    "bestTime": "늦은 오후-초저녁",
+    "duration": "4-6시간",
+    "transfer": {
+      "fromHyatt": "전용차 왕복 권장. 교통 상황에 따라 45-60분 전후로 봅니다.",
+      "fromHappyDay": "밤 복귀 안정성을 위해 전용차 왕복 권장. 45-60분 전후로 봅니다."
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "저녁"
+    ],
+    "caution": "밤에는 혼잡합니다. 식사를 먼저 하고 20:30-21:00 복귀 제한을 둡니다.",
+    "decisionNeeded": "소원배를 탈지, 등불 거리 산책만 할지는 당일 아이 컨디션으로 결정합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/see-and-do/hoi-an-ancient-town"
+  },
+  {
+    "id": "dragon-bridge-show",
+    "name": "용다리 불·물 쇼",
+    "category": "activity",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "한강 / 시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 용다리",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "쉬었을 때 높음",
+    "kidPoint": "짧고 시각적인 야간 쇼라 아이들이 바로 이해하고 즐기기 쉽습니다.",
+    "summary": "이번 일정에는 토·일 관람 기회가 있지만 21시 시작이라 어린아이에게는 늦습니다. 기본값은 선택 일정입니다.",
+    "bestTime": "금·토·일·주요 공휴일 21:00",
+    "duration": "대기 포함 20-40분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 늦은 귀가가 부담이므로 선택 일정으로 둡니다.",
+      "fromHappyDay": "시내 접근은 쉽지만 이번 여행의 Happy Day 숙박일은 공식 쇼 요일과 맞지 않습니다."
+    },
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "도착 주말",
+      "시내 저녁"
+    ],
+    "caution": "늦은 시작, 혼잡, 귀가 피로, 물 튐이 리스크입니다.",
+    "decisionNeeded": "가장 현실적인 선택지는 7/26 일요일 밤입니다. 두 아이가 편하게 깨어 있을 때만 갑니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/the-dragon-show"
+  },
+  {
+    "id": "nui-than-tai",
+    "name": "누이탄타이 온천공원",
+    "category": "activity",
+    "status": "backup",
+    "priority": "중간",
+    "area": "호아방 / 산악권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kolam%20renang%20Hyatt%20Regency.jpg?width=900",
+      "alt": "가족 물놀이 대표 이미지",
+      "credit": "PenaTulip / Wikimedia Commons CC0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kolam_renang_Hyatt_Regency.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "워터파크, 유수풀, 온천 시설이 있어 관광보다 물놀이를 좋아하는 아이들에게 맞습니다.",
+    "summary": "바나힐 대신 물놀이와 휴식 압박이 적은 쉬운 선택을 원할 때 검토할 선택지입니다.",
+    "bestTime": "오전-오후",
+    "duration": "5-7시간",
+    "transfer": {
+      "fromHyatt": "전용차 왕복 권장",
+      "fromHappyDay": "전용차 왕복 권장"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "더운 날"
+    ],
+    "caution": "복귀 차량을 미리 정해야 합니다.",
+    "decisionNeeded": "날씨, 비용, 아이들이 관광보다 물놀이를 원하는지를 기준으로 바나힐과 비교합니다.",
+    "sourceUrl": "https://danaticket.vn/nui-than-tai-hot-springs-park-tickets"
+  },
+  {
+    "id": "hyatt-resort-time",
+    "name": "하얏트 수영장·해변 시간",
+    "category": "activity",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "논누옥 / 하얏트",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kolam%20renang%20Hyatt%20Regency.jpg?width=900",
+      "alt": "하얏트 리젠시 다낭 수영장",
+      "credit": "PenaTulip / Wikimedia Commons CC0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kolam_renang_Hyatt_Regency.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "다섯 개 수영장, 해변, 메인풀 워터슬라이드, 낮잠, 예측 가능한 시설이 어린아이 동반 가족에게 가장 안정적입니다.",
+    "summary": "이번 여행의 중심 일정입니다. 공식 안내 기준 수영장은 매일 06:00-18:00, 워터슬라이드는 날씨 허용 시 09:00-18:00로 안내되어 있어 오전과 늦은 오후 블록을 보호해야 합니다.",
+    "bestTime": "오전 또는 16시 이후",
+    "duration": "블록당 2-4시간",
+    "transfer": {
+      "fromHyatt": "숙소 안",
+      "fromHappyDay": "해당 없음"
+    },
+    "budgetLevel": "포함",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "더운 날",
+      "휴식 블록"
+    ],
+    "caution": "워터슬라이드는 키 80cm 초과, 만 16세 미만, 수영 가능 조건이 안내되어 있습니다. 한낮 직사광선을 피하고 선크림, 모자, 수분 보충을 챙깁니다.",
+    "decisionNeeded": "관광지를 늘리기보다 리조트 휴식 시간을 충분히 확보합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "marble-mountains",
+    "name": "오행산",
+    "category": "attraction",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "응우하인선 / 하얏트 근처",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Marble%20Mountains%2C%20Da%20Nang%2C%20Vietnam%20-%2020071217.jpg?width=900",
+      "alt": "다낭 오행산",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marble_Mountains,_Da_Nang,_Vietnam_-_20071217.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "동굴과 전망대가 짧은 모험처럼 느껴질 수 있습니다.",
+    "summary": "하얏트와 가까워 넣기 쉽지만, 계단과 동굴 습기, 7월 더위 때문에 짧은 오전 일정으로만 적합합니다.",
+    "bestTime": "이른 오전",
+    "duration": "1.5-3시간",
+    "transfer": {
+      "fromHyatt": "짧은 차량 이동",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "오전"
+    ],
+    "caution": "계단이 많고 한낮에는 적합하지 않습니다.",
+    "decisionNeeded": "7/26 일요일 아침에 가족 컨디션이 좋을 때만 갑니다. 피곤하면 하얏트 수영장/Camp Hyatt로 대체합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/culture-en/the-marble-mountains"
+  },
+  {
+    "id": "han-market",
+    "name": "한시장",
+    "category": "market",
+    "status": "shortlisted",
+    "priority": "중간",
+    "area": "시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 한시장 내부",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "중간",
+    "kidPoint": "과일, 간식, 기념품, 옷을 빠르게 볼 수 있습니다.",
+    "summary": "Happy Day 체류 구간에 쇼핑 리스트를 들고 짧게 들르는 장소입니다. 목적 없이 오래 머물면 피로도가 큽니다.",
+    "bestTime": "오전 또는 늦은 오후",
+    "duration": "45-90분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 중심이라 접근이 좋음"
+    },
+    "budgetLevel": "중하",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "쇼핑"
+    ],
+    "caution": "혼잡하고 피곤할 수 있어 가족 장시간 활동으로 만들지 않습니다.",
+    "decisionNeeded": "망고, 커피, 건과일, 기념품, 의류 중 살 품목을 먼저 정합니다. 리스트가 없으면 롯데마트/MM Mega Market이 낫습니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/han-market"
+  },
+  {
+    "id": "lotte-mart-danang",
+    "name": "롯데마트 다낭",
+    "category": "market",
+    "status": "backup",
+    "priority": "중간",
+    "area": "시내 / 실내 쇼핑",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 시장 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "높음",
+    "kidPoint": "에어컨, 예측 가능한 동선, 간식/생필품 쇼핑이 가능해 아이와 움직이기 쉽습니다.",
+    "summary": "관광지는 아니지만 더위, 비, 아이 피로가 있을 때 실내 쇼핑 백업으로 유용합니다.",
+    "bestTime": "한낮 또는 비 오는 시간",
+    "duration": "1-2시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "비 오는 날",
+      "마지막 시내 체류",
+      "쇼핑"
+    ],
+    "caution": "실용적이지만 특별한 여행 경험은 아닙니다.",
+    "decisionNeeded": "편의가 중요한 날에만 백업으로 사용합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Attraction_Review-g298085-d14086808-Reviews-Lotte_Mart-Da_Nang.html"
+  },
+  {
+    "id": "mm-mega-market-danang",
+    "name": "MM Mega Market 다낭",
+    "category": "market",
+    "status": "backup",
+    "priority": "중간",
+    "area": "깜레 / 실내 쇼핑",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 시장 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "높음",
+    "kidPoint": "대형 실내 마트라 물, 과일, 간식, 생필품을 더위 피해서 살 수 있습니다.",
+    "summary": "한시장이 너무 덥거나 붐빌 때 쓰기 좋은 실용형 백업입니다. 관광지라기보다 컨디션 유지용 선택지입니다.",
+    "bestTime": "한낮 더위 또는 우천 시",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 리조트 체류일에 일부러 갈 정도는 아닙니다.",
+      "fromHappyDay": "차량 이동 필요. 실내 장보기가 필요할 때만 사용합니다."
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "비 오는 날",
+      "마지막 시내 체류",
+      "쇼핑"
+    ],
+    "caution": "현지 시장 분위기보다는 대형마트 성격입니다.",
+    "decisionNeeded": "편의와 실용 쇼핑이 시장 분위기보다 중요할 때만 선택합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/mm-mega-market-da-nang-2/"
+  },
+  {
+    "id": "son-tra-night-market",
+    "name": "손트라 야시장",
+    "category": "market",
+    "status": "backup",
+    "priority": "낮음",
+    "area": "용다리 / 사랑의 부두 근처",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "용다리 근처 야간 권역",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "야시장 분위기, 간식, 기념품, 용다리 접근성이 있어 아이들이 깨어 있으면 짧게 볼 수 있습니다.",
+    "summary": "용다리 쇼에 붙이는 짧은 추가 코스일 뿐, 이번 가족여행의 별도 목적지는 아닙니다.",
+    "bestTime": "용다리 관람 시 18:00-21:00 사이",
+    "duration": "30-45분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 늦은 복귀 때문에 선택 일정입니다.",
+      "fromHappyDay": "시내 접근은 쉽지만 Happy Day 숙박일은 쇼 요일과 맞지 않습니다."
+    },
+    "budgetLevel": "중하",
+    "suggestedSlots": [
+      "용다리 밤",
+      "백업"
+    ],
+    "caution": "21시 쇼 이후 야시장까지 붙이면 6세 아이에게 너무 늦을 수 있습니다.",
+    "decisionNeeded": "용다리 근처에 이미 있고 아이들이 피곤하지 않을 때만 짧게 봅니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/discovery/famous-local-markets-in-danang"
+  },
+  {
+    "id": "an-thoi-danang",
+    "name": "Ăn Thôi Da Nang",
+    "category": "restaurant",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "한강 / 한시장권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/B%C3%A1nh%20x%C3%A8o%20Vietnamese%20pancake.jpg?width=900",
+      "alt": "베트남 음식 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%C3%A1nh_x%C3%A8o_Vietnamese_pancake.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "한강·한시장 근처의 에어컨 있는 베트남 식당입니다. 하이체어, 카드 결제, 포장/배달 신호가 있어 가족 식사에 맞습니다.",
+    "summary": "Pizza 4P's보다 이번 여행의 1순위 시내 식사 선택지입니다. 미쉐린 빕구르망, 한시장 접근성, 에어컨, 반쎄오·해산물·채식 옵션이 장점입니다.",
+    "bestTime": "11:00 전후 또는 17:30 전후",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 시내 일정과 묶을 때만 갑니다.",
+      "fromHappyDay": "Happy Day/한강/한시장권에서 매우 좋은 식사 선택지입니다."
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "시내 식사",
+      "쇼핑 후"
+    ],
+    "caution": "공식/리뷰 정보 모두 인기와 대기 신호가 강합니다. 한국어 후기는 피크 점심 30-50분 대기 사례가 있어, 아이 동반이면 오픈 직후·이른 저녁·배달 백업을 같이 둡니다.",
+    "decisionNeeded": "Happy Day/한시장권 베트남식 1순위 식사로 둡니다. 대기가 길면 마담란 또는 호텔 복귀 후 쉬운 식사로 전환합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298085-d24982748-Reviews-An_Thoi-Da_Nang.html"
+  },
+  {
+    "id": "mi-quang-1a",
+    "name": "Mì Quảng 1A",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "하이쩌우 / 시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/M%C3%AC%20Qu%E1%BA%A3ng.jpg?width=900",
+      "alt": "미꽝 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:M%C3%AC_Qu%E1%BA%A3ng.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "짧게 로컬 국수를 먹는 장소입니다. 아이들이 면 요리를 받아들이면 한 번 시도할 만합니다.",
+    "summary": "중부 베트남 미꽝을 맛볼 수 있는 미쉐린 등재 로컬 국수집입니다. 여유로운 가족 저녁보다 빠른 현지식 경험에 맞습니다.",
+    "bestTime": "아침 또는 이른 점심",
+    "duration": "30-45분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 리조트에서 일부러 갈 정도는 아닙니다.",
+      "fromHappyDay": "가족이 짧은 로컬 식사를 원할 때 시내 동선에 붙입니다."
+    },
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "빠른 식사",
+      "현지식"
+    ],
+    "caution": "작고 단순한 식당이라 좌석/쾌적성은 대형 식당보다 약할 수 있습니다.",
+    "decisionNeeded": "진짜 로컬 국수 경험을 원할 때만 사용하고, 편안함이 중요한 날은 제외합니다.",
+    "sourceUrl": "https://guide.michelin.com/en/da-nang-region/da-nang_2984390/restaurant/mi-quang-1a"
+  },
+  {
+    "id": "madame-lan-danang",
+    "name": "Madame Lân",
+    "category": "restaurant",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "한강 / 시내 중심",
+    "image": {
+      "url": "https://www.madamelan.vn/storage/trang-chu/foreword-min.png",
+      "alt": "Madame Lân 레스토랑 공식 이미지",
+      "credit": "Madame Lân official",
+      "sourceUrl": "https://www.madamelan.vn/en"
+    },
+    "familyFit": "높음",
+    "kidPoint": "큰 베트남 식당이고 메뉴 폭이 넓어 아이마다 먹을 수 있는 음식을 찾기 쉽습니다. 안토이 대기가 길 때 가장 현실적인 대체 식당입니다.",
+    "summary": "시내 가족 식사 1순위권 선택지입니다. 베트남 메뉴 폭, 한강변 위치, 단체/가족 친화성이 장점이고 마지막 날 Happy Day 기준 동선이 좋습니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 시내 쇼핑이나 한강 일정과 묶습니다.",
+      "fromHappyDay": "Happy Day에서 접근하기 좋은 시내/한강권 식사 선택지입니다."
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "시내 식사",
+      "가족 식사"
+    ],
+    "caution": "큰 인기 식당이라 피크 저녁은 예약하거나 피하는 편이 좋습니다.",
+    "decisionNeeded": "여러 메뉴를 편하게 고를 수 있는 베트남식 가족 식사가 필요할 때 사용합니다. 안토이 웨이팅이 길면 바로 이쪽으로 바꿉니다.",
+    "sourceUrl": "https://guide.michelin.com/en/da-nang-region/da-nang_2984390/restaurant/madame-lan"
+  },
+  {
+    "id": "bep-hen-danang",
+    "name": "Bếp Hên",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "하이쩌우 / 시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/B%C3%A1nh%20x%C3%A8o%20Vietnamese%20pancake.jpg?width=900",
+      "alt": "베트남 음식 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%C3%A1nh_x%C3%A8o_Vietnamese_pancake.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "가정식 나눠먹기 메뉴라 아이용 순한 음식과 어른용 현지식을 함께 주문하기 좋습니다.",
+    "summary": "미쉐린 등재 베트남 가정식 선택지입니다. 쇼핑 중 급히 먹기보다 조금 여유 있는 현지식 식사에 더 맞습니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 리조트 체류일 단독 방문은 비효율적입니다.",
+      "fromHappyDay": "안토이 또는 마담란이 어렵다면 시내 쉬운 선택으로 둡니다."
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "현지식",
+      "식사 백업"
+    ],
+    "caution": "점심과 저녁 사이 브레이크가 있을 수 있어 방문 전 영업시간 확인이 필요합니다.",
+    "decisionNeeded": "안토이/마담란 다음 순위의 시내 베트남식 선택지로 둡니다.",
+    "sourceUrl": "https://guide.michelin.com/us/en/da-nang-region/da-nang_2984390/restaurant/bep-hen"
+  },
+  {
+    "id": "lim-dining-room-hoian",
+    "name": "Lim Dining Room Hoi An",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "호이안 올드타운",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi%20An%20lanterns%20at%20night.jpg?width=900",
+      "alt": "호이안 저녁 대표 이미지",
+      "credit": "viajar24h.com / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hoi_An_lanterns_at_night.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "피자와 파스타가 있어 등불 산책 전에 아이 식사를 안정적으로 해결하기 좋습니다.",
+    "summary": "호이안 올드타운의 익숙한 음식 선택지입니다. 현지식 경험보다 에어컨, 예측 가능한 메뉴, 아이 식사 안정성이 필요할 때 씁니다.",
+    "bestTime": "등불 산책 전 17:30-18:30",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "호이안 왕복 전용차 권장",
+      "fromHappyDay": "호이안 왕복 전용차 권장"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "호이안 저녁",
+      "익숙한 음식",
+      "가족 식사"
+    ],
+    "caution": "보행자 거리 안쪽이라 차량 하차 후 조금 걸을 수 있습니다.",
+    "decisionNeeded": "아이들이 파스타/피자를 원할 때 쓰고, 메인 현지식 경험으로 보지는 않습니다.",
+    "sourceUrl": "https://www.limdiningroom.com/faq"
+  },
+  {
+    "id": "madam-kieu-hoian",
+    "name": "Madam Kieu Hoi An",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "호이안 강변 / 야시장권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi%20An%20lanterns%20at%20night.jpg?width=900",
+      "alt": "호이안 저녁 대표 이미지",
+      "credit": "viajar24h.com / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hoi_An_lanterns_at_night.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "강변과 야시장 위치가 좋아 식사 후 등불 거리로 바로 이동하기 쉽습니다.",
+    "summary": "위치가 좋은 호이안 강변 베트남식 선택지입니다. 다만 후기 신호가 압도적이지 않아 유일한 저녁 선택지로 두지는 않습니다.",
+    "bestTime": "혼잡 전 17:30-18:30",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "호이안 왕복 전용차 권장",
+      "fromHappyDay": "호이안 왕복 전용차 권장"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "호이안 저녁",
+      "강변 식사"
+    ],
+    "caution": "위치는 좋지만 음식 확실성은 Morning Glory/Cargo Club보다 낮게 봅니다.",
+    "decisionNeeded": "음식 확실성보다 강변/야시장 접근성을 우선할 때만 선택합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298082-d25065930-Reviews-Madam_Kieu_Restaurant-Hoi_An_Quang_Nam_Province.html"
+  },
+  {
+    "id": "morning-glory-hoian",
+    "name": "Morning Glory Original Hoi An",
+    "category": "restaurant",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "호이안 올드타운",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morning%20Glory%20Street%20Food%20Restaurant%20and%20Cooking%20School%2C%20Hoi%20An%2C%20Vietnam%20%287090587149%29.jpg?width=900",
+      "alt": "호이안 Morning Glory 레스토랑",
+      "credit": "David McKelvey / Wikimedia Commons CC BY 2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Morning_Glory_Street_Food_Restaurant_and_Cooking_School,_Hoi_An,_Vietnam_(7090587149).jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "하이체어, 예약, 넓은 베트남 메뉴, 관광객 친화적인 식당 환경이 있어 작은 로컬 식당보다 아이와 가기 쉽습니다.",
+    "summary": "호이안 저녁 1순위 선택지입니다. 오래된 대표 식당, 큰 후기 규모, 올드타운 중심 위치, 먹기 편한 베트남식이라는 장점이 있습니다. 등불 산책보다 식사를 먼저 해결하는 흐름에 맞습니다.",
+    "bestTime": "등불 산책 전 17:30-18:30",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "호이안 왕복 전용차 권장. 기사에게 보행자 거리 밖 가까운 하차 지점을 요청합니다.",
+      "fromHappyDay": "호이안 왕복 전용차 권장. 20:30-21:00 복귀 목표입니다."
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "호이안 저녁",
+      "가족 식사",
+      "베트남식"
+    ],
+    "caution": "인기가 많아 예약 또는 이른 방문이 필요합니다. 올드타운 보행자 거리 때문에 하차 후 걸을 수 있고, 식사를 늦게 잡으면 아이 피로와 배고픔이 겹칩니다.",
+    "decisionNeeded": "베트남식을 낮은 실패 확률로 먹고 싶다면 기본 호이안 저녁으로 둡니다. 17:30-18:30 식사, 18:45 이후 등불 산책 순서가 기본입니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298082-d1487249-Reviews-Morning_Glory_Restaurant-Hoi_An_Quang_Nam_Province.html"
+  },
+  {
+    "id": "cargo-club-hoian",
+    "name": "Cargo Club Cafe & Restaurant",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "호이안 강변 / 올드타운",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi%20An%20lanterns%20at%20night.jpg?width=900",
+      "alt": "호이안 저녁 대표 이미지",
+      "credit": "viajar24h.com / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hoi_An_lanterns_at_night.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "하이체어, 베이커리/디저트, 강변 위치, 베트남·유럽식 혼합 메뉴가 있어 아이 식사 백업이 좋습니다.",
+    "summary": "Morning Glory의 좋은 백업입니다. 강변 위치, 큰 후기 규모, 디저트와 익숙한 메뉴가 장점입니다. 현지성보다는 편의성이 강해 아이들이 현지식에 지쳤을 때 유리합니다.",
+    "bestTime": "17:30-18:30 저녁 또는 디저트",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "호이안 왕복 전용차 권장",
+      "fromHappyDay": "호이안 왕복 전용차 권장"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "호이안 저녁",
+      "가족 식사",
+      "디저트"
+    ],
+    "caution": "관광객 친화적이고 붐빌 수 있습니다. 가장 로컬다운 식사는 아니므로 '호이안에서 실패 없는 식사+디저트' 용도로 봅니다.",
+    "decisionNeeded": "Morning Glory가 어렵거나 아이들이 디저트/익숙한 메뉴를 원할 때 사용합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298082-d1122024-Reviews-Cargo_Club_Cafe_Restaurant-Hoi_An_Quang_Nam_Province.html"
+  },
+  {
+    "id": "pizza-4ps-danang",
+    "name": "Pizza 4P's Da Nang",
+    "category": "restaurant",
+    "status": "backup",
+    "priority": "중간",
+    "area": "시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pizza%20Margherita%20stawberry%20and%20tomato%20topping.jpg?width=900",
+      "alt": "피자 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pizza_Margherita_stawberry_and_tomato_topping.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "피자와 파스타라 두 아이 모두 먹기 쉬운 백업 식사입니다.",
+    "summary": "베트남에서 유명한 피자 체인이지만, 이번 여행에서는 대표 다낭 식당이 아니라 아이 식사/현지식 피로도 백업으로 둡니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근이 비교적 쉬움"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 시내 체류",
+      "익숙한 음식",
+      "비 오는 날"
+    ],
+    "caution": "인기가 있어 예약 권장입니다.",
+    "decisionNeeded": "아이들이 피자/파스타를 원하거나 현지식 피로도가 생겼을 때만 사용합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298085-d11873423-Reviews-Pizza_4P_s_Hoang_Van_Thu-Da_Nang.html"
+  },
+  {
+    "id": "epice-restaurant",
+    "name": "Epice Restaurant",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "해변 리조트권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/B%C3%A1nh%20x%C3%A8o%20Vietnamese%20pancake.jpg?width=900",
+      "alt": "베트남 음식 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:B%C3%A1nh_x%C3%A8o_Vietnamese_pancake.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "하이체어, 아이 메뉴, 넓은 리조트 식당 환경이 장점입니다.",
+    "summary": "해변 리조트권에서 편안함이 필요할 때의 선택지입니다. 다만 하얏트 투숙 중 굳이 이동할 이유는 강하지 않습니다.",
+    "bestTime": "조식, 점심, 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 또는 리조트권 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "쉬운 식사"
+    ],
+    "caution": "로컬 식당보다 비용이 높습니다.",
+    "decisionNeeded": "편안함이 현지성보다 중요할 때만 사용합니다.",
+    "sourceUrl": "https://www.pullman-danang.com/discovery/destination/danang-restaurant-with-kid-menu/"
+  },
+  {
+    "id": "chops-danang",
+    "name": "Chops Da Nang",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "안트엉 / 미안",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pizza%20Margherita%20stawberry%20and%20tomato%20topping.jpg?width=900",
+      "alt": "피자 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pizza_Margherita_stawberry_and_tomato_topping.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "버거, 감자튀김, 캐주얼한 분위기가 아이 식사 백업으로 좋습니다.",
+    "summary": "미케/안트엉권의 서양식 가족 식사 선택지입니다. 하얏트에서 일부러 가기보다 외부 이동 중 쉬운 식사가 필요할 때 맞습니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "쉬운 식사"
+    ],
+    "caution": "주변이 붐빌 수 있어 아이와는 도보보다 택시가 편합니다.",
+    "decisionNeeded": "캐주얼한 익숙한 음식 백업으로 둡니다.",
+    "sourceUrl": "https://www.pullman-danang.com/discovery/destination/danang-restaurant-with-kid-menu/"
+  },
+  {
+    "id": "fatfish",
+    "name": "Fatfish Restaurant and Lounge Bar",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "용다리 / 강변",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "강변 분위기, 브런치, 해산물, 스테이크와 서양식 메뉴가 있어 용다리 전후 식사 선택지가 됩니다.",
+    "summary": "용다리나 한강 저녁과 묶기 좋은 강변 식당 선택지입니다. 다만 아이 취침 시간을 고려해야 합니다.",
+    "bestTime": "브런치 또는 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "시내 저녁",
+      "용다리 밤"
+    ],
+    "caution": "저녁 일정은 아이 취침 시간과 맞춰야 합니다.",
+    "decisionNeeded": "한강/용다리 저녁을 실제로 할 때만 사용합니다.",
+    "sourceUrl": "https://www.fatfishrestaurant.com/"
+  },
+  {
+    "id": "museum-cham-sculpture",
+    "name": "Museum of Cham Sculpture",
+    "category": "attraction",
+    "status": "backup",
+    "priority": "낮음",
+    "area": "시내 중심",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Marble%20Mountains%2C%20Da%20Nang%2C%20Vietnam%20-%2020071217.jpg?width=900",
+      "alt": "다낭 관광지 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marble_Mountains,_Da_Nang,_Vietnam_-_20071217.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "너무 덥거나 비가 올 때 짧게 넣을 수 있는 실내 문화 장소입니다.",
+    "summary": "어린아이에게 필수 관광지는 아니지만, 날씨가 안 좋을 때 짧은 실내 백업으로 쓸 수 있습니다.",
+    "bestTime": "한낮 더위 또는 우천 시",
+    "duration": "45-60분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "비 오는 날",
+      "마지막 시내 체류"
+    ],
+    "caution": "아이들의 집중 시간이 길지 않을 수 있습니다.",
+    "decisionNeeded": "짧은 실내 백업으로만 사용합니다.",
+    "sourceUrl": "https://www.vietnamairlines.com/mm/en/plan-book/travel/travel-guide/da-nang-museum-of-cham-sculpture"
+  },
+  {
+    "id": "hyatt-xanh-house",
+    "name": "Xanh House at Hyatt",
+    "category": "restaurant",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "하얏트 / 메인 풀",
+    "image": {
+      "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2023/05/11/0309/DANHR-P0755-Pool-House-Restaurant-Dining-Table.jpg/DANHR-P0755-Pool-House-Restaurant-Dining-Table.16x9.jpg?imwidth=1200",
+      "alt": "하얏트 Xanh House 식당",
+      "credit": "Hyatt official",
+      "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+    },
+    "familyFit": "높음",
+    "kidPoint": "메인 풀 옆 하얏트 내부 식당이고 키즈 메뉴와 아이용 식기가 있어 물놀이 후 바로 식사하기 좋습니다.",
+    "summary": "하얏트 체류 중 가장 마찰이 적은 식사 선택지입니다. 수영 후 또는 바나힐 복귀 후 외부 이동 없이 마무리하기 좋습니다.",
+    "bestTime": "점심, 간식, 이른 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "숙소 안",
+      "fromHappyDay": "해당 없음"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "쉬운 식사",
+      "놀고 난 뒤"
+    ],
+    "caution": "리조트 가격입니다. 식사 피크에는 자리 확인이 필요합니다.",
+    "decisionNeeded": "숙소 밖으로 나가기 부담스러운 날 기본 식사로 둡니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+  },
+  {
+    "id": "hyatt-osteria",
+    "name": "Osteria al Mare at Hyatt",
+    "category": "restaurant",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "하얏트",
+    "image": {
+      "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2023/05/11/0309/DANHR-P0765-Osteria-al-Mare-Dining-Room.jpg/DANHR-P0765-Osteria-al-Mare-Dining-Room.16x9.jpg?imwidth=1200",
+      "alt": "하얏트 Osteria al Mare 다이닝룸",
+      "credit": "Hyatt official",
+      "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+    },
+    "familyFit": "높음",
+    "kidPoint": "이탈리안 메뉴와 키즈 메뉴가 있어 아이들이 익숙한 음식을 먹기 좋습니다.",
+    "summary": "하얏트 안에서 피자/파스타 계열 안정식을 먹고 싶을 때 가장 좋은 선택지입니다.",
+    "bestTime": "조식, 점심, 저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "숙소 안",
+      "fromHappyDay": "해당 없음"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "쉬운 식사",
+      "비 오는 날"
+    ],
+    "caution": "리조트 가격이며 조식 포함 여부는 예약 조건에 따라 다릅니다.",
+    "decisionNeeded": "도착일 또는 바나힐 복귀일처럼 아이들에게 예측 가능한 식사가 필요할 때 사용합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+  },
+  {
+    "id": "hyatt-camp-hyatt",
+    "name": "Camp Hyatt and Resort Kids Activities",
+    "category": "activity",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "하얏트",
+    "image": {
+      "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/09/18/0512/DANHR-P1178-The-Arena-Soccer-Table.jpg/DANHR-P1178-The-Arena-Soccer-Table.16x9.jpg?imwidth=1200",
+      "alt": "하얏트 키즈 실내 활동 공간",
+      "credit": "Hyatt official",
+      "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+    },
+    "familyFit": "높음",
+    "kidPoint": "Camp Hyatt, The Arena, Little Farm, 키즈 패스포트, 피자 클래스, 수영장과 워터슬라이드가 있어 리조트 안에서도 아이 일정이 충분합니다.",
+    "summary": "하얏트 숙박의 핵심 가치입니다. 공식 안내 기준 Camp Hyatt는 4-12세 대상 매일 2시간 무료 이용 신호가 있고, The Arena는 6세 이상 실내 게임 공간이라 7월 한낮 대체 일정으로 좋습니다.",
+    "bestTime": "한낮 더위, 조식 후, 휴식 블록",
+    "duration": "1-3시간",
+    "transfer": {
+      "fromHyatt": "숙소 안",
+      "fromHappyDay": "해당 없음"
+    },
+    "budgetLevel": "포함 또는 변동",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "더운 날",
+      "휴식 블록"
+    ],
+    "caution": "무료/유료 범위, 보호자 동반 조건, 월간 프로그램표는 체크인 시점에 다시 확인합니다. 6세 남아는 The Arena 가능 연령과 맞지만 세부 이용 조건은 현장 기준입니다.",
+    "decisionNeeded": "체크인 직후 프로그램표를 받아 7/25 오후, 7/26 한낮, 7/27 바나힐 후 회복 블록에 넣습니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "hyatt-junior-cafe",
+    "name": "Junior Cafe at Camp Hyatt",
+    "category": "restaurant",
+    "status": "backup",
+    "priority": "중간",
+    "area": "하얏트 / Camp Hyatt",
+    "image": {
+      "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/09/18/0512/DANHR-P1171-Junior-Cafe-Kids-Ice-Cream.jpg/DANHR-P1171-Junior-Cafe-Kids-Ice-Cream.16x9.jpg?imwidth=1200",
+      "alt": "하얏트 Junior Cafe 아이스크림",
+      "credit": "Hyatt official",
+      "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+    },
+    "familyFit": "높음",
+    "kidPoint": "아이스크림, 가벼운 간식, 버거, 스무디가 있어 아이 휴식 포인트로 좋습니다.",
+    "summary": "리조트를 나가지 않고 아이들이 쉬어갈 수 있는 간식 장소입니다.",
+    "bestTime": "간식 시간 또는 Camp Hyatt 후",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "숙소 안",
+      "fromHappyDay": "해당 없음"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "하얏트 체류",
+      "간식",
+      "더운 날"
+    ],
+    "caution": "정식 저녁 대체용은 아닙니다.",
+    "decisionNeeded": "목적지가 아니라 컨디션 회복용으로 사용합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Linh%20Ung%20Pagoda%2018.jpg?width=900",
+      "alt": "다낭 선짜 반도 린응사",
+      "credit": "Christophe95 / Wikimedia Commons CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Linh_Ung_Pagoda_18.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "linh-ung-pagoda",
+    "name": "린응사 / 영응사",
+    "category": "attraction",
+    "status": "research",
+    "priority": "높음",
+    "area": "선짜 반도",
+    "kidPoint": "67m 해수관음상과 바다 전망이 있어 아이들도 한눈에 이해하기 쉽습니다.",
+    "summary": "처음 가는 다낭에서 선짜 반도와 바다 전망을 함께 보는 대표 관광지입니다. 다만 하얏트 기준으로는 별도 차량 이동이 필요합니다.",
+    "bestTime": "이른 오전 또는 늦은 오후",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 미케/선짜권 일정과 묶을 때 효율적입니다.",
+      "fromHappyDay": "차량 이동 필요. 시내에서 선짜 방향 반일 선택지입니다."
+    },
+    "caution": "햇볕과 계단/경사가 있어 한낮 방문은 피합니다.",
+    "decisionNeeded": "선짜 반도 전망을 보고 싶다면 선택지에 두고, 하얏트 휴식일에는 무리해서 넣지 않습니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/linh-ung-pagoda"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Son%20Tra%20Peninsula.jpg?width=900",
+      "alt": "다낭 선짜 반도 전망",
+      "credit": "Christophe95 / Wikimedia Commons CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Son_Tra_Peninsula.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "낮음-중간",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "son-tra-peninsula",
+    "name": "선짜 반도",
+    "category": "attraction",
+    "status": "research",
+    "priority": "중간",
+    "area": "선짜 반도",
+    "kidPoint": "바다 전망, 산길, 자연 풍경이 있어 짧은 드라이브형 관광으로 볼 수 있습니다.",
+    "summary": "다낭의 자연/전망 권역입니다. 아이 동반으로는 긴 탐방보다 린응사 중심의 짧은 차량 코스가 맞습니다.",
+    "bestTime": "오전 또는 해질 무렵 전",
+    "duration": "1.5-3시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "길이 구불구불하고 더울 수 있어 장시간 탐방은 아이에게 부담입니다.",
+    "decisionNeeded": "린응사와 묶은 짧은 코스로만 검토합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/heritage-landscape/the-son-tra-peninsula"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/My%20Khe%20Beach%2C%20Da%20Nang%2C%20Vietnam.jpg?width=900",
+      "alt": "다낭 미케 비치",
+      "credit": ". Ray in Manila / Wikimedia Commons CC BY 2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:My_Khe_Beach,_Da_Nang,_Vietnam.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "my-khe-beach",
+    "name": "미케 비치",
+    "category": "attraction",
+    "status": "research",
+    "priority": "중간",
+    "area": "미케 / 보응우옌잡 해변",
+    "kidPoint": "넓은 해변과 모래놀이가 가능해 아이들이 좋아할 수 있습니다.",
+    "summary": "다낭 대표 해변입니다. 하얏트가 이미 해변 리조트라 필수는 아니지만, 시내/미케권 분위기를 보려면 짧게 들를 수 있습니다.",
+    "bestTime": "이른 오전 또는 16시 이후",
+    "duration": "45-90분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요. 하얏트 해변이 있어 필수는 아닙니다.",
+      "fromHappyDay": "차량 이동 필요. 시내 체류 중 짧은 해변 산책 선택지입니다."
+    },
+    "caution": "한낮에는 모래와 햇볕이 강합니다.",
+    "decisionNeeded": "하얏트 해변으로 충분하면 제외합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/discovery/my-khe-beach-one-of-the-ten-most-beautiful-beaches-in-asia"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 시장 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "낮음-중간",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "con-market",
+    "name": "꼰시장",
+    "category": "market",
+    "status": "research",
+    "priority": "중간",
+    "area": "하이쩌우 / 로컬 시장",
+    "kidPoint": "현지 시장 분위기를 볼 수 있지만 아이에게는 혼잡하게 느껴질 수 있습니다.",
+    "summary": "한시장보다 더 로컬 분위기가 강한 시장 선택지입니다. 처음 방문 가족에게는 한시장을 우선하고, 꼰시장은 로컬 시장 관심이 있을 때만 둡니다.",
+    "bestTime": "오전 또는 늦은 오후",
+    "duration": "45-60분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "혼잡, 냄새, 더위가 있어 아이 동반 장시간 체류는 비추천입니다.",
+    "decisionNeeded": "로컬 시장 경험을 원하면 선택지, 쇼핑 실용성은 한시장/마트 우선입니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/con-market/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중하",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "helio-night-market",
+    "name": "헬리오 야시장",
+    "category": "market",
+    "status": "research",
+    "priority": "중간",
+    "area": "2/9 Street / 야시장",
+    "kidPoint": "야시장 음식과 분위기는 아이에게 재미있을 수 있지만 늦은 시간과 혼잡이 부담입니다.",
+    "summary": "다낭 야시장 선택지입니다. 다만 Helio 관련 시설은 2025년 리노베이션 임시 중단 공지가 있어 2026년 방문 전 운영 재확인이 필요합니다.",
+    "bestTime": "저녁",
+    "duration": "1-2시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "운영 재개 여부 확인 전에는 확정 일정에 넣지 않습니다.",
+    "decisionNeeded": "운영 중이면 야시장 선택지, 아니면 손트라 야시장/시내 식사로 대체합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/helio-center-temporarily-suspended/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "da-nang-museum",
+    "name": "다낭 박물관",
+    "category": "attraction",
+    "status": "research",
+    "priority": "중간",
+    "area": "박당/쩐푸 / 시내",
+    "kidPoint": "더위나 비를 피하면서 짧게 볼 수 있는 실내 문화 선택지입니다.",
+    "summary": "시내 실내 쉬운 선택입니다. 아이에게 최우선 명소는 아니지만 마지막 날 더위/비가 심할 때 짧게 넣을 수 있습니다.",
+    "bestTime": "한낮 또는 우천 시",
+    "duration": "45-75분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "아이 흥미가 오래 가지 않을 수 있어 짧게 봅니다.",
+    "decisionNeeded": "날씨 쉬운 선택 또는 시내 문화 선택지로 유지합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/the-da-nang-museum"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Marble%20Mountains%2C%20Da%20Nang%2C%20Vietnam%20-%2020071217.jpg?width=900",
+      "alt": "다낭 관광지 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marble_Mountains,_Da_Nang,_Vietnam_-_20071217.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "fine-arts-museum",
+    "name": "다낭 미술관",
+    "category": "attraction",
+    "status": "research",
+    "priority": "중간",
+    "area": "레주언 / 시내",
+    "kidPoint": "어린이 미술 탐색 공간이 있어 실내 쉬운 선택으로 볼 수 있습니다.",
+    "summary": "날씨가 좋지 않을 때 짧게 들를 수 있는 실내 문화 선택지입니다. 아이가 그림/만들기를 좋아하면 다낭 박물관보다 나을 수 있습니다.",
+    "bestTime": "한낮 또는 우천 시",
+    "duration": "45-75분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "전시 흥미도는 아이 성향에 따라 차이가 큽니다.",
+    "decisionNeeded": "아이들이 미술/체험에 흥미가 있을 때만 선택지로 둡니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/danang-fine-arts-museum"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "da-nang-downtown",
+    "name": "다낭 다운타운 / 아시아파크",
+    "category": "activity",
+    "status": "research",
+    "priority": "중간",
+    "area": "한강 서쪽 / 놀이공원권",
+    "kidPoint": "대관람차와 놀이기구가 아이들에게 매력적일 수 있습니다.",
+    "summary": "과거 Asia Park 계열 야간 놀이공원 선택지입니다. 2025년 임시 중단/전환 공지가 있어 2026년 방문 전 운영 확인이 필수입니다.",
+    "bestTime": "오후-저녁",
+    "duration": "2-3시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "운영 상태 확인 전에는 일정에 넣지 않습니다.",
+    "decisionNeeded": "운영 재개가 확인되면 야간 놀거리 선택지, 아니면 제외합니다.",
+    "sourceUrl": "https://danangfantasticity.com/danang-downtown-temporarily-suspended"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kolam%20renang%20Hyatt%20Regency.jpg?width=900",
+      "alt": "가족 물놀이 대표 이미지",
+      "credit": "PenaTulip / Wikimedia Commons CC0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kolam_renang_Hyatt_Regency.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "높음",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "vinwonders-nam-hoi-an",
+    "name": "VinWonders Nam Hoi An",
+    "category": "activity",
+    "status": "research",
+    "priority": "중간",
+    "area": "남호이안",
+    "kidPoint": "어린이 물놀이장과 대형 테마파크 시설이 있어 아이 중심 하루 일정으로는 강합니다.",
+    "summary": "호이안보다 더 남쪽의 대형 테마파크/워터파크 선택지입니다. 이번 짧은 일정에서는 바나힐과 경쟁하는 하루 쉬운 일정입니다.",
+    "bestTime": "오전-오후",
+    "duration": "6-8시간",
+    "transfer": {
+      "fromHyatt": "전용차 왕복 필요",
+      "fromHappyDay": "전용차 왕복 필요"
+    },
+    "caution": "거리와 비용이 커서 바나힐과 동시에 넣기 어렵습니다.",
+    "decisionNeeded": "관광보다 아이 물놀이/테마파크가 우선이면 바나힐 쉬운 선택으로 검토합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/outstanding-complexes/vinwonders-nam-hoi-an-2"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/My%20Son%20Sanctuary%20Vietnam.jpg?width=900",
+      "alt": "미선 유적 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:My_Son_Sanctuary_Vietnam.jpg"
+    },
+    "familyFit": "낮음-중간",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "my-son-sanctuary",
+    "name": "미선 유적",
+    "category": "attraction",
+    "status": "research",
+    "priority": "중간",
+    "area": "미선 / 외곽 문화유산",
+    "kidPoint": "고대 참파 유적을 볼 수 있지만 어린아이에게는 더위와 이동이 부담일 수 있습니다.",
+    "summary": "문화유산 관심이 큰 가족에게는 의미 있지만, 7월 말 아이 동반 짧은 다낭 일정에서는 우선순위가 낮습니다.",
+    "bestTime": "이른 오전",
+    "duration": "반일 이상",
+    "transfer": {
+      "fromHyatt": "전용차 필요",
+      "fromHappyDay": "전용차 필요"
+    },
+    "caution": "더위, 이동 거리, 아이 흥미 지속 시간이 리스크입니다.",
+    "decisionNeeded": "이번 여행에서는 기본 제외, 다음 방문 선택지로 둡니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/my-son-sanctuary/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kolam%20renang%20Hyatt%20Regency.jpg?width=900",
+      "alt": "가족 물놀이 대표 이미지",
+      "credit": "PenaTulip / Wikimedia Commons CC0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kolam_renang_Hyatt_Regency.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "더 알아보기"
+    ],
+    "id": "holiday-beach-club",
+    "name": "Holiday Beach Club",
+    "category": "restaurant",
+    "status": "research",
+    "priority": "중간",
+    "area": "미케 비치",
+    "kidPoint": "해변 분위기와 서양식 메뉴가 있어 미케 해변 산책과 묶을 수 있습니다.",
+    "summary": "미케 해변권 식사/휴식 선택지입니다. 하얏트에 이미 해변과 식당이 있어 필수는 아니고, 시내 해변 분위기를 볼 때만 검토합니다.",
+    "bestTime": "늦은 오후-저녁",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "하얏트 체류일에 굳이 이동할 가치는 낮습니다.",
+    "decisionNeeded": "미케 해변 산책을 실제로 넣을 때만 식사 선택지로 둡니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/entertainment-relax/the-holiday-beach-club"
+  },
+  {
+    "image": {
+      "url": "https://phevaworld.com/wp-content/uploads/2024/10/1st-location-img-updated.webp",
+      "alt": "Pheva Chocolate 다낭 매장",
+      "credit": "Pheva Chocolate official",
+      "sourceUrl": "https://phevaworld.com/"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 날 시내",
+      "한시장 전후"
+    ],
+    "id": "pheva-chocolate",
+    "name": "Pheva Chocolate Da Nang",
+    "category": "shopping",
+    "status": "shortlisted",
+    "priority": "높음",
+    "area": "쩐푸 / 시내",
+    "kidPoint": "작고 예쁜 포장 초콜릿이라 아이와 함께 선물 고르기 쉽습니다.",
+    "summary": "베트남 카카오 기반 초콜릿 기념품 선택지입니다. 공식 사이트 기준 다낭 매장은 239 Tran Phu, 매일 08:00-19:00 운영으로 안내됩니다.",
+    "bestTime": "한시장 전후 낮",
+    "duration": "20-40분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "7월에는 초콜릿이 녹을 수 있으므로 마지막 날 구매 후 호텔 냉방/보냉을 고려합니다.",
+    "decisionNeeded": "가벼운 선물은 한시장보다 Pheva를 꼭 가볼 곳로 둡니다.",
+    "sourceUrl": "https://phevaworld.com/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 시장 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 날 시내",
+      "카페 휴식"
+    ],
+    "id": "danang-souvenirs-cafe",
+    "name": "Danang Souvenirs & Cafe",
+    "category": "shopping",
+    "status": "research",
+    "priority": "중간",
+    "area": "박당/쩐꾸옥또안 / 시내",
+    "kidPoint": "카페 휴식과 작은 기념품 구경을 한 번에 처리할 수 있습니다.",
+    "summary": "다낭 도시 이미지가 들어간 티셔츠, 마그넷, 키링, 머그 등 관광 기념품을 다루는 카페형 기념품점 선택지입니다. 다만 지점 정보와 영업 상태가 자료마다 달라 방문 전 지도에서 최신 영업 여부 확인이 필요합니다.",
+    "bestTime": "한낮 카페 휴식",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "일부 후기 사이트에는 폐업 또는 지점 변경 신호가 있어 Google Maps 최신 영업 상태 확인 전 확정하지 않습니다.",
+    "decisionNeeded": "운영 확인이 되면 기념품+카페 선택지, 불확실하면 Pheva/한시장/마트로 대체합니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/natural/danang-souvenirs-cafe"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "부모 카페",
+      "미케/안트엉"
+    ],
+    "id": "xliii-coffee",
+    "name": "XLIII Coffee / 43 Factory Coffee Roaster",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "응우하인선 / 미안",
+    "kidPoint": "아이 목적지는 아니지만 부모가 좋은 커피를 마시고 짧게 쉬기 좋습니다.",
+    "summary": "스페셜티 커피 로스터리입니다. 공식 위치 페이지 기준 다낭 플래그십은 Ngo Thi Si, Ngu Hanh Son 지역이며 06:30-22:30 운영으로 안내됩니다.",
+    "bestTime": "오전 또는 이른 오후",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "하얏트에서 차량 이동 비교적 짧음",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "커피 중심 공간이라 아이가 오래 머물 장소는 아닙니다. 식사 대체보다는 부모 휴식으로 봅니다.",
+    "decisionNeeded": "하얏트 근처 외부 카페가 필요할 때만 넣습니다.",
+    "sourceUrl": "https://43factory.coffee/en/location/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "마지막 날 시내",
+      "카페 휴식"
+    ],
+    "id": "wonderlust-coffee",
+    "name": "Wonderlust Coffee & Souvenir",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "쩐푸 / 시내",
+    "kidPoint": "케이크, 음료, 하이체어 정보가 있어 마지막 날 쉬어가기 좋은 카페 선택지입니다.",
+    "summary": "쩐푸 거리의 카페 겸 소품/기념품 성격 선택지입니다. 후기 기반으로 08:00-21:00 운영, 카드 결제, 와이파이, 하이체어 정보가 확인됩니다.",
+    "bestTime": "한시장 전후 휴식",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "후기 사이트 기반 정보라 방문 전 지도 영업 상태 확인이 필요합니다.",
+    "decisionNeeded": "마지막 날 한시장 쇼핑 중 아이들이 지치면 휴식 지점으로 사용합니다.",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298085-d6784466-Reviews-Wonderlust_Coffee_Souvenir-Da_Nang.html"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "낮음-중간",
+    "suggestedSlots": [
+      "시내 이동 중",
+      "비상 휴식"
+    ],
+    "id": "highlands-coffee-city",
+    "name": "Highlands Coffee",
+    "category": "cafe",
+    "status": "backup",
+    "priority": "중간",
+    "area": "다낭 시내 여러 지점",
+    "kidPoint": "예측 가능한 체인 카페라 화장실, 냉방, 간단한 음료 휴식에 유리합니다.",
+    "summary": "식당 목적지는 아니지만 7월 낮 아이 동반 일정에서 쓸모 있는 냉방 휴식 베이스입니다. 시내 여러 지점이 있어 이동 중 가장 가까운 지점을 쓰는 방식이 맞습니다.",
+    "bestTime": "한낮",
+    "duration": "20-45분",
+    "transfer": {
+      "fromHyatt": "외부 일정 중 가까운 지점 활용",
+      "fromHappyDay": "시내 체류 중 가까운 지점 활용"
+    },
+    "caution": "기념성은 낮습니다. 일정이 꼬였을 때 체력 보존용으로만 봅니다.",
+    "decisionNeeded": "아이 피로, 갑작스러운 비, 택시 대기 시간이 생길 때 즉시 쉬운 선택으로 사용합니다.",
+    "sourceUrl": "https://www.highlandscoffee.com.vn/"
+  },
+  {
+    "image": {
+      "url": "https://phevaworld.com/wp-content/uploads/2024/10/1st-location-img-updated.webp",
+      "alt": "베트남 초콜릿 기념품 대표 이미지",
+      "credit": "Pheva Chocolate official",
+      "sourceUrl": "https://phevaworld.com/"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "기념품",
+      "마지막 날 시내"
+    ],
+    "id": "alluvia-chocolate",
+    "name": "Alluvia Chocolate",
+    "category": "shopping",
+    "status": "research",
+    "priority": "중간",
+    "area": "다낭 시내",
+    "kidPoint": "초콜릿 선물 선택지라 아이와 고르기 쉽지만, 동선상 Pheva와 비교가 필요합니다.",
+    "summary": "베트남 카카오를 활용한 초콜릿 브랜드입니다. 다낭 기념품 선택지로 볼 수 있으나, 이번 일정에서는 Pheva를 1순위로 두고 Alluvia는 위치가 맞을 때 비교 선택지로 둡니다.",
+    "bestTime": "마지막 날",
+    "duration": "20-40분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "지점 위치 확인 후 접근"
+    },
+    "caution": "정확한 다낭 지점 영업 상태는 지도에서 재확인합니다.",
+    "decisionNeeded": "Pheva 동선이 맞지 않거나 선물 종류를 더 보고 싶을 때만 사용합니다.",
+    "sourceUrl": "https://www.alluviachocolate.com/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 시장 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "중하",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "로컬 시장",
+      "미케/안트엉"
+    ],
+    "id": "bac-my-an-market",
+    "name": "박미안 시장",
+    "category": "market",
+    "status": "backup",
+    "priority": "중하",
+    "area": "박미안 / 응우하인선",
+    "kidPoint": "로컬 간식과 시장 분위기를 볼 수 있지만 아이 동반 장시간 체류에는 맞지 않습니다.",
+    "summary": "미케/안트엉 쪽 로컬 시장 선택지입니다. 아보카도 아이스크림 등으로 알려져 있지만, 여행 초보 가족에게는 한시장보다 난도가 높습니다.",
+    "bestTime": "오전 또는 이른 오후",
+    "duration": "20-45분",
+    "transfer": {
+      "fromHyatt": "차량 이동 비교적 짧음",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "위생, 더위, 혼잡, 냄새에 민감하면 제외합니다.",
+    "decisionNeeded": "로컬 시장 경험이 꼭 필요할 때만 짧게 넣고, 쇼핑 목적이면 한시장/마트를 우선합니다.",
+    "sourceUrl": "https://app.wanderlog.com/place/details/144776/mercado-bac-my-an"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kolam%20renang%20Hyatt%20Regency.jpg?width=900",
+      "alt": "가족 물놀이 대표 이미지",
+      "credit": "PenaTulip / Wikimedia Commons CC0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kolam_renang_Hyatt_Regency.jpg"
+    },
+    "familyFit": "높음",
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "비 오는 날",
+      "하루 쉬운 일정"
+    ],
+    "id": "mikazuki-water-park",
+    "name": "Mikazuki Water Park 365",
+    "category": "activity",
+    "status": "candidate",
+    "priority": "중상",
+    "area": "응우옌떳탄 / 북서 해변권",
+    "kidPoint": "실내외 워터파크, 게임센터, 키즈파크가 있어 비가 와도 아이 중심 하루를 만들 수 있습니다.",
+    "summary": "일본식 워터파크·온천 복합 시설입니다. 공식 사이트 기준 09:00-19:00 운영, 실내외 물놀이와 온센, 게임센터, 키즈파크가 확인됩니다.",
+    "bestTime": "오전-오후",
+    "duration": "4-7시간",
+    "transfer": {
+      "fromHyatt": "전용차 또는 Grab 왕복 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "caution": "외부 음식 반입 제한, 손목밴드 현금 충전, 복장 규정이 있어 사전 확인이 필요합니다.",
+    "decisionNeeded": "바나힐 날씨가 좋지 않거나 아이들이 물놀이를 더 원하면 하루 쉬운 일정으로 올립니다.",
+    "sourceUrl": "https://www.mikazukiwaterpark.com/"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Da%20Nang%20Cathedral%202023.jpg?width=900",
+      "alt": "다낭 대성당 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Da_Nang_Cathedral_2023.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "마지막 날 시내",
+      "한시장 전후"
+    ],
+    "id": "da-nang-cathedral",
+    "name": "다낭 대성당 / 핑크 성당",
+    "category": "attraction",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "쩐푸 / 시내",
+    "kidPoint": "분홍색 외관이 직관적이라 아이와 짧은 사진 포인트로 좋습니다.",
+    "summary": "1923년에 건축된 고딕 양식 성당입니다. 한시장·쩐푸 거리·Pheva Chocolate과 가까워 마지막 날 시내 산책에 짧게 붙이기 좋습니다.",
+    "bestTime": "오전 또는 해질 무렵",
+    "duration": "15-30분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "예배 공간이라 내부 관람은 조용히, 복장과 사진 매너를 지킵니다.",
+    "decisionNeeded": "아이 컨디션이 괜찮고 시내 이동 중 동선이 맞을 때만 짧게 넣습니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/culture/danang-cathedral"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중상",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "한강 산책",
+      "용다리 전후"
+    ],
+    "id": "apec-park",
+    "name": "APEC Park",
+    "category": "attraction",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "한강변 / 시내",
+    "kidPoint": "넓은 산책 공간과 독특한 구조물이 있어 짧은 사진·산책 포인트로 쓰기 좋습니다.",
+    "summary": "다낭 한강변의 현대적 공원·문화 랜드마크입니다. 용다리, 참 조각 박물관, 한강변 식사와 묶어 짧게 보기 좋습니다.",
+    "bestTime": "해질 무렵-저녁",
+    "duration": "20-45분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "caution": "7월 낮에는 그늘과 냉방 휴식이 부족할 수 있어 한낮은 피합니다.",
+    "decisionNeeded": "용다리 쇼를 보지 않더라도 한강변 산책 포인트가 필요할 때 넣습니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/apec-viet-nam-2017-en/apec-park"
+  },
+  {
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dragon%20Bridge%20Da%20Nang%204.jpg?width=900",
+      "alt": "다낭 한강 야경 대표 이미지",
+      "credit": "Christophe95 / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dragon_Bridge_Da_Nang_4.jpg"
+    },
+    "familyFit": "중간",
+    "budgetLevel": "낮음",
+    "suggestedSlots": [
+      "용다리 전후",
+      "야간 산책"
+    ],
+    "id": "love-bridge",
+    "name": "다낭 사랑의 부두 / Love Bridge",
+    "category": "attraction",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "용다리 동쪽 / 한강변",
+    "kidPoint": "하트 조명, 강변 야경, 용다리 전망이 있어 짧은 야간 산책에 좋습니다.",
+    "summary": "용다리 근처 한강변 보행 포인트입니다. 용다리 불·물 쇼를 실제로 볼 때 대기 장소 또는 쇼 전후 사진 포인트로 쓸 수 있습니다.",
+    "bestTime": "저녁",
+    "duration": "15-30분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "시내 체류 중 차량/짧은 이동"
+    },
+    "caution": "주말 밤에는 혼잡합니다. 21시 쇼와 묶으면 아이 취침 시간이 늦어집니다.",
+    "decisionNeeded": "용다리 쇼를 선택한 날에만 같이 넣고, 별도 목적지로는 우선순위가 낮습니다.",
+    "sourceUrl": "https://www.vietnamairlines.com/us/en/plan-book/travel/travel-guide/love-bridge-da-nang"
+  },
+  {
+    "id": "go-danang-big-c",
+    "name": "GO! / Big C Da Nang",
+    "category": "market",
+    "status": "backup",
+    "priority": "중상",
+    "area": "훙브엉 / 꼰시장 근처",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 쇼핑 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "높음",
+    "kidPoint": "정찰제 대형마트라 가격 흥정 없이 커피, 간식, 건과일, 생필품을 빠르게 살 수 있습니다.",
+    "summary": "한시장 흥정과 더위가 부담스러울 때 쓰는 실내 쇼핑 백업입니다. Big C/GO! 계열 대형마트라 마지막 날 선물·간식 정리에 적합합니다.",
+    "bestTime": "한낮 더위 또는 비 오는 시간",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요. 한시장보다 거리는 있지만 실내 쇼핑 안정성이 좋습니다."
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "마지막 날 시내",
+      "비 오는 날",
+      "정찰제 쇼핑"
+    ],
+    "caution": "여행 분위기보다는 실용 쇼핑입니다. 필요한 품목을 정하고 짧게 끝냅니다.",
+    "decisionNeeded": "한시장이 너무 덥거나 흥정이 부담스러우면 이쪽으로 전환합니다.",
+    "sourceUrl": "https://www.indochinavalue.com/vietnam-travel-destinations/da-nang-travel-guide/shopping-in-da-nang/big-c-supermarket"
+  },
+  {
+    "id": "vincom-plaza-ngo-quyen",
+    "name": "Vincom Plaza Ngô Quyền",
+    "category": "shopping",
+    "status": "backup",
+    "priority": "중간",
+    "area": "선짜 / 한강 동쪽",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 쇼핑 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "높음",
+    "kidPoint": "에어컨, 식당, 카페, 키즈 공간 신호가 있어 비·더위에 아이와 쉬어가기 좋습니다.",
+    "summary": "쇼핑몰형 실내 백업입니다. 기념품 특화보다는 더위 피하기, 식사/카페, 아이 컨디션 회복에 더 맞습니다.",
+    "bestTime": "한낮 또는 비 오는 시간",
+    "duration": "1-2시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "비 오는 날",
+      "시내 휴식",
+      "아이 컨디션 회복"
+    ],
+    "caution": "한국 여행자용 기념품보다는 일반 쇼핑몰 성격입니다.",
+    "decisionNeeded": "더위와 비 때문에 실내에서 시간을 보내야 할 때만 사용합니다.",
+    "sourceUrl": "https://vincomshoppingmall.com/vi/tttm/vincom-plaza-ngo-quyen-da-nang"
+  },
+  {
+    "id": "coopmart-danang",
+    "name": "Co.opmart Da Nang",
+    "category": "market",
+    "status": "backup",
+    "priority": "중간",
+    "area": "탄케 / 디엔비엔푸",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 쇼핑 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "높음",
+    "kidPoint": "정찰제 마트라 아이 간식, 물, 생필품, 선물용 포장 제품을 편하게 고를 수 있습니다.",
+    "summary": "다낭 관광청 정보 기준 08:00-22:00 운영 신호가 있는 대형마트입니다. 한시장보다 덜 여행지스럽지만 실패 확률이 낮은 쇼핑 백업입니다.",
+    "bestTime": "한낮 또는 비 오는 시간",
+    "duration": "1-1.5시간",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "정찰제 쇼핑",
+      "간식 보충",
+      "비 오는 날"
+    ],
+    "caution": "Happy Day 기준 아주 가까운 동선은 아니므로 꼭 필요한 마트 쇼핑일 때만 갑니다.",
+    "decisionNeeded": "마트 쇼핑이 필요하지만 롯데마트/GO! 동선이 애매할 때 백업으로 둡니다.",
+    "sourceUrl": "https://danangfantasticity.com/en/vda-da-nang-trade-center-and-co-opmart-da-nang/"
+  },
+  {
+    "id": "maison-marou-danang",
+    "name": "Maison Marou Da Nang",
+    "category": "shopping",
+    "status": "candidate",
+    "priority": "중상",
+    "area": "다낭 시내",
+    "image": {
+      "url": "https://phevaworld.com/wp-content/uploads/2024/10/1st-location-img-updated.webp",
+      "alt": "베트남 초콜릿 기념품 대표 이미지",
+      "credit": "Pheva Chocolate official",
+      "sourceUrl": "https://phevaworld.com/"
+    },
+    "familyFit": "중상",
+    "kidPoint": "초콜릿, 디저트, 음료가 있어 아이와 선물 고르기와 카페 휴식을 같이 할 수 있습니다.",
+    "summary": "Pheva보다 카페·디저트 성격이 강한 베트남 초콜릿 선택지입니다. 마지막 날 선물과 휴식을 같이 해결하고 싶을 때 검토합니다.",
+    "bestTime": "한시장 전후 또는 한낮 휴식",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 지도 확인 후 이동"
+    },
+    "budgetLevel": "중상",
+    "suggestedSlots": [
+      "기념품",
+      "카페 휴식",
+      "초콜릿"
+    ],
+    "caution": "정확한 지점과 영업 여부는 Google Maps에서 방문 직전 확인합니다. 초콜릿은 7월 더위 보관을 고려합니다.",
+    "decisionNeeded": "선물용 초콜릿에 카페 휴식을 붙이고 싶으면 Pheva와 비교합니다.",
+    "sourceUrl": "https://maisonmarou.com/"
+  },
+  {
+    "id": "k-market-danang",
+    "name": "K-Market Da Nang",
+    "category": "market",
+    "status": "backup",
+    "priority": "낮음",
+    "area": "팜반동 / 선짜권",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Han%20Market%20Da%20Nang.JPG?width=900",
+      "alt": "다낭 쇼핑 대표 이미지",
+      "credit": "Dragfyre / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Han_Market_Da_Nang.JPG"
+    },
+    "familyFit": "중간",
+    "kidPoint": "한국 간식, 라면, 음료처럼 아이가 익숙한 물건을 급히 살 때 유용합니다.",
+    "summary": "기념품 장소라기보다 컨디션이 떨어졌을 때 익숙한 간식과 생필품을 보충하는 편의형 백업입니다.",
+    "bestTime": "필요할 때만",
+    "duration": "15-30분",
+    "transfer": {
+      "fromHyatt": "차량 이동 필요",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "변동",
+    "suggestedSlots": [
+      "간식 보충",
+      "아이 컨디션",
+      "비상 쇼핑"
+    ],
+    "caution": "동선상 일부러 갈 정도는 아닙니다. 주변에 있을 때만 사용합니다.",
+    "decisionNeeded": "아이 음식이 안 맞거나 익숙한 간식이 필요할 때만 씁니다.",
+    "sourceUrl": "https://www.viet-biz.com/en/k-market_8M-0236-3960-001"
+  },
+  {
+    "id": "langfarm-danang",
+    "name": "Langfarm Store Da Nang",
+    "category": "shopping",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "다낭 시내 지점 확인 필요",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "건과일, 견과, 차, 커피 같은 포장 선물을 정찰제로 고르기 좋습니다.",
+    "summary": "달랏 특산품 체인으로 건과일·견과·차·커피류 선물 후보입니다. 한시장 벌크 제품보다 포장과 선물성이 필요할 때 검토합니다.",
+    "bestTime": "마지막 날 시내",
+    "duration": "20-40분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 지점 확인 후 이동"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": [
+      "기념품",
+      "건과일",
+      "정찰제 선물"
+    ],
+    "caution": "다낭 지점 위치와 영업 여부는 방문 직전 Google Maps에서 확인합니다.",
+    "decisionNeeded": "건과일·견과 선물을 깔끔한 포장으로 사고 싶을 때 한시장 대신 검토합니다.",
+    "sourceUrl": "https://langfarm.com/en/stores"
+  }
+]

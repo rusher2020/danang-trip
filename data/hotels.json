@@ -1,0 +1,35 @@
+[
+  {
+    "id": "new-orient",
+    "name": "New Orient Hotel Da Nang",
+    "dateLabel": "7/24 밤",
+    "checkIn": "2026-07-24",
+    "checkOut": "2026-07-25",
+    "role": "0.5박 도착 회복 호텔",
+    "summary": "늦은 도착 후 잠만 자는 숙소. 공항 이동과 수면 회복이 목적입니다. 다음 날 오전 Hyatt 이동 전까지 무리하지 않습니다.",
+    "area": "Da Nang city",
+    "status": "confirmed"
+  },
+  {
+    "id": "hyatt",
+    "name": "Hyatt Regency Danang Resort & Spa",
+    "dateLabel": "7/25 - 7/28",
+    "checkIn": "2026-07-25",
+    "checkOut": "2026-07-28",
+    "role": "메인 리조트",
+    "summary": "수영장, 해변, Camp Hyatt, 숙소 내 식사를 일정의 중심에 둡니다. 외부 관광보다 가족 컨디션을 회복하는 베이스입니다.",
+    "area": "Non Nuoc / Ngu Hanh Son",
+    "status": "confirmed"
+  },
+  {
+    "id": "happy-day",
+    "name": "Happy Day Hotel Danang",
+    "dateLabel": "7/28 - 7/29",
+    "checkIn": "2026-07-28",
+    "checkOut": "2026-07-29",
+    "role": "마지막 날 시내 거점",
+    "summary": "짐, 샤워, 쇼핑, 식사, 공항 전 휴식에 사용합니다. 한강/한시장 접근이 좋은 시내 베이스로 봅니다.",
+    "area": "Da Nang city center",
+    "status": "confirmed"
+  }
+]

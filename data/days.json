@@ -1,0 +1,225 @@
+[
+  {
+    "id": "day-0",
+    "label": "Day 0",
+    "date": "7/24 금",
+    "base": "Korea → Da Nang",
+    "certainty": "fixed",
+    "theme": "밤 출국",
+    "summary": "공항 이동, 체크인, 기내 준비에 집중합니다. 관광 일정은 넣지 않습니다.",
+    "fatherCheck": ["항공편명·수하물 확인", "아이 기내 간식·겉옷 준비", "도착 후 바로 호텔 이동"],
+    "fallbacks": [
+      {
+        "if": "비행 지연",
+        "then": "New Orient에는 늦은 도착 가능성을 전제로 연락처와 예약번호를 바로 열 수 있게 둡니다."
+      }
+    ],
+    "mapPointIds": [],
+    "blocks": [
+      {
+        "time": "23:00",
+        "title": "출국",
+        "note": "항공편명과 수하물 정보를 나중에 입력합니다."
+      }
+    ]
+  },
+  {
+    "id": "day-1",
+    "label": "Day 1",
+    "date": "7/25 토",
+    "base": "New Orient → Hyatt",
+    "certainty": "flexible",
+    "theme": "도착 회복과 리조트 적응",
+    "summary": "늦은 도착 후 회복하고 하얏트로 이동합니다. 수영장/해변을 중심으로 가볍게 시작합니다.",
+    "fatherCheck": ["첫날 관광 금지", "체크인 전 짐 맡기기", "저녁은 하얏트 안에서 끝내기"],
+    "fallbacks": [
+      {
+        "if": "아이들이 잠을 못 잤다면",
+        "then": "오전 일정을 모두 버리고 Hyatt 체크인 전후 낮잠과 수영장만 남깁니다."
+      },
+      {
+        "if": "방 준비가 늦다면",
+        "then": "로비/수영장/간식으로 버티고 외부 이동은 하지 않습니다."
+      }
+    ],
+    "mapPointIds": ["new-orient", "hyatt"],
+    "blocks": [
+      {
+        "time": "01:30 전후",
+        "title": "도착 회복",
+        "note": "다낭 도착 후 New Orient로 이동해 수면을 확보합니다. 정확한 현지 도착 시각은 항공편 확인 후 조정합니다."
+      },
+      {
+        "time": "10:30-12:00",
+        "title": "천천히 체크아웃",
+        "note": "조식 포함 여부를 확인하고, 아이들 컨디션을 본 뒤 Hyatt로 이동합니다."
+      },
+      {
+        "time": "12:00-15:00",
+        "title": "하얏트 체크인",
+        "note": "체크인 전이면 짐을 맡기고 점심/수영장/로비 휴식으로 연결합니다.",
+        "placeIds": ["hyatt-resort-time"]
+      },
+      {
+        "time": "16:00-19:00",
+        "title": "수영장과 쉬운 저녁",
+        "note": "첫날은 리조트 안에서 끝내는 것을 기본값으로 둡니다.",
+        "placeIds": ["hyatt-resort-time", "hyatt-xanh-house", "hyatt-osteria"]
+      }
+    ]
+  },
+  {
+    "id": "day-2",
+    "label": "Day 2",
+    "date": "7/26 일",
+    "base": "Hyatt",
+    "certainty": "recommended",
+    "theme": "리조트에서 쉬고 가까운 곳만",
+    "summary": "도착 다음 날이자 일요일이므로 바나힐 풀데이는 피하고, 리조트와 가까운 오행산 또는 수영장 중심으로 느슨하게 둡니다.",
+    "fatherCheck": ["오행산은 오전 컨디션 좋을 때만", "13-16시는 실내·객실·수영장", "용다리는 아이가 졸리면 즉시 제외"],
+    "fallbacks": [
+      {
+        "if": "아침부터 덥거나 피곤하면",
+        "then": "오행산을 빼고 Hyatt 수영장, Camp Hyatt, Junior Cafe로 바꿉니다."
+      },
+      {
+        "if": "저녁에 졸리면",
+        "then": "용다리 쇼와 야시장을 포기하고 숙소에서 일찍 재웁니다."
+      }
+    ],
+    "mapPointIds": ["hyatt", "marble-mountains", "dragon-bridge-show", "son-tra-night-market"],
+    "blocks": [
+      {
+        "time": "08:30-10:30",
+        "title": "선택: 오행산 짧게",
+        "note": "하얏트와 가까워 넣기 쉽지만 계단과 더위를 고려해 1-2시간 안에 끝냅니다.",
+        "placeIds": ["marble-mountains"]
+      },
+      {
+        "time": "11:00-15:30",
+        "title": "하얏트 수영장과 낮잠",
+        "note": "7월 말 더위를 피하고 다음 날 바나힐을 위한 체력을 남깁니다.",
+        "placeIds": ["hyatt-resort-time"]
+      },
+      {
+        "time": "19:30-21:30",
+        "title": "선택: 드래곤브릿지 쇼",
+        "note": "일요일 21시 쇼를 볼 수 있습니다. 아이들이 졸리면 과감히 제외합니다.",
+        "placeIds": ["dragon-bridge-show", "son-tra-night-market"]
+      }
+    ]
+  },
+  {
+    "id": "day-3",
+    "label": "Day 3",
+    "date": "7/27 월",
+    "base": "Hyatt",
+    "certainty": "recommended",
+    "theme": "바나힐 가는 날",
+    "summary": "주말 혼잡을 피해서 월요일에 바나힐을 배치하는 안입니다. 이 날은 다른 큰 일정을 넣지 않습니다.",
+    "fatherCheck": ["전날 밤 날씨 확인", "왕복차량 먼저 확보", "복귀 후 외부 저녁 금지"],
+    "fallbacks": [
+      {
+        "if": "비·안개·강풍 예보",
+        "then": "바나힐을 취소하고 Hyatt 수영장, Camp Hyatt, The Arena, 리조트 식사로 전환합니다."
+      },
+      {
+        "if": "아이 컨디션이 애매하면",
+        "then": "풀데이 비용을 쓰지 말고 리조트 체류일로 바꿉니다."
+      }
+    ],
+    "mapPointIds": ["hyatt", "ba-na-hills"],
+    "blocks": [
+      {
+        "time": "08:00-16:30",
+        "title": "바나힐과 골든브릿지",
+        "note": "오전 출발, 왕복 전용차, 날씨 확인을 전제로 합니다. 점심/대기시간까지 포함해 하루 일정으로 봅니다.",
+        "placeIds": ["ba-na-hills"]
+      },
+      {
+        "time": "17:30-20:00",
+        "title": "리조트 복귀 후 쉬운 식사",
+        "note": "복귀 후에는 숙소 안이나 가까운 식당으로 마무리합니다.",
+        "placeIds": ["hyatt-resort-time"]
+      }
+    ]
+  },
+  {
+    "id": "day-4",
+    "label": "Day 4",
+    "date": "7/28 화",
+    "base": "Hyatt → Happy Day",
+    "certainty": "recommended",
+    "theme": "체크아웃 + 호이안 저녁",
+    "summary": "하얏트 체크아웃 후 Happy Day에서 짐과 휴식을 해결하고, 오후 늦게 호이안으로 이동하는 안입니다.",
+    "fatherCheck": ["체크아웃 후 낮잠 확보", "호이안은 식사 먼저", "21시 전후 다낭 복귀"],
+    "fallbacks": [
+      {
+        "if": "낮잠을 못 자거나 피곤하면",
+        "then": "호이안 소원배와 야시장을 빼고 식사+등불 거리 60분만 봅니다."
+      },
+      {
+        "if": "호이안 식당 대기",
+        "then": "Morning Glory에서 Cargo Club 또는 Lim Dining Room으로 바로 바꿉니다."
+      }
+    ],
+    "mapPointIds": ["hyatt", "happy-day", "hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"],
+    "blocks": [
+      {
+        "time": "09:00-11:00",
+        "title": "하얏트 체크아웃",
+        "note": "짐과 이동 시간을 여유 있게 잡습니다."
+      },
+      {
+        "time": "12:00-15:30",
+        "title": "Happy Day 체크인과 휴식",
+        "note": "더운 시간대에는 시내 이동보다 샤워, 낮잠, 짐 정리를 우선합니다."
+      },
+      {
+        "time": "16:30-21:00",
+        "title": "호이안 등불 저녁",
+        "note": "17시 전후 출발, 저녁 식사와 등불 산책 후 너무 늦지 않게 복귀합니다.",
+        "placeIds": ["hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"]
+      }
+    ]
+  },
+  {
+    "id": "day-5",
+    "label": "Day 5",
+    "date": "7/29 수",
+    "base": "Happy Day → Airport",
+    "certainty": "planned",
+    "theme": "귀국 전 정리",
+    "summary": "마지막 쇼핑, 식사, 샤워, 짐 정리, 공항 이동을 위한 저강도 일정입니다.",
+    "fatherCheck": ["쇼핑 리스트 없으면 한시장 생략", "식당 대기 15분 넘으면 전환", "20:30 전후 공항 이동"],
+    "fallbacks": [
+      {
+        "if": "한시장이 덥거나 붐비면",
+        "then": "롯데마트 또는 MM Mega Market으로 바꿔 정찰제 쇼핑만 합니다."
+      },
+      {
+        "if": "안토이 대기가 길면",
+        "then": "마담란으로 전환하거나 Happy Day에서 쉬고 배달/간단식으로 바꿉니다."
+      }
+    ],
+    "mapPointIds": ["happy-day", "han-market", "lotte-mart-danang", "mm-mega-market-danang", "an-thoi-danang", "madame-lan-danang"],
+    "blocks": [
+      {
+        "time": "10:00-13:00",
+        "title": "한시장 또는 롯데마트",
+        "note": "쇼핑 리스트를 정해 짧게 끝냅니다. 더위가 심하면 롯데마트처럼 실내 위주로 전환합니다.",
+        "placeIds": ["han-market", "lotte-mart-danang", "mm-mega-market-danang", "an-thoi-danang", "madame-lan-danang"]
+      },
+      {
+        "time": "18:30-20:30",
+        "title": "샤워와 짐 정리",
+        "note": "Happy Day에서 아이들 컨디션을 정리하고 공항 갈 짐을 다시 꾸립니다."
+      },
+      {
+        "time": "20:30 전후",
+        "title": "공항 이동",
+        "note": "아이 피로와 짐을 고려해 여유 있게 이동합니다."
+      }
+    ]
+  }
+]

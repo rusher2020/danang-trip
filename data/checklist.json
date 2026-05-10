@@ -1,0 +1,142 @@
+[
+  {
+    "group": "항공",
+    "items": [
+      {
+        "id": "flight-arrival-time",
+        "label": "다낭 도착 현지 시각과 터미널 확인",
+        "status": "필수"
+      },
+      {
+        "id": "flight-departure-time",
+        "label": "다낭 출발 현지 시각과 공항 도착 목표 시각 확인",
+        "status": "필수"
+      },
+      {
+        "id": "flight-numbers",
+        "label": "이스타항공 항공편명, 예약번호, 운임 종류, 위탁수하물 포함 여부 확인",
+        "status": "필수"
+      },
+      {
+        "id": "eastar-counter-checkin",
+        "label": "베트남 노선 소아 동반 온라인 체크인 제한 가능성: 공항 카운터 체크인 전제로 시간 확보",
+        "status": "필수"
+      },
+      {
+        "id": "eastar-baggage-prebuy",
+        "label": "특가운임이면 국제선 위탁수하물 15kg 사전구매 여부를 출발 24시간 전까지 결정",
+        "status": "필수"
+      },
+      {
+        "id": "eastar-batteries-liquids",
+        "label": "보조배터리, 액체류, 가위/칼, 즉석 발열식품 등 반입 제한 물품 분리",
+        "status": "필수"
+      },
+      {
+        "id": "airport-transfer-arrival",
+        "label": "심야 도착 공항 픽업 또는 Grab 이용 방식 확인",
+        "status": "필수"
+      }
+    ]
+  },
+  {
+    "group": "숙소",
+    "items": [
+      {
+        "id": "new-orient-breakfast",
+        "label": "New Orient 조식 포함 여부와 체크아웃 시간 확인",
+        "status": "필수"
+      },
+      {
+        "id": "hyatt-breakfast",
+        "label": "Hyatt 조식 포함 여부, Camp Hyatt 운영표, 수영장 규칙 확인",
+        "status": "필수"
+      },
+      {
+        "id": "happy-day-checkin",
+        "label": "Happy Day 조기 체크인, 짐 보관, 샤워 가능 여부 확인",
+        "status": "필수"
+      },
+      {
+        "id": "hotel-addresses",
+        "label": "세 숙소 주소를 지도 앱에 저장",
+        "status": "필수"
+      }
+    ]
+  },
+  {
+    "group": "미리 확인할 예약",
+    "items": [
+      {
+        "id": "ba-na-ticket",
+        "label": "바나힐 티켓은 날씨 확인 후 구매할지 결정",
+        "status": "선택"
+      },
+      {
+        "id": "ba-na-car",
+        "label": "바나힐 왕복 전용차 취소 조건 확인",
+        "status": "선택"
+      },
+      {
+        "id": "hoi-an-car",
+        "label": "7/28 호이안 왕복차량 예약 또는 픽업 방식 결정",
+        "status": "권장"
+      },
+      {
+        "id": "hoi-an-dinner",
+        "label": "Morning Glory 또는 Cargo Club 예약 가능 여부 확인",
+        "status": "권장"
+      },
+      {
+        "id": "an-thoi-reservation",
+        "label": "7/29 안토이/마담란 점심 예약 또는 오프피크 방문 계획",
+        "status": "권장"
+      }
+    ]
+  },
+  {
+    "group": "아이 정보",
+    "items": [
+      {
+        "id": "kids-height",
+        "label": "두 아이 키 확인: 바나힐 Fantasy Park 키 제한 확인용",
+        "status": "필수"
+      },
+      {
+        "id": "kids-food-notes",
+        "label": "매운맛, 향신료, 해산물, 알레르기 제한 정리",
+        "status": "필수"
+      },
+      {
+        "id": "kids-sleep",
+        "label": "21시 이후 외출 가능 여부와 낮잠 패턴 메모",
+        "status": "권장"
+      }
+    ]
+  },
+  {
+    "group": "현지 준비",
+    "items": [
+      {
+        "id": "travel-insurance",
+        "label": "여행자보험 가입 및 긴급 연락처 저장",
+        "status": "필수"
+      },
+      {
+        "id": "esim",
+        "label": "eSIM/유심, 로밍, 보조배터리 준비",
+        "status": "필수"
+      },
+      {
+        "id": "shopping-list",
+        "label": "한시장 쇼핑 리스트를 커피/건과일/기념품 중심으로 제한",
+        "status": "권장"
+      },
+      {
+        "id": "weather-check",
+        "label": "출발 3일 전부터 다낭/바나힐/호이안 날씨 확인",
+        "status": "권장"
+      }
+    ]
+  }
+]

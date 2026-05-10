@@ -1,0 +1,524 @@
+[
+  {
+    "id": "new-orient",
+    "name": "New Orient Hotel Da Nang",
+    "type": "hotel",
+    "address": "20 Dong Da Street, Hai Chau Ward, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=New%20Orient%20Hotel%20Da%20Nang"
+  },
+  {
+    "id": "hyatt",
+    "name": "Hyatt Regency Danang Resort & Spa",
+    "type": "hotel",
+    "address": "5 Truong Sa Street, Ngu Hanh Son Ward, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hyatt%20Regency%20Danang%20Resort%20and%20Spa"
+  },
+  {
+    "id": "happy-day",
+    "name": "Happy Day Hotel Danang",
+    "type": "hotel",
+    "address": "160 Bach Dang Street, Hai Chau District, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Happy%20Day%20Hotel%20Da%20Nang%20160%20Bach%20Dang"
+  },
+  {
+    "id": "ba-na-hills",
+    "name": "Ba Na Hills and Golden Bridge",
+    "type": "activity",
+    "address": "Sun World Ba Na Hills, Hoa Vang, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills"
+  },
+  {
+    "id": "hoi-an-evening",
+    "name": "Hoi An Ancient Town",
+    "type": "activity",
+    "address": "Hoi An Ancient Town, Quang Nam",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hoi%20An%20Ancient%20Town"
+  },
+  {
+    "id": "dragon-bridge-show",
+    "name": "Dragon Bridge",
+    "type": "attraction",
+    "address": "Dragon Bridge, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dragon%20Bridge%20Da%20Nang"
+  },
+  {
+    "id": "marble-mountains",
+    "name": "Marble Mountains",
+    "type": "attraction",
+    "address": "81 Huyen Tran Cong Chua Street, Ngu Hanh Son, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Marble%20Mountains%20Da%20Nang"
+  },
+  {
+    "id": "han-market",
+    "name": "Han Market",
+    "type": "market",
+    "address": "Han Market, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Han%20Market%20Da%20Nang"
+  },
+  {
+    "id": "lotte-mart-danang",
+    "name": "Lotte Mart Da Nang",
+    "type": "market",
+    "address": "Lotte Mart Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lotte%20Mart%20Da%20Nang"
+  },
+  {
+    "id": "mm-mega-market-danang",
+    "name": "MM Mega Market Da Nang",
+    "type": "market",
+    "address": "5 Cach Mang Thang 8, Hoa Cuong Nam, Cam Le, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=MM%20Mega%20Market%20Da%20Nang%205%20Cach%20Mang%20Thang%208"
+  },
+  {
+    "id": "son-tra-night-market",
+    "name": "Son Tra Night Market",
+    "type": "market",
+    "address": "Mai Hac De, An Hai Trung, Son Tra, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Son%20Tra%20Night%20Market%20Da%20Nang"
+  },
+  {
+    "id": "pizza-4ps-danang",
+    "name": "Pizza 4P's Da Nang",
+    "type": "restaurant",
+    "address": "Pizza 4P's Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pizza%204P%27s%20Da%20Nang"
+  },
+  {
+    "id": "an-thoi-danang",
+    "name": "Ăn Thôi Da Nang",
+    "type": "restaurant",
+    "address": "114 Bach Dang Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=An%20Thoi%20114%20Bach%20Dang%20Da%20Nang"
+  },
+  {
+    "id": "madame-lan-danang",
+    "name": "Madame Lân",
+    "type": "restaurant",
+    "address": "4 Bach Dang Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madame%20Lan%204%20Bach%20Dang%20Da%20Nang"
+  },
+  {
+    "id": "bep-hen-danang",
+    "name": "Bếp Hên",
+    "type": "restaurant",
+    "address": "47 Le Hong Phong Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bep%20Hen%2047%20Le%20Hong%20Phong%20Da%20Nang"
+  },
+  {
+    "id": "mi-quang-1a",
+    "name": "Mì Quảng 1A",
+    "type": "restaurant",
+    "address": "1A Hai Phong Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mi%20Quang%201A%20Hai%20Phong%20Da%20Nang"
+  },
+  {
+    "id": "lim-dining-room-hoian",
+    "name": "Lim Dining Room Hoi An",
+    "type": "restaurant",
+    "address": "96 Nguyen Thai Hoc Street, Hoi An",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lim%20Dining%20Room%2096%20Nguyen%20Thai%20Hoc%20Hoi%20An"
+  },
+  {
+    "id": "madam-kieu-hoian",
+    "name": "Madam Kieu Hoi An",
+    "type": "restaurant",
+    "address": "43 Nguyen Phuc Chu, Hoi An",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madam%20Kieu%2043%20Nguyen%20Phuc%20Chu%20Hoi%20An"
+  },
+  {
+    "id": "morning-glory-hoian",
+    "name": "Morning Glory Original Hoi An",
+    "type": "restaurant",
+    "address": "106 Nguyen Thai Hoc Street, Hoi An",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Morning%20Glory%20106%20Nguyen%20Thai%20Hoc%20Hoi%20An"
+  },
+  {
+    "id": "cargo-club-hoian",
+    "name": "Cargo Club Cafe & Restaurant",
+    "type": "restaurant",
+    "address": "107-109 Nguyen Thai Hoc Street, Hoi An",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cargo%20Club%20107%20Nguyen%20Thai%20Hoc%20Hoi%20An"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "hyatt-resort-time",
+    "name": "Hyatt Regency Danang Resort & Spa",
+    "type": "activity",
+    "address": "5 Truong Sa Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hyatt%20Regency%20Danang%20Resort%20%26%20Spa%205%20Truong%20Sa%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "hyatt-xanh-house",
+    "name": "Xanh House at Hyatt Regency Danang",
+    "type": "restaurant",
+    "address": "5 Truong Sa Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Xanh%20House%20at%20Hyatt%20Regency%20Danang%205%20Truong%20Sa%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "hyatt-osteria",
+    "name": "Osteria al Mare at Hyatt Regency Danang",
+    "type": "restaurant",
+    "address": "5 Truong Sa Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Osteria%20al%20Mare%20at%20Hyatt%20Regency%20Danang%205%20Truong%20Sa%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "hyatt-camp-hyatt",
+    "name": "Camp Hyatt at Hyatt Regency Danang",
+    "type": "activity",
+    "address": "5 Truong Sa Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Camp%20Hyatt%20at%20Hyatt%20Regency%20Danang%205%20Truong%20Sa%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "hyatt-junior-cafe",
+    "name": "Junior Cafe at Camp Hyatt",
+    "type": "restaurant",
+    "address": "5 Truong Sa Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Junior%20Cafe%20at%20Camp%20Hyatt%205%20Truong%20Sa%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "nui-than-tai",
+    "name": "Nui Than Tai Hot Springs Park",
+    "type": "activity",
+    "address": "Hoa Phu, Hoa Vang, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nui%20Than%20Tai%20Hot%20Springs%20Park%20Hoa%20Phu%2C%20Hoa%20Vang%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "epice-restaurant",
+    "name": "Epice Restaurant Pullman Danang",
+    "type": "restaurant",
+    "address": "101 Vo Nguyen Giap Street, Ngu Hanh Son, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Epice%20Restaurant%20Pullman%20Danang%20101%20Vo%20Nguyen%20Giap%20Street%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "chops-danang",
+    "name": "Chops Da Nang",
+    "type": "restaurant",
+    "address": "An Thuong, My An, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chops%20Da%20Nang%20An%20Thuong%2C%20My%20An%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "fatfish",
+    "name": "Fatfish Restaurant and Lounge Bar",
+    "type": "restaurant",
+    "address": "439 Tran Hung Dao, Son Tra, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fatfish%20Restaurant%20and%20Lounge%20Bar%20439%20Tran%20Hung%20Dao%2C%20Son%20Tra%2C%20Da%20Nang"
+  },
+  {
+    "googlePlaceId": "",
+    "coordinates": null,
+    "id": "museum-cham-sculpture",
+    "name": "Museum of Cham Sculpture",
+    "type": "attraction",
+    "address": "2 Thang 9 Street, Hai Chau, Da Nang",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Museum%20of%20Cham%20Sculpture%202%20Thang%209%20Street%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "linh-ung-pagoda",
+    "name": "Linh Ung Pagoda",
+    "type": "attraction",
+    "address": "Son Tra Peninsula, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Linh%20Ung%20Pagoda%20Son%20Tra%20Peninsula%2C%20Da%20Nang"
+  },
+  {
+    "id": "son-tra-peninsula",
+    "name": "Son Tra Peninsula",
+    "type": "attraction",
+    "address": "Son Tra Peninsula, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Son%20Tra%20Peninsula%20Son%20Tra%20Peninsula%2C%20Da%20Nang"
+  },
+  {
+    "id": "my-khe-beach",
+    "name": "My Khe Beach",
+    "type": "attraction",
+    "address": "Vo Nguyen Giap, Son Tra, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=My%20Khe%20Beach%20Vo%20Nguyen%20Giap%2C%20Son%20Tra%2C%20Da%20Nang"
+  },
+  {
+    "id": "con-market",
+    "name": "Con Market",
+    "type": "market",
+    "address": "318 Ong Ich Khiem, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Con%20Market%20318%20Ong%20Ich%20Khiem%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "helio-night-market",
+    "name": "Helio Night Market",
+    "type": "market",
+    "address": "2/9 Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Helio%20Night%20Market%202%2F9%20Street%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "da-nang-museum",
+    "name": "Da Nang Museum",
+    "type": "attraction",
+    "address": "42 Bach Dang Street, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Museum%2042%20Bach%20Dang%20Street%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "fine-arts-museum",
+    "name": "Da Nang Fine Arts Museum",
+    "type": "attraction",
+    "address": "78 Le Duan, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Fine%20Arts%20Museum%2078%20Le%20Duan%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "da-nang-downtown",
+    "name": "Da Nang Downtown Asia Park",
+    "type": "activity",
+    "address": "1 Phan Dang Luu, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Downtown%20Asia%20Park%201%20Phan%20Dang%20Luu%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "vinwonders-nam-hoi-an",
+    "name": "VinWonders Nam Hoi An",
+    "type": "activity",
+    "address": "Binh Minh, Thang Binh, Quang Nam",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=VinWonders%20Nam%20Hoi%20An%20Binh%20Minh%2C%20Thang%20Binh%2C%20Quang%20Nam"
+  },
+  {
+    "id": "my-son-sanctuary",
+    "name": "My Son Sanctuary",
+    "type": "attraction",
+    "address": "Duy Phu, Duy Xuyen, Quang Nam",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=My%20Son%20Sanctuary%20Duy%20Phu%2C%20Duy%20Xuyen%2C%20Quang%20Nam"
+  },
+  {
+    "id": "holiday-beach-club",
+    "name": "Holiday Beach Club",
+    "type": "restaurant",
+    "address": "300 Vo Nguyen Giap, My An, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Holiday%20Beach%20Club%20300%20Vo%20Nguyen%20Giap%2C%20My%20An%2C%20Da%20Nang"
+  },
+  {
+    "id": "pheva-chocolate",
+    "name": "Pheva Chocolate Da Nang",
+    "type": "shopping",
+    "address": "239 Tran Phu, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pheva%20Chocolate%20239%20Tran%20Phu%2C%20Hai%20Chau%2C%20Da%20Nang"
+  },
+  {
+    "id": "danang-souvenirs-cafe",
+    "name": "Danang Souvenirs & Cafe",
+    "type": "shopping",
+    "address": "Da Nang city center",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Danang%20Souvenirs%20Cafe%20Da%20Nang"
+  },
+  {
+    "id": "xliii-coffee",
+    "name": "XLIII Coffee Da Nang",
+    "type": "cafe",
+    "address": "Lot 422 Ngo Thi Si, Ngu Hanh Son, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=XLIII%20Coffee%20Lot%20422%20Ngo%20Thi%20Si%2C%20Ngu%20Hanh%20Son%2C%20Da%20Nang"
+  },
+  {
+    "id": "wonderlust-coffee",
+    "name": "Wonderlust Coffee & Souvenir",
+    "type": "cafe",
+    "address": "96 Tran Phu, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Wonderlust%20Coffee%20Souvenir%2096%20Tran%20Phu%2C%20Da%20Nang"
+  },
+  {
+    "id": "highlands-coffee-city",
+    "name": "Highlands Coffee Da Nang",
+    "type": "cafe",
+    "address": "Da Nang city branches",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Highlands%20Coffee%20Da%20Nang"
+  },
+  {
+    "id": "alluvia-chocolate",
+    "name": "Alluvia Chocolate Da Nang",
+    "type": "shopping",
+    "address": "Da Nang city center",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Alluvia%20Chocolate%20Da%20Nang"
+  },
+  {
+    "id": "bac-my-an-market",
+    "name": "Bac My An Market",
+    "type": "market",
+    "address": "25 Nguyen Ba Lan, Bac My An, Ngu Hanh Son, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bac%20My%20An%20Market%2025%20Nguyen%20Ba%20Lan%2C%20Da%20Nang"
+  },
+  {
+    "id": "mikazuki-water-park",
+    "name": "Mikazuki Water Park 365",
+    "type": "activity",
+    "address": "Xuan Thieu Tourism Area, Nguyen Tat Thanh Street, Hai Van, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mikazuki%20Water%20Park%20365%20Da%20Nang"
+  },
+  {
+    "id": "da-nang-cathedral",
+    "name": "Da Nang Cathedral",
+    "type": "attraction",
+    "address": "156 Tran Phu, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Cathedral%20156%20Tran%20Phu%2C%20Da%20Nang"
+  },
+  {
+    "id": "apec-park",
+    "name": "APEC Park",
+    "type": "attraction",
+    "address": "Bach Dang, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=APEC%20Park%20Da%20Nang"
+  },
+  {
+    "id": "love-bridge",
+    "name": "Love Bridge Da Nang",
+    "type": "attraction",
+    "address": "Tran Hung Dao, Son Tra, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Love%20Bridge%20Da%20Nang%20Tran%20Hung%20Dao"
+  },
+  {
+    "id": "go-danang-big-c",
+    "name": "GO! Big C Da Nang",
+    "type": "shopping",
+    "address": "255-257 Hung Vuong, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=GO!%20Big%20C%20Da%20Nang%20255%20Hung%20Vuong"
+  },
+  {
+    "id": "vincom-plaza-ngo-quyen",
+    "name": "Vincom Plaza Ngo Quyen",
+    "type": "shopping",
+    "address": "910A Ngo Quyen, Son Tra, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Vincom%20Plaza%20Ngo%20Quyen%20Da%20Nang"
+  },
+  {
+    "id": "coopmart-danang",
+    "name": "Co.opmart Da Nang",
+    "type": "shopping",
+    "address": "478 Dien Bien Phu, Thanh Khe, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Co.opmart%20Da%20Nang%20478%20Dien%20Bien%20Phu"
+  },
+  {
+    "id": "maison-marou-danang",
+    "name": "Maison Marou Da Nang",
+    "type": "shopping",
+    "address": "Da Nang, Vietnam",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Maison%20Marou%20Da%20Nang"
+  },
+  {
+    "id": "k-market-danang",
+    "name": "K-Market Da Nang",
+    "type": "shopping",
+    "address": "A10 Pham Van Dong, Son Tra, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=K-Market%20A10%20Pham%20Van%20Dong%20Da%20Nang"
+  },
+  {
+    "id": "langfarm-danang",
+    "name": "Langfarm Store Da Nang",
+    "type": "shopping",
+    "address": "Da Nang, Vietnam",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Langfarm%20Store%20Da%20Nang"
+  }
+]

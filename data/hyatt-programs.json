@@ -1,0 +1,98 @@
+[
+  {
+    "id": "camp-hyatt",
+    "name": "Camp Hyatt",
+    "category": "키즈",
+    "recommendation": "하얏트 핵심",
+    "bestFor": "6세 남아, 초2 여아 모두",
+    "hours": "공식 페이지 기준 매일 08:00-22:00, 4-12세 아이 매일 2시간 무료 이용 신호 있음",
+    "summary": "베트남 신화와 전설을 테마로 한 대형 키즈클럽입니다. Earth, Water, Fire, Wood 네 구역과 볼풀, 네트 클라이밍, 워터 마운틴 등 실내외 놀이 요소가 있어 리조트 체류일의 중심 옵션입니다.",
+    "familyUse": "7/25 오후, 7/26 한낮, 7/27 바나힐 복귀 후처럼 아이들이 외부 이동 없이 에너지를 풀 시간에 배치합니다.",
+    "caution": "무료 2시간 이후 요금, 보호자 동반 조건, 예약 필요 여부, 월간 프로그램표는 체크인 시 호텔 기준으로 확인합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "little-farm",
+    "name": "The Little Farm",
+    "category": "키즈",
+    "recommendation": "오전 활동",
+    "bestFor": "동물/자연 체험을 좋아하는 아이",
+    "hours": "세부 프로그램은 투숙 시점 현장 확인",
+    "summary": "토끼와 염소 먹이주기, 허브가든, 씨앗 심기, 코코넛 새집 만들기 등 자연 놀이 성격의 가족 체험 공간입니다.",
+    "familyUse": "체크인 다음 날 오전이나 바나힐을 쉬는 날의 짧은 체험으로 적합합니다.",
+    "caution": "7월 한낮은 덥기 때문에 오전 또는 흐린 시간대로 제한합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "hyatt-pools-beach",
+    "name": "수영장·논누옥 비치",
+    "category": "물놀이",
+    "recommendation": "매일 기본값",
+    "bestFor": "전 가족",
+    "hours": "공식 페이지 기준 수영장 06:00-18:00, 워터슬라이드 09:00-18:00 날씨 허용 시",
+    "summary": "하얏트는 다섯 개 야외 수영장과 해변 접근성을 핵심으로 둡니다. 메인 풀 주변에는 모래놀이, 워터슬라이드, 플레이존이 있고 안전용 플로트와 구명조끼 제공 정보가 확인됩니다.",
+    "familyUse": "오전 또는 16시 이후를 수영 블록으로 고정하고, 13-16시에는 객실 낮잠·Camp Hyatt·The Arena로 더위를 피합니다.",
+    "caution": "워터슬라이드는 만 16세 미만, 키 80cm 초과, 수영 가능 조건이 공지되어 있습니다. 비·강풍 시 운영이 달라질 수 있습니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "the-arena",
+    "name": "The Arena",
+    "category": "키즈/실내",
+    "recommendation": "비·더위에 좋음",
+    "bestFor": "6세 이상",
+    "hours": "매일 09:30-18:00로 공식 안내",
+    "summary": "아케이드, 레이싱, 슈팅 게임, PlayStation 5, 보드게임룸을 갖춘 6세 이상 실내 게임 공간입니다. 더위가 강하거나 비가 올 때 리조트 안에서 아이 에너지를 풀기 좋습니다.",
+    "familyUse": "6세 남아와 초2 여아 모두 관심을 가질 수 있어 45-90분짜리 실내 활동으로 배치합니다.",
+    "caution": "이용 조건과 요금은 현장에서 확인합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "junior-experiences",
+    "name": "Junior Luxury Experiences",
+    "category": "키즈 클래스",
+    "recommendation": "선택 예약",
+    "bestFor": "새로운 활동을 좋아하는 아이",
+    "hours": "날씨와 프로그램 편성에 따라 변동",
+    "summary": "키즈 골프, 바디보딩 레슨, Mermaid Academy, 스포츠 어드벤처 캠프 등 아이 전용 경험 프로그램이 안내되어 있습니다.",
+    "familyUse": "하얏트 2일 차에 아이별 관심사와 날씨를 보고 하나만 선택합니다.",
+    "caution": "날씨 영향과 예약 필요 여부가 있으므로 체크인 직후 시간표를 받습니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/wellness-and-recreation"
+  },
+  {
+    "id": "vie-spa",
+    "name": "VIE Spa",
+    "category": "성인/웰니스",
+    "recommendation": "부모 휴식",
+    "bestFor": "성인 2명",
+    "hours": "매일 10:00-20:00로 공식 안내",
+    "summary": "정원 속 스파 빌라, 프라이빗 야외 욕조, 하이드로테라피, 웰니스 프로그램을 제공하는 성인 휴식 옵션입니다. 키즈클럽 시간과 맞추면 리조트 체류 만족도를 크게 올릴 수 있습니다.",
+    "familyUse": "Camp Hyatt 또는 The Arena 시간과 겹쳐 60-120분 단위로 예약합니다.",
+    "caution": "인기 시간대는 사전 예약이 필요할 수 있습니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/vie-spa"
+  },
+  {
+    "id": "fitness-wellness",
+    "name": "피트니스·사우나·Hot/Cold Tub",
+    "category": "성인/편의",
+    "recommendation": "짧은 회복",
+    "bestFor": "성인",
+    "hours": "피트니스 24시간, Hot/Cold Tub 06:00-21:00로 공식 안내",
+    "summary": "피트니스센터, 에어로빅룸, 사우나/스팀룸, 온냉탕이 있어 외부 일정 후 회복 루틴으로 쓰기 좋습니다.",
+    "familyUse": "아이들이 쉬거나 키즈 프로그램을 이용할 때 성인 1명씩 교대로 사용합니다.",
+    "caution": "시설별 위치와 이용 가능 연령은 현장에서 확인합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/wellness-and-recreation"
+  },
+  {
+    "id": "hyatt-dining",
+    "name": "하얏트 내부 식사",
+    "category": "식사/편의",
+    "recommendation": "숙소에서 식사",
+    "bestFor": "컨디션이 떨어진 날",
+    "hours": "Osteria 조식 06:30부터, Xanh House 09:00-21:00, Baguette 07:00-18:00 등",
+    "summary": "Osteria al Mare, Xanh House, Vive Oceane, Baguette, Junior Cafe, ICE Galleria 등 리조트 안에서 식사와 간식 선택지가 넓습니다. Xanh House는 메인 풀 옆 베트남식, Osteria는 아이에게 익숙한 이탈리안, Baguette는 간식·생필품 역할로 봅니다.",
+    "familyUse": "7/25 도착 회복일과 7/27 바나힐 복귀일은 외부 식당을 무리하게 넣지 않고 리조트 내부식으로 마무리합니다.",
+    "caution": "레스토랑별 영업시간, 키즈 메뉴, 피자 클래스와 Le Petit Chef 운영 여부는 투숙 시점에 다시 확인합니다.",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/en-US/danhr-hyatt-regency-danang-resort-and-spa/dining"
+  }
+]

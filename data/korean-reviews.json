@@ -1,0 +1,191 @@
+[
+  {
+    "id": "kr-july-heat",
+    "topic": "7월 다낭 더위 대응",
+    "relatedPlaceIds": ["hyatt-resort-time", "ba-na-hills", "han-market", "lotte-mart-danang"],
+    "signal": "한국어 최신 여행 콘텐츠는 7월 다낭을 맑고 휴양감이 좋은 시기로 보지만, 한낮 더위가 강하므로 13-15시에는 리조트, 실내 쇼핑, 카페, 휴식으로 빼는 전략을 반복해서 권합니다.",
+    "watchFor": "한낮에 한시장, 오행산, 호이안 골목 걷기를 길게 넣으면 아이 컨디션이 무너질 수 있습니다.",
+    "sourceName": "트립스토어 7월 날씨",
+    "sourceUrl": "https://www.tripstore.kr/blog/7%EC%9B%94-%EB%8B%A4%EB%82%AD-%EC%97%AC%ED%96%89-%EB%82%A0%EC%94%A8%EB%B6%80%ED%84%B0-%EC%98%B7%EC%B0%A8%EB%A6%BC%EA%B9%8C%EC%A7%80-%EB%8D%94%EC%9C%84-%EA%B1%B1%EC%A0%95-%EC%97%86%EB%8A%94-%EA%BF%80%ED%8C%81-%EC%B4%9D%EC%A0%95%EB%A6%AC"
+  },
+  {
+    "id": "kr-hyatt-pool-kids",
+    "topic": "하얏트 수영장·키즈클럽",
+    "relatedPlaceIds": ["hyatt-resort-time", "hyatt-camp-hyatt", "hyatt-junior-cafe"],
+    "signal": "한국인 가족 후기는 하얏트의 여러 수영장, 논누옥 비치 접근성, 키즈풀/키즈클럽을 아이 동반 숙소 선택 이유로 반복해서 언급합니다.",
+    "watchFor": "수영장 운영 시간, 슬라이드 조건, 키즈클럽 프로그램은 투숙 시점에 호텔에서 다시 확인해야 합니다.",
+    "sourceName": "티스토리 가족 후기",
+    "sourceUrl": "https://rightthing-rightnow.tistory.com/47"
+  },
+  {
+    "id": "kr-hyatt-breakfast",
+    "topic": "하얏트 조식과 한국인 투숙객",
+    "relatedPlaceIds": ["hyatt-osteria", "hyatt-resort-time"],
+    "signal": "한국인 조식 후기에서는 하얏트가 한국인 투숙객을 많이 받는 리조트로 언급되고, 한국 음식 코너나 아이가 먹기 쉬운 조식 선택지가 장점으로 다뤄집니다.",
+    "watchFor": "조식 포함 여부가 예약 조건에 따라 달라지므로, 포함이 아니라면 리조트 내 Baguette/룸서비스/외부 조식을 비교해야 합니다.",
+    "sourceName": "하얏트 조식 후기",
+    "sourceUrl": "https://foodarchive.tistory.com/182"
+  },
+  {
+    "id": "kr-hoi-an-family-ac",
+    "topic": "호이안 아이 동반 식당",
+    "relatedPlaceIds": ["hoi-an-evening"],
+    "signal": "한국어 호이안 가족 식당 추천 글은 에어컨, 위생, 아이가 먹기 쉬운 메뉴, 웨이팅 회피를 중요하게 봅니다. 로컬 식당보다 쾌적한 식당을 먼저 잡고 등불 산책을 붙이는 흐름이 가족에게 맞습니다.",
+    "watchFor": "호이안은 밤이 예쁘지만 혼잡합니다. 식사를 늦게 잡으면 아이들이 배고픔과 피로를 동시에 겪을 수 있습니다.",
+    "sourceName": "트립스토어 호이안 가족 식당",
+    "sourceUrl": "https://www.tripstore.kr/blog/hoian-oldtown-restaurant-family-ac"
+  },
+  {
+    "id": "kr-hoi-an-local",
+    "topic": "호이안 로컬 식당 선택지",
+    "relatedPlaceIds": ["hoi-an-evening"],
+    "signal": "한국인 후기에서 Pho Xua 같은 올드타운 로컬 식당은 쌀국수, 분짜, 반쎄오 등으로 가성비가 좋다는 신호가 있습니다.",
+    "watchFor": "로컬 식당은 분위기와 가격 장점이 있지만, 아이 컨디션이 안 좋거나 더위가 심하면 에어컨 있는 식당 선택지를 우선합니다.",
+    "sourceName": "공대부부 Pho Xua 후기",
+    "sourceUrl": "https://programjy.tistory.com/entry/%ED%8F%AC%EC%8A%88%EC%95%84-%ED%98%B8%EC%9D%B4%EC%95%88%EC%8C%80%EA%B5%AD%EC%88%98%EB%B6%84%EC%A7%9C%EB%A7%9B%EC%A7%91-%ED%98%B8%EC%9D%B4%EC%95%88%ED%98%84%EC%A7%80%EC%9D%B8%EB%A7%9B%EC%A7%91"
+  },
+  {
+    "id": "kr-city-route",
+    "topic": "한시장·한강변·용다리 묶음",
+    "relatedPlaceIds": ["han-market", "dragon-bridge-show", "pizza-4ps-danang"],
+    "signal": "한국어 다낭 시내 일정 글들은 한시장, 한강변, 용다리를 가까운 동선으로 묶습니다. 하지만 아이 동반 7월 일정에서는 시내 걷기보다 택시 이동과 카페/식당 휴식이 더 중요합니다.",
+    "watchFor": "용다리 쇼는 21시라 수면 리듬을 깨기 쉽습니다. 일요일 밤 컨디션이 좋을 때만 선택합니다.",
+    "sourceName": "MayBay 다낭 시내 일정",
+    "sourceUrl": "https://maybay.co.kr/danang-city-itinerary/"
+  },
+  {
+    "id": "kr-han-market-child",
+    "topic": "한시장과 아이 동반 쇼핑",
+    "relatedPlaceIds": ["han-market", "lotte-mart-danang"],
+    "signal": "아이와 다낭을 다녀온 한국어 후기는 한시장 쇼핑을 많이 넣지만, 쇼핑 목적이 분명할수록 만족도가 높습니다.",
+    "watchFor": "흥정, 혼잡, 더위가 있어 60-90분 제한이 필요합니다. 쇼핑 리스트가 없으면 롯데마트 같은 실내 쉬운 선택이 낫습니다.",
+    "sourceName": "반짝이는 유리네스토리",
+    "sourceUrl": "https://hyostory100.tistory.com/34"
+  },
+  {
+    "id": "kr-an-thoi",
+    "topic": "안토이와 한시장 동선",
+    "relatedPlaceIds": ["an-thoi-danang", "han-market"],
+    "signal": "최근 한국어 후기는 안토이를 한시장 바로 옆, 에어컨이 있는 미쉐린 빕구르망 식당, 가족 방문이 편한 식당으로 반복해서 언급합니다. 반쎄오와 베트남식 메뉴가 대표 신호입니다.",
+    "watchFor": "점심 피크에는 15-50분 수준의 대기 후기가 있어, 아이 동반이면 예약/오프피크/포장 또는 배달까지 선택지로 둡니다.",
+    "sourceName": "안토이 가족 후기",
+    "sourceUrl": "https://librarysheep.com/entry/%EB%8B%A4%EB%82%AD-%EC%95%88%ED%86%A0%EC%9D%B4-%ED%9B%84%EA%B8%B0-%EC%98%88%EC%95%BD%EF%BD%9C%EC%B2%AB%EB%82%A0-%EC%A0%90%EC%8B%AC-%EA%B0%80%EC%A1%B1%EC%9D%B4%EB%9E%91-%E2%80%9C%EB%B0%98%EC%8E%84%EC%98%A4-%EC%A0%9C%EB%8C%80%EB%A1%9C%E2%80%9D-%EB%A8%B9%EA%B3%A0-%EC%8B%9C%EC%9E%91"
+  },
+  {
+    "id": "kr-an-thoi-waiting",
+    "topic": "안토이 웨이팅 리스크",
+    "relatedPlaceIds": ["an-thoi-danang"],
+    "signal": "한국어 후기는 안토이가 한국인에게 매우 인기 있고, 대기표 방식으로 운영되며 피크 시간에는 기다릴 수 있다는 점을 반복합니다.",
+    "watchFor": "7월 낮에는 외부 웨이팅 자체가 부담입니다. 마지막 날 점심이라면 11:00 전후 또는 포장/배달 쉬운 선택을 준비합니다.",
+    "sourceName": "안토이 웨이팅 후기",
+    "sourceUrl": "https://keenjh.tistory.com/4"
+  },
+  {
+    "id": "kr-madame-lan",
+    "topic": "마담란 가족 식사 선택지",
+    "relatedPlaceIds": ["madame-lan-danang"],
+    "signal": "한국어 후기와 현지 여행 콘텐츠에서 마담란은 넓은 좌석, 한강변 위치, 베트남 전통 메뉴 폭이 장점으로 다뤄집니다.",
+    "watchFor": "안토이보다 식당 규모와 메뉴 폭은 좋지만, 이동과 예약 가능성을 확인하고 피크 저녁은 피하는 편이 좋습니다.",
+    "sourceName": "마담란 방문기",
+    "sourceUrl": "https://www.primedanang.com/116/?bmode=view&idx=166805963"
+  },
+  {
+    "id": "kr-hoi-an-dinner",
+    "topic": "호이안 저녁 식당 선택",
+    "relatedPlaceIds": ["morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"],
+    "signal": "호이안 저녁은 등불 산책보다 식사를 먼저 잡는 편이 가족에게 안정적입니다. Morning Glory와 Cargo Club은 오래된 관광객 친화 식당으로 후기 규모가 크고, 하이체어/예약/좌석 정보가 확인됩니다.",
+    "watchFor": "올드타운은 차량 진입이 제한될 수 있어 하차 후 걷는 시간이 생깁니다. 식당은 17:30-18:30으로 앞당기고 야시장 체류는 짧게 제한합니다.",
+    "sourceName": "Morning Glory / Cargo Club 후기",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298082-d1487249-Reviews-Morning_Glory_Restaurant-Hoi_An_Quang_Nam_Province.html"
+  },
+  {
+    "id": "kr-ba-na-kids",
+    "topic": "바나힐 아이 동반 조건",
+    "relatedPlaceIds": ["ba-na-hills"],
+    "signal": "바나힐은 케이블카, 골든브릿지, Fantasy Park 때문에 아이에게 기억에 남을 수 있지만, 대기와 날씨 변수가 큰 풀데이 일정입니다.",
+    "watchFor": "공식 놀이기구 규정에 키 제한이 많습니다. 6세 남아는 키에 따라 탈 수 있는 것이 제한될 수 있어 Fantasy Park를 '전부 즐긴다'고 기대하면 안 됩니다.",
+    "sourceName": "Ba Na Fantasy Park 공식 규정",
+    "sourceUrl": "https://banahills.sunworld.vn/en/news-da-nang/game-and-ride-rules-in-fantasy-park.html"
+  },
+  {
+    "id": "kr-ba-na-cost-expectation",
+    "topic": "바나힐 비용과 기대치",
+    "relatedPlaceIds": ["ba-na-hills"],
+    "signal": "공식 티켓 FAQ는 키 1m-1.4m 아이 요금과 1.4m 초과 성인 요금 기준을 제시합니다. 대부분의 Fantasy Park 게임과 골든브릿지는 포함되지만, 일부 체험은 별도 비용이 있습니다.",
+    "watchFor": "초2 여아 키가 140cm에 가까우면 요금 구분이 달라질 수 있습니다. 가족 4명 풀데이 비용이 크므로 전날 날씨 확인 없이 확정하지 않습니다.",
+    "sourceName": "Ba Na Hills 공식 티켓 FAQ",
+    "sourceUrl": "https://banahills.sunworld.vn/en/faq/what-are-the-ticket-fares-of-sun-world-ba-na-hills"
+  },
+  {
+    "id": "kr-hyatt-official-ko",
+    "topic": "하얏트 키즈 프로그램 최신 공식 정보",
+    "relatedPlaceIds": ["hyatt-resort-time", "hyatt-camp-hyatt", "hyatt-junior-cafe"],
+    "signal": "하얏트 한국어 공식 페이지에서도 Camp Hyatt의 네 가지 놀이 구역, 키즈 패스포트, 가족 프로그램를 안내합니다. 블로그 후기보다 공식 페이지를 기준으로 프로그램 존재 여부를 확인하는 것이 안전합니다.",
+    "watchFor": "정확한 시간표, 유료/무료 범위, 보호자 동반 조건은 2026년 7월 체크인 시 리조트에서 받는 월간/주간 프로그램표를 기준으로 확정합니다.",
+    "sourceName": "Hyatt 한국어 공식 가족 프로그램",
+    "sourceUrl": "https://www.hyatt.com/hyatt-regency/ko-KR/danhr-hyatt-regency-danang-resort-and-spa/family-stay-and-activities"
+  },
+  {
+    "id": "kr-hyatt-2026-family-signal",
+    "topic": "하얏트 가족 투숙 후기 신호",
+    "relatedPlaceIds": ["hyatt-resort-time", "hyatt-camp-hyatt", "hyatt-osteria", "hyatt-xanh-house"],
+    "signal": "최근 한국어 투숙 후기는 다섯 개 수영장, 키즈클럽, 모래사장, 취사 가능한 레지던스, 배달 음식 활용을 가족여행 장점으로 반복합니다.",
+    "watchFor": "한국인 투숙객이 많다는 신호도 강합니다. 조용한 현지 분위기보다 편의성과 가족 안정성을 얻는 숙소로 기대치를 잡습니다.",
+    "sourceName": "2025-2026 하얏트 한국어 후기 신호",
+    "sourceUrl": "https://www.keyzard.cc/intp_kr/nb/224114426797"
+  },
+  {
+    "id": "kr-an-thoi-delivery-backup",
+    "topic": "안토이 대기와 배달 백업",
+    "relatedPlaceIds": ["an-thoi-danang"],
+    "signal": "한국어 후기는 안토이가 한시장 바로 옆이라 동선은 좋지만, 점심 피크에는 번호표 대기와 30-50분 수준의 기다림이 생길 수 있다고 봅니다. 배달K 등 배달 이용 후기도 있어 현장 대기가 길면 포장/배달 백업이 됩니다.",
+    "watchFor": "7월 낮 야외 대기는 아이에게 부담입니다. 11:00 전후 또는 17:30 전후 방문을 기본으로 하고, 15분 이상 대기 신호가 있으면 마담란으로 전환합니다.",
+    "sourceName": "안토이 웨이팅·배달 후기",
+    "sourceUrl": "https://keenjh.tistory.com/4"
+  },
+  {
+    "id": "kr-hoi-an-dinner-order",
+    "topic": "호이안은 식사 먼저, 등불은 짧게",
+    "relatedPlaceIds": ["hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian"],
+    "signal": "호이안 저녁은 야경 자체보다 식사 순서가 만족도를 좌우합니다. 아이 동반이면 17:30-18:30 식사를 먼저 끝내고, 등불 거리와 강변 산책은 60-90분 안에 자르는 흐름이 안정적입니다.",
+    "watchFor": "올드타운은 차량 진입 제한과 혼잡이 있어 하차 후 걷는 시간이 생깁니다. 아이가 피곤하면 소원배와 야시장은 빼고 등불 거리만 봅니다.",
+    "sourceName": "호이안 가족 식당 후기 신호",
+    "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298082-d1487249-Reviews-Morning_Glory_Restaurant-Hoi_An_Quang_Nam_Province.html"
+  },
+  {
+    "id": "kr-han-market-shopping-rule",
+    "topic": "한시장은 쇼핑 리스트가 있을 때만",
+    "relatedPlaceIds": ["han-market", "pheva-chocolate", "lotte-mart-danang", "mm-mega-market-danang"],
+    "signal": "한국어 기념품 정리 글은 커피, 캐슈넛, 건과일, 초콜릿, 라탄/소품류를 반복하지만, 아이 동반 마지막 날에는 시장 흥정보다 품목을 정하고 짧게 사는 방식이 맞습니다.",
+    "watchFor": "초콜릿은 7월 더위에 녹기 쉬워 마지막 날 구매 후 냉방/보냉을 고려합니다. 리스트가 없거나 더우면 한시장보다 마트가 낫습니다.",
+    "sourceName": "다낭 기념품 2025 정리",
+    "sourceUrl": "https://mylifeagain.tistory.com/entry/%EB%8B%A4%EB%82%AD-%EC%97%AC%ED%96%89%EC%97%90%EC%84%9C-%EB%B0%98%EB%93%9C%EC%8B%9C-%EC%82%AC%EC%95%BC-%ED%95%A0-%EA%B8%B0%EB%85%90%ED%92%88-%EB%A6%AC%EC%8A%A4%ED%8A%B8-2025-%EC%B5%9C%EC%8B%A0%ED%8C%90"
+  },
+  {
+    "id": "kr-mikazuki-family",
+    "topic": "미카즈키 워터파크 가족 쉬운 선택",
+    "relatedPlaceIds": ["mikazuki-water-park"],
+    "signal": "한국어 판매/여행 콘텐츠에서도 미카즈키를 사계절 워터파크와 키즈 시설이 있는 가족형 리조트로 소개합니다. 공식 사이트와 함께 보면 바나힐의 우천·피로 쉬운 선택으로 검토할 가치가 있습니다.",
+    "watchFor": "입장권 포함 범위, 픽업 포함 여부, 취소 가능 조건은 판매처마다 다릅니다. 공식 운영시간과 현장 규정은 미카즈키 공식 사이트를 우선합니다.",
+    "sourceName": "미카즈키 한국어 상품 정보",
+    "sourceUrl": "https://www.pieceofcreative.com/fit/18570"
+  },
+  {
+    "id": "kr-souvenir-list",
+    "topic": "다낭 기념품 구매 품목",
+    "relatedPlaceIds": ["han-market", "lotte-mart-danang", "con-market", "pheva-chocolate", "alluvia-chocolate"],
+    "signal": "한국어 최신 기념품 정리 글에서는 베트남 커피, 캐슈넛, 건과일, 초콜릿, 라탄/소품류가 반복됩니다. 아이 동반 마지막 날에는 시장 흥정보다 품목을 정하고 짧게 사는 방식이 맞습니다.",
+    "watchFor": "블로그 가격 정보는 변동 가능성이 크므로 확정 가격으로 쓰지 않습니다. 초콜릿은 7월 더위에 녹을 수 있어 마지막 날 구매와 보관을 우선합니다.",
+    "sourceName": "다낭 기념품 2025 정리",
+    "sourceUrl": "https://mylifeagain.tistory.com/entry/%EB%8B%A4%EB%82%AD-%EC%97%AC%ED%96%89%EC%97%90%EC%84%9C-%EB%B0%98%EB%93%9C%EC%8B%9C-%EC%82%AC%EC%95%BC-%ED%95%A0-%EA%B8%B0%EB%85%90%ED%92%88-%EB%A6%AC%EC%8A%A4%ED%8A%B8-2025-%EC%B5%9C%EC%8B%A0%ED%8C%90"
+  },
+  {
+    "id": "kr-pheva-gift",
+    "topic": "Pheva Chocolate 선물 적합성",
+    "relatedPlaceIds": ["pheva-chocolate"],
+    "signal": "여행자 리뷰 플랫폼에서는 Pheva가 포장이 예쁘고 선물용으로 적합하다는 신호가 강합니다. 공식 사이트의 다낭 매장 운영 정보와 함께 보면 마지막 날 기념품 선택지로 충분합니다.",
+    "watchFor": "초콜릿은 귀국 전까지 녹지 않게 보관해야 하며, 대량 구매 전 항공 수하물과 보관 조건을 고려합니다.",
+    "sourceName": "Pheva 리뷰 신호",
+    "sourceUrl": "https://wanderlog.com/place/details/3842168/pheva-chocolate-da-nang"
+  }
+]
