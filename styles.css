@@ -1034,6 +1034,134 @@ article p,
   line-height: 1.45;
 }
 
+.places-map-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.places-map-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.places-map-head span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.places-map-head strong {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.places-map-head button {
+  flex: 0 0 auto;
+  min-height: 34px;
+  border: 1px solid #cfe9e6;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #f0fbfa;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.places-map {
+  min-height: 310px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #edfafa;
+}
+
+.map-loading {
+  display: grid;
+  min-height: 310px;
+  place-items: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.places-map-links {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.places-map-links::-webkit-scrollbar {
+  display: none;
+}
+
+.places-map-links a {
+  flex: 0 0 auto;
+  border: 1px solid #cfe9e6;
+  border-radius: 999px;
+  padding: 6px 9px;
+  background: #f0fbfa;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.map-pin {
+  display: grid;
+  gap: 2px;
+  max-width: 132px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+  padding: 7px 9px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(22, 42, 50, 0.22);
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-pin span {
+  font-size: 10px;
+  font-weight: 850;
+  opacity: 0.85;
+}
+
+.map-pin strong {
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.map-pin.restaurant,
+.map-pin.cafe {
+  background: var(--warm);
+}
+
+.map-pin.market,
+.map-pin.shopping {
+  background: #2f7d56;
+}
+
+.map-pin.attraction,
+.map-pin.activity {
+  background: var(--blue);
+}
+
 .parent-brief {
   display: grid;
   gap: 8px;

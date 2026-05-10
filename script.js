@@ -132,6 +132,7 @@ const tabButtons = Array.from(document.querySelectorAll("[data-tab]"));
 const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]"));
 const searchInput = document.querySelector("#place-search");
 const resultNote = document.querySelector("#result-note");
+const placesMapCardRoot = document.querySelector("#places-map-card");
 const shortlistedCount = document.querySelector("#shortlisted-count");
 const backupCount = document.querySelector("#backup-count");
 const dateRange = document.querySelector("#date-range");
@@ -154,6 +155,8 @@ let googlePlacesPromise = null;
 let googlePlaceClass = null;
 const googlePlaceState = new Map();
 let googlePlacesSessionCount = 0;
+let placesMap = null;
+const mapMarkers = new Map();
 
 function activateTab(tabId) {
   tabButtons.forEach((button) => {
@@ -365,6 +368,31 @@ function renderCards(places) {
       `;
     })
     .join("");
+  renderPlacesMapShell(visiblePlaces, set);
+}
+
+function renderPlacesMapShell(visiblePlaces, set) {
+  if (!placesMapCardRoot) return;
+  const hotelLinks = ["hyatt", "happy-day", "new-orient"]
+    .map((id) => {
+      const point = getMapPoint(id);
+      return point ? `<a href="${point.mapsUrl}" target="_blank" rel="noreferrer">${point.name.replace(" Hotel Da Nang", "")}</a>` : "";
+    })
+    .join("");
+  placesMapCardRoot.innerHTML = `
+      <div class="places-map-head">
+        <div>
+          <span>숙소 기준 지도</span>
+          <strong>${set?.label || "전체"} · ${visiblePlaces.length}곳</strong>
+        </div>
+        <button type="button" data-map-refresh>지도 새로고침</button>
+      </div>
+    <div id="places-map" class="places-map" role="img" aria-label="선택한 장소 지도">
+      <div class="map-loading">Google 지도를 불러오는 중입니다.</div>
+    </div>
+    <div class="places-map-links">${hotelLinks}</div>
+  `;
+  hydratePlacesMap(visiblePlaces);
 }
 
 function loadGoogleMaps() {
@@ -406,6 +434,11 @@ async function getGooglePlaceClass() {
   return googlePlaceClass;
 }
 
+async function getGoogleMapsLibrary() {
+  await loadGoogleMaps();
+  return google.maps.importLibrary("maps");
+}
+
 function getGooglePlaceQuery(place) {
   const point = getMapPoint(place.id);
   return [point?.name || place.name, point?.address || place.area, "Vietnam"].filter(Boolean).join(" ");
@@ -430,7 +463,7 @@ async function fetchGooglePlacePhoto(place) {
     const Place = await getGooglePlaceClass();
     const { places } = await Place.searchByText({
       textQuery: getGooglePlaceQuery(place),
-      fields: ["id", "displayName", "photos", "rating", "userRatingCount", "businessStatus", "googleMapsURI"],
+      fields: ["id", "displayName", "photos", "rating", "userRatingCount", "businessStatus", "googleMapsURI", "location"],
       language: "ko",
       region: "vn",
       maxResultCount: 1
@@ -449,7 +482,8 @@ async function fetchGooglePlacePhoto(place) {
       rating: googlePlace.rating,
       userRatingCount: googlePlace.userRatingCount,
       businessStatus: googlePlace.businessStatus,
-      googleMapsURI: googlePlace.googleMapsURI
+      googleMapsURI: googlePlace.googleMapsURI,
+      location: googlePlace.location
     });
   } catch (error) {
     googlePlaceState.set(place.id, { failed: true });
@@ -495,6 +529,70 @@ function updatePlaceVisual(place) {
   if (!slot) return;
   slot.innerHTML = renderVisual(place, place.category || "activity");
 }
+
+async function hydratePlacesMap(places) {
+  if (!placesMapCardRoot) return;
+  const mapElement = document.querySelector("#places-map");
+  if (!mapElement) return;
+  if (!googlePlacesEnabled) {
+    mapElement.innerHTML = '<div class="map-loading">공개 설정에서 Google Maps 키를 연결하면 지도에 장소가 표시됩니다.</div>';
+    return;
+  }
+  try {
+    const { Map } = await getGoogleMapsLibrary();
+    const center = { lat: 16.0471, lng: 108.2068 };
+    placesMap = new Map(mapElement, {
+      center,
+      zoom: 11,
+      disableDefaultUI: true,
+      zoomControl: true,
+      streetViewControl: false,
+      fullscreenControl: true,
+      gestureHandling: "greedy"
+    });
+    mapMarkers.forEach((marker) => {
+      marker.map = null;
+    });
+    mapMarkers.clear();
+    const bounds = new google.maps.LatLngBounds();
+    let markerCount = 0;
+    const mapPlaces = places.slice(0, 18);
+    for (const place of mapPlaces) {
+      await fetchGooglePlacePhoto(place);
+      const livePlace = googlePlaceState.get(place.id);
+      const location = livePlace?.location;
+      if (!location) continue;
+      const marker = new google.maps.Marker({
+        map: placesMap,
+        position: location,
+        title: place.name,
+        label: {
+          text: normalizeLabel(place.category, categoryLabels).slice(0, 2),
+          color: "#ffffff",
+          fontSize: "11px",
+          fontWeight: "700"
+        }
+      });
+      marker.addListener("click", () => openSheet(place));
+      mapMarkers.set(place.id, marker);
+      bounds.extend(location);
+      markerCount += 1;
+    }
+    if (markerCount > 1) {
+      placesMap.fitBounds(bounds, { top: 36, right: 36, bottom: 36, left: 36 });
+    } else if (markerCount === 1) {
+      placesMap.setCenter(bounds.getCenter());
+      placesMap.setZoom(14);
+    }
+    if (!markerCount) {
+      mapElement.innerHTML = '<div class="map-loading">표시할 지도 위치를 찾지 못했습니다. 아래 장소 카드의 지도 버튼을 사용하세요.</div>';
+    }
+    hydrateGooglePlaces(places);
+  } catch (error) {
+    mapElement.innerHTML = '<div class="map-loading">지도를 불러오지 못했습니다. API 키 제한과 Maps JavaScript API 상태를 확인하세요.</div>';
+  }
+}
+
 
 function getEmbedMapUrl(place, livePlace) {
   if (!appConfig.GOOGLE_MAPS_API_KEY) return "";
@@ -1663,6 +1761,11 @@ document.body.addEventListener("click", (event) => {
   const scenarioButton = event.target.closest("#tab-today [data-scenario-place-id]");
   if (scenarioButton) {
     openPlaceById(scenarioButton.dataset.scenarioPlaceId);
+    return;
+  }
+  const mapRefreshButton = event.target.closest("[data-map-refresh]");
+  if (mapRefreshButton) {
+    renderCards(allPlaces);
   }
 });
 
