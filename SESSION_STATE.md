@@ -275,6 +275,22 @@ Updated: 2026-05-09
 - `output/playwright/improve-sheet-itinerary-v2.png`: 장소 상세 일정 연결 QA.
 - `output/playwright/improve-shopping-summary.png`: 쇼핑 실행표 QA.
 
+## 2026-05-10 지도 우선 보기 배포 기록
+
+- 공개 배포용 `config.public.js`에 Google Maps 제한 키를 연결했다.
+  - 사용자가 Google Cloud에서 HTTP referrer 제한을 `https://rusher2020.github.io/danang-trip/*` 기준으로 설정했다고 확인함.
+- `가볼 곳` 탭 상단에 `숙소 기준 지도` 카드를 추가했다.
+  - 현재 장소 묶음/필터 기준으로 최대 18개 장소를 Google 지도에 표시.
+  - 마커 클릭 시 장소 상세 sheet를 열도록 연결.
+  - 하얏트, Happy Day, New Orient 숙소 지도 링크를 지도 아래 빠른 칩으로 노출.
+- 배포:
+  - commit `6dfa459` pushed to `rusher2020/danang-trip`.
+  - GitHub Pages status `built` 확인.
+  - 배포 URL: `https://rusher2020.github.io/danang-trip/`
+- 원격 QA:
+  - `output/playwright/github-pages-map-places-mobile.png`: `가볼 곳` 지도 마커 정상.
+  - `output/playwright/github-pages-map-shopping-mobile.png`: `쇼핑만` 지도 마커 정상.
+
 ## 주의할 점
 
 - 사용자는 영어보다 한국어를 선호한다.
