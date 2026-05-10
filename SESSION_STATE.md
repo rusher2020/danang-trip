@@ -291,6 +291,33 @@ Updated: 2026-05-09
   - `output/playwright/github-pages-map-places-mobile.png`: `가볼 곳` 지도 마커 정상.
   - `output/playwright/github-pages-map-shopping-mobile.png`: `쇼핑만` 지도 마커 정상.
 
+## 2026-05-10 항공/숙소/커피/식사 보강 기록
+
+- 항공편 확정 정보 반영:
+  - 출국 `ZE593` · 2026-07-24 20:35 출발 · 23:25 다낭 도착.
+  - 귀국 `ZE594` · 2026-07-29 00:25 다낭 출발 · 06:55 인천 도착.
+- 일정 구조 수정:
+  - 7/28 밤 공항 이동이 필요하므로 7/29 현지 시내 일정 제거.
+  - 시내 일정은 토요일 New Orient 체크아웃 후 Hyatt 이동 전, 그리고 7/28 Happy Day 대기 후 공항 전 구간으로 제한.
+  - 호이안은 기본 플랜에서 제외 권장으로 낮춤.
+- 숙소 탭 추가:
+  - Happy Day는 확정 숙소가 아니라 재검토 후보로 표시.
+  - HAIAN Riverfront, Avora, Val Soleil, Novotel, Courtyard by Marriott를 마지막 0.5박 대안으로 비교.
+- 커피/음식점 보강:
+  - 장소 수 55개에서 65개로 확장.
+  - 카페 3개에서 9개, 음식점 16개에서 20개로 확장.
+  - `커피`, `식사` 장소 세트 추가.
+- 지도 모바일 보정:
+  - 텍스트 마커를 제거하고 작은 색상 점 마커로 변경.
+  - 숙소는 집 모양 마커로 항상 표시.
+  - 지도 범례 추가.
+- QA:
+  - `output/playwright/hotel-tab-mobile.png`
+  - `output/playwright/coffee-map-mobile.png`
+  - `output/playwright/food-map-mobile.png`
+  - `output/playwright/schedule-flight-fixed-mobile.png`
+  - `output/playwright/today-flight-fixed-mobile.png`
+
 ## 주의할 점
 
 - 사용자는 영어보다 한국어를 선호한다.

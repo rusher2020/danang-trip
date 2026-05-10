@@ -21,6 +21,7 @@
       <nav class="tab-bar" aria-label="대시보드 탭">
         <button class="tab-button is-active" type="button" data-tab="today">오늘</button>
         <button class="tab-button" type="button" data-tab="schedule">일정</button>
+        <button class="tab-button" type="button" data-tab="hotels">숙소</button>
         <button class="tab-button" type="button" data-tab="places">가볼 곳</button>
         <button class="tab-button" type="button" data-tab="prep">준비</button>
       </nav>
@@ -105,7 +106,7 @@
           <div id="places-map-card" class="places-map-card" aria-label="장소 지도"></div>
           <div class="places-guide" aria-label="가볼 곳 안내">
             <strong>우리 일정에 맞춰 묶어봤어요.</strong>
-            <span>하얏트에서 쉬는 날, 호이안 저녁, 마지막 날 시내처럼 실제 움직이는 흐름으로 먼저 봅니다.</span>
+            <span>하얏트에서 쉬는 날, 토요일 Hyatt 이동 전 시내, 7/28 공항 전 시내처럼 실제 움직이는 흐름으로 먼저 봅니다.</span>
           </div>
           <div class="parent-brief" aria-label="가장용 빠른 판단">
             <div>
@@ -136,15 +137,23 @@
             </button>
             <button class="place-set" type="button" data-place-set="hoiAn">
               <strong>호이안 저녁</strong>
-              <span>식사 먼저, 등불 짧게</span>
+              <span>이번 일정에선 제외 권장</span>
             </button>
             <button class="place-set" type="button" data-place-set="city">
-              <strong>마지막 날 시내</strong>
-              <span>한시장·식사·기념품</span>
+              <strong>시내 일정</strong>
+              <span>토요일 전환·공항 전</span>
             </button>
             <button class="place-set" type="button" data-place-set="shopping">
               <strong>쇼핑만</strong>
               <span>시장·마트·초콜릿·몰</span>
+            </button>
+            <button class="place-set" type="button" data-place-set="coffee">
+              <strong>커피</strong>
+              <span>스페셜티·코코넛·휴식</span>
+            </button>
+            <button class="place-set" type="button" data-place-set="food">
+              <strong>식사</strong>
+              <span>가족 식사·현지식·백업</span>
             </button>
             <button class="place-set" type="button" data-place-set="easy">
               <strong>더위·비</strong>
@@ -169,6 +178,17 @@
           </div>
           <p id="result-note" class="result-note"></p>
           <div id="cards" class="card-list" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-hotels" data-tab-panel="hotels" hidden>
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Hotel Decision</p>
+            <h2>숙소 추천</h2>
+          </div>
+          <div id="hotel-decision-board" class="hotel-decision-board"></div>
+          <div id="hotel-recommendation-list" class="hotel-recommendation-list"></div>
         </section>
       </section>
 
@@ -279,6 +299,7 @@
     <nav class="bottom-nav" aria-label="빠른 이동">
       <button class="bottom-tab is-active" type="button" data-tab="today">오늘</button>
       <button class="bottom-tab" type="button" data-tab="schedule">일정</button>
+      <button class="bottom-tab" type="button" data-tab="hotels">숙소</button>
       <button class="bottom-tab" type="button" data-tab="places">가볼 곳</button>
       <button class="bottom-tab" type="button" data-tab="prep">준비</button>
     </nav>

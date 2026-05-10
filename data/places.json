@@ -1191,7 +1191,7 @@
     "familyFit": "중상",
     "budgetLevel": "중간",
     "suggestedSlots": [
-      "마지막 날 시내",
+      "시내 짧은 일정",
       "한시장 전후"
     ],
     "id": "pheva-chocolate",
@@ -1208,7 +1208,7 @@
       "fromHyatt": "시내 이동 필요",
       "fromHappyDay": "시내 체류 중 접근 가능"
     },
-    "caution": "7월에는 초콜릿이 녹을 수 있으므로 마지막 날 구매 후 호텔 냉방/보냉을 고려합니다.",
+    "caution": "7월에는 초콜릿이 녹을 수 있으므로 출국 전 구매 후 호텔 냉방/보냉을 고려합니다.",
     "decisionNeeded": "가벼운 선물은 한시장보다 Pheva를 꼭 가볼 곳로 둡니다.",
     "sourceUrl": "https://phevaworld.com/"
   },
@@ -1222,7 +1222,7 @@
     "familyFit": "중간",
     "budgetLevel": "중간",
     "suggestedSlots": [
-      "마지막 날 시내",
+      "시내 짧은 일정",
       "카페 휴식"
     ],
     "id": "danang-souvenirs-cafe",
@@ -1284,7 +1284,7 @@
     "familyFit": "중상",
     "budgetLevel": "중간",
     "suggestedSlots": [
-      "마지막 날 시내",
+      "시내 짧은 일정",
       "카페 휴식"
     ],
     "id": "wonderlust-coffee",
@@ -1293,7 +1293,7 @@
     "status": "candidate",
     "priority": "중간",
     "area": "쩐푸 / 시내",
-    "kidPoint": "케이크, 음료, 하이체어 정보가 있어 마지막 날 쉬어가기 좋은 카페 선택지입니다.",
+    "kidPoint": "케이크, 음료, 하이체어 정보가 있어 시내에서 쉬어가기 좋은 카페 선택지입니다.",
     "summary": "쩐푸 거리의 카페 겸 소품/기념품 성격 선택지입니다. 후기 기반으로 08:00-21:00 운영, 카드 결제, 와이파이, 하이체어 정보가 확인됩니다.",
     "bestTime": "한시장 전후 휴식",
     "duration": "30-60분",
@@ -1302,7 +1302,7 @@
       "fromHappyDay": "시내 체류 중 접근 가능"
     },
     "caution": "후기 사이트 기반 정보라 방문 전 지도 영업 상태 확인이 필요합니다.",
-    "decisionNeeded": "마지막 날 한시장 쇼핑 중 아이들이 지치면 휴식 지점으로 사용합니다.",
+    "decisionNeeded": "시내 한시장 쇼핑 중 아이들이 지치면 휴식 지점으로 사용합니다.",
     "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g298085-d6784466-Reviews-Wonderlust_Coffee_Souvenir-Da_Nang.html"
   },
   {
@@ -1347,7 +1347,7 @@
     "budgetLevel": "중간",
     "suggestedSlots": [
       "기념품",
-      "마지막 날 시내"
+      "시내 짧은 일정"
     ],
     "id": "alluvia-chocolate",
     "name": "Alluvia Chocolate",
@@ -1439,7 +1439,7 @@
     "familyFit": "중상",
     "budgetLevel": "낮음",
     "suggestedSlots": [
-      "마지막 날 시내",
+      "시내 짧은 일정",
       "한시장 전후"
     ],
     "id": "da-nang-cathedral",
@@ -1449,7 +1449,7 @@
     "priority": "중간",
     "area": "쩐푸 / 시내",
     "kidPoint": "분홍색 외관이 직관적이라 아이와 짧은 사진 포인트로 좋습니다.",
-    "summary": "1923년에 건축된 고딕 양식 성당입니다. 한시장·쩐푸 거리·Pheva Chocolate과 가까워 마지막 날 시내 산책에 짧게 붙이기 좋습니다.",
+    "summary": "1923년에 건축된 고딕 양식 성당입니다. 한시장·쩐푸 거리·Pheva Chocolate과 가까워 시내 짧은 일정 산책에 짧게 붙이기 좋습니다.",
     "bestTime": "오전 또는 해질 무렵",
     "duration": "15-30분",
     "transfer": {
@@ -1546,7 +1546,7 @@
     },
     "budgetLevel": "변동",
     "suggestedSlots": [
-      "마지막 날 시내",
+      "시내 짧은 일정",
       "비 오는 날",
       "정찰제 쇼핑"
     ],
@@ -1698,7 +1698,7 @@
     "familyFit": "중상",
     "kidPoint": "건과일, 견과, 차, 커피 같은 포장 선물을 정찰제로 고르기 좋습니다.",
     "summary": "달랏 특산품 체인으로 건과일·견과·차·커피류 선물 후보입니다. 한시장 벌크 제품보다 포장과 선물성이 필요할 때 검토합니다.",
-    "bestTime": "마지막 날 시내",
+    "bestTime": "시내 짧은 일정",
     "duration": "20-40분",
     "transfer": {
       "fromHyatt": "시내 이동 필요",
@@ -1713,5 +1713,285 @@
     "caution": "다낭 지점 위치와 영업 여부는 방문 직전 Google Maps에서 확인합니다.",
     "decisionNeeded": "건과일·견과 선물을 깔끔한 포장으로 사고 싶을 때 한시장 대신 검토합니다.",
     "sourceUrl": "https://langfarm.com/en/stores"
+  },
+  {
+    "id": "about-us-coffee",
+    "name": "ABOUT US Coffee & Eatery",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "높음",
+    "area": "안트엉 / 미케 남쪽",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "스페셜티와 베트남식 커피를 모두 다루고 2층 좌석/와이파이 안내가 있어 부모 커피 휴식에 좋습니다.",
+    "summary": "안트엉 지역의 스페셜티 카페입니다. 공식 사이트 기준 아라비카, 로부스타, 핸드브루, 베트남식 커피를 함께 다뤄 커피 취향이 중요한 여행에 넣을 만합니다.",
+    "bestTime": "오전 또는 한낮 휴식",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "차량 이동 비교적 짧음",
+      "fromHappyDay": "미케/안트엉 이동 시 차량 필요"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["커피", "미케/안트엉", "부모 휴식"],
+    "caution": "식사 목적지는 아닙니다. 아이가 지루해하면 30분 안에 마무리합니다.",
+    "decisionNeeded": "하얏트 체류 중 외부 커피가 필요하면 XLIII와 비교합니다.",
+    "sourceUrl": "https://aboutuscoffee.vn/?lang=en"
+  },
+  {
+    "id": "o2o-first-roast",
+    "name": "O2o First Roast Specialty Coffee",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "높음",
+    "area": "박미안 / 하얏트-미케 사이",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "작고 커피 중심인 공간이라 아이보다는 부모의 커피 만족도에 맞춘 후보입니다.",
+    "summary": "소규모 스페셜티 커피 후보입니다. 최근 리뷰에서 바리스타, 원두 선택, 커피 품질 언급이 강해 커피 자체가 중요한 날에 넣을 만합니다.",
+    "bestTime": "오전",
+    "duration": "20-45분",
+    "transfer": {
+      "fromHyatt": "차량 이동 짧음",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["스페셜티", "부모 커피", "짧은 방문"],
+    "caution": "공간이 작을 수 있어 아이 동반 장시간 휴식에는 맞지 않을 수 있습니다.",
+    "decisionNeeded": "커피 품질을 가장 우선하면 후보, 가족 휴식은 ABOUT US나 체인 카페가 낫습니다.",
+    "sourceUrl": "https://www.top-rated.online/cities/%C4%90%C3%A0%2BN%E1%BA%B5ng/place/p/13531590/O2o%2BFirst%2BRoast-%2BSpecialty%2BCoffee"
+  },
+  {
+    "id": "cong-caphe-bach-dang",
+    "name": "Cộng Cà Phê Bạch Đằng",
+    "category": "cafe",
+    "status": "shortlisted",
+    "priority": "중상",
+    "area": "박당강변 / Happy Day 근처",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "코코넛커피, 달달한 음료, 강변 접근성이 좋아 시내에서 쉬어가기 쉽습니다.",
+    "summary": "베트남 대표 카페 체인입니다. 박당강변 지점은 Happy Day와 시내 동선에 붙이기 좋아, 커피가 중요하면서도 가족 휴식이 필요한 때 안정적입니다.",
+    "bestTime": "한시장 전후 / 저녁 전",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "도보 또는 짧은 이동"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["코코넛커피", "마지막 날", "강변 휴식"],
+    "caution": "유명 체인이라 시간대에 따라 붐빌 수 있습니다. 자리가 없으면 Highlands나 Wonderlust로 바꿉니다.",
+    "decisionNeeded": "마지막 날 커피 1곳만 고르면 가장 무난한 후보입니다.",
+    "sourceUrl": "https://congcaphe.com/"
+  },
+  {
+    "id": "nam-house-cafe",
+    "name": "NAM House Cafe",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "하이쩌우 / 시내 골목",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "레트로 분위기와 달달한 베트남식 음료가 있어 사진과 휴식용으로 좋습니다.",
+    "summary": "현지 감성 레트로 카페 후보입니다. 여러 다낭 카페 가이드에서 베트남식 분위기와 에그커피/화이트커피류가 언급됩니다.",
+    "bestTime": "오전 또는 한낮",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 이동 가능"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["사진", "베트남식 커피", "시내 휴식"],
+    "caution": "골목형 카페라 차량 하차 지점과 좌석 상황을 지도에서 확인합니다.",
+    "decisionNeeded": "커피 품질보다 분위기와 사진을 원하면 선택합니다.",
+    "sourceUrl": "https://vinpearl.com/en/cafes-in-da-nang"
+  },
+  {
+    "id": "brewman-coffee",
+    "name": "Brewman Coffee Concept",
+    "category": "cafe",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "하이쩌우 / 타이피엔",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "조용한 카페 휴식 후보입니다. 비 오는 날이나 더운 시간대에 잠깐 쉬기 좋습니다.",
+    "summary": "카페 가이드에서 조용하고 넓은 분위기, 코코넛커피 후보로 언급되는 시내 카페입니다.",
+    "bestTime": "한낮 / 비 오는 날",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 이동 가능"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["코코넛커피", "비 오는 날", "시내 휴식"],
+    "caution": "방문 전 Google Maps 영업 상태를 확인합니다.",
+    "decisionNeeded": "Cộng이 붐비거나 조용한 카페가 필요할 때 대체합니다.",
+    "sourceUrl": "https://vinpearl.com/en/cafes-in-da-nang"
+  },
+  {
+    "id": "indigo-coffee",
+    "name": "Indigo Coffee",
+    "category": "cafe",
+    "status": "research",
+    "priority": "중간",
+    "area": "박당 / 하이쩌우",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20iced%20coffee.jpg?width=900",
+      "alt": "베트남 커피 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_iced_coffee.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "시내 카페 후보로 분위기와 커피 경험을 같이 볼 수 있습니다.",
+    "summary": "2026 다낭 카페 추천 글에서 지속가능한 디자인과 로컬 원두, 베트남 드립커피가 언급된 후보입니다.",
+    "bestTime": "시내 이동 중",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "시내 체류 중 접근 가능"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["커피", "시내", "분위기"],
+    "caution": "서드파티 추천 기반이라 방문 전 지도 최신 정보를 확인합니다.",
+    "decisionNeeded": "박당강변 카페 후보를 더 보고 싶을 때 비교합니다.",
+    "sourceUrl": "https://www.makarabar.com/da-nangs-best-lists/da-nangs-best-coffee-shops"
+  },
+  {
+    "id": "thia-go-danang",
+    "name": "Thìa Gỗ Restaurant Da Nang",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "높음",
+    "area": "박미푸 / 안트엉",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20food.jpg?width=900",
+      "alt": "베트남 음식 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_food.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "정원형 분위기와 접근 가능한 가격대의 베트남 음식 후보라 가족 식사에 맞습니다.",
+    "summary": "최근 다낭 식당 가이드에서 미쉐린 Bib Gourmand 2024-2025 언급이 있는 남부식 베트남 음식 후보입니다. 하얏트/미케권 외부 식사 후보로 유용합니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "60-90분",
+    "transfer": {
+      "fromHyatt": "차량 이동 비교적 짧음",
+      "fromHappyDay": "차량 이동 필요"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["하얏트 체류", "미케 외부 식사", "가족 식사"],
+    "caution": "인기 시간대 대기 가능성이 있어 식사 대기가 길면 다른 후보로 바꿉니다.",
+    "decisionNeeded": "하얏트 밖에서 베트남식 1끼를 먹고 싶을 때 우선 비교합니다.",
+    "sourceUrl": "https://www.thetemptation.com.vn/restaurants-da-nang"
+  },
+  {
+    "id": "truc-lam-vien",
+    "name": "Trúc Lâm Viên Restaurant & Coffee",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중상",
+    "area": "하이쩌우 / 한강 북쪽",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vietnamese%20food.jpg?width=900",
+      "alt": "베트남 음식 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vietnamese_food.jpg"
+    },
+    "familyFit": "높음",
+    "kidPoint": "정원형 공간, 가족형 식사, 하이체어/좌석 정보가 있어 아이 동반에 안정적입니다.",
+    "summary": "2002년부터 운영된 정원형 베트남 식당으로 소개되는 후보입니다. 한시장/한강/용다리와 가까운 시내 가족식 백업으로 좋습니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "60-90분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "차량 이동 짧음"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["시내 가족식", "한시장 전후", "정원 식당"],
+    "caution": "여행자 리뷰 기반 정보라 방문 전 영업 상태와 좌석을 확인합니다.",
+    "decisionNeeded": "안토이/마담란 대기가 길면 시내 가족식 대체로 검토합니다.",
+    "sourceUrl": "https://www.tripadvisor.co.uk/Restaurant_Review-g298085-d2322420-Reviews-Truc_Lam_Vien_Restaurant_Coffee-Da_Nang.html"
+  },
+  {
+    "id": "co-ba-pho-bo",
+    "name": "Cô Ba Phở Bò",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중상",
+    "area": "박당강변 / Happy Day 근처",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pho-Beef-Noodles-2008.jpg?width=900",
+      "alt": "쌀국수 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pho-Beef-Noodles-2008.jpg"
+    },
+    "familyFit": "중상",
+    "kidPoint": "쌀국수와 볶음밥류는 아이 식사로 비교적 실패 확률이 낮습니다.",
+    "summary": "박당강변 주소의 베트남식 식사 후보입니다. 쌀국수, 볶음밥, 해산물 메뉴가 있어 마지막 날 Happy Day 근처 식사 백업으로 좋습니다.",
+    "bestTime": "점심 또는 이른 저녁",
+    "duration": "45-75분",
+    "transfer": {
+      "fromHyatt": "시내 이동 필요",
+      "fromHappyDay": "도보 또는 짧은 이동"
+    },
+    "budgetLevel": "중간",
+    "suggestedSlots": ["마지막 날", "쌀국수", "아이 식사"],
+    "caution": "관광객 밀집 시간대에는 대기와 소음이 있을 수 있습니다.",
+    "decisionNeeded": "안토이/마담란보다 단순한 식사가 필요할 때 씁니다.",
+    "sourceUrl": "https://www.tripadvisor.co.uk/Restaurant_Review-g25231262-d24161498-Reviews-Co_Ba_Ph_Bo-Hai_Chau_Da_Nang.html"
+  },
+  {
+    "id": "mi-quang-ba-mua",
+    "name": "Mì Quảng Bà Mua",
+    "category": "restaurant",
+    "status": "candidate",
+    "priority": "중간",
+    "area": "다낭 시내 여러 지점",
+    "image": {
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mi%20Quang%20Ga.jpg?width=900",
+      "alt": "미꽝 대표 이미지",
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mi_Quang_Ga.jpg"
+    },
+    "familyFit": "중간",
+    "kidPoint": "다낭 로컬 면요리 경험입니다. 아이가 국수류를 잘 먹으면 짧게 넣을 수 있습니다.",
+    "summary": "미꽝 전문점 후보입니다. 로컬 음식 경험으로는 좋지만 매운맛/향신료/아이 취향 변수가 있어 메인 확정보다 후보로 둡니다.",
+    "bestTime": "점심",
+    "duration": "30-60분",
+    "transfer": {
+      "fromHyatt": "가까운 지점 지도 확인",
+      "fromHappyDay": "가까운 지점 지도 확인"
+    },
+    "budgetLevel": "낮음-중간",
+    "suggestedSlots": ["로컬 음식", "짧은 점심", "미꽝"],
+    "caution": "아이들이 향이나 식감을 낯설어할 수 있습니다. 한 끼 전체를 걸기보다 부모 로컬식 후보로 봅니다.",
+    "decisionNeeded": "아이 컨디션이 좋고 로컬 음식을 먹어보고 싶을 때만 선택합니다.",
+    "sourceUrl": "https://vietnammarveltravel.com/da-nang-food-guide/"
   }
 ]

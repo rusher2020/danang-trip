@@ -51,15 +51,15 @@ const placeSets = {
   },
   hoiAn: {
     label: "호이안 저녁",
-    note: "7/28 저녁은 식사를 먼저 잡고 등불 산책을 짧게 붙이는 흐름입니다.",
+    note: "7/29 00:25 출국편 때문에 기본 플랜에서는 제외 권장입니다. 그래도 비교용으로만 봅니다.",
     filter: null,
     ids: ["hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"]
   },
   city: {
-    label: "마지막 날 시내",
-    note: "7/29 Happy Day 기준으로 쇼핑, 식사, 기념품을 짧게 묶는 장소입니다.",
+    label: "시내 일정",
+    note: "토요일 Hyatt 이동 전, 7/28 공항 전처럼 실제로 시내를 짧게 쓰는 구간만 봅니다.",
     filter: null,
-    ids: ["han-market", "an-thoi-danang", "madame-lan-danang", "pheva-chocolate", "maison-marou-danang", "go-danang-big-c", "lotte-mart-danang", "mm-mega-market-danang"]
+    ids: ["cong-caphe-bach-dang", "han-market", "an-thoi-danang", "madame-lan-danang", "co-ba-pho-bo", "wonderlust-coffee", "pheva-chocolate", "maison-marou-danang", "go-danang-big-c", "lotte-mart-danang", "mm-mega-market-danang"]
   },
   shopping: {
     label: "쇼핑만",
@@ -82,6 +82,41 @@ const placeSets = {
       "bac-my-an-market",
       "helio-night-market",
       "son-tra-night-market"
+    ]
+  },
+  coffee: {
+    label: "커피",
+    note: "커피가 중요한 여행 기준에 맞춰 스페셜티, 코코넛커피, 휴식 카페를 따로 봅니다.",
+    filter: null,
+    ids: [
+      "xliii-coffee",
+      "about-us-coffee",
+      "o2o-first-roast",
+      "cong-caphe-bach-dang",
+      "nam-house-cafe",
+      "brewman-coffee",
+      "indigo-coffee",
+      "wonderlust-coffee",
+      "highlands-coffee-city"
+    ]
+  },
+  food: {
+    label: "식사",
+    note: "아이 동반 가족식, 현지식, 대기 백업까지 식사 후보를 한눈에 봅니다.",
+    filter: null,
+    ids: [
+      "an-thoi-danang",
+      "madame-lan-danang",
+      "thia-go-danang",
+      "truc-lam-vien",
+      "co-ba-pho-bo",
+      "mi-quang-ba-mua",
+      "bep-hen-danang",
+      "mi-quang-1a",
+      "pizza-4ps-danang",
+      "chops-danang",
+      "hyatt-xanh-house",
+      "hyatt-osteria"
     ]
   },
   easy: {
@@ -109,6 +144,8 @@ const placePreviewCardRoot = document.querySelector("#place-preview-card");
 const fallbackListRoot = document.querySelector("#fallback-list");
 const hotelFlowCompactRoot = document.querySelector("#hotel-flow-compact");
 const hotelFlowRoot = document.querySelector("#hotel-flow");
+const hotelDecisionBoardRoot = document.querySelector("#hotel-decision-board");
+const hotelRecommendationListRoot = document.querySelector("#hotel-recommendation-list");
 const hyattProgramListRoot = document.querySelector("#hyatt-program-list");
 const expertSummaryRoot = document.querySelector("#expert-summary");
 const dayListRoot = document.querySelector("#day-list");
@@ -390,6 +427,12 @@ function renderPlacesMapShell(visiblePlaces, set) {
     <div id="places-map" class="places-map" role="img" aria-label="선택한 장소 지도">
       <div class="map-loading">Google 지도를 불러오는 중입니다.</div>
     </div>
+    <div class="places-map-legend" aria-label="지도 범례">
+      <span><i class="legend-dot hotel"></i>숙소</span>
+      <span><i class="legend-dot attraction"></i>여행지·놀거리</span>
+      <span><i class="legend-dot restaurant"></i>식사·카페</span>
+      <span><i class="legend-dot shopping"></i>시장·쇼핑</span>
+    </div>
     <div class="places-map-links">${hotelLinks}</div>
   `;
   hydratePlacesMap(visiblePlaces);
@@ -556,6 +599,33 @@ async function hydratePlacesMap(places) {
     mapMarkers.clear();
     const bounds = new google.maps.LatLngBounds();
     let markerCount = 0;
+    const hotelPlaces = getMapHotelPlaces();
+    for (const hotel of hotelPlaces) {
+      await fetchGooglePlacePhoto(hotel);
+      const livePlace = googlePlaceState.get(hotel.id);
+      const location = livePlace?.location;
+      if (!location) continue;
+      const marker = new google.maps.Marker({
+        map: placesMap,
+        position: location,
+        title: hotel.name,
+        zIndex: 1000,
+        icon: {
+          path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
+          fillColor: "#087b72",
+          fillOpacity: 1,
+          strokeColor: "#ffffff",
+          strokeOpacity: 1,
+          strokeWeight: 1.5,
+          scale: 1.15,
+          anchor: new google.maps.Point(12, 20)
+        }
+      });
+      marker.addListener("click", () => window.open(getMapPoint(hotel.id)?.mapsUrl || getMapUrl(hotel), "_blank", "noreferrer"));
+      mapMarkers.set(hotel.id, marker);
+      bounds.extend(location);
+      markerCount += 1;
+    }
     const mapPlaces = places.slice(0, 18);
     for (const place of mapPlaces) {
       await fetchGooglePlacePhoto(place);
@@ -566,11 +636,14 @@ async function hydratePlacesMap(places) {
         map: placesMap,
         position: location,
         title: place.name,
-        label: {
-          text: normalizeLabel(place.category, categoryLabels).slice(0, 2),
-          color: "#ffffff",
-          fontSize: "11px",
-          fontWeight: "700"
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 8,
+          fillColor: getMarkerColor(place.category),
+          fillOpacity: 0.92,
+          strokeColor: "#ffffff",
+          strokeOpacity: 1,
+          strokeWeight: 2
         }
       });
       marker.addListener("click", () => openSheet(place));
@@ -591,6 +664,45 @@ async function hydratePlacesMap(places) {
   } catch (error) {
     mapElement.innerHTML = '<div class="map-loading">지도를 불러오지 못했습니다. API 키 제한과 Maps JavaScript API 상태를 확인하세요.</div>';
   }
+}
+
+function getMapHotelPlaces() {
+  return [
+    {
+      id: "new-orient",
+      name: "New Orient Hotel",
+      category: "hotel",
+      area: "다낭 시내",
+      transfer: {},
+      image: null,
+      sourceUrl: ""
+    },
+    {
+      id: "hyatt",
+      name: "Hyatt Regency Danang Resort & Spa",
+      category: "hotel",
+      area: "논느억",
+      transfer: {},
+      image: null,
+      sourceUrl: ""
+    },
+    {
+      id: "happy-day",
+      name: "Happy Day Hotel Danang",
+      category: "hotel",
+      area: "박당강변",
+      transfer: {},
+      image: null,
+      sourceUrl: ""
+    }
+  ];
+}
+
+function getMarkerColor(category) {
+  if (category === "restaurant" || category === "cafe") return "#e8754f";
+  if (category === "market" || category === "shopping") return "#2f7d56";
+  if (category === "attraction" || category === "activity") return "#2368a8";
+  return "#087b72";
 }
 
 
@@ -842,7 +954,7 @@ function renderTrip(trip) {
     expertSummaryRoot.innerHTML = `
       <article>
         <span>핵심 결론</span>
-        <strong>하얏트에서 쉬기 + 바나힐은 전날 정하기 + 호이안 저녁 + 마지막 날 시내 정리</strong>
+        <strong>하얏트에서 쉬기 + 바나힐은 전날 정하기 + 토요일/출국 전 시내만 짧게</strong>
       </article>
       <article>
         <span>정보 기준일</span>
@@ -1103,6 +1215,54 @@ function renderHotels(hotels) {
         <span class="date">${hotel.dateLabel}</span>
         <h3>${hotel.name}</h3>
         <p>${hotel.summary}</p>
+      </article>
+    `)
+    .join("");
+}
+
+function renderHotelRecommendations(items) {
+  if (!hotelDecisionBoardRoot || !hotelRecommendationListRoot) return;
+  const top = items.find((item) => item.status === "추천") || items[0];
+  hotelDecisionBoardRoot.innerHTML = `
+    <article class="hotel-decision-card">
+      <div class="meta-row">
+        <span class="pill">현재 판단</span>
+        <span class="pill status">Happy Day 재검토</span>
+      </div>
+      <h3>마지막 0.5박은 위치보다 샤워·휴식 안정성이 우선입니다.</h3>
+      <p>7/29 00:25 출국편이라 7/28 밤에 아이들이 씻고 누울 수 있는지가 중요합니다. Happy Day가 마음에 걸린다면, ${top?.name || "HAIAN Riverfront"}부터 가격을 비교하는 쪽이 맞습니다.</p>
+    </article>
+  `;
+  hotelRecommendationListRoot.innerHTML = items
+    .map((hotel) => `
+      <article class="hotel-recommendation-item">
+        <div class="meta-row">
+          <span class="pill">${hotel.role}</span>
+          <span class="pill status">${hotel.status}</span>
+        </div>
+        <h3>${hotel.name}</h3>
+        <p>${hotel.fit}</p>
+        <div class="hotel-grid">
+          <div>
+            <span>왜 보기</span>
+            <strong>${hotel.why}</strong>
+          </div>
+          <div>
+            <span>좋은 경우</span>
+            <strong>${hotel.bestFor}</strong>
+          </div>
+          <div>
+            <span>리스크</span>
+            <strong>${hotel.risk}</strong>
+          </div>
+          <div>
+            <span>판단</span>
+            <strong>${hotel.recommendation}</strong>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a class="primary" href="${hotel.sourceUrl}" target="_blank" rel="noreferrer">지도/정보</a>
+        </div>
       </article>
     `)
     .join("");
@@ -1508,10 +1668,10 @@ function renderShopping(items) {
     <article class="shopping-item shopping-summary">
       <div class="meta-row">
         <span class="pill">가족 쇼핑 결론</span>
-        <span class="pill status">마지막 날</span>
+        <span class="pill status">7/28 저녁 전</span>
       </div>
       <h3>한시장 60분 또는 정찰제 마트 1곳</h3>
-      <p>아이 컨디션이 좋으면 한시장, 덥거나 피곤하면 GO!/Big C·롯데마트·MM Mega Market 중 동선 가까운 한 곳으로 단순화합니다.</p>
+      <p>7/28 밤 공항 이동 전까지 끝내야 하므로, 아이 컨디션이 좋으면 한시장, 덥거나 피곤하면 GO!/Big C·롯데마트·MM Mega Market 중 한 곳으로 단순화합니다.</p>
       <div class="shopping-grid">
         <div>
           <span>마트에서</span>
@@ -1594,6 +1754,7 @@ function renderEmergency(items) {
 Promise.all([
   loadJson("data/trip.json", null),
   loadJson("data/hotels.json", []),
+  loadJson("data/hotel-recommendations.json", []),
   loadJson("data/hyatt-programs.json", []),
   loadJson("data/days.json", []),
   loadJson("data/checklist.json", []),
@@ -1610,7 +1771,7 @@ Promise.all([
   loadJson("data/emergency.json", []),
   loadJson("data/map-points.json", []),
   loadPlaces()
-]).then(([trip, hotels, hyattPrograms, days, checklist, scenarios, decisions, liveFeatures, koreanReviews, airlineInfo, transport, mapRoutes, budget, shopping, packing, emergency, mapPoints, places]) => {
+]).then(([trip, hotels, hotelRecommendations, hyattPrograms, days, checklist, scenarios, decisions, liveFeatures, koreanReviews, airlineInfo, transport, mapRoutes, budget, shopping, packing, emergency, mapPoints, places]) => {
   allPlaces = places;
   allReviews = koreanReviews;
   allMapPoints = mapPoints;
@@ -1620,6 +1781,7 @@ Promise.all([
   if (trip) renderTrip(trip);
   if (trip) renderTodayPanel({ trip, days, decisions, hotels, places, checklist, mapRoutes });
   renderHotels(hotels);
+  renderHotelRecommendations(hotelRecommendations);
   renderHyattPrograms(hyattPrograms);
   renderDays(days, places);
   renderChecklist(checklist);

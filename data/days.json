@@ -5,9 +5,9 @@
     "date": "7/24 금",
     "base": "Korea → Da Nang",
     "certainty": "fixed",
-    "theme": "밤 출국",
-    "summary": "공항 이동, 체크인, 기내 준비에 집중합니다. 관광 일정은 넣지 않습니다.",
-    "fatherCheck": ["항공편명·수하물 확인", "아이 기내 간식·겉옷 준비", "도착 후 바로 호텔 이동"],
+    "theme": "ZE593 출국",
+    "summary": "이스타항공 ZE593편으로 7/24 20:35 출발, 23:25 다낭 도착입니다. 공항 이동, 체크인, 기내 준비에 집중합니다.",
+    "fatherCheck": ["ZE593 · 20:35 출발 확인", "아이 기내 간식·겉옷 준비", "23:25 도착 후 바로 New Orient 이동"],
     "fallbacks": [
       {
         "if": "비행 지연",
@@ -17,9 +17,14 @@
     "mapPointIds": [],
     "blocks": [
       {
-        "time": "23:00",
-        "title": "출국",
-        "note": "항공편명과 수하물 정보를 나중에 입력합니다."
+        "time": "20:35",
+        "title": "ZE593 인천 출발",
+        "note": "이스타항공 ZE593. 아이 동반 국제선이므로 공항 카운터 수속 시간을 여유 있게 잡습니다."
+      },
+      {
+        "time": "23:25",
+        "title": "다낭 도착",
+        "note": "현지 도착 후 입국, 수하물, 차량 이동으로 New Orient에 바로 갑니다."
       }
     ]
   },
@@ -29,9 +34,9 @@
     "date": "7/25 토",
     "base": "New Orient → Hyatt",
     "certainty": "flexible",
-    "theme": "도착 회복과 리조트 적응",
-    "summary": "늦은 도착 후 회복하고 하얏트로 이동합니다. 수영장/해변을 중심으로 가볍게 시작합니다.",
-    "fatherCheck": ["첫날 관광 금지", "체크인 전 짐 맡기기", "저녁은 하얏트 안에서 끝내기"],
+    "theme": "토요일 시내 짧게 + 리조트 적응",
+    "summary": "토요일은 New Orient 체크아웃 후 시내에서 커피·간단 쇼핑·점심을 짧게 보고 Hyatt로 이동할 수 있는 유일한 초반 시내 구간입니다. 잠을 못 잤으면 바로 Hyatt로 갑니다.",
+    "fatherCheck": ["시내는 1-2개만", "졸리면 바로 Hyatt", "저녁은 하얏트 안에서 끝내기"],
     "fallbacks": [
       {
         "if": "아이들이 잠을 못 잤다면",
@@ -42,20 +47,26 @@
         "then": "로비/수영장/간식으로 버티고 외부 이동은 하지 않습니다."
       }
     ],
-    "mapPointIds": ["new-orient", "hyatt"],
+    "mapPointIds": ["new-orient", "cong-caphe-bach-dang", "han-market", "an-thoi-danang", "hyatt"],
     "blocks": [
       {
-        "time": "01:30 전후",
+        "time": "00:30 전후",
         "title": "도착 회복",
-        "note": "다낭 도착 후 New Orient로 이동해 수면을 확보합니다. 정확한 현지 도착 시각은 항공편 확인 후 조정합니다."
+        "note": "23:25 다낭 도착 후 New Orient로 이동해 수면을 확보합니다."
       },
       {
         "time": "10:30-12:00",
         "title": "천천히 체크아웃",
-        "note": "조식 포함 여부를 확인하고, 아이들 컨디션을 본 뒤 Hyatt로 이동합니다."
+        "note": "조식 포함 여부를 확인하고, 아이들 컨디션을 본 뒤 시내를 짧게 볼지 바로 Hyatt로 갈지 정합니다."
       },
       {
-        "time": "12:00-15:00",
+        "time": "11:30-13:30",
+        "title": "선택: 시내 커피·점심·필수 쇼핑",
+        "note": "New Orient 기준으로 Cộng Cà Phê, 한시장, Ăn Thôi 중 1-2개만 고릅니다. 더우면 카페만 가고 Hyatt로 이동합니다.",
+        "placeIds": ["cong-caphe-bach-dang", "han-market", "an-thoi-danang"]
+      },
+      {
+        "time": "14:00-15:30",
         "title": "하얏트 체크인",
         "note": "체크인 전이면 짐을 맡기고 점심/수영장/로비 휴식으로 연결합니다.",
         "placeIds": ["hyatt-resort-time"]
@@ -150,36 +161,46 @@
     "date": "7/28 화",
     "base": "Hyatt → Happy Day",
     "certainty": "recommended",
-    "theme": "체크아웃 + 호이안 저녁",
-    "summary": "하얏트 체크아웃 후 Happy Day에서 짐과 휴식을 해결하고, 오후 늦게 호이안으로 이동하는 안입니다.",
-    "fatherCheck": ["체크아웃 후 낮잠 확보", "호이안은 식사 먼저", "21시 전후 다낭 복귀"],
+    "theme": "체크아웃 + 시내 정리 + 밤 공항",
+    "summary": "7/29 00:25 출국편이므로 실제 마지막 활동일은 7/28입니다. 하얏트 체크아웃 후 Happy Day를 짐·샤워·휴식 베이스로 쓰고, 저녁에 공항으로 이동합니다.",
+    "fatherCheck": ["호이안은 욕심내지 않기", "쇼핑·식사·카페를 Happy Day 주변으로 압축", "21:30-22:00 공항 이동 목표"],
     "fallbacks": [
       {
-        "if": "낮잠을 못 자거나 피곤하면",
-        "then": "호이안 소원배와 야시장을 빼고 식사+등불 거리 60분만 봅니다."
+        "if": "아이들이 피곤하면",
+        "then": "호이안은 제외하고 Happy Day 주변 식사, 커피, 샤워, 짐 정리만 남깁니다."
       },
       {
-        "if": "호이안 식당 대기",
-        "then": "Morning Glory에서 Cargo Club 또는 Lim Dining Room으로 바로 바꿉니다."
+        "if": "한시장이나 식당이 붐비면",
+        "then": "정찰제 마트 또는 Cộng Cà Phê/Highlands 같은 쉬운 카페 휴식으로 전환합니다."
       }
     ],
-    "mapPointIds": ["hyatt", "happy-day", "hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"],
+    "mapPointIds": ["hyatt", "happy-day", "han-market", "an-thoi-danang", "madame-lan-danang", "cong-caphe-bach-dang", "pheva-chocolate"],
     "blocks": [
       {
         "time": "09:00-11:00",
         "title": "하얏트 체크아웃",
-        "note": "짐과 이동 시간을 여유 있게 잡습니다."
+        "note": "수영복/젖은 옷/공항 갈 옷을 분리하고, 이동 전 아이 컨디션을 먼저 봅니다."
       },
       {
-        "time": "12:00-15:30",
-        "title": "Happy Day 체크인과 휴식",
-        "note": "더운 시간대에는 시내 이동보다 샤워, 낮잠, 짐 정리를 우선합니다."
+        "time": "12:00-16:00",
+        "title": "Happy Day 이동과 휴식",
+        "note": "짐 보관, 샤워, 낮잠, 휴식을 확보합니다. 이 시간이 마지막 날 전체 만족도를 좌우합니다."
       },
       {
-        "time": "16:30-21:00",
-        "title": "호이안 등불 저녁",
-        "note": "17시 전후 출발, 저녁 식사와 등불 산책 후 너무 늦지 않게 복귀합니다.",
-        "placeIds": ["hoi-an-evening", "morning-glory-hoian", "cargo-club-hoian", "lim-dining-room-hoian", "madam-kieu-hoian"]
+        "time": "16:00-19:30",
+        "title": "시내 식사·커피·짧은 쇼핑",
+        "note": "한시장, 안토이/마담란, Cộng Cà Phê, Pheva를 컨디션에 맞춰 1-2개만 고릅니다.",
+        "placeIds": ["han-market", "an-thoi-danang", "madame-lan-danang", "cong-caphe-bach-dang", "pheva-chocolate"]
+      },
+      {
+        "time": "19:30-21:15",
+        "title": "샤워와 짐 정리",
+        "note": "Happy Day에서 아이들 옷을 갈아입히고, 기내 간식·겉옷·여권을 바로 꺼낼 수 있게 둡니다."
+      },
+      {
+        "time": "21:30-22:00",
+        "title": "공항 이동",
+        "note": "7/29 00:25 출국편 기준으로 여유 있게 이동합니다."
       }
     ]
   },
@@ -187,38 +208,28 @@
     "id": "day-5",
     "label": "Day 5",
     "date": "7/29 수",
-    "base": "Happy Day → Airport",
-    "certainty": "planned",
-    "theme": "귀국 전 정리",
-    "summary": "마지막 쇼핑, 식사, 샤워, 짐 정리, 공항 이동을 위한 저강도 일정입니다.",
-    "fatherCheck": ["쇼핑 리스트 없으면 한시장 생략", "식당 대기 15분 넘으면 전환", "20:30 전후 공항 이동"],
+    "base": "Da Nang → Korea",
+    "certainty": "fixed",
+    "theme": "새벽 출국과 한국 도착",
+    "summary": "다낭 현지 일정은 이미 7/28 밤에 끝납니다. ZE594 00:25 다낭 출발, 06:55 인천 도착입니다.",
+    "fatherCheck": ["ZE594 · 00:25 출발 확인", "아이 잠자리와 간식 준비", "06:55 인천 도착 후 귀가 동선 확인"],
     "fallbacks": [
       {
-        "if": "한시장이 덥거나 붐비면",
-        "then": "롯데마트 또는 MM Mega Market으로 바꿔 정찰제 쇼핑만 합니다."
-      },
-      {
-        "if": "안토이 대기가 길면",
-        "then": "마담란으로 전환하거나 Happy Day에서 쉬고 배달/간단식으로 바꿉니다."
+        "if": "비행 지연",
+        "then": "아이 겉옷, 간식, 보조배터리, 물티슈를 바로 꺼낼 수 있게 둡니다."
       }
     ],
-    "mapPointIds": ["happy-day", "han-market", "lotte-mart-danang", "mm-mega-market-danang", "an-thoi-danang", "madame-lan-danang"],
+    "mapPointIds": ["happy-day"],
     "blocks": [
       {
-        "time": "10:00-13:00",
-        "title": "한시장 또는 롯데마트",
-        "note": "쇼핑 리스트를 정해 짧게 끝냅니다. 더위가 심하면 롯데마트처럼 실내 위주로 전환합니다.",
-        "placeIds": ["han-market", "lotte-mart-danang", "mm-mega-market-danang", "an-thoi-danang", "madame-lan-danang"]
+        "time": "00:25",
+        "title": "ZE594 다낭 출국",
+        "note": "이스타항공 ZE594. 06:55 인천 도착 예정입니다."
       },
       {
-        "time": "18:30-20:30",
-        "title": "샤워와 짐 정리",
-        "note": "Happy Day에서 아이들 컨디션을 정리하고 공항 갈 짐을 다시 꾸립니다."
-      },
-      {
-        "time": "20:30 전후",
-        "title": "공항 이동",
-        "note": "아이 피로와 짐을 고려해 여유 있게 이동합니다."
+        "time": "06:55",
+        "title": "인천 도착",
+        "note": "입국, 수하물, 귀가 동선을 확인합니다."
       }
     ]
   }

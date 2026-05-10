@@ -24,12 +24,12 @@
   {
     "id": "happy-day",
     "name": "Happy Day Hotel Danang",
-    "dateLabel": "7/28 - 7/29",
+    "dateLabel": "7/28 오후-밤",
     "checkIn": "2026-07-28",
     "checkOut": "2026-07-29",
-    "role": "마지막 날 시내 거점",
-    "summary": "짐, 샤워, 쇼핑, 식사, 공항 전 휴식에 사용합니다. 한강/한시장 접근이 좋은 시내 베이스로 봅니다.",
+    "role": "공항 전 대기·샤워 거점 후보",
+    "summary": "7/29 00:25 출국 전까지 짐, 샤워, 쇼핑, 식사, 휴식에 사용하는 후보입니다. 만족도가 애매하므로 HAIAN Riverfront, Novotel, Wink 등 대체 숙소와 비교가 필요합니다.",
     "area": "Da Nang city center",
-    "status": "confirmed"
+    "status": "recheck"
   }
 ]

@@ -13,15 +13,27 @@
   },
   {
     "id": "hotel-transfer-hyatt",
-    "title": "New Orient → Hyatt",
+    "title": "New Orient → 시내 짧게 → Hyatt",
     "day": "7/25 오전",
-    "mode": "숙소 이동",
-    "summary": "캐리어와 아이 2명을 고려해 GrabCar 7 또는 호텔 차량으로 이동합니다.",
+    "mode": "시내 전환",
+    "summary": "체크아웃 후 컨디션이 좋으면 Cộng Cà Phê, 한시장, Ăn Thôi 중 1-2개만 보고 Hyatt로 이동합니다.",
+    "origin": "New Orient Hotel Da Nang",
+    "destination": "Hyatt Regency Danang Resort and Spa",
+    "waypoints": ["Cong Ca Phe Bach Dang Da Nang", "Han Market Da Nang", "An Thoi Da Nang"],
+    "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=New%20Orient%20Hotel%20Da%20Nang&destination=Hyatt%20Regency%20Danang%20Resort%20and%20Spa&waypoints=Cong%20Ca%20Phe%20Bach%20Dang%20Da%20Nang%7CHan%20Market%20Da%20Nang%7CAn%20Thoi%20Da%20Nang&travelmode=driving",
+    "caution": "잠을 못 잤거나 덥다면 시내를 모두 빼고 바로 Hyatt로 갑니다."
+  },
+  {
+    "id": "hotel-transfer-hyatt-direct",
+    "title": "New Orient → Hyatt 바로 이동",
+    "day": "7/25 컨디션 나쁠 때",
+    "mode": "직행",
+    "summary": "아이들이 잠을 못 잤거나 더우면 시내를 모두 생략하고 Hyatt로 바로 이동합니다.",
     "origin": "New Orient Hotel Da Nang",
     "destination": "Hyatt Regency Danang Resort and Spa",
     "waypoints": [],
     "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=New%20Orient%20Hotel%20Da%20Nang&destination=Hyatt%20Regency%20Danang%20Resort%20and%20Spa&travelmode=driving",
-    "caution": "체크인 전이면 짐 보관과 리조트 내 대기 동선을 전제로 합니다."
+    "caution": "첫날 관광보다 수면 회복과 리조트 적응이 우선입니다."
   },
   {
     "id": "hyatt-marble-short",
@@ -74,38 +86,38 @@
   {
     "id": "happy-day-hoi-an",
     "title": "Happy Day ↔ 호이안",
-    "day": "7/28 저녁",
-    "mode": "전용차 왕복",
-    "summary": "16:30 전후 출발, 17:30 식사, 20:30-21:00 복귀를 목표로 합니다.",
+    "day": "7/28 선택 제외 권장",
+    "mode": "무리한 선택",
+    "summary": "귀국편이 7/29 00:25라 7/28 밤 공항 이동이 필요합니다. 호이안은 원칙적으로 제외하고, 꼭 가더라도 아주 짧게만 봅니다.",
     "origin": "Happy Day Hotel Da Nang",
     "destination": "Happy Day Hotel Da Nang",
     "waypoints": ["Hoi An Ancient Town", "Morning Glory Original Hoi An"],
     "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Happy%20Day%20Hotel%20Da%20Nang&destination=Happy%20Day%20Hotel%20Da%20Nang&waypoints=Hoi%20An%20Ancient%20Town%7CMorning%20Glory%20Original%20Hoi%20An&travelmode=driving",
-    "caution": "올드타운 보행자 거리 때문에 차량 하차 후 걷는 구간이 생길 수 있습니다."
+    "caution": "아이 동반 귀국 전날 밤에는 복귀 지연 리스크가 큽니다. 기본 플랜에서는 빼는 편이 안전합니다."
   },
   {
     "id": "happy-day-city-food",
     "title": "Happy Day → 한시장/시내 식사",
-    "day": "7/29 오전-점심",
+    "day": "7/28 오후-저녁",
     "mode": "시내 묶음",
-    "summary": "한시장 쇼핑 후 안토이 또는 마담란 식사로 연결하는 동선입니다.",
+    "summary": "하얏트 체크아웃 후 Happy Day를 베이스로 한시장, 안토이 또는 마담란, 카페를 짧게 묶는 동선입니다.",
     "origin": "Happy Day Hotel Da Nang",
     "destination": "Happy Day Hotel Da Nang",
     "waypoints": ["Han Market Da Nang", "An Thoi Da Nang", "Madame Lan Da Nang"],
     "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Happy%20Day%20Hotel%20Da%20Nang&destination=Happy%20Day%20Hotel%20Da%20Nang&waypoints=Han%20Market%20Da%20Nang%7CAn%20Thoi%20Da%20Nang%7CMadame%20Lan%20Da%20Nang&travelmode=walking",
-    "caution": "가까워도 7월 낮에는 도보보다 짧은 차량 이동이 나을 수 있습니다."
+    "caution": "00:25 출국편이므로 19:30 이후에는 Happy Day 복귀와 짐 정리를 우선합니다."
   },
   {
     "id": "happy-day-shopping-cafe",
     "title": "Happy Day → 한시장/기념품/카페",
-    "day": "7/29 오전-오후 선택",
+    "day": "7/28 오후 선택",
     "mode": "시내 쇼핑",
-    "summary": "한시장 쇼핑을 60-90분으로 제한하고 Pheva Chocolate 또는 카페 휴식으로 이어가는 동선입니다.",
+    "summary": "한시장 쇼핑을 60분으로 제한하고 Pheva Chocolate 또는 Cộng Cà Phê 휴식으로 이어가는 동선입니다.",
     "origin": "Happy Day Hotel Da Nang",
     "destination": "Happy Day Hotel Da Nang",
-    "waypoints": ["Han Market Da Nang", "Pheva Chocolate Da Nang", "Wonderlust Coffee Da Nang", "Da Nang Cathedral"],
-    "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Happy%20Day%20Hotel%20Da%20Nang&destination=Happy%20Day%20Hotel%20Da%20Nang&waypoints=Han%20Market%20Da%20Nang%7CPheva%20Chocolate%20Da%20Nang%7CWonderlust%20Coffee%20Da%20Nang%7CDa%20Nang%20Cathedral&travelmode=walking",
-    "caution": "도보 가능 거리라도 더위가 강하면 중간중간 Grab을 씁니다."
+    "waypoints": ["Han Market Da Nang", "Pheva Chocolate Da Nang", "Cong Ca Phe Bach Dang Da Nang"],
+    "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Happy%20Day%20Hotel%20Da%20Nang&destination=Happy%20Day%20Hotel%20Da%20Nang&waypoints=Han%20Market%20Da%20Nang%7CPheva%20Chocolate%20Da%20Nang%7CCong%20Ca%20Phe%20Bach%20Dang%20Da%20Nang&travelmode=walking",
+    "caution": "도보 가능 거리라도 더위가 강하면 중간중간 Grab을 씁니다. 19:30 이후에는 숙소 복귀가 우선입니다."
   },
   {
     "id": "hyatt-mikazuki",
@@ -122,13 +134,13 @@
   {
     "id": "departure-route",
     "title": "Happy Day → 공항",
-    "day": "7/29 밤",
+    "day": "7/28 밤",
     "mode": "귀국 이동",
-    "summary": "샤워와 짐 정리 후 여유 있게 공항으로 이동합니다.",
+    "summary": "7/29 00:25 출국편 기준, 7/28 밤에 샤워와 짐 정리 후 여유 있게 공항으로 이동합니다.",
     "origin": "Happy Day Hotel Da Nang",
     "destination": "Da Nang International Airport",
     "waypoints": [],
     "mapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Happy%20Day%20Hotel%20Da%20Nang&destination=Da%20Nang%20International%20Airport&travelmode=driving",
-    "caution": "항공편의 실제 다낭 출발 시각 기준으로 공항 도착 목표를 다시 잡습니다."
+    "caution": "21:30-22:00 사이 공항 이동을 목표로 잡고, 아이 기내 물품은 따로 빼둡니다."
   }
 ]

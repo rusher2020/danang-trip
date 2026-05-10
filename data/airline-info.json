@@ -1,5 +1,15 @@
 [
   {
+    "id": "eastar-flight-summary",
+    "category": "항공편",
+    "priority": "필수",
+    "title": "확정 항공편: ZE593 / ZE594",
+    "summary": "출국편은 ZE593, 2026-07-24 20:35 출발, 23:25 다낭 현지 도착입니다. 귀국편은 ZE594, 2026-07-29 00:25 다낭 출발, 06:55 인천 도착입니다.",
+    "familyAction": "7/28 밤에는 Happy Day에서 샤워와 짐 정리를 끝낸 뒤 21:30-22:00 사이 공항 이동을 목표로 잡습니다.",
+    "caution": "출발/도착 시각은 항공사 운항 변경 가능성이 있으므로 여행 직전 이스타항공 예약 상세와 공항 운항 정보를 다시 확인합니다.",
+    "sourceUrl": "https://www.eastarjet.com/"
+  },
+  {
     "id": "eastar-checkin-vietnam-kids",
     "category": "체크인",
     "priority": "필수",

@@ -520,5 +520,95 @@
     "googlePlaceId": "",
     "coordinates": null,
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Langfarm%20Store%20Da%20Nang"
+  },
+  {
+    "id": "about-us-coffee",
+    "name": "ABOUT US Coffee & Eatery",
+    "type": "cafe",
+    "address": "An Thuong, Ngu Hanh Son, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ABOUT%20US%20Coffee%20%26%20Eatery%20Da%20Nang"
+  },
+  {
+    "id": "o2o-first-roast",
+    "name": "O2o First Roast Specialty Coffee",
+    "type": "cafe",
+    "address": "18/3b Phan Tu, Bac My An, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=O2o%20First%20Roast%20Specialty%20Coffee%20Da%20Nang"
+  },
+  {
+    "id": "cong-caphe-bach-dang",
+    "name": "Cong Ca Phe Bach Dang",
+    "type": "cafe",
+    "address": "Bach Dang, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cong%20Ca%20Phe%20Bach%20Dang%20Da%20Nang"
+  },
+  {
+    "id": "nam-house-cafe",
+    "name": "NAM House Cafe",
+    "type": "cafe",
+    "address": "15/1 Le Hong Phong, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=NAM%20House%20Cafe%20Da%20Nang"
+  },
+  {
+    "id": "brewman-coffee",
+    "name": "Brewman Coffee Concept",
+    "type": "cafe",
+    "address": "27/21 Thai Phien, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Brewman%20Coffee%20Concept%20Da%20Nang"
+  },
+  {
+    "id": "indigo-coffee",
+    "name": "Indigo Coffee",
+    "type": "cafe",
+    "address": "30 Bach Dang, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Indigo%20Coffee%2030%20Bach%20Dang%20Da%20Nang"
+  },
+  {
+    "id": "thia-go-danang",
+    "name": "Thia Go Restaurant Da Nang",
+    "type": "restaurant",
+    "address": "53 Phan Thuc Duyen, Ngu Hanh Son, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Thia%20Go%20Restaurant%20Da%20Nang"
+  },
+  {
+    "id": "truc-lam-vien",
+    "name": "Truc Lam Vien Restaurant & Coffee",
+    "type": "restaurant",
+    "address": "08 Tran Quy Cap, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Truc%20Lam%20Vien%20Restaurant%20Da%20Nang"
+  },
+  {
+    "id": "co-ba-pho-bo",
+    "name": "Co Ba Pho Bo",
+    "type": "restaurant",
+    "address": "154 Bach Dang, Hai Chau, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Co%20Ba%20Pho%20Bo%20154%20Bach%20Dang%20Da%20Nang"
+  },
+  {
+    "id": "mi-quang-ba-mua",
+    "name": "Mi Quang Ba Mua",
+    "type": "restaurant",
+    "address": "95A Nguyen Tri Phuong, Da Nang",
+    "googlePlaceId": "",
+    "coordinates": null,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mi%20Quang%20Ba%20Mua%20Da%20Nang"
   }
 ]

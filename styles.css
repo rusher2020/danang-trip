@@ -192,18 +192,24 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 6px;
   max-width: 760px;
   margin: 0 auto 16px;
   padding: 8px 0;
+  overflow-x: auto;
   background: rgba(247, 251, 250, 0.94);
   backdrop-filter: blur(12px);
+  scrollbar-width: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-button,
 .bottom-tab {
+  flex: 1 0 72px;
   min-height: 40px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -242,6 +248,7 @@ h2 {
 }
 
 .hotel-flow,
+.hotel-recommendation-list,
 .hyatt-program-list,
 .fallback-list,
 .day-list,
@@ -262,6 +269,8 @@ h2 {
 }
 
 .hotel-flow article,
+.hotel-decision-card,
+.hotel-recommendation-item,
 .hyatt-program,
 .fallback-card,
 .day-card,
@@ -598,6 +607,51 @@ h2 {
   display: grid;
   gap: 8px;
   margin-top: 12px;
+}
+
+.hotel-decision-board {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hotel-decision-card,
+.hotel-recommendation-item {
+  padding: 15px;
+}
+
+.hotel-decision-card p,
+.hotel-recommendation-item p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hotel-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hotel-grid div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fbfffe;
+}
+
+.hotel-grid span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.hotel-grid strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .hyatt-program-grid div {
@@ -1077,7 +1131,7 @@ article p,
 }
 
 .places-map {
-  min-height: 310px;
+  min-height: 280px;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
@@ -1086,7 +1140,7 @@ article p,
 
 .map-loading {
   display: grid;
-  min-height: 310px;
+  min-height: 280px;
   place-items: center;
   padding: 20px;
   color: var(--muted);
@@ -1101,6 +1155,56 @@ article p,
   margin-top: 10px;
   overflow-x: auto;
   scrollbar-width: none;
+}
+
+.places-map-legend {
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.places-map-legend::-webkit-scrollbar {
+  display: none;
+}
+
+.places-map-legend span {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px rgba(22, 42, 50, 0.16);
+}
+
+.legend-dot.hotel {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  clip-path: polygon(50% 0, 100% 38%, 86% 38%, 86% 100%, 58% 100%, 58% 67%, 42% 67%, 42% 100%, 14% 100%, 14% 38%, 0 38%);
+}
+
+.legend-dot.attraction {
+  background: var(--blue);
+}
+
+.legend-dot.restaurant {
+  background: var(--warm);
+}
+
+.legend-dot.shopping {
+  background: #2f7d56;
 }
 
 .places-map-links::-webkit-scrollbar {
@@ -1694,7 +1798,7 @@ article p,
   bottom: 0;
   left: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 6px;
   max-width: none;
   margin: 0 auto;
@@ -1716,7 +1820,7 @@ article p,
   padding: 10px 8px;
   background: transparent;
   color: var(--accent-strong);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   text-align: center;
   text-decoration: none;
@@ -1901,9 +2005,19 @@ article p,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .tab-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    overflow: visible;
+  }
+
+  .tab-button {
+    flex: initial;
+  }
+
   .trip-place-sets {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     margin: 0 0 12px;
     padding: 0;
     overflow: visible;
@@ -1911,6 +2025,10 @@ article p,
 
   .place-set {
     flex: initial;
+  }
+
+  .places-map {
+    min-height: 360px;
   }
 
   .parent-brief {
