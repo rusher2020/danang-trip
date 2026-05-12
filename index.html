@@ -314,6 +314,9 @@
   .timeline-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
 
   .day-block { margin: 0; }
+  .weather-card { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px 14px; background: #f7f5f0; border-radius: 8px; font-size: 12px; margin: 8px 12px; align-items: center; }
+  .weather-card .w-temp, .weather-card .w-rain, .weather-card .w-uv { font-weight: 600; color: var(--ink); }
+  .weather-card .w-advice { width: 100%; color: var(--ink-mute); font-size: 11px; padding-top: 2px; border-top: 1px dashed var(--line); margin-top: 4px; }
   .day-header-bar {
     display: flex; align-items: center;
     gap: 8px;
@@ -1446,6 +1449,16 @@
 </div>
 
 <script>
+// 7월 다낭 평년 (Vietnam Meteorological / Weather Atlas). 출국 1주일 전 갱신 권장.
+const WEATHER = {
+  "7/24": { high: 33, low: 26, rain: 55, uv: 10, advice: "오후 소나기 대비 · 우산 + 실내 대안" },
+  "7/25": { high: 33, low: 26, rain: 50, uv: 11, advice: "야외 OK · 16시 이후 활동 권장" },
+  "7/26": { high: 32, low: 25, rain: 60, uv: 10, advice: "실내 비중↑ · 오후 강수 확률 높음" },
+  "7/27": { high: 33, low: 26, rain: 55, uv: 11, advice: "야외 OK · 자외선 차단 필수" },
+  "7/28": { high: 32, low: 25, rain: 65, uv: 9, advice: "실내·스파 권장 · 우천 시 호이안 X" },
+  "7/29": { high: 32, low: 25, rain: 60, uv: 10, advice: "새벽 출국 · 가볍게" }
+};
+
 const PLACES = {
   // 숙소
   'new-orient': { name: 'New Orient Hotel Da Nang', short: 'New Orient', coords: [16.0707, 108.2212], detail: '20 Dong Da Street, Hai Chau · 7/24 늦은 도착용 0.5박', category: 'stay', koreaReviewTag: '공항 가까움 / 깔끔' },
@@ -2543,12 +2556,19 @@ function renderTimeline() {
   let html = '';
   days.forEach(di => {
     const day = ITINERARY[di];
+    const w = WEATHER[day.day];
     html += `<div class="day-block" style="--day-color:${day.colorHex}; --day-tint:${day.tint};">
       <div class="day-header-bar">
         <span class="day-dot" style="background:${day.colorHex}"></span>
         <span class="day-name">${day.day} (${day.weekday})</span>
         <span class="day-meta">${day.title}</span>
-      </div>`;
+      </div>
+      ${w ? `<div class="weather-card">
+        <span class="w-temp">🌡 ${w.high}°/${w.low}°</span>
+        <span class="w-rain">☔ ${w.rain}%</span>
+        <span class="w-uv">☀ UV ${w.uv}</span>
+        <span class="w-advice">${w.advice}</span>
+      </div>` : ''}`;
     day.items.forEach((it, ii) => {
       const place = PLACES[it.place];
       const pinNum = placeOrderMap[it.place];
