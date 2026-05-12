@@ -1308,12 +1308,52 @@
     </div>
 
     <div class="lnb-section">
+      <div class="lnb-h">일정 안 선택</div>
+      <div class="plan-tabs" id="planTabs"></div>
+      <div class="plan-features" id="planFeatures"></div>
+    </div>
+
+    <div class="lnb-section">
       <div class="lnb-h">핵심 결정</div>
       <div class="lnb-chips">
-        <span class="chip">바나힐 월요일</span>
-        <span class="chip">호이안 X (시간 부족)</span>
+        <span class="chip">Hyatt 중심</span>
+        <span class="chip">호이안 야경 핵심</span>
         <span class="chip">한낮 실내</span>
         <span class="chip">Happy Day 데이유즈</span>
+      </div>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">일정 원칙</div>
+      <ul class="lnb-list">
+        <li>한낮 11–15시 실내 (UV 9–11, 우기)</li>
+        <li>외출은 아침·저녁 골든타임</li>
+        <li>6세 카시트 단독차량 사전 요청</li>
+        <li>7월 우기 시작 → 호이안 야간 우천 대비</li>
+        <li>여유롭게 · Hyatt 풀데이 우선</li>
+      </ul>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">예약 필요</div>
+      <ul class="lnb-list">
+        <li>공항 픽업 (7/24 23:25 도착)</li>
+        <li>한국어 단독차량 (7/25·7/27·7/28)</li>
+        <li>스파 (트리스·노아·로라 중)</li>
+        <li>Happy Day 데이유즈 (7/28)</li>
+        <li>Hyatt Camp Hyatt (도착 후)</li>
+      </ul>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">날짜별 색상</div>
+      <div style="display:flex; flex-direction:column; gap:5px; font-size:11px;">
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#e8a87c"></span><span style="color:var(--ink-mute);">7/24 출국·도착</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#65a3c8"></span><span style="color:var(--ink-mute);">7/25 Hyatt 이동</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#6fb583"></span><span style="color:var(--ink-mute);">7/26 Hyatt 풀데이</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#a86fb5"></span><span style="color:var(--ink-mute);">7/27 호이안</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#e8a233"></span><span style="color:var(--ink-mute);">7/28 마지막날·공항</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#5fb1ad"></span><span style="color:var(--ink-mute);">7/29 귀국</span></div>
       </div>
     </div>
 
@@ -1462,7 +1502,7 @@
       <div id="map"></div>
       <div class="map-info" id="mapInfo">
         <strong>전체 일정</strong>
-        13개 장소 · 5일 동선
+        13개 장소 · 5박 6일 동선
       </div>
     </div>
   </main>
@@ -1500,11 +1540,70 @@ const PLACES = {
   'cong-caphe-bach-dang': { name: 'Cộng Cà Phê 박당', short: 'Cộng Cà Phê', coords: [16.0709, 108.2245], detail: '베트남 대표 카페 체인 · 코코넛 커피 시그니처', category: 'cafe', koreaReviewTag: '인스타 / 코코넛커피' },
   'pheva-chocolate': { name: 'Pheva Chocolate', short: 'Pheva', coords: [16.0586, 108.2245], detail: '베트남 다크 초콜릿 · 선물용', category: 'shopping', koreaReviewTag: '기념품 / 선물' },
   'son-tra-night-market': { name: 'Son Tra Night Market (Helio)', short: 'Helio 야시장', coords: [16.0670, 108.2310], detail: '저녁 18:00- · 야시장 + 키즈존', category: 'night', koreaReviewTag: '아이 놀이 / 저녁' },
+
+  // 호이안
+  'hoi-an-old-town': { name: '호이안 올드타운', short: '호이안 OT', coords: [15.8801, 108.3270], detail: '유네스코 세계유산 · 등불 야경 18:30- · 소원배', category: 'culture', koreaReviewTag: '등불 / 소원배 / 야경 필수' },
+  'hoi-an-night-market': { name: '호이안 야시장 (Nguyễn Hoàng)', short: '호이안 야시장', coords: [15.8769, 108.3270], detail: '강 건너 야시장 · 등불·기념품·길거리음식', category: 'night', koreaReviewTag: '아이 환장 / 흥정' },
+  'an-bang-beach': { name: '안방 비치 (An Bang)', short: '안방', coords: [15.9078, 108.3437], detail: '호이안 인근 한적한 해변 · 영문메뉴 식당 다수', category: 'nature', koreaReviewTag: '한적 / 식당' },
+  'tra-que-village': { name: '짜께 채소마을 (Tra Que)', short: '짜께', coords: [15.9095, 108.3192], detail: '호이안 인근 농촌 체험 · 채소밭 + 베트남 가정식', category: 'activity', koreaReviewTag: '체험 / 베이비 OK' },
+  'cam-thanh-coconut': { name: '깜탄 바구니배 (Cẩm Thanh)', short: '깜탄', coords: [15.8809, 108.3700], detail: '코코넛 정글 바구니배 체험 · 1시간', category: 'activity', koreaReviewTag: '아이 좋아함 / 멀미 주의' },
+  'morning-glory-hoian': { name: 'Morning Glory (모닝글로리)', short: 'Morning Glory', coords: [15.8769, 108.3265], detail: '호이안 대표 베트남식 · 까오러우·반세오', category: 'food', koreaReviewTag: '한국인 다수 / 무난' },
 };
 
-// ====== Plan (single) ======
+// ====== Plans (5 시나리오) ======
 let activePlan = 'A';
-const PLANS = { A: { name: '내 일정', icon: '🌴', color: '#d4644a', summary: '2026-07-24~29 다낭 가족여행', features: [] } };
+const PLANS = {
+  A: {
+    name: '휴식', icon: '😌', color: '#65a3c8',
+    summary: 'Hyatt 중심, 외출 최소. 마사지·호이안 야경만.',
+    features: [
+      'Hyatt 풀데이 + Camp Hyatt',
+      '7/27 호이안 야경 (저녁만)',
+      '7/28 시내·Happy Day·공항',
+      '아이 부담 거의 없음',
+    ],
+  },
+  B: {
+    name: '호이안 풀데이', icon: '🏮', color: '#a86fb5',
+    summary: '7/27 호이안 통째 — An Bang + 짜께 + 등불 야경.',
+    features: [
+      '오전 안방 비치 + 점심',
+      '오후 짜께 채소마을 / 깜탄 바구니배',
+      '저녁 호이안 등불·야시장',
+      '호이안 매력 100% · 활동량 ↑',
+    ],
+  },
+  C: {
+    name: '문화·사찰', icon: '🛕', color: '#6fb583',
+    summary: '오행산 + 린응사. 사찰·자연 위주.',
+    features: [
+      '7/26 오행산 (엘리베이터)',
+      '7/27 린응사·해변 산책',
+      '9세 호기심·사진 만족',
+      '오후엔 Hyatt 회복',
+    ],
+  },
+  D: {
+    name: '카페·트렌드', icon: '☕', color: '#a87a4d',
+    summary: '시내 카페·맛집·야시장. MZ 코스.',
+    features: [
+      'Cộng Cà Phê·Pheva·Madame Lân',
+      'Helio Center 야시장',
+      '용다리 불쇼 (주말)',
+      '인스타·먹는 즐거움',
+    ],
+  },
+  E: {
+    name: '균형', icon: '⚖️', color: '#e8a233',
+    summary: '호이안·오행산·시내를 한 번씩.',
+    features: [
+      '7/26 오행산·Hyatt',
+      '7/27 호이안 등불 야경',
+      '7/28 시내·스파·Happy Day',
+      '가족 모두 만족',
+    ],
+  },
+};
 const ITINERARIES = { A: [
   {
     day: '7/24',
@@ -1536,9 +1635,10 @@ const ITINERARIES = { A: [
     items: [
       {
         time: '00:30 전후',
-        icon: '✈️',
-        title: '도착 회복',
-        tag: 'flight',
+        icon: '🏨',
+        title: 'New Orient 도착·회복',
+        tag: 'hotel',
+        place: 'new-orient',
         desc: '23:25 다낭 도착 후 New Orient로 이동해 수면을 확보합니다.',
       },
       {
@@ -1546,6 +1646,7 @@ const ITINERARIES = { A: [
         icon: '🏨',
         title: '천천히 체크아웃',
         tag: 'hotel',
+        place: 'new-orient',
         desc: '조식 포함 여부를 확인하고, 아이들 컨디션을 본 뒤 시내를 짧게 볼지 바로 Hyatt로 갈지 정합니다.',
       },
       {
@@ -1609,24 +1710,47 @@ const ITINERARIES = { A: [
   {
     day: '7/27',
     weekday: '월',
-    title: '바나힐 가는 날',
-    summary: '주말 혼잡을 피해서 월요일에 바나힐을 배치하는 안입니다. 이 날은 다른 큰 일정을 넣지 않습니다.',
+    title: '호이안 등불 야경',
+    summary: '낮은 Hyatt에서 쉬고 저녁에만 호이안 야경. 7월 우기 오후 소나기를 피하는 안입니다.',
     items: [
       {
-        time: '08:00-16:30',
-        icon: '🎡',
-        title: '바나힐과 골든브릿지',
-        tag: 'activity',
-        place: 'ba-na-hills',
-        desc: '오전 출발, 왕복 전용차, 날씨 확인을 전제로 합니다. 점심/대기시간까지 포함해 하루 일정으로 봅니다.',
-      },
-      {
-        time: '17:30-20:00',
-        icon: '🏨',
-        title: '리조트 복귀 후 쉬운 식사',
+        time: '09:00-15:00',
+        icon: '🏖️',
+        title: 'Hyatt 풀데이 (수영장·Camp Hyatt)',
         tag: 'hotel',
         place: 'hyatt-resort-time',
-        desc: '복귀 후에는 숙소 안이나 가까운 식당으로 마무리합니다.',
+        desc: '아이 컨디션 회복. Camp Hyatt 키즈클럽·실내 액티비티 활용.',
+      },
+      {
+        time: '16:30',
+        icon: '🚐',
+        title: '호이안 이동 (단독차량)',
+        tag: 'transport',
+        desc: 'Hyatt → 호이안 차 35분. 우천 가능성 확인 후 출발.',
+      },
+      {
+        time: '17:30-19:00',
+        icon: '🍽️',
+        title: '호이안 저녁 (Morning Glory)',
+        tag: 'meal',
+        place: 'morning-glory-hoian',
+        desc: '까오러우·반세오 등 호이안 시그니처. 한국인 다수.',
+      },
+      {
+        time: '19:00-21:30',
+        icon: '🏮',
+        title: '호이안 등불 야경 + 야시장',
+        tag: 'event',
+        place: 'hoi-an-old-town',
+        desc: '올드타운 등불·소원배 + 야시장 등불 쇼핑. 사진 명소.',
+      },
+      {
+        time: '22:00',
+        icon: '🚐',
+        title: 'Hyatt 복귀',
+        tag: 'transport',
+        place: 'hyatt',
+        desc: '아이 차에서 잘 수 있게 담요 준비.',
       },
     ],
   },
@@ -1648,6 +1772,7 @@ const ITINERARIES = { A: [
         icon: '🏖️',
         title: 'Happy Day 이동과 휴식',
         tag: 'activity',
+        place: 'happy-day',
         desc: '짐 보관, 샤워, 낮잠, 휴식을 확보합니다. 이 시간이 마지막 날 전체 만족도를 좌우합니다.',
       },
       {
@@ -1697,6 +1822,78 @@ const ITINERARIES = { A: [
     ],
   },
 ] };
+
+// 공통 일자 deep-copy (각 플랜이 같은 7/24, 7/25, 7/26, 7/28, 7/29 공유, 7/27만 차이)
+function copyDay(planAday) { return JSON.parse(JSON.stringify(planAday)); }
+
+// Plan B (호이안 풀데이) — 7/27 통째 호이안
+ITINERARIES.B = [
+  copyDay(ITINERARIES.A[0]), copyDay(ITINERARIES.A[1]), copyDay(ITINERARIES.A[2]),
+  {
+    day: '7/27', weekday: '월', title: '호이안 풀데이',
+    summary: '7/27 하루 통째 호이안. 안방 비치·짜께·등불 야경까지 한 번에.',
+    items: [
+      { time: '08:30', icon: '🚐', title: '호이안 이동 (단독차량)', tag: 'transport', desc: 'Hyatt → 호이안 30-35분.' },
+      { time: '09:30-11:30', icon: '🏖️', title: '안방 비치 + 카페', tag: 'activity', place: 'an-bang-beach', desc: '한적한 해변. 영문메뉴 식당 다수. 우천 시 카페로.' },
+      { time: '12:00-13:30', icon: '🍽️', title: '점심 (Morning Glory 또는 안방)', tag: 'meal', place: 'morning-glory-hoian', desc: '까오러우·반세오·반미.' },
+      { time: '14:00-16:00', icon: '🎨', title: '짜께 채소마을 또는 깜탄 바구니배', tag: 'activity', place: 'tra-que-village', desc: '농촌 체험·채소밭 또는 바구니배 1시간. 비 오면 실내.' },
+      { time: '16:30-18:00', icon: '☕', title: '호이안 카페 + 휴식', tag: 'meal', place: 'hoi-an-old-town', desc: '강변 카페·소원배.' },
+      { time: '18:30-21:30', icon: '🏮', title: '호이안 등불 야경 + 야시장', tag: 'event', place: 'hoi-an-old-town', desc: '필수. 등불·소원배·야시장.' },
+      { time: '22:00', icon: '🚐', title: 'Hyatt 복귀', tag: 'transport', place: 'hyatt', desc: '아이 차에서 잘 가능성 大.' },
+    ],
+  },
+  copyDay(ITINERARIES.A[4]), copyDay(ITINERARIES.A[5]),
+];
+
+// Plan C (문화·사찰) — 7/26 오행산·린응사 + 7/27 다양화
+ITINERARIES.C = [
+  copyDay(ITINERARIES.A[0]), copyDay(ITINERARIES.A[1]),
+  {
+    day: '7/26', weekday: '일', title: '오행산 + 린응사',
+    summary: '오전 오행산 (엘리베이터), 오후 린응사 일몰. 13-16시는 실내.',
+    items: [
+      { time: '08:00-10:30', icon: '🛕', title: '오행산 (Marble Mountains)', tag: 'activity', place: 'marble-mountains', desc: '엘리베이터·동굴. 계단·더위 주의.' },
+      { time: '11:00-15:30', icon: '🏖️', title: 'Hyatt 수영장·낮잠', tag: 'hotel', place: 'hyatt-resort-time', desc: '더위 회피.' },
+      { time: '16:30-18:30', icon: '🛕', title: '린응사 일몰 (67m 관음상)', tag: 'activity', desc: '선짜 반도. 일몰 명소.' },
+      { time: '19:30-21:00', icon: '🍽️', title: 'Hyatt 저녁', tag: 'meal', place: 'hyatt-xanh-house', desc: '리조트 내 식사로 마무리.' },
+    ],
+  },
+  copyDay(ITINERARIES.A[3]), copyDay(ITINERARIES.A[4]), copyDay(ITINERARIES.A[5]),
+];
+
+// Plan D (카페·트렌드) — 7/27 시내 카페·맛집·헬리오
+ITINERARIES.D = [
+  copyDay(ITINERARIES.A[0]), copyDay(ITINERARIES.A[1]), copyDay(ITINERARIES.A[2]),
+  {
+    day: '7/27', weekday: '월', title: '시내 카페·맛집·헬리오',
+    summary: 'MZ 인스타 코스. Cộng·Pheva·Madame Lân + Helio 야시장.',
+    items: [
+      { time: '10:00-12:00', icon: '☕', title: 'Cộng Cà Phê + Pheva 초콜릿', tag: 'meal', place: 'cong-caphe-bach-dang', desc: '코코넛커피·초콜릿 쇼핑.' },
+      { time: '12:30-14:00', icon: '🍽️', title: 'Madame Lân 점심', tag: 'meal', place: 'madame-lan-danang', desc: '한강변 베트남 가정식.' },
+      { time: '14:00-15:30', icon: '🛍️', title: '한 시장 쇼핑', tag: 'activity', place: 'han-market', desc: '기념품·아오자이·과일.' },
+      { time: '16:00-18:30', icon: '🏖️', title: 'Hyatt 복귀·휴식', tag: 'hotel', place: 'hyatt-resort-time', desc: '더위 회복.' },
+      { time: '19:00-21:30', icon: '🎮', title: 'Helio Center 야시장', tag: 'event', place: 'son-tra-night-market', desc: '키즈존 + 야시장. 아이 환장.' },
+      { time: '22:00', icon: '🚐', title: 'Hyatt 복귀', tag: 'transport', place: 'hyatt', desc: '' },
+    ],
+  },
+  copyDay(ITINERARIES.A[4]), copyDay(ITINERARIES.A[5]),
+];
+
+// Plan E (균형) — 7/26 오행산 + 7/27 호이안 등불 (A와 동일하지만 7/26 추가)
+ITINERARIES.E = [
+  copyDay(ITINERARIES.A[0]), copyDay(ITINERARIES.A[1]),
+  {
+    day: '7/26', weekday: '일', title: 'Hyatt + 오행산 짧게',
+    summary: '오전 오행산 짧게, 오후는 Hyatt에서 회복.',
+    items: [
+      { time: '08:30-10:30', icon: '🛕', title: '오행산 짧게', tag: 'activity', place: 'marble-mountains', desc: '엘리베이터 + 동굴 1-2개.' },
+      { time: '11:00-15:30', icon: '🏖️', title: 'Hyatt 수영장·낮잠', tag: 'hotel', place: 'hyatt-resort-time', desc: '' },
+      { time: '19:30-21:30', icon: '🌃', title: '용다리 불쇼 (일요일)', tag: 'event', place: 'dragon-bridge-show', desc: '일요일 21시. 아이가 졸리면 제외.' },
+    ],
+  },
+  copyDay(ITINERARIES.A[3]), copyDay(ITINERARIES.A[4]), copyDay(ITINERARIES.A[5]),
+];
+
 let ITINERARY = ITINERARIES[activePlan];
 
 // ==========================================================
@@ -1719,7 +1916,8 @@ const TAG_LABEL = {
 };
 
 // ============ Place → Card mapping (timeline → 후보카드 상세) ============
-const PLACE_TO_CARD = {};
+// place_id → candidate card id (CANDIDATE_DATA 정의 후 채워짐)
+let PLACE_TO_CARD = {};
 function findCardById(cid) {
   return CANDIDATE_DATA.cards.find(c => c.id === cid);
 }
@@ -1766,7 +1964,7 @@ const PREP_DATA = [
       },
       {
         "task": "5세·9세 자녀 카시트 사전 요청",
-        "detail": "공항 픽업·5/22 이동·바나힐 풀데이 차량 모두",
+        "detail": "공항 픽업·7/25 Hyatt 이동·7/27 호이안 풀데이·7/28 Happy Day 이동 모두",
         "deadline": "D-7"
       },
       {
@@ -2358,6 +2556,10 @@ const CAT_BY_ID = Object.fromEntries(CANDIDATE_DATA.categories.map(c => [c.id, c
 const CARDS_BY_CAT = CANDIDATE_DATA.cards.reduce((acc, c) => {
   (acc[c.cat] = acc[c.cat] || []).push(c); return acc;
 }, {});
+// place_id → card id 자동 매핑 (timeline → 후보 상세 점프용)
+PLACE_TO_CARD = Object.fromEntries(
+  CANDIDATE_DATA.cards.filter(c => c.placeId).map(c => [c.placeId, c.id])
+);
 
 // 두 장소 사이 이동 시간 (양방향 자동 매칭)
 const TRAVEL_TIMES = {
@@ -2393,34 +2595,39 @@ const TRAVEL_TIMES = {
   "happy-day-an-thoi-danang": "🚐 5분",
   "happy-day-pheva-chocolate": "🚐 5분",
 };
+// hyatt-resort-time / hyatt-xanh-house / hyatt-osteria 는 같은 좌표 → hyatt로 정규화
+function _normalizePlace(id) {
+  if (!id) return id;
+  if (id === 'hyatt-resort-time' || id === 'hyatt-xanh-house' || id === 'hyatt-osteria') return 'hyatt';
+  return id;
+}
 function getTravelTime(from, to) {
-  return TRAVEL_TIMES[`${from}-${to}`] || TRAVEL_TIMES[`${to}-${from}`] || null;
+  const f = _normalizePlace(from), t = _normalizePlace(to);
+  if (f === t) return null;
+  return TRAVEL_TIMES[`${f}-${t}`] || TRAVEL_TIMES[`${t}-${f}`] || null;
 }
 
-// 보조 정보 — 이동수단·예상 금액 (timeline 사이 connector용)
+// 보조 정보 — 이동수단·예상 금액 (timeline 사이 connector용, v2 IDs)
 const TRAVEL_COST = {
-  "DAD-MIKAZUKI": { mode: "픽업밴 / 그랩SUV", cost: "25~35만동 (약 1.5만원)" },
-  "DAD-FURAMA": { mode: "픽업밴 / 그랩카", cost: "20~30만동 (약 1.3만원)" },
-  "MIKAZUKI-BIGC_HOA_KHANH": { mode: "그랩카 / 호텔택시", cost: "10~15만동 (약 6천원)" },
-  "MIKAZUKI-PIZZA_4PS": { mode: "단독차량 / 그랩SUV", cost: "25~35만동 + 짐" },
-  "MIKAZUKI-FURAMA": { mode: "단독차량 (짐 포함)", cost: "1팀 8~12만원" },
-  "PIZZA_4PS-TREES_SPA": { mode: "그랩카", cost: "5~8만동" },
-  "TREES_SPA-FURAMA": { mode: "그랩카", cost: "10~15만동" },
-  "FURAMA-HOIAN": { mode: "한국어 단독차량 (왕복)", cost: "1팀 25~35만원/일" },
-  "HOIAN-DRAGON_BRIDGE": { mode: "단독차량 / 그랩", cost: "30~40만동" },
-  "DRAGON_BRIDGE-FURAMA": { mode: "그랩카", cost: "10~15만동" },
-  "FURAMA-NOAH_SPA": { mode: "노아 픽업 무료", cost: "0동 (2인 90분 시)" },
-  "FURAMA-GOLDEN_MEAT": { mode: "그랩카", cost: "8~12만동" },
-  "GOLDEN_MEAT-SUN_WHEEL": { mode: "그랩카", cost: "5~8만동" },
-  "SUN_WHEEL-DRAGON_BRIDGE": { mode: "도보 또는 그랩", cost: "도보 5분 / 3만동" },
-  "DRAGON_BRIDGE-DAD": { mode: "그랩 / 호텔 셔틀", cost: "10~15만동" },
-  "FURAMA-PIZZA_4PS": { mode: "그랩카", cost: "10~15만동" },
-  "FURAMA-DRAGON_BRIDGE": { mode: "그랩카", cost: "10~15만동" },
+  "DAD-new-orient": { mode: "그랩 SUV / 픽업밴", cost: "15~25만동 (약 1만원)" },
+  "new-orient-hyatt": { mode: "한국어 단독차량 (카시트 요청)", cost: "25~35만동 (약 1.5만원)" },
+  "hyatt-hoi-an-old-town": { mode: "한국어 단독차량 (왕복)", cost: "1팀 25~35만원/일" },
+  "hyatt-marble-mountains": { mode: "그랩 / 호텔 셔틀", cost: "5~10만동" },
+  "hyatt-dragon-bridge-show": { mode: "그랩카", cost: "10~15만동" },
+  "hyatt-son-tra-night-market": { mode: "그랩카", cost: "10~15만동" },
+  "hyatt-happy-day": { mode: "한국어 단독차량 (짐 포함)", cost: "1팀 20~30만원" },
+  "happy-day-DAD": { mode: "그랩 SUV", cost: "10~15만동" },
+  "happy-day-han-market": { mode: "그랩카 / 도보", cost: "5만동" },
+  "happy-day-madame-lan-danang": { mode: "그랩카", cost: "5~8만동" },
+  "happy-day-cong-caphe-bach-dang": { mode: "그랩카", cost: "5만동" },
+  "an-bang-beach-hoi-an-old-town": { mode: "그랩 / 도보", cost: "5~10만동" },
+  "tra-que-village-hoi-an-old-town": { mode: "그랩", cost: "5~10만동" },
 };
 function getTravelInfo(from, to) {
   const time = getTravelTime(from, to);
   if (!time) return null;
-  const cost = TRAVEL_COST[`${from}-${to}`] || TRAVEL_COST[`${to}-${from}`] || null;
+  const f = _normalizePlace(from), t = _normalizePlace(to);
+  const cost = TRAVEL_COST[`${f}-${t}`] || TRAVEL_COST[`${t}-${f}`] || null;
   return { time, ...(cost || {}) };
 }
 
@@ -2519,7 +2726,7 @@ function makeIcon(color, label) {
 }
 
 // ============ STATE ============
-let activeTab = 'all';
+let activeTab = '0';
 let placeOrderMap = {}; // 현재 활성 탭 기준 핀 번호
 
 function getActiveDays() {
@@ -2775,7 +2982,7 @@ function renderMap() {
   // info
   const info = document.getElementById('mapInfo');
   if (activeTab === 'all') {
-    info.innerHTML = `<strong>전체 일정</strong>${Object.keys(placeUsage).length}개 장소 · 5일 동선`;
+    info.innerHTML = `<strong>전체 일정</strong>${Object.keys(placeUsage).length}개 장소 · 5박 6일 동선`;
   } else {
     const day = ITINERARY[parseInt(activeTab)];
     info.innerHTML = `<strong>${day.day} (${day.weekday})</strong>${day.title}`;
@@ -2885,12 +3092,32 @@ function renderTimetable() {
   });
 }
 
-// ====== Plan Selector (v2: 단일 플랜, UI 제거) ======
+// ====== Plan Selector ======
 function renderPlanTabs() {
   const tabsEl = document.getElementById('planTabs');
-  if (!tabsEl) return;
-  // single plan — no UI needed
+  const featEl = document.getElementById('planFeatures');
+  if (!tabsEl || !featEl) return;
+  tabsEl.innerHTML = Object.entries(PLANS).map(([k, p]) => `
+    <button class="plan-tab ${k === activePlan ? 'active' : ''}" data-plan="${k}" style="--plan-color:${p.color};">
+      <span class="picon">${p.icon}</span><span class="pname">${k}.${p.name}</span>
+    </button>
+  `).join('');
+  const p = PLANS[activePlan];
+  featEl.innerHTML = `
+    <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
+    <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+  `;
+  tabsEl.querySelectorAll('.plan-tab').forEach(el => {
+    el.addEventListener('click', () => {
+      activePlan = el.dataset.plan;
+      ITINERARY = ITINERARIES[activePlan];
+      activeTab = 'all';
+      renderPlanTabs();
+      renderAll();
+    });
+  });
 }
+renderPlanTabs();
 
 renderAll();
 
@@ -3281,7 +3508,7 @@ document.querySelectorAll('.mode-tab').forEach(el => {
       map.addLayer(pathLayer);
       renderMap();
       document.getElementById('mapInfo').innerHTML =
-        `<strong>전체 일정</strong>${Object.keys(placeMarkers).length}개 장소 · 5일 동선`;
+        `<strong>전체 일정</strong>${Object.keys(placeMarkers).length}개 장소 · 5박 6일 동선`;
     } else if (mode === 'prep') {
       document.getElementById('mapInfo').innerHTML =
         `<strong>준비물 모드</strong>지도 마커 비활성`;
