@@ -82,6 +82,9 @@ INCHEON ──ZE593──> DANANG ──5박 6일──> DANANG ──ZE594─�
 ### Deploy
 `main` 브랜치 root → GitHub Pages 자동 빌드.
 
+### 다른 환경에서 이어 작업하기
+[`docs/RESUMING.md`](docs/RESUMING.md) 참고.
+
 ---
 
 ## Repository Layout
