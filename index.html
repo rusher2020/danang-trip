@@ -620,38 +620,18 @@
     .ti-row { grid-template-columns: 46px 20px 1fr auto; gap: 8px; padding: 7px 12px; }
   }
   @media (max-width: 768px) {
-    /* 모바일: LNB는 오버레이 (메인을 누르지 않음) */
+    /* 모바일: 기본 LNB 숨김. 햄버거 탭 시 grid 확장 + 백드롭 */
     .app { grid-template-columns: 0 1fr; }
     .app.lnb-collapsed { grid-template-columns: 0 1fr; }
-    .app.lnb-open { grid-template-columns: 0 1fr; }
-    .lnb {
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-      width: 280px;
-      max-width: 85vw;
-      transform: translateX(-100%);
-      transition: transform 0.25s ease;
-      z-index: 1000;
-      box-shadow: 4px 0 16px rgba(0,0,0,0.15);
-      background: var(--panel);
-      pointer-events: none;  /* 닫혔을 때 터치 이벤트 차단 안 함 */
-      visibility: hidden;
-    }
-    .app.lnb-open .lnb {
-      transform: translateX(0);
-      pointer-events: auto;
-      visibility: visible;
-    }
-    /* 백드롭 (탭하면 LNB 닫음) */
+    .app.lnb-open { grid-template-columns: 240px 1fr; }
+    .lnb { box-shadow: 4px 0 12px rgba(0,0,0,0.08); }
     .app.lnb-open::after {
       content: '';
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
+      inset: 0 0 0 240px;
+      background: rgba(0,0,0,0.3);
       z-index: 999;
     }
-    /* 모바일에서 mode-bar는 z-index 보장 */
-    .mode-bar { position: relative; z-index: 2; }
   }
   @media (max-width: 600px) {
     .ti-tag { display: none; }
@@ -1292,7 +1272,7 @@
       <h1 class="lnb-title">🌴 다낭 가족여행</h1>
       <div class="lnb-sub">
         2026.07.24 (금) ~ 07.29 (수)<br>
-        5박 6일 · 부부(43·41) + 딸 9세 · 아들 6세
+        5박 6일 · 부부(39·39) + 딸 9세 · 아들 6세
       </div>
     </div>
 
