@@ -1,85 +1,103 @@
-# 🌴 다낭 가족여행 · 2026.07.24-29
+# Danang Trip Dashboard
 
-부부(43·41) + 딸 9세 + 아들 6세 · 5박 6일
-
-✈️ ZE593 인천 → 다낭 (7/24 20:35 → 23:25)
-✈️ ZE594 다낭 → 인천 (7/29 00:25 → 06:55)
-🏨 New Orient(7/24) → Hyatt Regency(7/25-28) → Happy Day(7/28 데이유즈)
+> 2026.07.24 – 07.29 가족여행 현장용 모바일 대시보드
+> 부부(43·41) · 딸 9세 · 아들 6세
 
 ---
 
-## 🌐 라이브 사이트 (모바일 추천)
+## Quick Links
 
-### 👉 [일정·지도 페이지 열기](https://rusher2020.github.io/danang-trip/)
-
-좌측 메뉴(개요·항공·숙소·하얏트 프로그램·응급·기본정보·한↔베)
-중앙 모드 바: **일정 · 시간표 · 후보 카드 · 준비물**
-날짜 탭(7/24~29) · 한 줄 타임라인 · 날씨 카드 · Leaflet 지도(핀+이동시간)
-
----
-
-## 🎯 일정 요약
-
-**7/24 (금)** ✈️ 20:35 출국 → 23:25 다낭 도착 → New Orient 1박
-**7/25 (토)** 시내 짧게 + Hyatt 이동·적응
-**7/26 (일)** Hyatt 풀데이 (수영장 + Camp Hyatt) + 오행산 옵션
-**7/27 (월)** 🎡 바나힐 풀데이 (주말 혼잡 피해 월요일 배치)
-**7/28 (화)** Hyatt 체크아웃 → 시내 정리 → Happy Day 휴식 → 21:30 공항
-**7/29 (수)** ✈️ 00:25 출국 → 06:55 인천
-
-⛔ **호이안 패스** (시간 부족, 7/28 일정 무리)
+| 용도 | 링크 |
+|---|---|
+| 일정·지도 (가족 공유용 · 모바일) | <https://rusher2020.github.io/danang-trip/> |
+| 전체 자료 (문서·리서치·구버전) | <https://github.com/rusher2020/danang-trip> |
 
 ---
 
-## 📱 가족 공유 링크
+## Trip at a Glance
 
 ```
-https://rusher2020.github.io/danang-trip/
+INCHEON ──ZE593──> DANANG ──5박 6일──> DANANG ──ZE594──> INCHEON
+ 7/24 20:35       7/24 23:25                   7/29 00:25      7/29 06:55
+```
+
+```
+[N] New Orient    7/24 밤 (도착 회복)
+[H] Hyatt Regency 7/25 - 7/28 (메인 리조트, 3박)
+[D] Happy Day     7/28 오후-밤 (데이유즈 · 공항 전 휴식)
 ```
 
 ---
 
-## 🛠️ (개발자용)
+## Itinerary Matrix
 
-단일 파일 사이트. 일정 작업은 `index.html` 상단의 **3개 객체**만 수정하면 됨:
+기본 안 = **Plan A 휴식**. 좌측 메뉴 "일정 안 선택"에서 B~E로 즉시 전환 가능.
 
-| 객체 | 내용 |
+| Day | A 휴식 (기본) | B 호이안 풀데이 | C 문화·사찰 | D 카페·트렌드 | E 균형 |
+|---|---|---|---|---|---|
+| 7/24 (금) | 도착 → New Orient | ← | ← | ← | ← |
+| 7/25 (토) | 시내 짧게 → Hyatt | ← | ← | ← | ← |
+| 7/26 (일) | Hyatt 풀데이 | ← | 오행산 + 린응사 | ← | 오행산 짧게 |
+| 7/27 (월) | **호이안 등불 야경** | **호이안 풀데이** | 린응사·해변 | 시내 카페·헬리오 | 호이안 등불 |
+| 7/28 (화) | 시내 → Happy Day → 공항 | ← | ← | ← | ← |
+| 7/29 (수) | 출국 → 인천 | ← | ← | ← | ← |
+
+⛔ **Skip**: 바나힐 (7월 안개·아이 피로) · 풀데이 호이안은 Plan B에서만
+
+---
+
+## Built-in Features
+
+| 기능 | 상태 |
+|---|---|
+| 6일 타임라인 + 시간표 그리드 | ✓ |
+| Leaflet 지도 + **OSRM 도로 라우팅** (직선 X) | ✓ |
+| 후보 카드 107장 (9 카테고리) + 마킹(✅/⏭️/❓) | ✓ |
+| 날씨 카드 (7월 우기 평년값) | ✓ |
+| 응급 원터치 (전화·지도 1탭) | ✓ |
+| 한↔베 즉시 표현 카드 (15개, 탭 확대) | ✓ |
+| 준비물 체크리스트 (87개, 진행률) | ✓ |
+| 모바일 LNB 오프캔버스 오버레이 | ✓ |
+
+---
+
+## 운영 (Edit Guide)
+
+일정 작업은 `index.html` 상단의 **3개 객체**만:
+
+| Tier 1 — 자주 손댐 | 내용 |
 |---|---|
 | `PLACES` | 장소 좌표·태그·이미지 |
-| `ITINERARIES` | 5개 플랜(A~E)의 6일 일정 |
+| `ITINERARIES` | A~E 플랜의 6일 일정 |
 | `TRAVEL_TIMES` | 거점 간 이동시간 |
 
-### 가끔 손대는 객체
-| 객체 | 내용 |
+| Tier 2 — 가끔 | 내용 |
 |---|---|
-| `WEATHER` | 일별 날씨 (출국 1주일 전 갱신) |
-| `TRAVEL_COST` | 거점 간 비용 (그랩·단독차량) |
-| `PLANS` | 플랜 메타정보(이름·요약) |
-| `PREP_DATA` | 준비물 체크리스트 |
+| `WEATHER` · `TRAVEL_COST` · `PLANS` · `PREP_DATA` | 출국 전 갱신, 비용·플랜 메타 |
 
-### 거의 안 손대는 객체 (set-and-forget)
-| 객체 | 비고 |
+| Tier 3 — set-and-forget | 내용 |
 |---|---|
-| `CANDIDATE_DATA` | 후보 풀 107장 (확정됨) |
-| `ROUTES_CACHE` | OSRM 도로 경로 — 거점 추가 시에만 재생성 |
-| `DAY_COLORS` | 날짜별 색상 토큰 |
+| `CANDIDATE_DATA` · `ROUTES_CACHE` · `DAY_COLORS` | 후보 풀, OSRM 캐시, 색상 토큰 |
 
-### 로컬 미리보기
-```bash
-python -m http.server 4177 --bind 127.0.0.1
-# http://127.0.0.1:4177/
+### Deploy
+`main` 브랜치 root → GitHub Pages 자동 빌드.
+
+---
+
+## Repository Layout
+
 ```
-
-### 문서
-- 설계 스펙: [`docs/superpowers/specs/2026-05-12-danang-trip-rebuild-design.md`](docs/superpowers/specs/2026-05-12-danang-trip-rebuild-design.md)
-- 구현 계획: [`docs/superpowers/plans/2026-05-12-danang-trip-rebuild.md`](docs/superpowers/plans/2026-05-12-danang-trip-rebuild.md)
-- 리서치 자료: [`docs/research/`](docs/research/)
-- 최종 플랜: [`docs/plan/FINAL_TRIP_PLAN.md`](docs/plan/FINAL_TRIP_PLAN.md)
-- 구버전 v1 백업: [`archive/v1/`](archive/v1/)
-
-### GitHub Pages
-- Source: `main` 브랜치 root
-- 자동 배포
-
-### 레퍼런스
-디자인·구조 베이스: [first6/family-trip-2605](https://github.com/first6/family-trip-2605) (감사합니다 🙏)
+.
+├── index.html              # 단일 파일 사이트
+├── README.md
+├── archive/
+│   ├── v1/                 # 구버전 5탭 대시보드
+│   └── design-notes/       # 작업 부산물 MD
+└── docs/
+    ├── plan/               # FINAL_TRIP_PLAN, expert-itinerary
+    ├── research/           # research-*, danang-family-research
+    └── superpowers/
+        ├── specs/          # 설계 스펙
+        ├── plans/          # 구현 계획
+        └── reviews/        # 코드 리뷰
+```
