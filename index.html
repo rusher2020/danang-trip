@@ -1312,7 +1312,28 @@
 </div>
 
 <script>
-const PLACES = {};
+const PLACES = {
+  // 숙소
+  'new-orient': { name: 'New Orient Hotel Da Nang', short: 'New Orient', coords: [16.0707, 108.2212], detail: '20 Dong Da Street, Hai Chau · 7/24 늦은 도착용 0.5박', category: 'stay', koreaReviewTag: '공항 가까움 / 깔끔' },
+  'hyatt': { name: 'Hyatt Regency Danang Resort & Spa', short: 'Hyatt', coords: [16.0117, 108.2629], detail: 'Non Nuoc Beach · 7/25-7/28 메인 리조트 · Camp Hyatt 키즈클럽 + 수영장', category: 'stay', koreaReviewTag: '가족 / 키즈클럽 / 비치' },
+  'happy-day': { name: 'Happy Day Hotel Danang', short: 'Happy Day', coords: [16.0526, 108.2436], detail: '7/28 오후-밤 짐·샤워·휴식 베이스', category: 'stay', koreaReviewTag: '공항 가까움 / 데이유즈' },
+  'hyatt-resort-time': { name: 'Hyatt 리조트 시간 (수영장·낮잠)', short: 'Hyatt 리조트', coords: [16.0117, 108.2629], detail: '리조트 내 수영장·Camp Hyatt·키즈풀', category: 'stay' },
+  'hyatt-xanh-house': { name: 'Xanh House (Hyatt 내)', short: 'Xanh House', coords: [16.0117, 108.2629], detail: 'Hyatt 베트남식 캐주얼 다이닝', category: 'food' },
+  'hyatt-osteria': { name: 'Green House Osteria (Hyatt 내)', short: 'Osteria', coords: [16.0117, 108.2629], detail: 'Hyatt 이탈리안 다이닝', category: 'food' },
+
+  // 자연·문화
+  'marble-mountains': { name: '오행산 (Marble Mountains)', short: '오행산', coords: [16.0042, 108.2629], detail: '엘리베이터 있음 · 1-2시간 코스 · Hyatt에서 차 5분', category: 'culture', koreaReviewTag: '계단 / 더위 주의 / 엘리베이터 있음' },
+  'ba-na-hills': { name: '바나힐 & 골든브릿지', short: '바나힐', coords: [15.9978, 107.9870], detail: '시내에서 차 1시간 · 케이블카 + 골든브릿지 + 판타지파크 · 풀데이', category: 'activity', koreaReviewTag: '아이 환장 / 우천 시 안개 / 풀데이', seasonNote: '7월 오후 안개·비 가능' },
+  'dragon-bridge-show': { name: '용다리 불쇼·물쇼', short: '용다리', coords: [16.0612, 108.2275], detail: '주말 21:00 (금·토·일) · 무료 · 한강변', category: 'event', koreaReviewTag: '주말만 / 무료 / 5세 환호' },
+
+  // 시내 · 식당
+  'han-market': { name: '한 시장 (Han Market)', short: '한시장', coords: [16.0691, 108.2257], detail: '다낭 대표 재래시장 · 기념품·과일·아오자이', category: 'shopping', koreaReviewTag: '흥정 필수 / 더움' },
+  'an-thoi-danang': { name: 'Ăn Thôi Da Nang', short: 'Ăn Thôi', coords: [16.0682, 108.2236], detail: '베트남 가정식 · 영문메뉴 · 한국인 다수', category: 'food', koreaReviewTag: '가정식 / 한국인 추천' },
+  'madame-lan-danang': { name: 'Madame Lân (마담란)', short: 'Madame Lân', coords: [16.0780, 108.2210], detail: '한강변 베트남식 코스 · 한국 가족 다수', category: 'food', koreaReviewTag: '가족 / 한국인 다수' },
+  'cong-caphe-bach-dang': { name: 'Cộng Cà Phê 박당', short: 'Cộng Cà Phê', coords: [16.0709, 108.2245], detail: '베트남 대표 카페 체인 · 코코넛 커피 시그니처', category: 'cafe', koreaReviewTag: '인스타 / 코코넛커피' },
+  'pheva-chocolate': { name: 'Pheva Chocolate', short: 'Pheva', coords: [16.0586, 108.2245], detail: '베트남 다크 초콜릿 · 선물용', category: 'shopping', koreaReviewTag: '기념품 / 선물' },
+  'son-tra-night-market': { name: 'Son Tra Night Market (Helio)', short: 'Helio 야시장', coords: [16.0670, 108.2310], detail: '저녁 18:00- · 야시장 + 키즈존', category: 'night', koreaReviewTag: '아이 놀이 / 저녁' },
+};
 
 // ====== Plan (single) ======
 let activePlan = 'A';
@@ -2234,9 +2255,10 @@ const candidateMarkers = {};
 // 후보 모드용 호텔 참조 핀 (동선 비교)
 const hotelPinLayer = L.layerGroup();
 [
-  { name: '미카즈키 (5/20-22)', coords: PLACES.MIKAZUKI.coords, label: 'M' },
-  { name: '푸라마 (5/22-24)', coords: PLACES.FURAMA.coords, label: 'F' },
-].forEach(h => {
+  { id: 'new-orient', name: 'New Orient (7/24)', label: 'N' },
+  { id: 'hyatt', name: 'Hyatt (7/25-28)', label: 'H' },
+  { id: 'happy-day', name: 'Happy Day (7/28)', label: 'D' },
+].filter(h => PLACES[h.id] && PLACES[h.id].coords).map(h => ({ ...h, coords: PLACES[h.id].coords })).forEach(h => {
   const icon = L.divIcon({
     className: 'hotel-marker',
     html: `<div class="hotel-pin" title="${h.name}">🏨</div>`,
