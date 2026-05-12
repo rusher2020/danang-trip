@@ -1317,7 +1317,198 @@ const PLACES = {};
 // ====== Plan (single) ======
 let activePlan = 'A';
 const PLANS = { A: { name: '내 일정', icon: '🌴', color: '#d4644a', summary: '2026-07-24~29 다낭 가족여행', features: [] } };
-const ITINERARIES = { A: [] };
+const ITINERARIES = { A: [
+  {
+    day: '7/24',
+    weekday: '금',
+    title: 'ZE593 출국',
+    summary: '이스타항공 ZE593편으로 7/24 20:35 출발, 23:25 다낭 도착입니다. 공항 이동, 체크인, 기내 준비에 집중합니다.',
+    items: [
+      {
+        time: '20:35',
+        icon: '✈️',
+        title: 'ZE593 인천 출발',
+        tag: 'flight',
+        desc: '이스타항공 ZE593. 아이 동반 국제선이므로 공항 카운터 수속 시간을 여유 있게 잡습니다.',
+      },
+      {
+        time: '23:25',
+        icon: '✈️',
+        title: '다낭 도착',
+        tag: 'flight',
+        desc: '현지 도착 후 입국, 수하물, 차량 이동으로 New Orient에 바로 갑니다.',
+      },
+    ],
+  },
+  {
+    day: '7/25',
+    weekday: '토',
+    title: '토요일 시내 짧게 + 리조트 적응',
+    summary: '토요일은 New Orient 체크아웃 후 시내에서 커피·간단 쇼핑·점심을 짧게 보고 Hyatt로 이동할 수 있는 유일한 초반 시내 구간입니다. 잠을 못 잤으면 바로 Hyatt로 갑니다.',
+    items: [
+      {
+        time: '00:30 전후',
+        icon: '✈️',
+        title: '도착 회복',
+        tag: 'flight',
+        desc: '23:25 다낭 도착 후 New Orient로 이동해 수면을 확보합니다.',
+      },
+      {
+        time: '10:30-12:00',
+        icon: '🏨',
+        title: '천천히 체크아웃',
+        tag: 'hotel',
+        desc: '조식 포함 여부를 확인하고, 아이들 컨디션을 본 뒤 시내를 짧게 볼지 바로 Hyatt로 갈지 정합니다.',
+      },
+      {
+        time: '11:30-13:30',
+        icon: '🍽️',
+        title: '선택: 시내 커피·점심·필수 쇼핑',
+        tag: 'meal',
+        place: 'cong-caphe-bach-dang',
+        desc: 'New Orient 기준으로 Cộng Cà Phê, 한시장, Ăn Thôi 중 1-2개만 고릅니다. 더우면 카페만 가고 Hyatt로 이동합니다.',
+      },
+      {
+        time: '14:00-15:30',
+        icon: '🏨',
+        title: '하얏트 체크인',
+        tag: 'hotel',
+        place: 'hyatt-resort-time',
+        desc: '체크인 전이면 짐을 맡기고 점심/수영장/로비 휴식으로 연결합니다.',
+      },
+      {
+        time: '16:00-19:00',
+        icon: '🏖️',
+        title: '수영장과 쉬운 저녁',
+        tag: 'activity',
+        place: 'hyatt-resort-time',
+        desc: '첫날은 리조트 안에서 끝내는 것을 기본값으로 둡니다.',
+      },
+    ],
+  },
+  {
+    day: '7/26',
+    weekday: '일',
+    title: '리조트에서 쉬고 가까운 곳만',
+    summary: '도착 다음 날이자 일요일이므로 바나힐 풀데이는 피하고, 리조트와 가까운 오행산 또는 수영장 중심으로 느슨하게 둡니다.',
+    items: [
+      {
+        time: '08:30-10:30',
+        icon: '🎡',
+        title: '선택: 오행산 짧게',
+        tag: 'activity',
+        place: 'marble-mountains',
+        desc: '하얏트와 가까워 넣기 쉽지만 계단과 더위를 고려해 1-2시간 안에 끝냅니다.',
+      },
+      {
+        time: '11:00-15:30',
+        icon: '🏖️',
+        title: '하얏트 수영장과 낮잠',
+        tag: 'activity',
+        place: 'hyatt-resort-time',
+        desc: '7월 말 더위를 피하고 다음 날 바나힐을 위한 체력을 남깁니다.',
+      },
+      {
+        time: '19:30-21:30',
+        icon: '🌃',
+        title: '선택: 드래곤브릿지 쇼',
+        tag: 'event',
+        place: 'dragon-bridge-show',
+        desc: '일요일 21시 쇼를 볼 수 있습니다. 아이들이 졸리면 과감히 제외합니다.',
+      },
+    ],
+  },
+  {
+    day: '7/27',
+    weekday: '월',
+    title: '바나힐 가는 날',
+    summary: '주말 혼잡을 피해서 월요일에 바나힐을 배치하는 안입니다. 이 날은 다른 큰 일정을 넣지 않습니다.',
+    items: [
+      {
+        time: '08:00-16:30',
+        icon: '🎡',
+        title: '바나힐과 골든브릿지',
+        tag: 'activity',
+        place: 'ba-na-hills',
+        desc: '오전 출발, 왕복 전용차, 날씨 확인을 전제로 합니다. 점심/대기시간까지 포함해 하루 일정으로 봅니다.',
+      },
+      {
+        time: '17:30-20:00',
+        icon: '🏨',
+        title: '리조트 복귀 후 쉬운 식사',
+        tag: 'hotel',
+        place: 'hyatt-resort-time',
+        desc: '복귀 후에는 숙소 안이나 가까운 식당으로 마무리합니다.',
+      },
+    ],
+  },
+  {
+    day: '7/28',
+    weekday: '화',
+    title: '체크아웃 + 시내 정리 + 밤 공항',
+    summary: '7/29 00:25 출국편이므로 실제 마지막 활동일은 7/28입니다. 하얏트 체크아웃 후 Happy Day를 짐·샤워·휴식 베이스로 쓰고, 저녁에 공항으로 이동합니다.',
+    items: [
+      {
+        time: '09:00-11:00',
+        icon: '🏨',
+        title: '하얏트 체크아웃',
+        tag: 'hotel',
+        desc: '수영복/젖은 옷/공항 갈 옷을 분리하고, 이동 전 아이 컨디션을 먼저 봅니다.',
+      },
+      {
+        time: '12:00-16:00',
+        icon: '🏖️',
+        title: 'Happy Day 이동과 휴식',
+        tag: 'activity',
+        desc: '짐 보관, 샤워, 낮잠, 휴식을 확보합니다. 이 시간이 마지막 날 전체 만족도를 좌우합니다.',
+      },
+      {
+        time: '16:00-19:30',
+        icon: '🍽️',
+        title: '시내 식사·커피·짧은 쇼핑',
+        tag: 'meal',
+        place: 'han-market',
+        desc: '한시장, 안토이/마담란, Cộng Cà Phê, Pheva를 컨디션에 맞춰 1-2개만 고릅니다.',
+      },
+      {
+        time: '19:30-21:15',
+        icon: '🚐',
+        title: '샤워와 짐 정리',
+        tag: 'transport',
+        desc: 'Happy Day에서 아이들 옷을 갈아입히고, 기내 간식·겉옷·여권을 바로 꺼낼 수 있게 둡니다.',
+      },
+      {
+        time: '21:30-22:00',
+        icon: '🚐',
+        title: '공항 이동',
+        tag: 'transport',
+        desc: '7/29 00:25 출국편 기준으로 여유 있게 이동합니다.',
+      },
+    ],
+  },
+  {
+    day: '7/29',
+    weekday: '수',
+    title: '새벽 출국과 한국 도착',
+    summary: '다낭 현지 일정은 이미 7/28 밤에 끝납니다. ZE594 00:25 다낭 출발, 06:55 인천 도착입니다.',
+    items: [
+      {
+        time: '00:25',
+        icon: '✈️',
+        title: 'ZE594 다낭 출국',
+        tag: 'flight',
+        desc: '이스타항공 ZE594. 06:55 인천 도착 예정입니다.',
+      },
+      {
+        time: '06:55',
+        icon: '✈️',
+        title: '인천 도착',
+        tag: 'flight',
+        desc: '입국, 수하물, 귀가 동선을 확인합니다.',
+      },
+    ],
+  },
+] };
 let ITINERARY = ITINERARIES[activePlan];
 
 // ==========================================================
