@@ -1,85 +1,73 @@
-# 다낭 가족여행 모바일 대시보드
+# 🌴 다낭 가족여행 · 2026.07.24-29
 
-2026년 7월 24일-29일 다낭 가족여행을 위한 모바일 우선 정적 HTML 대시보드입니다. 성인 2명, 초2 여아, 6세 남아 기준으로 항공, 숙소, 일정, 장소 후보, 한국어 후기 신호, 이동, 예산, 쇼핑, 준비 정보를 현장에서 바로 쓰기 좋게 모읍니다.
+부부(43·41) + 딸 9세 + 아들 6세 · 5박 6일
 
-## 현재 방향
+✈️ ZE593 인천 → 다낭 (7/24 20:35 → 23:25)
+✈️ ZE594 다낭 → 인천 (7/29 00:25 → 06:55)
+🏨 New Orient(7/24) → Hyatt Regency(7/25-28) → Happy Day(7/28 데이유즈)
 
-- 확정 정보와 후보 정보를 분리합니다.
-- 정보 기준일은 `2026-05-09`이며, 공식 출처를 우선하고 영업시간·요금·운영중단은 방문 직전 재확인 대상으로 표시합니다.
-- 여행 가이드북보다 현장용 모바일 대시보드에 가깝게 설계합니다.
-- TripIt/Wanderlog/Google My Maps/Notion/Apple Wallet류의 구조는 UI 레퍼런스로만 참고하고, 실제 데이터는 공식 출처와 검증 가능한 링크를 우선합니다.
-- 장소는 화면에서는 `꼭 가볼 곳`, `날씨 보고`, `쉬운 일정`처럼 여행자가 바로 이해하는 표현으로 보여줍니다.
-- 무작위 맛집 나열보다 가족 적합성, 7월 더위, 숙소 기준 동선, 한국어 후기 신호를 우선합니다.
-- 페이지 첫 화면에서 여행 판단 기준을 바로 확인할 수 있게 구성했습니다.
-- GitHub Pages 배포를 전제로 정적 파일만 사용합니다.
+---
 
-## 핵심 결론
+## 🌐 라이브 사이트 (모바일 추천)
 
-- 7/25: 도착 회복 + 하얏트 적응.
-- 7/26: 하얏트 중심, 오전 오행산/밤 용다리 선택.
-- 7/27: 바나힐 날씨형 풀데이 후보.
-- 7/28: 하얏트 체크아웃, Happy Day 이동, 시내 식사/커피/짧은 쇼핑, 밤 공항 이동.
-- 7/29: 00:25 다낭 출국 후 한국 도착.
+### 👉 [일정·지도 페이지 열기](https://rusher2020.github.io/danang-trip/)
 
-최종 플랜 문서는 [FINAL_TRIP_PLAN.md](FINAL_TRIP_PLAN.md)에 정리했습니다.
+좌측 메뉴(개요·항공·숙소·하얏트 프로그램·응급·기본정보·한↔베)
+중앙 모드 바: **일정 · 시간표 · 후보 카드 · 준비물**
+날짜 탭(7/24~29) · 한 줄 타임라인 · 날씨 카드 · Leaflet 지도(핀+이동시간)
 
-## Files
-- `index.html`: Mobile planbook page
-- `styles.css`: Mobile-first styling
-- `script.js`: Card filtering and JSON loading
-- `data/places.json`: Place card data
-- `data/trip.json`: Fixed trip profile and decision criteria
-- `data/hotels.json`: Confirmed hotel flow
-- `data/hyatt-programs.json`: Hyatt internal kids/adult/facility program board
-- `data/days.json`: Day-by-day draft plan
-- `data/scenarios.json`: Candidate itinerary scenarios
-- `data/decisions.json`: 당일 진행/중단/대안 결정 보드
-- `data/checklist.json`: Information still needed from the traveler
-- `data/live-features.json`: Live-data roadmap for future travel info
-- `data/korean-reviews.json`: Korean review signals and source links
-- `data/airline-info.json`: Eastar Jet flight, check-in, baggage, restricted-item checklist
-- `data/transport.json`: Family transport strategy
-- `data/map-routes.json`: Google Maps route links by hotel/day
-- `data/budget.json`: Budget decision board
-- `data/shopping.json`: Han Market and mart shopping guide
-- `data/packing.json`: Family packing list
-- `data/emergency.json`: Important local notes and missing emergency info
-- `FINAL_TRIP_PLAN.md`: Consolidated trip plan
-- `danang-family-research-2026.md`: Deep research notes
-- `research-matrix.md`: Candidate selection matrix
-- `planning.md`: Trip planning direction
-- `questions.md`: Information needed from the traveler
-- `apis.md`: Optional future API plan
+---
 
-## Local Preview
-Run a local server from this directory:
+## 🎯 일정 요약
 
+**7/24 (금)** ✈️ 20:35 출국 → 23:25 다낭 도착 → New Orient 1박
+**7/25 (토)** 시내 짧게 + Hyatt 이동·적응
+**7/26 (일)** Hyatt 풀데이 (수영장 + Camp Hyatt) + 오행산 옵션
+**7/27 (월)** 🎡 바나힐 풀데이 (주말 혼잡 피해 월요일 배치)
+**7/28 (화)** Hyatt 체크아웃 → 시내 정리 → Happy Day 휴식 → 21:30 공항
+**7/29 (수)** ✈️ 00:25 출국 → 06:55 인천
+
+⛔ **호이안 패스** (시간 부족, 7/28 일정 무리)
+
+---
+
+## 📱 가족 공유 링크
+
+```
+https://rusher2020.github.io/danang-trip/
+```
+
+---
+
+## 🛠️ (개발자용)
+
+단일 파일 사이트: `index.html` 상단의 데이터 객체만 수정하면 됨
+
+| 객체 | 내용 |
+|---|---|
+| `PLACES` | 장소 좌표·태그 |
+| `ITINERARIES` | 6일 일정 |
+| `TRAVEL_TIMES` | 거점 간 이동시간 |
+| `WEATHER` | 일별 날씨 평년값 |
+| `PREP_DATA` | 준비물 체크리스트 |
+| `CANDIDATE_DATA` | 후보 풀 |
+
+### 로컬 미리보기
 ```bash
-python3 -m http.server 4177 --bind 127.0.0.1
+python -m http.server 4177 --bind 127.0.0.1
+# http://127.0.0.1:4177/
 ```
 
-Then open:
+### 문서
+- 설계 스펙: [`docs/superpowers/specs/2026-05-12-danang-trip-rebuild-design.md`](docs/superpowers/specs/2026-05-12-danang-trip-rebuild-design.md)
+- 구현 계획: [`docs/superpowers/plans/2026-05-12-danang-trip-rebuild.md`](docs/superpowers/plans/2026-05-12-danang-trip-rebuild.md)
+- 리서치 자료: [`docs/research/`](docs/research/)
+- 최종 플랜: [`docs/plan/FINAL_TRIP_PLAN.md`](docs/plan/FINAL_TRIP_PLAN.md)
+- 구버전 v1 백업: [`archive/v1/`](archive/v1/)
 
-```text
-http://127.0.0.1:4177
-```
+### GitHub Pages
+- Source: `main` 브랜치 root
+- 자동 배포
 
-## Validation
-
-Run the local validation script before committing:
-
-```bash
-node scripts/validate.js
-```
-
-It checks JSON parsing, duplicate/missing place ids, referenced place ids in itinerary/review/decision data, and `script.js` syntax.
-
-## GitHub Pages
-This project is static and can be deployed from the repository root.
-
-Recommended Pages settings:
-- Source: Deploy from a branch
-- Branch: `main`
-- Folder: `/root`
-
-Do not commit API keys. Live-data integrations should use API-free links first or a backend/proxy if secrets are required.
+### 레퍼런스
+디자인·구조 베이스: [first6/family-trip-2605](https://github.com/first6/family-trip-2605) (감사합니다 🙏)
