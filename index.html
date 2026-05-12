@@ -613,11 +613,31 @@
     .ti-desc { display: none; }
     .ti-row { grid-template-columns: 46px 20px 1fr auto; gap: 8px; padding: 7px 12px; }
   }
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
+    /* 모바일: LNB는 오버레이 (메인을 누르지 않음) */
     .app { grid-template-columns: 0 1fr; }
     .app.lnb-collapsed { grid-template-columns: 0 1fr; }
-    .app.lnb-open { grid-template-columns: 240px 1fr; }
-    .lnb { box-shadow: 4px 0 12px rgba(0,0,0,0.08); }
+    .app.lnb-open { grid-template-columns: 0 1fr; }
+    .lnb {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 280px;
+      max-width: 85vw;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      z-index: 1000;
+      box-shadow: 4px 0 16px rgba(0,0,0,0.15);
+      background: var(--panel);
+    }
+    .app.lnb-open .lnb { transform: translateX(0); }
+    /* 백드롭 */
+    .app.lnb-open::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+    }
   }
   @media (max-width: 600px) {
     .ti-tag { display: none; }
@@ -2776,9 +2796,9 @@ function renderTimetable() {
   if (!wrap) return;
   const days = getActiveDays();
 
-  // 30분 슬롯 06:00 ~ 23:30
+  // 30분 슬롯 00:00 ~ 24:00 (새벽·심야 비행 포함)
   const slots = [];
-  for (let h = 6; h <= 23; h++) {
+  for (let h = 0; h <= 23; h++) {
     slots.push(`${String(h).padStart(2,'0')}:00`);
     slots.push(`${String(h).padStart(2,'0')}:30`);
   }
