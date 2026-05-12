@@ -1678,23 +1678,37 @@ const CARDS_BY_CAT = CANDIDATE_DATA.cards.reduce((acc, c) => {
 
 // 두 장소 사이 이동 시간 (양방향 자동 매칭)
 const TRAVEL_TIMES = {
-  "DAD-MIKAZUKI": "🚐 25분",
-  "MIKAZUKI-BIGC_HOA_KHANH": "🚐 10분",
-  "DAD-FURAMA": "🚐 20분",
-  "MIKAZUKI-PIZZA_4PS": "🚐 25분",
-  "MIKAZUKI-FURAMA": "🚐 30분",
-  "PIZZA_4PS-TREES_SPA": "🚐 10분",
-  "TREES_SPA-FURAMA": "🚐 15분",
-  "FURAMA-HOIAN": "🚐 30분",
-  "HOIAN-DRAGON_BRIDGE": "🚐 25분",
-  "DRAGON_BRIDGE-FURAMA": "🚐 15분",
-  "FURAMA-NOAH_SPA": "🚐 15분",
-  "FURAMA-GOLDEN_MEAT": "🚐 10분",
-  "GOLDEN_MEAT-SUN_WHEEL": "🚐 10분",
-  "SUN_WHEEL-DRAGON_BRIDGE": "🚐 5분",
-  "DRAGON_BRIDGE-DAD": "🚐 15분",
-  "FURAMA-PIZZA_4PS": "🚐 15분",
-  "FURAMA-DRAGON_BRIDGE": "🚐 15분"
+  // 공항·숙소
+  "DAD-new-orient": "🚐 15분",
+  "new-orient-hyatt": "🚐 20분",
+  "hyatt-DAD": "🚐 20분",
+  "hyatt-happy-day": "🚐 15분",
+  "happy-day-DAD": "🚐 10분",
+  // 시내·식당·카페
+  "new-orient-cong-caphe-bach-dang": "🚐 5분",
+  "new-orient-han-market": "🚐 5분",
+  "new-orient-an-thoi-danang": "🚐 5분",
+  "cong-caphe-bach-dang-han-market": "🚶 3분",
+  "han-market-an-thoi-danang": "🚶 5분",
+  "an-thoi-danang-hyatt": "🚐 15분",
+  // 하얏트 주변
+  "hyatt-marble-mountains": "🚐 5분",
+  "hyatt-hyatt-resort-time": "🚶 1분",
+  "hyatt-hyatt-xanh-house": "🚶 2분",
+  "hyatt-hyatt-osteria": "🚶 2분",
+  // 바나힐
+  "hyatt-ba-na-hills": "🚐 60분",
+  // 야간
+  "hyatt-dragon-bridge-show": "🚐 15분",
+  "hyatt-son-tra-night-market": "🚐 15분",
+  "dragon-bridge-show-hyatt": "🚐 15분",
+  "dragon-bridge-show-son-tra-night-market": "🚐 5분",
+  // 마지막날 시내
+  "happy-day-han-market": "🚐 5분",
+  "happy-day-cong-caphe-bach-dang": "🚐 5분",
+  "happy-day-madame-lan-danang": "🚐 8분",
+  "happy-day-an-thoi-danang": "🚐 5분",
+  "happy-day-pheva-chocolate": "🚐 5분",
 };
 function getTravelTime(from, to) {
   return TRAVEL_TIMES[`${from}-${to}`] || TRAVEL_TIMES[`${to}-${from}`] || null;
