@@ -41,16 +41,28 @@ https://rusher2020.github.io/danang-trip/
 
 ## 🛠️ (개발자용)
 
-단일 파일 사이트: `index.html` 상단의 데이터 객체만 수정하면 됨
+단일 파일 사이트. 일정 작업은 `index.html` 상단의 **3개 객체**만 수정하면 됨:
 
 | 객체 | 내용 |
 |---|---|
-| `PLACES` | 장소 좌표·태그 |
-| `ITINERARIES` | 6일 일정 |
+| `PLACES` | 장소 좌표·태그·이미지 |
+| `ITINERARIES` | 5개 플랜(A~E)의 6일 일정 |
 | `TRAVEL_TIMES` | 거점 간 이동시간 |
-| `WEATHER` | 일별 날씨 평년값 |
+
+### 가끔 손대는 객체
+| 객체 | 내용 |
+|---|---|
+| `WEATHER` | 일별 날씨 (출국 1주일 전 갱신) |
+| `TRAVEL_COST` | 거점 간 비용 (그랩·단독차량) |
+| `PLANS` | 플랜 메타정보(이름·요약) |
 | `PREP_DATA` | 준비물 체크리스트 |
-| `CANDIDATE_DATA` | 후보 풀 |
+
+### 거의 안 손대는 객체 (set-and-forget)
+| 객체 | 비고 |
+|---|---|
+| `CANDIDATE_DATA` | 후보 풀 107장 (확정됨) |
+| `ROUTES_CACHE` | OSRM 도로 경로 — 거점 추가 시에만 재생성 |
+| `DAY_COLORS` | 날짜별 색상 토큰 |
 
 ### 로컬 미리보기
 ```bash
