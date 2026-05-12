@@ -1294,8 +1294,45 @@
       </div>
     </div>
 
-    <!-- 응급·기본정보·한↔베 sections filled in T7-T8 -->
+    <div class="lnb-section emergency">
+      <div class="lnb-h">🆘 응급 (탭하면 전화·지도)</div>
+      <ul class="lnb-emergency-list">
+        <li>
+          <a href="tel:+8228382257570" class="emg-call">호치민 총영사관</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Korean+Consulate+General+Ho+Chi+Minh" target="_blank" rel="noreferrer" class="emg-map">지도</a>
+          <span class="emg-note">+84-28-3822-5757 (다낭 관할)</span>
+        </li>
+        <li>
+          <a href="tel:+82232100404" class="emg-call">외교부 영사 콜센터 24h</a>
+          <span class="emg-note">+82-2-3210-0404 (한국)</span>
+        </li>
+        <li>
+          <a href="tel:080021000404" class="emg-call">베트남 내 무료 통화</a>
+          <span class="emg-note">0800-2100-0404</span>
+        </li>
+        <li>
+          <a href="https://www.google.com/maps/search/?api=1&query=Family+Hospital+Da+Nang" target="_blank" rel="noreferrer" class="emg-map full">Family Hospital Da Nang (지도)</a>
+        </li>
+        <li class="emg-list-item">📋 여권 분실 → 영사관 임시여권<br>💳 카드 분실 → 한국 카드사 즉시 신고</li>
+      </ul>
+    </div>
+
+    <!-- 기본정보·한↔베 in T8 -->
   </aside>
+
+  <style>
+    .lnb-emergency-list { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+    .lnb-emergency-list li { padding: 8px 0; border-bottom: 1px solid var(--line-soft); display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .lnb-emergency-list li:last-child { border-bottom: none; }
+    .lnb-emergency-list .emg-call,
+    .lnb-emergency-list .emg-map { display: inline-block; padding: 4px 8px; background: #f3f1ec; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 500; }
+    .lnb-emergency-list .emg-call { background: #fdeee9; color: #b03a1c; }
+    .lnb-emergency-list .emg-call:hover { background: #fadbd1; }
+    .lnb-emergency-list .emg-map { background: #e8f0e8; color: #2c5e2c; }
+    .lnb-emergency-list .emg-map.full { width: 100%; text-align: center; }
+    .lnb-emergency-list .emg-note { width: 100%; color: var(--ink-mute); font-size: 11px; padding-left: 4px; }
+    .lnb-emergency-list .emg-list-item { color: var(--ink-mute); font-size: 11px; line-height: 1.6; }
+  </style>
 
   <!-- MAIN -->
   <main class="main mode-itinerary" id="mainEl">
