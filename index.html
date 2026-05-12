@@ -1317,7 +1317,45 @@
       </ul>
     </div>
 
-    <!-- 기본정보·한↔베 in T8 -->
+    <div class="lnb-section">
+      <div class="lnb-h">기본정보</div>
+      <details class="lnb-details">
+        <summary>비자·환전·매너·안전·eSIM</summary>
+        <ul class="lnb-list-sm">
+          <li><strong>비자</strong> 한국 여권 무비자 45일</li>
+          <li><strong>환전</strong> 트래블월렛/트래블로그 50% + 시내 환전소 50% · 공항 환전 불리</li>
+          <li><strong>매너</strong> 두 손 받기 · 머리 만지지 X · 모자 실내 X</li>
+          <li><strong>안전</strong> 야간 단독 보행 자제 · 그랩 권장 · 택시 미터 확인</li>
+          <li><strong>eSIM</strong> 유심사·도시락 사전 구매 · 출국일 새벽 활성화</li>
+          <li><strong>5세 카시트</strong> 한국어 단독차량 사전 요청 (D-7)</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">한↔베 즉시 표현</div>
+      <details class="lnb-details">
+        <summary>현지에서 보여주세요 (탭하면 확대)</summary>
+        <table class="krvn-table">
+          <tr><th>한국어</th><th>베트남어</th><th>발음</th></tr>
+          <tr><td>안녕하세요</td><td>Xin chào</td><td>씬짜오</td></tr>
+          <tr><td>감사합니다</td><td>Cảm ơn</td><td>깜언</td></tr>
+          <tr><td>물 주세요</td><td>Cho tôi nước</td><td>쪼또이느억</td></tr>
+          <tr><td>안 매워요</td><td>Không cay</td><td>콩까이</td></tr>
+          <tr><td>매워요</td><td>Cay quá</td><td>까이꾸아</td></tr>
+          <tr><td>얼마예요?</td><td>Bao nhiêu?</td><td>바오니에우</td></tr>
+          <tr><td>계산할게요</td><td>Tính tiền</td><td>띤띠엔</td></tr>
+          <tr><td>도와주세요</td><td>Giúp tôi</td><td>줍또이</td></tr>
+          <tr><td>화장실</td><td>Nhà vệ sinh</td><td>냐베신</td></tr>
+          <tr><td>아이 메뉴</td><td>Menu trẻ em</td><td>메뉴쩨엠</td></tr>
+          <tr><td>얼음 빼고</td><td>Không đá</td><td>콩다</td></tr>
+          <tr><td>아이스</td><td>Đá</td><td>다</td></tr>
+          <tr><td>핫</td><td>Nóng</td><td>농</td></tr>
+          <tr><td>포장</td><td>Mang về</td><td>망베</td></tr>
+          <tr><td>맛있어요</td><td>Ngon</td><td>응온</td></tr>
+        </table>
+      </details>
+    </div>
   </aside>
 
   <style>
@@ -1332,7 +1370,31 @@
     .lnb-emergency-list .emg-map.full { width: 100%; text-align: center; }
     .lnb-emergency-list .emg-note { width: 100%; color: var(--ink-mute); font-size: 11px; padding-left: 4px; }
     .lnb-emergency-list .emg-list-item { color: var(--ink-mute); font-size: 11px; line-height: 1.6; }
+    .lnb-details summary { cursor: pointer; font-size: 12px; color: var(--ink-mute); padding: 4px 0; }
+    .lnb-details summary:hover { color: var(--ink); }
+    .lnb-list-sm { list-style: none; padding: 4px 0 0; margin: 0; font-size: 11px; line-height: 1.6; }
+    .lnb-list-sm li { padding: 3px 0; border-bottom: 1px dashed var(--line-soft); }
+    .lnb-list-sm li:last-child { border-bottom: none; }
+    .lnb-list-sm strong { color: var(--ink); display: inline-block; min-width: 56px; }
+    .krvn-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 6px; }
+    .krvn-table th, .krvn-table td { padding: 5px 4px; text-align: left; border-bottom: 1px solid var(--line-soft); cursor: pointer; }
+    .krvn-table th { color: var(--ink-soft); font-weight: 600; font-size: 10px; text-transform: uppercase; }
+    .krvn-table td:hover { background: #f7f5f0; }
+    .krvn-zoom { position: fixed; inset: 0; background: rgba(0,0,0,0.85); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 48px; z-index: 9999; cursor: pointer; padding: 20px; text-align: center; }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.krvn-table tr:not(:first-child) td').forEach(td => {
+        td.addEventListener('click', () => {
+          const big = document.createElement('div');
+          big.className = 'krvn-zoom';
+          big.textContent = td.textContent.trim();
+          big.addEventListener('click', () => big.remove());
+          document.body.appendChild(big);
+        });
+      });
+    });
+  </script>
 
   <!-- MAIN -->
   <main class="main mode-itinerary" id="mainEl">
