@@ -634,9 +634,15 @@
       z-index: 1000;
       box-shadow: 4px 0 16px rgba(0,0,0,0.15);
       background: var(--panel);
+      pointer-events: none;  /* 닫혔을 때 터치 이벤트 차단 안 함 */
+      visibility: hidden;
     }
-    .app.lnb-open .lnb { transform: translateX(0); }
-    /* 백드롭 */
+    .app.lnb-open .lnb {
+      transform: translateX(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+    /* 백드롭 (탭하면 LNB 닫음) */
     .app.lnb-open::after {
       content: '';
       position: fixed;
@@ -644,6 +650,8 @@
       background: rgba(0,0,0,0.4);
       z-index: 999;
     }
+    /* 모바일에서 mode-bar는 z-index 보장 */
+    .mode-bar { position: relative; z-index: 2; }
   }
   @media (max-width: 600px) {
     .ti-tag { display: none; }
@@ -3160,6 +3168,15 @@ lnbToggle.addEventListener('click', () => {
     else app.classList.remove('lnb-collapsed');
   }
   setTimeout(() => map.invalidateSize(), 280);
+});
+
+// 모바일 백드롭 탭 → LNB 닫기
+document.addEventListener('click', (e) => {
+  if (!isMobile()) return;
+  if (!app.classList.contains('lnb-open')) return;
+  // LNB 내부, 햄버거 버튼이 아닌 곳을 탭하면 닫음
+  if (e.target.closest('.lnb') || e.target.closest('#lnbToggle')) return;
+  app.classList.remove('lnb-open');
 });
 
 // ============ Section Toggle (Timeline / Map) ============
