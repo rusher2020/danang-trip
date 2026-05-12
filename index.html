@@ -2247,11 +2247,11 @@ function renderPrep() {
         <input type="checkbox" ${isChecked?'checked':''}>
         <div class="prep-item-body">
           <div class="prep-item-task">
-            <span>${it.task}</span>
+            <span>${typeof it.task === 'string' ? it.task : (it.task && (it.task.label || it.task.text || it.task.title)) || ''}</span>
             ${it.link ? `<button class="prep-link-btn" data-prep-link="${it.link}" title="자세히 보기">ⓘ 자세히</button>` : ''}
             ${it.deadline ? `<span class="prep-item-deadline">${it.deadline}</span>` : ''}
           </div>
-          ${it.detail ? `<div class="prep-item-detail">${it.detail}</div>` : ''}
+          ${it.detail ? `<div class="prep-item-detail">${typeof it.detail === 'string' ? it.detail : ''}</div>` : ''}
         </div>
       </label>`;
     });
@@ -2412,9 +2412,7 @@ function applyDayColors(arr) {
     if (!day.tint) day.tint = palette.tint;
   });
 }
-applyDayColors(ITINERARIES.A);
-applyDayColors(ITINERARIES.B);
-applyDayColors(ITINERARIES.C);
+Object.values(ITINERARIES).forEach(applyDayColors);
 
 // ----- 데이터 검증: 누락/오류를 콘솔에 경고 -----
 function validateData() {
@@ -2867,31 +2865,12 @@ function renderTimetable() {
   });
 }
 
-// ====== Plan Selector ======
+// ====== Plan Selector (v2: 단일 플랜, UI 제거) ======
 function renderPlanTabs() {
   const tabsEl = document.getElementById('planTabs');
-  const featEl = document.getElementById('planFeatures');
-  tabsEl.innerHTML = Object.entries(PLANS).map(([k, p]) => `
-    <button class="plan-tab ${k === activePlan ? 'active' : ''}" data-plan="${k}" style="--plan-color:${p.color};">
-      <span class="picon">${p.icon}</span><span class="pname">${k}.${p.name}</span>
-    </button>
-  `).join('');
-  const p = PLANS[activePlan];
-  featEl.innerHTML = `
-    <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
-    <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
-  `;
-  tabsEl.querySelectorAll('.plan-tab').forEach(el => {
-    el.addEventListener('click', () => {
-      activePlan = el.dataset.plan;
-      ITINERARY = ITINERARIES[activePlan];
-      activeTab = 'all';
-      renderPlanTabs();
-      renderAll();
-    });
-  });
+  if (!tabsEl) return;
+  // single plan — no UI needed
 }
-renderPlanTabs();
 
 renderAll();
 
