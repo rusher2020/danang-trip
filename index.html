@@ -437,6 +437,7 @@
   .tag-transport { background: #f1ecdf; color: #897045; }
   .tag-spa { background: #fae3eb; color: #b04d72; }
   .tag-event { background: #fdebda; color: #b87530; }
+  .tag-card { background: #e6e9f5; color: #2d2a55; }
 
   .ti-place {
     font-size: 10.5px;
@@ -1930,7 +1931,7 @@ const DAY_COLORS = [
 
 const TAG_LABEL = {
   flight: '항공', hotel: '숙소', meal: '식사', activity: '액티',
-  transport: '이동', spa: '스파', event: '이벤트'
+  transport: '이동', spa: '스파', event: '이벤트', card: '담기'
 };
 
 // ============ Place → Card mapping (timeline → 후보카드 상세) ============
@@ -2982,7 +2983,7 @@ function renderTimeline() {
       const uid = ctrl.dataset.uid;
       ctrl.querySelector('.mp-del').onclick = (ev) => { ev.stopPropagation(); if (confirm('이 항목을 삭제할까요?')) removeMyPlanItem(uid); };
       ctrl.querySelector('.mp-time').onclick = (ev) => { ev.stopPropagation(); const t = prompt('시각 (예: 14:00)', ''); if (t!==null) setMyPlanItemTime(uid, t); };
-      ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); const d = prompt('옮길 날짜\n'+TRIP_DAYS.join(' / '), '7/26'); if (d) moveMyPlanItem(uid, d); };
+      ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); const d = prompt('옮길 날짜\n'+TRIP_DAYS.join(' / '), '7/26'); if (!d) return; if (!TRIP_DAYS.includes(d)) { alert('날짜 형식: ' + TRIP_DAYS.join(' / ')); return; } moveMyPlanItem(uid, d); };
     });
   }
 
@@ -3943,9 +3944,15 @@ _decodePrep(); // URL hash → localStorage 복원 (Safari ITP 대비)
 renderPrep();
 
 // 내 일정 복원: localStorage → 해시(공유 링크)가 우선
+const hadHashMp = /[#&]mp=/.test(location.hash);
 loadMyPlan();
 _decodeMyPlanFromHash(); // 해시에 mp= 가 있으면 localStorage를 덮어씀
 if (myPlan) saveMyPlan(); // 해시 → localStorage 동기화
+if (hadHashMp && myPlan) {
+  activePlan = 'my';
+  ITINERARY = myPlanToItinerary();
+  applyDayColors(ITINERARY);
+}
 renderPlanTabs(); // 내 일정 탭 레이블 갱신
 
 // Resize → re-fit map
