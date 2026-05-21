@@ -3273,6 +3273,26 @@ function createMyPlanFrom(presetKey) {
 }
 function resetMyPlan() { myPlan = null; try { localStorage.removeItem(MYPLAN_KEY); } catch (e) {} _encodeMyPlanToHash(); }
 
+function myPlanToItinerary() {
+  if (!myPlan) return [];
+  const presetDays = ITINERARIES[myPlan.basedOn] || [];
+  const order = presetDays.map(d => d.day);
+  const dayKeys = [...new Set([...order, ...Object.keys(myPlan.days)])].filter(d => myPlan.days[d]);
+  return dayKeys.map(dayKey => {
+    const pd = presetDays.find(d => d.day === dayKey) || {};
+    const items = (myPlan.days[dayKey] || []).map(it => {
+      if (it.source === 'card') {
+        const c = cardById[it.cardId] || {};
+        return { time: it.time || '', icon: '📌', title: c.name || it.cardId, tag: 'card',
+                 desc: it.note || c.summary || '', coords: c.coords, _uid: it.uid, _source: 'card', _cardId: it.cardId };
+      }
+      return { time: it.time || '', icon: it.icon, title: it.title, tag: it.tag, desc: it.desc,
+               place: it.place, _uid: it.uid, _source: 'preset' };
+    });
+    return { day: dayKey, weekday: pd.weekday || '', title: pd.title || '내 일정', summary: pd.summary || '', items };
+  });
+}
+
 // _encodeMyPlanToHash / _decodeMyPlanFromHash 는 Task 6에서 구현. 임시 no-op로 시작:
 function _encodeMyPlanToHash() {}
 function _decodeMyPlanFromHash() {}
