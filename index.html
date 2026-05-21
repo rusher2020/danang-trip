@@ -501,6 +501,9 @@
   .myplan-controls { display:flex; gap:6px; margin-top:4px; align-items:center; grid-column: 1 / -1; }
   .myplan-controls button { font-size:12px; padding:2px 6px; border:1px solid var(--line,#ddd); border-radius:6px; background:#fff; cursor:pointer; }
   .mp-badge { font-size:11px; color:#2d2a55; background:#2d2a5515; padding:1px 6px; border-radius:6px; }
+  .mp-editor { grid-column:1 / -1; margin-top:6px; padding:8px 10px; border:1px dashed #2d2a55; border-radius:8px; background:#2d2a5508; }
+  .mp-editor-label { display:block; font-size:11.5px; font-weight:700; color:#6b6760; margin-bottom:6px; }
+  .mp-editor .addplan-chips { margin-bottom:6px; }
   .mp-reset { margin-top:8px; font-size:12px; padding:4px 10px; border:1px solid #e07050; border-radius:6px; background:#fff5f2; color:#c0392b; cursor:pointer; }
   .mp-reset:hover { background:#fde8e2; }
   .ti-pin-num {
@@ -2969,10 +2972,7 @@ function renderTimeline() {
           ${cardId ? `<button class="ti-card-link" data-card-id="${cardId}" title="후보카드 상세 보기">📄 ${cardId}</button>` : ''}
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
-        ${(activePlan==='my' && it._uid) ? `<div class="myplan-controls" data-uid="${it._uid}">
-          <button class="mp-time" title="시간 변경">⏰</button><button class="mp-move" title="날짜 이동">📅</button><button class="mp-del" title="삭제">🗑️</button>
-          ${it._source==='card' ? '<span class="mp-badge">내가 추가</span>' : ''}
-        </div>` : ''}
+        ${(activePlan==='my' && it._uid) ? mpControlsHtml(it) : ''}
       </div>`;
       // 다음 항목과 장소가 다르면 이동 connector 삽입
       const next = day.items[ii + 1];
@@ -2991,13 +2991,20 @@ function renderTimeline() {
   });
   wrap.innerHTML = html;
 
-  // 내 일정 편집 컨트롤 이벤트 바인딩
+  // 내 일정 편집 컨트롤 이벤트 바인딩 (인라인 칩 에디터, prompt 없음)
   if (wrap) {
     wrap.querySelectorAll('.myplan-controls').forEach(ctrl => {
       const uid = ctrl.dataset.uid;
-      ctrl.querySelector('.mp-del').onclick = (ev) => { ev.stopPropagation(); if (confirm('이 항목을 삭제할까요?')) removeMyPlanItem(uid); };
-      ctrl.querySelector('.mp-time').onclick = (ev) => { ev.stopPropagation(); const t = prompt('시각 (예: 14:00)', ''); if (t!==null) setMyPlanItemTime(uid, t); };
-      ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); const d = prompt('옮길 날짜\n'+TRIP_DAYS.join(' / '), '7/26'); if (!d) return; if (!TRIP_DAYS.includes(d)) { alert('날짜 형식: ' + TRIP_DAYS.join(' / ')); return; } moveMyPlanItem(uid, d); };
+      ctrl.querySelector('.mp-time').onclick = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'time' }; renderTimeline(); };
+      ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'day' }; renderTimeline(); };
+      ctrl.querySelector('.mp-del').onclick  = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'del' }; renderTimeline(); };
+    });
+    wrap.querySelectorAll('.mp-editor').forEach(ed => {
+      const uid = ed.dataset.uid;
+      ed.querySelectorAll('.mp-set-time').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, b.dataset.time); });
+      ed.querySelectorAll('.mp-set-day').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; moveMyPlanItem(uid, b.dataset.day); });
+      const cdel = ed.querySelector('.mp-confirm-del'); if (cdel) cdel.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; removeMyPlanItem(uid); };
+      const cancel = ed.querySelector('.mp-cancel'); if (cancel) cancel.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; renderTimeline(); };
     });
   }
 
@@ -3317,6 +3324,8 @@ const MYPLAN_KEY = 'danang-myplan';
 let myPlan = null; // { basedOn, createdAt, days: { '7/24':[item,...] } }
 const cardById = Object.fromEntries(CANDIDATE_DATA.cards.map(c => [c.id, c]));
 const TRIP_DAYS = ['7/24','7/25','7/26','7/27','7/28','7/29']; // (Task 2+ 에서 사용)
+const MP_TIME_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+let mpEditing = null; // { uid, mode:'time'|'day'|'del' } — 타임라인 인라인 편집 상태
 
 function _uid() { return 'm' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 function _timeMin(t) { const m = String(t||'').match(/(\d{1,2}):(\d{2})/); return m ? (+m[1])*60 + (+m[2]) : 9999; }
@@ -3379,6 +3388,42 @@ function closeAddPlanSheet() {
   if (sheet) { sheet.hidden = true; sheet.innerHTML = ''; sheet.dataset.cardId = ''; }
 }
 
+// 타임라인 항목 편집 컨트롤 HTML (편집 중이면 인라인 칩 에디터, 아니면 버튼)
+function mpControlsHtml(it) {
+  const uid = it._uid;
+  const editing = mpEditing && mpEditing.uid === uid;
+  if (!editing) {
+    return `<div class="myplan-controls" data-uid="${uid}">
+      <button class="mp-time" title="시간 변경">⏰ 시간</button><button class="mp-move" title="날짜 이동">📅 날짜</button><button class="mp-del" title="삭제">🗑️</button>
+      ${it._source === 'card' ? '<span class="mp-badge">내가 추가</span>' : ''}
+    </div>`;
+  }
+  if (mpEditing.mode === 'time') {
+    return `<div class="mp-editor" data-uid="${uid}">
+      <span class="mp-editor-label">⏰ 시각 선택</span>
+      <div class="addplan-chips">
+        <button class="addplan-chip mp-set-time ${!it.time ? 'sel' : ''}" data-time="">미정</button>
+        ${MP_TIME_SLOTS.map(t => `<button class="addplan-chip mp-set-time ${it.time === t ? 'sel' : ''}" data-time="${t}">${t}</button>`).join('')}
+      </div>
+      <div class="addplan-actions"><button class="mp-cancel">취소</button></div>
+    </div>`;
+  }
+  if (mpEditing.mode === 'day') {
+    return `<div class="mp-editor" data-uid="${uid}">
+      <span class="mp-editor-label">📅 옮길 날짜</span>
+      <div class="addplan-chips">
+        ${TRIP_DAYS.map(d => `<button class="addplan-chip mp-set-day" data-day="${d}">${d}</button>`).join('')}
+      </div>
+      <div class="addplan-actions"><button class="mp-cancel">취소</button></div>
+    </div>`;
+  }
+  // del
+  return `<div class="mp-editor" data-uid="${uid}">
+    <span class="mp-editor-label">🗑️ 이 항목을 삭제할까요?</span>
+    <div class="addplan-actions"><button class="addplan-save mp-confirm-del">삭제</button><button class="mp-cancel">취소</button></div>
+  </div>`;
+}
+
 // 화면 안 인라인 시트로 "내 일정에 담기" (prompt/팝업 없음)
 function openAddToPlanPicker(card) {
   const sheet = document.getElementById('addPlanSheet');
@@ -3390,7 +3435,7 @@ function openAddToPlanPicker(card) {
   let selPreset = myPlan ? myPlan.basedOn : 'A';
   let selDay = '';
   let selTime = '';
-  const TIME_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+  const TIME_SLOTS = MP_TIME_SLOTS;
 
   const presetRow = needPreset ? `
     <div class="addplan-row">
