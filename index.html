@@ -497,6 +497,9 @@
     flex-shrink: 0;
   }
   .ti-card-link:hover { opacity: 0.85; }
+  .myplan-controls { display:flex; gap:6px; margin-top:4px; align-items:center; grid-column: 1 / -1; }
+  .myplan-controls button { font-size:12px; padding:2px 6px; border:1px solid var(--line,#ddd); border-radius:6px; background:#fff; cursor:pointer; }
+  .mp-badge { font-size:11px; color:#2d2a55; background:#2d2a5515; padding:1px 6px; border-radius:6px; }
   .ti-pin-num {
     display: inline-flex;
     align-items: center;
@@ -2943,6 +2946,10 @@ function renderTimeline() {
           ${cardId ? `<button class="ti-card-link" data-card-id="${cardId}" title="후보카드 상세 보기">📄 ${cardId}</button>` : ''}
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
+        ${(activePlan==='my' && it._uid) ? `<div class="myplan-controls" data-uid="${it._uid}">
+          <button class="mp-time" title="시간 변경">⏰</button><button class="mp-move" title="날짜 이동">📅</button><button class="mp-del" title="삭제">🗑️</button>
+          ${it._source==='card' ? '<span class="mp-badge">내가 추가</span>' : ''}
+        </div>` : ''}
       </div>`;
       // 다음 항목과 장소가 다르면 이동 connector 삽입
       const next = day.items[ii + 1];
@@ -2960,6 +2967,16 @@ function renderTimeline() {
     html += `</div>`;
   });
   wrap.innerHTML = html;
+
+  // 내 일정 편집 컨트롤 이벤트 바인딩
+  if (wrap) {
+    wrap.querySelectorAll('.myplan-controls').forEach(ctrl => {
+      const uid = ctrl.dataset.uid;
+      ctrl.querySelector('.mp-del').onclick = (ev) => { ev.stopPropagation(); if (confirm('이 항목을 삭제할까요?')) removeMyPlanItem(uid); };
+      ctrl.querySelector('.mp-time').onclick = (ev) => { ev.stopPropagation(); const t = prompt('시각 (예: 14:00)', ''); if (t!==null) setMyPlanItemTime(uid, t); };
+      ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); const d = prompt('옮길 날짜\n'+TRIP_DAYS.join(' / '), '7/26'); if (d) moveMyPlanItem(uid, d); };
+    });
+  }
 
   wrap.querySelectorAll('.ti-row').forEach(el => {
     el.addEventListener('click', (ev) => {
@@ -3277,7 +3294,7 @@ function myPlanToItinerary() {
   if (!myPlan) return [];
   const presetDays = ITINERARIES[myPlan.basedOn] || [];
   const order = presetDays.map(d => d.day);
-  const dayKeys = [...new Set([...order, ...Object.keys(myPlan.days)])].filter(d => myPlan.days[d]);
+  const dayKeys = [...new Set([...order, ...Object.keys(myPlan.days)])].filter(d => myPlan.days[d] && myPlan.days[d].length > 0);
   return dayKeys.map(dayKey => {
     const pd = presetDays.find(d => d.day === dayKey) || {};
     const items = (myPlan.days[dayKey] || []).map(it => {
@@ -3309,6 +3326,30 @@ function openAddToPlanPicker(card) {
   const time = prompt('시각 (예: 14:00) — 비워도 됩니다', '');
   if (time === null) return;
   if (addCardToMyPlan(card.id, day, time)) alert(`'${card.name}' → ${day} ${time||'(시간미정)'} 담음`);
+}
+
+function removeMyPlanItem(uid) {
+  if (!myPlan) return;
+  for (const d of Object.keys(myPlan.days)) myPlan.days[d] = myPlan.days[d].filter(i => i.uid !== uid);
+  saveMyPlan();
+  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+}
+function setMyPlanItemTime(uid, time) {
+  if (!myPlan) return;
+  for (const d of Object.keys(myPlan.days)) { const it = myPlan.days[d].find(i=>i.uid===uid); if (it){ it.time = time||''; _sortDay(myPlan.days[d]); break; } }
+  saveMyPlan();
+  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+}
+function moveMyPlanItem(uid, newDay) {
+  if (!myPlan || !TRIP_DAYS.includes(newDay)) return;
+  let moved;
+  for (const d of Object.keys(myPlan.days)) { const idx = myPlan.days[d].findIndex(i=>i.uid===uid); if (idx>=0){ if (d === newDay) return;   // already on that day — nothing to do
+moved = myPlan.days[d].splice(idx,1)[0]; break; } }
+  if (!moved) return;
+  if (!myPlan.days[newDay]) myPlan.days[newDay] = [];
+  myPlan.days[newDay].push(moved); _sortDay(myPlan.days[newDay]);
+  saveMyPlan();
+  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
 }
 
 // _encodeMyPlanToHash / _decodeMyPlanFromHash 는 Task 6에서 구현. 임시 no-op로 시작:
