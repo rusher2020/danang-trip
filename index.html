@@ -3302,20 +3302,53 @@ function renderPlanTabs() {
   const tabsEl = document.getElementById('planTabs');
   const featEl = document.getElementById('planFeatures');
   if (!tabsEl || !featEl) return;
-  tabsEl.innerHTML = Object.entries(PLANS).map(([k, p]) => `
+
+  // 프리셋 탭 (A~E)
+  const presetHtml = Object.entries(PLANS).map(([k, p]) => `
     <button class="plan-tab ${k === activePlan ? 'active' : ''}" data-plan="${k}" style="--plan-color:${p.color};">
       <span class="picon">${p.icon}</span><span class="pname">${k}.${p.name}</span>
     </button>
   `).join('');
-  const p = PLANS[activePlan];
+
+  // 내 일정 탭 — myPlan 존재 여부에 따라 아이콘 변경
+  const myIcon = myPlan ? '📝' : '➕';
+  const myActiveClass = activePlan === 'my' ? 'active' : '';
+  const myTabHtml = `
+    <button class="plan-tab ${myActiveClass}" data-plan="my" style="--plan-color:#ff7f50;">
+      <span class="picon">${myIcon}</span><span class="pname">내 일정</span>
+    </button>
+  `;
+
+  tabsEl.innerHTML = presetHtml + myTabHtml;
+
+  // 플랜 요약/기능 영역 — PLANS에 없는 'my'를 위한 fallback
+  const p = PLANS[activePlan] || {
+    icon: '📝',
+    name: '내 일정',
+    summary: '내가 조립한 일정',
+    features: myPlan ? ['직접 구성한 나만의 코스'] : ['➕ 탭을 클릭해 프리셋에서 시작하세요'],
+  };
   featEl.innerHTML = `
     <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
     <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
   `;
+
   tabsEl.querySelectorAll('.plan-tab').forEach(el => {
     el.addEventListener('click', () => {
-      activePlan = el.dataset.plan;
-      ITINERARY = ITINERARIES[activePlan];
+      const plan = el.dataset.plan;
+      if (plan === 'my') {
+        if (!myPlan) {
+          const k = prompt('어느 프리셋을 복사해 시작할까요? (A~E)', 'A');
+          if (!k || !ITINERARIES[k.toUpperCase()]) return; // 취소 또는 잘못된 입력 → 무시
+          createMyPlanFrom(k.toUpperCase());
+        }
+        activePlan = 'my';
+        ITINERARY = myPlanToItinerary();
+        applyDayColors(ITINERARY); // REQUIRED: colorHex/tint 주입
+      } else {
+        activePlan = plan;
+        ITINERARY = ITINERARIES[activePlan];
+      }
       activeTab = 'all';
       renderPlanTabs();
       renderAll();
