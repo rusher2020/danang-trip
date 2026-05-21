@@ -36,8 +36,9 @@
 - **② 시간표 날짜 선택 바**(`7a00ebd`): `renderTimetable()`가 html 앞에 `.tt-day-bar`(전체+날짜 칩) prepend, 칩 클릭→`activeTab` 설정 후 `renderAll()`. CSS는 `.tt-day-bar`/`.tt-day-chip`.
 - **③ 목록 ＋담기 바텀시트 + 피커 DRY**(`d2a0609`,`b1ed2bc`): 그리드 카드 우상단 `.cand-add`(＋담기) → 화면 내 바텀시트 `openQuickAddSheet`(백드롭·✕·Esc 닫기, `aria-labelledby`). 피커 UI를 `buildPickerMarkup(card)` + `bindPicker(rootEl,card,{onCommit,onCancel})`로 분리해 상세 인라인 시트와 바텀시트가 공유. 두 피커 공존 대비 id 대신 `data-role` 스코프.
 - **④ 사진 정리**(`046b70d`,`c6f8ae7`,`0df402d`,`0a1bb73`): 4a — 그리드 이미지를 `<img class="cand-img-photo">` + 항상 존재하는 `.cand-img-fallback`(카테고리 아이콘) 위에 올리고, JS `error`→`img.remove()`로 누락/깨짐 시 아이콘 폴백. 4b — 중복 12이미지 33장 정리: **실제 랜드마크 8장**만 라이선스 검증 후 `assets/img/<id>.jpg`(≤800px, 총~1MB)로 로컬 커밋(용다리·한시장·호이안 야경×2·사랑의 부두/잉어상×2·한강 산책로·한강 야경), **특정 업소 25장**은 범용 재사용 대신 `image` 제거→아이콘 폴백(잔여 detail md의 "(참고)" 타업소·타도시 사진도 제거). 출처·저작자·라이선스(CC0/CC BY 4.0/CC BY-SA 4.0)는 `assets/img/CREDITS.md`. 카드 간 공유 이미지 0.
+- **④ 후속: 특정 업소 실제 사진 18곳**(`403b55a`): 4b에서 아이콘 폴백이던 25곳 중 18곳에 **그 업소 실제 사진** 추가(공식 사이트/블로그/예약 플랫폼 출처, **비상업·개인 참고용·저작권 원소유자** — `assets/img/CREDITS.md` B절). 카페 10(Cộng·XLIII·Local Beans·34 Tropical·Nóc·Wonderlust×2·Roots·Kem Bơ·43 Factory)·An Thượng 야시장·Vincom·스파/네일 6(Noah·RORA·Dahan·Herbal·Azit·Pink). 수집은 subagent 스테이징(`/tmp/cand_imgs/` 매니페스트) → **사람이 이미지 육안 검증** 후 채택. 4.12는 블로그 텍스트 오버레이 크롭. **남은 7곳 아이콘**: 4.5 Coconut House·4.8 Cua Ngo·4.13 Sapa Rooftop·7.4 GO!다낭·7.9 Big C·8.3 트리스 스파·8.13 Liti(로고만). 라이브 111장 중 ~97장 사진. 데이터 편집은 minified `CANDIDATE_DATA` JSON parse→수정→dump(비대상 불변 검증).
 - **잔여(범위 밖, 기존부터)**: 일부 카드가 외부 `raw.githubusercontent.com/first6/...` 이미지 사용 중(현재 200, onerror 폴백 보장). plan 탭 첫 'my' 생성·일정 비우기·준비물 리셋의 `prompt`/`confirm`은 이번 범위 밖.
-- **상태**: main 머지·배포 완료(이 커밋 묶음).
+- **상태**: main 머지·배포 완료(UX 4건 `2fa2bb2` + 실제사진 18곳 `403b55a`).
 
 ---
 
