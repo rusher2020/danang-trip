@@ -4,6 +4,45 @@
 
 ---
 
+## 진행 중 체크포인트 (2026-05-21)
+
+- **브랜치**: `main` = origin/main (c65cd8a). 로컬을 V2로 재동기화 완료(이전 로컬은 옛 다파일 버전이라 reset).
+- **미커밋 변경 (working tree, 아직 commit 안 함)**:
+  - `index.html`: 모바일에서 개요 패널(LNB) **기본 열림** 추가 — `if (isMobile()) app.classList.add('lnb-open');` (lnbToggle 리스너 직후). 데스크톱은 grid상 이미 열림. 헤드리스 모바일 검증 완료(로드 시 `app lnb-open`, 바깥 탭 시 닫힘, JS 에러 0).
+  - `docs/RESUMING.md`: 이 체크포인트.
+- **자료**: `hyatt-materials/` 에 하얏트 공식 PDF 4종(untracked, gitignore 아님 — 커밋할지 결정 필요). `.env`는 사용자가 삭제(불필요).
+
+### ✅ 완료: 하얏트 PDF → 후보카드 + 전용 상위 탭 (2026-05-21)
+
+- 새 카테고리 `10 하얏트 프로그램`(⭐) + 카드 4장(10.1~10.4) 추가 → 후보 카드 카테고리 바에 노출, 클릭 시 상세(md 표) 정상.
+- 새 상위 mode-tab `하얏트` 신설 → 키즈 프로그램(2) / 하얏트 프로그램(2)으로 묶어 md 본문 직접 렌더. detail-view 의존 없음.
+- 검증(헤드리스 데스크톱+모바일): 카테고리 10·카드 4·표 렌더·상세뷰·JS 에러 0. 카드 총 107→111.
+- 구현 위치: 데이터 push 블록(`CAT_BY_ID` 정의 직전), mode-bar 버튼, `.hyatt-section` + CSS(`Hyatt Mode` 블록), `renderHyatt()` + mode 전환 분기.
+- 잔여(사소): 하얏트 카드의 "GitHub 원본" 링크는 `cat.file=""`이라 404 — PDF 출처라 무해, 추후 숨김 처리 가능.
+
+### ⏭️ 다음 단계: 후보카드 선택형 → 일정 반영
+
+사용자 요청 순서상 다음 작업. 카드에 ✅/추가 상태를 부여하고 선택을 일정(플랜)에 반영하는 구조 — 별도 설계 필요.
+
+**(아래는 위 완료 작업의 원 설계 메모, 참고용)**
+
+**확정 설계**:
+1. 데이터: `index.html` 2548행 `const CANDIDATE_DATA = {...}`(단일 미니파이 라인) **직접 수정 금지**. 바로 다음 줄(2549 `CAT_BY_ID` 정의 전)에 push 블록 삽입:
+   - 새 카테고리 `{id:"10", name:"하얏트 프로그램", icon:"⭐", color:"#2d2a55"}`
+   - 카드 4장(cat "10", `group` 필드, `coords:[16.0245,108.2530]` Hyatt, image 생략→아이콘 폴백, `md`에 상세 표):
+     - `10.1` Camp Hyatt 키즈 액티비티 (group:kids) — Kid Activities 주간표. 08:00–22:00, 4세 미만 보호자 동반, 일부 무료 1회/2시간·1일, Movie Night 19–21시, 베이비시팅 요청 가능, Camp Hyatt ext.8580
+     - `10.2` 주니어 액티비티 6–15세 (group:kids) — Juniors 주간표. 가격: 25만동(Non La·티셔츠·토트백·랜턴·록아트), 60만동(보디보딩·머메이드), 150만동(키즈마사지·어드벤처캠프). ✦유료/✦✦F&B유료, Fitness ext.8570
+     - `10.3` Distinctive Experiences (group:hyatt) — Sand & Sound Bath(35만동/18+/요청/Beach), Coconut Coffee Making(35만동/18+/15시/Terrasse Lounge), Le Petit Chef(264만동~/전연령/18–20시/Le Petit Chef Theater). Concierge ext.0
+     - `10.4` 베트남 문화 탐험 (group:hyatt) — Discover/Create/Connect. 1일 2개 활동, 10:30–12 & 15:30–17. 그룹가: 2인 150만/3–4인 100만/5–10인 75만(인당, 2활동/1일). 요일별(월 Meditation/Pottery, 화 Non La/Blind Taste, 수 Massage/Mosaic, 목 Textured Art/Candle, 금 Clay/Hoi An Herbal Tea, 토 Sound Healing/Coconut Coffee, 일 Scalp Detox/Lantern). 24h 사전예약, Fitness ext.8570
+2. 새 탭: mode-bar(1458–1466)에 `<button class="mode-tab" data-mode="hyatt">하얏트</button>` 추가. `<section class="hyatt-section"><div id="hyattWrap"></div></section>` 추가(candidates-section 옆).
+3. CSS(676–700 영역): `.hyatt-section{display:none}` 기본 + `.main.mode-hyatt .hyatt-section{display:flex;flex-direction:column;overflow-y:auto}` + `.main.mode-hyatt .timeline-section,.candidates-section,.prep-section,.timetable-section{display:none}`. (hyatt-section은 기본 none이라 타 모드에선 자동 숨김)
+4. JS: `renderHyatt()` 신설 — cat=="10" 카드를 group(kids/hyatt)으로 묶어 헤더(🧒 키즈 프로그램 / ✨ 하얏트 프로그램) + 각 카드 `marked.parse(card.md,{breaks:true,gfm:true})` 본문 렌더. mode 전환 JS(3487)의 배열에 `'hyatt'` 추가, 분기에 `else if(mode==='hyatt'){renderHyatt(); mapInfo 갱신;}` 추가. 지도 collapse는 건드리지 않음(버그 이력 회피).
+5. 검증: 로컬 `python3 -m http.server 4178` + 헤드리스로 후보카드 cat10 노출 + 하얏트 탭 렌더 + JS 에러 0 확인.
+
+**헤드리스 렌더 도구(이 환경)**: playwright 1.60 npx 캐시. `node` 스크립트에서 `import pkg from '/Users/ijinhwan/.npm/_npx/31e32ef8478fbf80/node_modules/playwright/index.js'; const {chromium}=pkg;` + `chromium.launch({executablePath:'/Users/ijinhwan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell'})`.
+
+---
+
 ## 마지막 체크포인트 (2026-05-12)
 
 - **배포 상태**: main 브랜치 라이브 (`https://rusher2020.github.io/danang-trip/`)
