@@ -3352,9 +3352,33 @@ moved = myPlan.days[d].splice(idx,1)[0]; break; } }
   if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
 }
 
-// _encodeMyPlanToHash / _decodeMyPlanFromHash 는 Task 6에서 구현. 임시 no-op로 시작:
-function _encodeMyPlanToHash() {}
-function _decodeMyPlanFromHash() {}
+// ===== My Plan — URL hash backup (localStorage 소실 대비, prep의 p= 파라미터와 공존) =====
+// prep의 _syncPrepHash 는 '#p=rawvalue' 로 해시를 통째로 덮어씀.
+// URLSearchParams 를 쓰면 prep의 커스텀 포맷(콜론 포함)을 퍼센트 인코딩해 버려
+// _decodePrep 의 파싱이 깨진다. 그래서 정규식으로 p= 원본값을 그대로 보존하고,
+// mp= 만 추가/제거한다. base64는 & · # 를 포함하지 않아 [^&]* 로 안전하게 추출 가능.
+function _encodeMyPlanToHash() {
+  try {
+    const h = location.hash;
+    // prep의 p= 원본값을 그대로 읽어 보존
+    const mPrep = h.match(/[#&]p=([^&]*)/);
+    const prepRaw = mPrep ? mPrep[1] : null;
+    const parts = [];
+    if (prepRaw) parts.push('p=' + prepRaw);
+    if (myPlan) parts.push('mp=' + btoa(unescape(encodeURIComponent(JSON.stringify(myPlan)))));
+    const s = parts.join('&');
+    history.replaceState(history.state, '', s ? ('#' + s) : location.pathname + location.search);
+  } catch (e) {}
+}
+function _decodeMyPlanFromHash() {
+  try {
+    const m = location.hash.match(/[#&]mp=([^&]*)/);
+    if (m && m[1]) {
+      const obj = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
+      if (obj && obj.days) myPlan = obj;
+    }
+  } catch (e) {}
+}
 
 // ====== Plan Selector ======
 function renderPlanTabs() {
@@ -3864,6 +3888,12 @@ document.querySelectorAll('.mode-tab').forEach(el => {
 // 첫 페이지 로드 시 prep 데이터 미리 렌더 (모드 전환 시 즉시 보이게)
 _decodePrep(); // URL hash → localStorage 복원 (Safari ITP 대비)
 renderPrep();
+
+// 내 일정 복원: localStorage → 해시(공유 링크)가 우선
+loadMyPlan();
+_decodeMyPlanFromHash(); // 해시에 mp= 가 있으면 localStorage를 덮어씀
+if (myPlan) saveMyPlan(); // 해시 → localStorage 동기화
+renderPlanTabs(); // 내 일정 탭 레이블 갱신
 
 // Resize → re-fit map
 let resizeTimer;
