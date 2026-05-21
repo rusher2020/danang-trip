@@ -20,9 +20,12 @@
 - 구현 위치: 데이터 push 블록(`CAT_BY_ID` 정의 직전), mode-bar 버튼, `.hyatt-section` + CSS(`Hyatt Mode` 블록), `renderHyatt()` + mode 전환 분기.
 - 잔여(사소): 하얏트 카드의 "GitHub 원본" 링크는 `cat.file=""`이라 404 — PDF 출처라 무해, 추후 숨김 처리 가능.
 
-### ⏭️ 다음 단계: 후보카드 선택형 → 일정 반영
+### ⏭️ 다음 단계: 내 일정 빌더 (후보카드 → 일정 조립) — 설계·계획 완료, 구현만 남음
 
-사용자 요청 순서상 다음 작업. 카드에 ✅/추가 상태를 부여하고 선택을 일정(플랜)에 반영하는 구조 — 별도 설계 필요.
+- **스펙**: `docs/superpowers/specs/2026-05-21-myplan-builder-design.md`
+- **구현 계획**: `docs/superpowers/plans/2026-05-21-myplan-builder.md` (Task 1~8, 헤드리스 검증 포함)
+- 새 세션에서 `superpowers:subagent-driven-development`로 위 plan을 태스크별 실행하면 됨.
+- 핵심 결정: 일정 조립 / 프리셋 복사 후 편집 / 시간대 지정 / 6번째 플랜 '내 일정' / localStorage+URL해시.
 
 **(아래는 위 완료 작업의 원 설계 메모, 참고용)**
 
