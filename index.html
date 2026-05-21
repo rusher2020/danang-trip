@@ -3895,7 +3895,7 @@ function renderCandidates() {
     const stars = '★'.repeat(card.rating);
     const fallback = `<span class="cand-img-fallback" style="background:${cat.color}33;">${cat.icon}</span>`;
     const photo = card.image
-      ? `<img class="cand-img-photo" src="${card.image}" alt="${(card.name||'').replace(/"/g,'&quot;')}" loading="lazy">`
+      ? `<img class="cand-img-photo" src="${card.image}" alt="${(card.name||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" loading="lazy">`
       : '';
     html += `<div class="cand-card" data-cid="${card.id}" style="--cat-color:${cat.color};">
       <div class="cand-img">
