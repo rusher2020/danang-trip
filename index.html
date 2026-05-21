@@ -3293,6 +3293,24 @@ function myPlanToItinerary() {
   });
 }
 
+function addCardToMyPlan(cardId, day, time) {
+  if (!myPlan) { const k = prompt('내 일정이 없습니다. 어느 프리셋을 복사할까요? (A~E)', 'A'); if (!k || !ITINERARIES[k.toUpperCase()]) return false; createMyPlanFrom(k.toUpperCase()); }
+  if (!myPlan.days[day]) myPlan.days[day] = [];
+  myPlan.days[day].push({ uid: _uid(), source: 'card', time: time || '', cardId });
+  _sortDay(myPlan.days[day]);
+  saveMyPlan();
+  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  return true;
+}
+
+function openAddToPlanPicker(card) {
+  const day = prompt('어느 날짜에 담을까요?\n' + TRIP_DAYS.join(' / '), '7/26');
+  if (!day || !TRIP_DAYS.includes(day)) { if (day) alert('날짜 형식: ' + TRIP_DAYS.join(' / ')); return; }
+  const time = prompt('시각 (예: 14:00) — 비워도 됩니다', '');
+  if (time === null) return;
+  if (addCardToMyPlan(card.id, day, time)) alert(`'${card.name}' → ${day} ${time||'(시간미정)'} 담음`);
+}
+
 // _encodeMyPlanToHash / _decodeMyPlanFromHash 는 Task 6에서 구현. 임시 no-op로 시작:
 function _encodeMyPlanToHash() {}
 function _decodeMyPlanFromHash() {}
@@ -3530,6 +3548,7 @@ function showCardDetail(card) {
       ${card.summary ? `<p class="detail-summary">${card.summary}</p>` : ''}
       <div class="detail-actions">
         <button class="detail-action-btn primary" id="detailMapBtn">🗺️ 지도에서 보기</button>
+        <button class="detail-action-btn" id="detailAddPlanBtn">📅 내 일정에 담기</button>
         <a class="detail-action-btn" href="${githubUrl}" target="_blank" rel="noopener">📄 GitHub 원본</a>
       </div>
       ${mdHtml ? `<div class="detail-md">${mdHtml}</div>` : `
@@ -3569,6 +3588,10 @@ function showCardDetail(card) {
       }
     }
   });
+
+  // 내 일정에 담기 버튼
+  const addBtn = document.getElementById('detailAddPlanBtn');
+  if (addBtn) addBtn.addEventListener('click', () => openAddToPlanPicker(card));
 
   // 상세 진입 시 스크롤 맨 위로
   document.getElementById('detailView').scrollTop = 0;
