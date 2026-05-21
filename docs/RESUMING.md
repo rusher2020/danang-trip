@@ -28,11 +28,16 @@
 - **핵심 함수**(index.html, `renderPlanTabs` 정의 직전 "내 일정" 모듈): `myPlan` 상태 / `createMyPlanFrom` / `myPlanToItinerary` / `addCardToMyPlan` / `openAddToPlanPicker` / `removeMyPlanItem`·`setMyPlanItemTime`·`moveMyPlanItem` / `resetMyPlan` / `_encodeMyPlanToHash`·`_decodeMyPlanFromHash`. `cardById`, `TRIP_DAYS`.
 - **재렌더 관용구**(전 CRUD 일관): `ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll();` (applyDayColors 누락 시 colorHex/tint undefined로 색 깨짐 — 반드시 함께).
 - **검증**: 헤드리스 playwright(데스크톱+모바일) — 생성/담기/정렬/편집/삭제/초기화/새로고침·공유링크 복원/카드 좌표 핀/프리셋 불변, JS 에러 0. 카드 태그 라벨(`담기`)·공유링크 자동활성화·날짜검증 피드백 포함.
-### ⏭️ 다음 작업: 내 일정 UX 후속 + 사진 정리 (4건, 새 세션)
+### ✅ 완료: 내 일정 UX 후속 + 사진 정리 (4건) (2026-05-21)
 
-- **설계 문서**: `docs/superpowers/specs/2026-05-21-myplan-ux-followups-design.md` (4건 근본원인·접근·코드위치·검증 포함)
-- ① [버그] 담기 후 일정/시간표 즉시 반영 안 됨 → 담기 시 `activePlan='my'` 전환(현재 로드 시점에만 전환). ② 시간표 탭 날짜 선택 추가. ③ 후보 목록 카드 우상단 "＋담기"(바텀시트, 상세 안 들어가고). ④ 중복/일반 사진 33장(6카테고리) → 실제 사진 소싱(못 찾으면 아이콘 폴백).
-- 권장: `superpowers:subagent-driven-development`. 순서 1→2→3→4(4는 분량 큼).
+- **설계 문서**: `docs/superpowers/specs/2026-05-21-myplan-ux-followups-design.md`
+- **구현 방식**: `superpowers:subagent-driven-development` — 항목별 implementer + 스펙리뷰 + 코드품질리뷰 2단계, 마지막 전체 통합 리뷰. 브랜치 `feature/myplan-ux-followups`(8커밋). 검증 전부 헤드리스(데스크톱+모바일), **JS 에러 0 · native 팝업 0**.
+- **① [버그] 담기 후 즉시 반영**(`da0e159`): `openAddToPlanPicker`/`bindPicker` 담기 경로에서 `addCardToMyPlan` 직전 `activePlan='my'` + 성공 시 `renderPlanTabs()`. 프리셋 보던 중 담아도 새로고침 없이 일정/시간표 반영.
+- **② 시간표 날짜 선택 바**(`7a00ebd`): `renderTimetable()`가 html 앞에 `.tt-day-bar`(전체+날짜 칩) prepend, 칩 클릭→`activeTab` 설정 후 `renderAll()`. CSS는 `.tt-day-bar`/`.tt-day-chip`.
+- **③ 목록 ＋담기 바텀시트 + 피커 DRY**(`d2a0609`,`b1ed2bc`): 그리드 카드 우상단 `.cand-add`(＋담기) → 화면 내 바텀시트 `openQuickAddSheet`(백드롭·✕·Esc 닫기, `aria-labelledby`). 피커 UI를 `buildPickerMarkup(card)` + `bindPicker(rootEl,card,{onCommit,onCancel})`로 분리해 상세 인라인 시트와 바텀시트가 공유. 두 피커 공존 대비 id 대신 `data-role` 스코프.
+- **④ 사진 정리**(`046b70d`,`c6f8ae7`,`0df402d`,`0a1bb73`): 4a — 그리드 이미지를 `<img class="cand-img-photo">` + 항상 존재하는 `.cand-img-fallback`(카테고리 아이콘) 위에 올리고, JS `error`→`img.remove()`로 누락/깨짐 시 아이콘 폴백. 4b — 중복 12이미지 33장 정리: **실제 랜드마크 8장**만 라이선스 검증 후 `assets/img/<id>.jpg`(≤800px, 총~1MB)로 로컬 커밋(용다리·한시장·호이안 야경×2·사랑의 부두/잉어상×2·한강 산책로·한강 야경), **특정 업소 25장**은 범용 재사용 대신 `image` 제거→아이콘 폴백(잔여 detail md의 "(참고)" 타업소·타도시 사진도 제거). 출처·저작자·라이선스(CC0/CC BY 4.0/CC BY-SA 4.0)는 `assets/img/CREDITS.md`. 카드 간 공유 이미지 0.
+- **잔여(범위 밖, 기존부터)**: 일부 카드가 외부 `raw.githubusercontent.com/first6/...` 이미지 사용 중(현재 200, onerror 폴백 보장). plan 탭 첫 'my' 생성·일정 비우기·준비물 리셋의 `prompt`/`confirm`은 이번 범위 밖.
+- **상태**: main 머지·배포 완료(이 커밋 묶음).
 
 ---
 
