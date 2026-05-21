@@ -719,6 +719,20 @@
   .hyatt-group-title:first-of-type { margin-top: 0; }
   .hyatt-card { border: 1px solid var(--line-soft, #ece9e2); border-radius: 10px; padding: 4px 16px 10px; margin-bottom: 12px; background: var(--surface, #fff); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 
+  /* ===== 내 일정 담기 인라인 시트 ===== */
+  .addplan-sheet { border: 1px solid #2d2a55; border-radius: 10px; padding: 12px 14px; margin: 10px 0 4px; background: #2d2a5508; }
+  .addplan-sheet[hidden] { display: none; }
+  .addplan-row { margin-bottom: 10px; }
+  .addplan-label { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft, #6b6760); margin-bottom: 6px; }
+  .addplan-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .addplan-chip { font-size: 13px; padding: 6px 11px; border: 1px solid var(--line, #ddd); border-radius: 8px; background: #fff; cursor: pointer; }
+  .addplan-chip.sel { background: #2d2a55; color: #fff; border-color: #2d2a55; }
+  .addplan-time { font-size: 14px; padding: 6px 10px; border: 1px solid var(--line, #ddd); border-radius: 8px; background: #fff; }
+  .addplan-actions { display: flex; gap: 8px; margin-top: 4px; }
+  .addplan-actions button { font-size: 13px; padding: 7px 16px; border-radius: 8px; border: 1px solid var(--line, #ddd); background: #fff; cursor: pointer; }
+  .addplan-save { background: #2d2a55 !important; color: #fff; border-color: #2d2a55 !important; font-weight: 600; }
+  .addplan-msg { font-size: 12.5px; margin-top: 8px; }
+
   /* ============ Timetable Mode ============ */
   .tt-wrap {
     flex: 1; min-height: 0;
@@ -3351,7 +3365,7 @@ function myPlanToItinerary() {
 }
 
 function addCardToMyPlan(cardId, day, time) {
-  if (!myPlan) { const k = prompt('내 일정이 없습니다. 어느 프리셋을 복사할까요? (A~E)', 'A'); if (!k || !ITINERARIES[k.toUpperCase()]) return false; createMyPlanFrom(k.toUpperCase()); }
+  if (!myPlan || !TRIP_DAYS.includes(day)) return false; // 시트에서 myPlan 생성·날짜 검증 보장
   if (!myPlan.days[day]) myPlan.days[day] = [];
   myPlan.days[day].push({ uid: _uid(), source: 'card', time: time || '', cardId });
   _sortDay(myPlan.days[day]);
@@ -3360,12 +3374,82 @@ function addCardToMyPlan(cardId, day, time) {
   return true;
 }
 
+function closeAddPlanSheet() {
+  const sheet = document.getElementById('addPlanSheet');
+  if (sheet) { sheet.hidden = true; sheet.innerHTML = ''; sheet.dataset.cardId = ''; }
+}
+
+// 화면 안 인라인 시트로 "내 일정에 담기" (prompt/팝업 없음)
 function openAddToPlanPicker(card) {
-  const day = prompt('어느 날짜에 담을까요?\n' + TRIP_DAYS.join(' / '), '7/26');
-  if (!day || !TRIP_DAYS.includes(day)) { if (day) alert('날짜 형식: ' + TRIP_DAYS.join(' / ')); return; }
-  const time = prompt('시각 (예: 14:00) — 비워도 됩니다', '');
-  if (time === null) return;
-  if (addCardToMyPlan(card.id, day, time)) alert(`'${card.name}' → ${day} ${time||'(시간미정)'} 담음`);
+  const sheet = document.getElementById('addPlanSheet');
+  if (!sheet) return;
+  if (!sheet.hidden && sheet.dataset.cardId === String(card.id)) { closeAddPlanSheet(); return; } // 토글
+  sheet.dataset.cardId = String(card.id);
+
+  const needPreset = !myPlan;
+  let selPreset = myPlan ? myPlan.basedOn : 'A';
+  let selDay = '';
+  let selTime = '';
+  const TIME_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+
+  const presetRow = needPreset ? `
+    <div class="addplan-row">
+      <span class="addplan-label">기준 플랜 선택 (복사해서 시작)</span>
+      <div class="addplan-chips" id="apPresets">
+        ${Object.entries(PLANS).map(([k, p]) => `<button type="button" class="addplan-chip ${k === selPreset ? 'sel' : ''}" data-preset="${k}">${p.icon || ''} ${p.name || k}</button>`).join('')}
+      </div>
+    </div>` : '';
+
+  sheet.innerHTML = `
+    ${presetRow}
+    <div class="addplan-row">
+      <span class="addplan-label">날짜</span>
+      <div class="addplan-chips" id="apDays">
+        ${TRIP_DAYS.map(d => `<button type="button" class="addplan-chip" data-day="${d}">${d}</button>`).join('')}
+      </div>
+    </div>
+    <div class="addplan-row">
+      <span class="addplan-label">시각</span>
+      <div class="addplan-chips addplan-times" id="apTimes">
+        <button type="button" class="addplan-chip sel" data-time="">미정</button>
+        ${TIME_SLOTS.map(t => `<button type="button" class="addplan-chip" data-time="${t}">${t}</button>`).join('')}
+      </div>
+    </div>
+    <div class="addplan-actions">
+      <button type="button" class="addplan-save" id="apSave">담기</button>
+      <button type="button" id="apCancel">취소</button>
+    </div>
+    <div class="addplan-msg" id="apMsg" hidden></div>
+  `;
+  sheet.hidden = false;
+
+  if (needPreset) {
+    sheet.querySelectorAll('#apPresets .addplan-chip').forEach(b => b.onclick = () => {
+      selPreset = b.dataset.preset;
+      sheet.querySelectorAll('#apPresets .addplan-chip').forEach(x => x.classList.toggle('sel', x === b));
+    });
+  }
+  sheet.querySelectorAll('#apDays .addplan-chip').forEach(b => b.onclick = () => {
+    selDay = b.dataset.day;
+    sheet.querySelectorAll('#apDays .addplan-chip').forEach(x => x.classList.toggle('sel', x === b));
+  });
+  sheet.querySelectorAll('#apTimes .addplan-chip').forEach(b => b.onclick = () => {
+    selTime = b.dataset.time;
+    sheet.querySelectorAll('#apTimes .addplan-chip').forEach(x => x.classList.toggle('sel', x === b));
+  });
+  sheet.querySelector('#apCancel').onclick = () => closeAddPlanSheet();
+  sheet.querySelector('#apSave').onclick = () => {
+    const msg = sheet.querySelector('#apMsg');
+    if (!selDay) { msg.hidden = false; msg.style.color = '#c0392b'; msg.textContent = '날짜를 먼저 선택해 주세요'; return; }
+    if (!myPlan) createMyPlanFrom(selPreset);
+    const time = selTime;
+    if (addCardToMyPlan(card.id, selDay, time)) {
+      msg.hidden = false; msg.style.color = '#2d7a4d';
+      msg.textContent = `✓ ${selDay} ${time || '(시간미정)'}에 담았어요`;
+      setTimeout(() => closeAddPlanSheet(), 1300);
+    }
+  };
+  document.getElementById('detailView').scrollTop = sheet.offsetTop - 8;
 }
 
 function removeMyPlanItem(uid) {
@@ -3670,6 +3754,7 @@ function showCardDetail(card) {
         <button class="detail-action-btn" id="detailAddPlanBtn">📅 내 일정에 담기</button>
         <a class="detail-action-btn" href="${githubUrl}" target="_blank" rel="noopener">📄 GitHub 원본</a>
       </div>
+      <div class="addplan-sheet" id="addPlanSheet" hidden></div>
       ${mdHtml ? `<div class="detail-md">${mdHtml}</div>` : `
         <div class="detail-info">
           <div class="detail-info-row"><span class="label">📂 카테고리</span><span class="value">${cat.icon} ${cat.name}</span></div>
