@@ -3609,7 +3609,7 @@ function openAddToPlanPicker(card) {
   el.id = 'quickAddBackdrop';
   el.hidden = true;
   el.innerHTML = `
-    <div class="quickadd-sheet" id="quickAddSheet" role="dialog" aria-modal="true">
+    <div class="quickadd-sheet" id="quickAddSheet" role="dialog" aria-modal="true" aria-labelledby="quickAddTitle">
       <div class="quickadd-head">
         <span class="quickadd-title" id="quickAddTitle"></span>
         <button class="quickadd-close" id="quickAddClose" aria-label="닫기">✕</button>
@@ -4085,7 +4085,10 @@ window.addEventListener('popstate', () => {
 
 // ESC 키로 뒤로가기
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && candidatesSection.classList.contains('show-detail')) {
+  if (e.key !== 'Escape') return;
+  const qa = document.getElementById('quickAddBackdrop');
+  if (qa && !qa.hidden) { closeQuickAddSheet(); return; } // 담기 바텀시트가 열려 있으면 우선 닫기
+  if (candidatesSection.classList.contains('show-detail')) {
     if (history.state?.cardDetail || history.state?.prepDetail) history.back();
     else hideCardDetail();
   }
