@@ -28,6 +28,14 @@
 - **핵심 함수**(index.html, `renderPlanTabs` 정의 직전 "내 일정" 모듈): `myPlan` 상태 / `createMyPlanFrom` / `myPlanToItinerary` / `addCardToMyPlan` / `openAddToPlanPicker` / `removeMyPlanItem`·`setMyPlanItemTime`·`moveMyPlanItem` / `resetMyPlan` / `_encodeMyPlanToHash`·`_decodeMyPlanFromHash`. `cardById`, `TRIP_DAYS`.
 - **재렌더 관용구**(전 CRUD 일관): `ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll();` (applyDayColors 누락 시 colorHex/tint undefined로 색 깨짐 — 반드시 함께).
 - **검증**: 헤드리스 playwright(데스크톱+모바일) — 생성/담기/정렬/편집/삭제/초기화/새로고침·공유링크 복원/카드 좌표 핀/프리셋 불변, JS 에러 0. 카드 태그 라벨(`담기`)·공유링크 자동활성화·날짜검증 피드백 포함.
+### ⏭️ 다음 작업: 내 일정 UX 후속 + 사진 정리 (4건, 새 세션)
+
+- **설계 문서**: `docs/superpowers/specs/2026-05-21-myplan-ux-followups-design.md` (4건 근본원인·접근·코드위치·검증 포함)
+- ① [버그] 담기 후 일정/시간표 즉시 반영 안 됨 → 담기 시 `activePlan='my'` 전환(현재 로드 시점에만 전환). ② 시간표 탭 날짜 선택 추가. ③ 후보 목록 카드 우상단 "＋담기"(바텀시트, 상세 안 들어가고). ④ 중복/일반 사진 33장(6카테고리) → 실제 사진 소싱(못 찾으면 아이콘 폴백).
+- 권장: `superpowers:subagent-driven-development`. 순서 1→2→3→4(4는 분량 큼).
+
+---
+
 - **UI 개선 완료(2026-05-21, `9305986` 배포)**: 담기·편집 흐름의 `prompt`/`alert`/`confirm`을 **화면 내 인라인 칩**으로 전환. "내 일정에 담기"는 상세뷰 안 인라인 시트(기준 프리셋 칩 + 날짜 칩 + 시각 칩[미정·08:00~21:00] + 담기/취소). 타임라인 편집(⏰시간/📅날짜/🗑️삭제)도 항목 자리 인라인 칩 에디터(`mpEditing` 상태 + `mpControlsHtml()`). 헤드리스 검증: native 팝업 0, JS 에러 0.
 
 **(아래는 위 완료 작업의 원 설계 메모, 참고용)**
