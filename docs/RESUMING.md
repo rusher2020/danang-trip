@@ -6,11 +6,9 @@
 
 ## 진행 중 체크포인트 (2026-05-21)
 
-- **브랜치**: `main` = origin/main (c65cd8a). 로컬을 V2로 재동기화 완료(이전 로컬은 옛 다파일 버전이라 reset).
-- **미커밋 변경 (working tree, 아직 commit 안 함)**:
-  - `index.html`: 모바일에서 개요 패널(LNB) **기본 열림** 추가 — `if (isMobile()) app.classList.add('lnb-open');` (lnbToggle 리스너 직후). 데스크톱은 grid상 이미 열림. 헤드리스 모바일 검증 완료(로드 시 `app lnb-open`, 바깥 탭 시 닫힘, JS 에러 0).
-  - `docs/RESUMING.md`: 이 체크포인트.
-- **자료**: `hyatt-materials/` 에 하얏트 공식 PDF 4종(untracked, gitignore 아님 — 커밋할지 결정 필요). `.env`는 사용자가 삭제(불필요).
+- **main**: 하얏트 프로그램 탭·후보카드 + 모바일 개요패널 기본 열림 커밋 완료(`665300d`), 그 위에 설계 스펙·plan 문서 커밋(`30b3b38`).
+- **feature/myplan-builder**: 내 일정 빌더 구현 완료(아래 ✅ 참조). 7개 구현 커밋 + 최종 리뷰 보강 커밋. **main 머지·배포 대기 중**(working tree clean).
+- **자료**: `hyatt-materials/` 에 하얏트 공식 PDF 4종(untracked, gitignore 아님 — 커밋할지 결정 필요).
 
 ### ✅ 완료: 하얏트 PDF → 후보카드 + 전용 상위 탭 (2026-05-21)
 
@@ -20,12 +18,17 @@
 - 구현 위치: 데이터 push 블록(`CAT_BY_ID` 정의 직전), mode-bar 버튼, `.hyatt-section` + CSS(`Hyatt Mode` 블록), `renderHyatt()` + mode 전환 분기.
 - 잔여(사소): 하얏트 카드의 "GitHub 원본" 링크는 `cat.file=""`이라 404 — PDF 출처라 무해, 추후 숨김 처리 가능.
 
-### ⏭️ 다음 단계: 내 일정 빌더 (후보카드 → 일정 조립) — 설계·계획 완료, 구현만 남음
+### ✅ 완료: 내 일정 빌더 (후보카드 → 일정 조립) (2026-05-21)
 
-- **스펙**: `docs/superpowers/specs/2026-05-21-myplan-builder-design.md`
-- **구현 계획**: `docs/superpowers/plans/2026-05-21-myplan-builder.md` (Task 1~8, 헤드리스 검증 포함)
-- 새 세션에서 `superpowers:subagent-driven-development`로 위 plan을 태스크별 실행하면 됨.
-- 핵심 결정: 일정 조립 / 프리셋 복사 후 편집 / 시간대 지정 / 6번째 플랜 '내 일정' / localStorage+URL해시.
+- **스펙/계획**: `docs/superpowers/specs/2026-05-21-myplan-builder-design.md` / `docs/superpowers/plans/2026-05-21-myplan-builder.md`
+- **구현 방식**: `superpowers:subagent-driven-development`로 Task 1~7 태스크별 실행(각 태스크 = implementer + 스펙리뷰 + 코드품질리뷰 2단계). 브랜치 `feature/myplan-builder`.
+- **기능**: 6번째 플랜 탭 **📝 내 일정** — 프리셋(A~E) 깊은 복사로 시작 → 후보카드 상세뷰의 "📅 내 일정에 담기"로 날짜+시각 지정해 추가(시간순 자동 정렬) → 타임라인 항목별 편집(시간변경/날짜이동/삭제, "내가 추가" 뱃지) → "내 일정 비우기"로 초기화.
+- **재사용**: `myPlanToItinerary()`가 myPlan을 기존 ITINERARY 배열 형태로 변환 → `renderTimeline`/`renderMap`/`renderAll` 그대로 사용. 프리셋 `ITINERARIES`(A~E)는 **불변**(깊은 복사).
+- **영속성**: localStorage 키 `danang-myplan` + URL 해시 `mp=`(준비물 `p=`와 공존, 양쪽 대칭 보존). 공유 링크(`mp=` 포함)로 열면 내 일정 뷰 자동 활성화.
+- **핵심 함수**(index.html, `renderPlanTabs` 정의 직전 "내 일정" 모듈): `myPlan` 상태 / `createMyPlanFrom` / `myPlanToItinerary` / `addCardToMyPlan` / `openAddToPlanPicker` / `removeMyPlanItem`·`setMyPlanItemTime`·`moveMyPlanItem` / `resetMyPlan` / `_encodeMyPlanToHash`·`_decodeMyPlanFromHash`. `cardById`, `TRIP_DAYS`.
+- **재렌더 관용구**(전 CRUD 일관): `ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll();` (applyDayColors 누락 시 colorHex/tint undefined로 색 깨짐 — 반드시 함께).
+- **검증**: 헤드리스 playwright(데스크톱+모바일) — 생성/담기/정렬/편집/삭제/초기화/새로고침·공유링크 복원/카드 좌표 핀/프리셋 불변, JS 에러 0. 카드 태그 라벨(`담기`)·공유링크 자동활성화·날짜검증 피드백 포함.
+- **잔여(사소)**: 날짜+시각 피커는 현재 `prompt` 기반(동작 우선) — 추후 인라인 시트로 개선 가능(스펙 §6 NOTE).
 
 **(아래는 위 완료 작업의 원 설계 메모, 참고용)**
 
