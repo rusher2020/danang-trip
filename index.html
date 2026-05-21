@@ -500,6 +500,8 @@
   .myplan-controls { display:flex; gap:6px; margin-top:4px; align-items:center; grid-column: 1 / -1; }
   .myplan-controls button { font-size:12px; padding:2px 6px; border:1px solid var(--line,#ddd); border-radius:6px; background:#fff; cursor:pointer; }
   .mp-badge { font-size:11px; color:#2d2a55; background:#2d2a5515; padding:1px 6px; border-radius:6px; }
+  .mp-reset { margin-top:8px; font-size:12px; padding:4px 10px; border:1px solid #e07050; border-radius:6px; background:#fff5f2; color:#c0392b; cursor:pointer; }
+  .mp-reset:hover { background:#fde8e2; }
   .ti-pin-num {
     display: inline-flex;
     align-items: center;
@@ -2563,7 +2565,13 @@ function _decodePrep() {
 }
 function _syncPrepHash() {
   const enc = _encodePrep();
-  history.replaceState(history.state, '', enc ? `#p=${enc}` : location.pathname + location.search);
+  // mp= 값 보존: 체크박스 토글이 내 일정 해시 파라미터를 지우지 않도록
+  const mMp = location.hash.match(/[#&]mp=([^&]*)/);
+  const mpRaw = mMp ? mMp[1] : null;
+  const parts = [];
+  if (enc) parts.push('p=' + enc);
+  if (mpRaw) parts.push('mp=' + mpRaw);
+  history.replaceState(history.state, '', parts.length ? ('#' + parts.join('&')) : (location.pathname + location.search));
 }
 
 // ===== Candidate Data (91 cards across 9 categories) =====
@@ -3036,12 +3044,19 @@ function renderMap() {
   const placeUsage = {};
 
   // 각 날짜별로 sequence 만들기 (연속 동일 장소 중복 제거). 핀 번호는 placeOrderMap 공유.
+  const cardPins = []; // card items with direct coords but no place
   const dayPaths = days.map(di => {
     const day = ITINERARY[di];
     const points = [];
     let lastPlace = null;
     day.items.forEach(it => {
-      if (!it.place) return;
+      // card item: has coords directly, no place key
+      if (!it.place) {
+        const coords = it.coords;
+        if (!coords || coords.length !== 2) return; // no coords → skip safely
+        cardPins.push({ day, item: it, coords });
+        return;
+      }
       const p = PLACES[it.place];
       if (!p || !p.coords || p.coords.length !== 2) return;
       if (it.place === lastPlace) {
@@ -3138,9 +3153,33 @@ function renderMap() {
     placeMarkers[pkey] = marker;
   });
 
+  // card pins: items with direct coords but no place key (내 일정에서 추가된 카드)
+  cardPins.forEach(({ day, item, coords }) => {
+    try {
+      const pinKey = '_card_' + (item._uid || (coords[0] + ',' + coords[1]));
+      const cardMarker = L.marker(coords, {
+        icon: makeIcon(day.colorHex, '★'),
+        zIndexOffset: 90
+      });
+      cardMarker.bindTooltip(item.title || '카드 장소', {
+        permanent: false,
+        direction: 'bottom',
+        offset: [0, -2],
+        className: 'marker-name-tip'
+      });
+      cardMarker.bindPopup(
+        `<div class="popup-title">${item.title || '카드 장소'}</div>` +
+        `<div style="margin-top:4px;font-size:13px;">${day.day} ${item.time || ''}</div>`
+      );
+      cardMarker.addTo(markerLayer);
+      placeMarkers[pinKey] = cardMarker;
+    } catch (e) { /* 좌표 오류 → 안전하게 무시 */ }
+  });
+
   // fit
   const allCoords = [];
   dayPaths.forEach(({ points }) => points.forEach(p => allCoords.push(p.coords)));
+  cardPins.forEach(({ coords }) => allCoords.push(coords));
   if (allCoords.length > 0) {
     map.fitBounds(allCoords, { padding: [60, 60], maxZoom: 13 });
   }
@@ -3148,7 +3187,7 @@ function renderMap() {
   // info
   const info = document.getElementById('mapInfo');
   if (activeTab === 'all') {
-    info.innerHTML = `<strong>전체 일정</strong>${Object.keys(placeUsage).length}개 장소 · 5박 6일 동선`;
+    info.innerHTML = `<strong>전체 일정</strong>${Object.keys(placeUsage).length + cardPins.length}개 장소 · 5박 6일 동선`;
   } else {
     const day = ITINERARY[parseInt(activeTab)];
     info.innerHTML = `<strong>${day.day} (${day.weekday})</strong>${day.title}`;
@@ -3414,7 +3453,21 @@ function renderPlanTabs() {
   featEl.innerHTML = `
     <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
     <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+    ${activePlan === 'my' ? `<button id="myPlanResetBtn" class="mp-reset">내 일정 비우기</button>` : ''}
   `;
+
+  // 내 일정 비우기 버튼 이벤트
+  const rb = document.getElementById('myPlanResetBtn');
+  if (rb) rb.onclick = () => {
+    if (confirm('내 일정을 비울까요? (되돌릴 수 없음)')) {
+      resetMyPlan();
+      activePlan = 'A';
+      ITINERARY = ITINERARIES['A'];
+      activeTab = 'all';
+      renderPlanTabs();
+      renderAll();
+    }
+  };
 
   tabsEl.querySelectorAll('.plan-tab').forEach(el => {
     el.addEventListener('click', () => {
