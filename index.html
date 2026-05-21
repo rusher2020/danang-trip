@@ -815,6 +815,38 @@
   @supports not (color: color-mix(in srgb, red 10%, white)) {
     .tt-event { background: #eef4f8; }
   }
+  .tt-day-bar {
+    display: flex; gap: 4px;
+    padding: 8px 10px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+  }
+  .tt-day-bar::-webkit-scrollbar { height: 0; }
+  .tt-day-chip {
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    white-space: nowrap;
+    color: var(--ink-mute);
+    display: flex; align-items: center; gap: 5px;
+    flex-shrink: 0;
+  }
+  .tt-day-chip:hover { background: #f7f5f0; }
+  .tt-day-chip .tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .tt-day-chip.active {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .tt-day-chip.active .tab-dot { box-shadow: 0 0 0 2px rgba(255,255,255,0.25); }
 
   /* ============ Prep Mode (준비물·사전준비) ============ */
   .prep-wrap {
@@ -3264,7 +3296,18 @@ function renderTimetable() {
   const lastEvent  = slots.length - 1 - [...slots].reverse().findIndex(s => days.some(di => eventMap[di][s]?.length));
   const visibleSlots = slots.slice(Math.max(0, firstEvent - 1), lastEvent + 2);
 
-  let html = '<table class="tt-table"><colgroup><col class="tt-col-time">';
+  // 날짜 선택 바
+  let dayBar = '<div class="tt-day-bar">';
+  dayBar += `<button class="tt-day-chip ${activeTab==='all'?'active':''}" data-tab="all">전체</button>`;
+  ITINERARY.forEach((day, di) => {
+    const isActive = activeTab === String(di);
+    dayBar += `<button class="tt-day-chip ${isActive?'active':''}" data-tab="${di}">
+      <span class="tab-dot" style="background:${day.colorHex}"></span>${day.day} ${day.weekday}
+    </button>`;
+  });
+  dayBar += '</div>';
+
+  let html = dayBar + '<table class="tt-table"><colgroup><col class="tt-col-time">';
   days.forEach(() => { html += '<col class="tt-col-day">'; });
   html += '</colgroup>';
 
@@ -3303,6 +3346,11 @@ function renderTimetable() {
 
   html += '</tbody></table>';
   wrap.innerHTML = html;
+
+  // 날짜 선택 바 클릭
+  wrap.querySelectorAll('.tt-day-chip').forEach(el => {
+    el.addEventListener('click', () => { activeTab = el.dataset.tab; renderAll(); });
+  });
 
   // 클릭 → 지도 이동
   wrap.querySelectorAll('.tt-event[data-place]').forEach(el => {
