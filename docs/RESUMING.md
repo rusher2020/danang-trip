@@ -4,6 +4,15 @@
 
 ---
 
+## ✅ 마지막날(7/28) 숙소 확정: Happy Day → Vanda (2026-05-22)
+
+- **결정**: 첫날 New Orient / 메인 Hyatt(3박) / **마지막날 Vanda Hotel 1박** 확정(실제 예약 완료). 7/29 00:25 출국이라 데이유즈가 아닌 1박 통째로 — 밤까지 방 확보가 핵심.
+- **반영(index.html)**: `PLACES` happy-day→`vanda`[16.0607,108.2225] · 7/28 일정(전 5플랜) · 후보카드 **8.14 반다 호텔**(cat8 숙소·스파, 아이콘 폴백) · TRAVEL_TIMES 7건+TRAVEL_DETAIL 5건 · ROUTES_CACHE OSRM 실경로 `han-market|vanda`·`hyatt|vanda` · 준비물/LNB/플랜요약/base핀(라벨 D→V) · 카드 3.17·5.33·7.23 동선메모(fromHappyDay→fromVanda). README 갱신. 잔여 happy-day 0.
+- **검증**: 괄호밸런스·CANDIDATE_DATA JSON·헤드리스(데스크톱+모바일) JS에러 0, 카드 107→108.
+- **다음(미착수)**: 후보카드 추리기(동선·과밀 정리) — 기준 합의 후 "제거 후보 리스트 → 승인 → archive 이동" 방식.
+
+---
+
 ## 진행 중 체크포인트 (2026-05-21)
 
 - **main**: 하얏트 프로그램 탭·후보카드 + 모바일 개요패널 기본 열림 커밋 완료(`665300d`), 그 위에 설계 스펙·plan 문서 커밋(`30b3b38`).
