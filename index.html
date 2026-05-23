@@ -2863,6 +2863,44 @@ function getTravelTime(from, to) {
   return TRAVEL_TIMES[`${f}-${t}`] || TRAVEL_TIMES[`${t}-${f}`] || null;
 }
 
+// ===== 커스텀 항목 경로/시간 캐시 (계획 시점 1회 계산 → 현지 오프라인 재생) =====
+// 프리셋의 하드코딩 ROUTES_CACHE/TRAVEL_TIMES(place 키)와 달리, 커스텀은 좌표쌍 키로 localStorage에 저장.
+const CUSTOM_ROUTES_KEY = 'danang-custom-routes';
+function _rk(a, b) { return [a.join(','), b.join(',')].sort().join('|'); } // 방향 무관 좌표쌍 키
+function loadCustomRoutes() { try { return JSON.parse(localStorage.getItem(CUSTOM_ROUTES_KEY)) || {}; } catch (e) { return {}; } }
+function saveCustomRoutes(o) { try { localStorage.setItem(CUSTOM_ROUTES_KEY, JSON.stringify(o)); } catch (e) {} }
+function getCustomRoute(a, b) { // 동기 조회(현지 오프라인 재생). {poly:[[lat,lon]..], min:Number} | null
+  if (!a || !b || a.length !== 2 || b.length !== 2) return null;
+  return loadCustomRoutes()[_rk(a, b)] || null;
+}
+async function ensureCustomRoute(a, b) { // 추가/편집 시 1회 OSRM 호출 → 캐시 저장(온라인일 때만, 실패시 무시)
+  if (!a || !b || a.length !== 2 || b.length !== 2) return null;
+  const cache = loadCustomRoutes(), k = _rk(a, b);
+  if (cache[k]) return cache[k];
+  try {
+    const r = await fetch(`https://router.project-osrm.org/route/v1/driving/${a[1]},${a[0]};${b[1]},${b[0]}?overview=full&geometries=geojson`);
+    const j = await r.json();
+    const rt = j.routes && j.routes[0];
+    if (!rt) return null;
+    cache[k] = { poly: rt.geometry.coordinates.map(c => [+c[1].toFixed(5), +c[0].toFixed(5)]), min: Math.round(rt.duration / 60) };
+    saveCustomRoutes(cache);
+    return cache[k];
+  } catch (e) { return null; }
+}
+// 직선거리(haversine) 기반 대략 이동시간(분) — 캐시 미스(오프라인) 폴백용. 시내 평균 ~25km/h 가정.
+function _haversineKm(a, b) {
+  const R = 6371, toR = d => d * Math.PI / 180;
+  const dLat = toR(b[0] - a[0]), dLon = toR(b[1] - a[1]);
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(toR(a[0])) * Math.cos(toR(b[0])) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+}
+function _straightLineMin(a, b) {
+  if (!a || !b || a.length !== 2 || b.length !== 2) return null;
+  const km = _haversineKm(a, b);
+  if (km < 0.05) return null;
+  return Math.max(1, Math.round(km / 25 * 60));
+}
+
 // 보조 정보 — 이동수단·예상 금액 (timeline 사이 connector용, v2 IDs)
 const TRAVEL_COST = {
   "DAD-new-orient": { mode: "그랩 SUV / 픽업밴", cost: "15~25만동 (약 1만원)" },
@@ -3160,30 +3198,34 @@ function renderMap() {
   const placeUsage = {};
 
   // 각 날짜별로 sequence 만들기 (연속 동일 장소 중복 제거). 핀 번호는 placeOrderMap 공유.
-  const cardPins = []; // card items with direct coords but no place
+  const cardPins = []; // card/custom items with direct coords but no place
   const dayPaths = days.map(di => {
     const day = ITINERARY[di];
-    const points = [];
-    let lastPlace = null;
+    const points = []; // 통합 stop 시퀀스 {place|null, coords} — 경로선/이동시간용
+    let lastKey = null;
     day.items.forEach(it => {
-      // card item: has coords directly, no place key
+      // 좌표 직접 보유(card/custom): place 없음 → ★핀 + 경로 시퀀스 포함
       if (!it.place) {
         const coords = it.coords;
-        if (!coords || coords.length !== 2) return; // no coords → skip safely
+        if (!coords || coords.length !== 2) return; // no coords → 타임라인/시간표만, 지도 skip
         cardPins.push({ day, item: it, coords });
+        const k = coords[0] + ',' + coords[1];
+        if (k === lastKey) return;
+        lastKey = k;
+        points.push({ place: null, coords });
         return;
       }
       const p = PLACES[it.place];
       if (!p || !p.coords || p.coords.length !== 2) return;
-      if (it.place === lastPlace) {
+      if (it.place === lastKey) {
         if (placeUsage[it.place]) placeUsage[it.place].items.push({ day, item: it });
         return;
       }
-      lastPlace = it.place;
       if (!placeUsage[it.place]) {
         placeUsage[it.place] = { firstDay: day, items: [], order: placeOrderMap[it.place] };
       }
       placeUsage[it.place].items.push({ day, item: it });
+      lastKey = it.place;
       points.push({ place: it.place, coords: p.coords });
     });
     return { day, points };
@@ -3200,26 +3242,40 @@ function renderMap() {
     }
     return null;
   }
+  // stop 쌍의 도로경로: 1) place쌍→프리셋 ROUTES_CACHE  2) 좌표쌍→커스텀 캐시  3) null(직선 폴백)
+  function _segRoute(A, B) {
+    if (A.place && B.place) { const r = _routeCoords(A.place, B.place); if (r) return r; }
+    const cr = getCustomRoute(A.coords, B.coords);
+    return (cr && cr.poly && cr.poly.length > 1) ? cr.poly : null;
+  }
+  // stop 쌍의 이동시간: 프리셋 place쌍은 기존대로(없으면 무표시), 좌표 항목이 끼면 커스텀 캐시→직선거리 추정
+  function _segTime(A, B) {
+    if (A.place && B.place) { const t = getTravelTime(A.place, B.place); if (t) return t; if (!getCustomRoute(A.coords, B.coords)) return null; }
+    const cr = getCustomRoute(A.coords, B.coords);
+    if (cr && cr.min) return '🚐 ' + cr.min + '분';
+    if (!A.place || !B.place) { const m = _straightLineMin(A.coords, B.coords); if (m) return '🚐 ~' + m + '분'; }
+    return null;
+  }
   dayPaths.forEach(({ day, points }) => {
     if (points.length < 2) return;
     for (let i = 0; i < points.length - 1; i++) {
-      const cached = _routeCoords(points[i].place, points[i+1].place);
-      const seg = cached || [points[i].coords, points[i+1].coords];
+      const route = _segRoute(points[i], points[i+1]);
+      const seg = route || [points[i].coords, points[i+1].coords];
       L.polyline(seg, {
         color: day.colorHex,
         weight: 3,
         opacity: 0.7,
-        dashArray: cached ? null : '6, 6',
+        dashArray: route ? null : '6, 6',
         lineCap: 'round'
       }).addTo(pathLayer);
     }
 
     for (let i = 0; i < points.length - 1; i++) {
-      const time = getTravelTime(points[i].place, points[i+1].place);
+      const time = _segTime(points[i], points[i+1]);
       if (!time) continue;
-      const cached = _routeCoords(points[i].place, points[i+1].place);
-      const mid = cached
-        ? cached[Math.floor(cached.length / 2)]
+      const route = _segRoute(points[i], points[i+1]);
+      const mid = route
+        ? route[Math.floor(route.length / 2)]
         : [
             (points[i].coords[0] + points[i+1].coords[0]) / 2,
             (points[i].coords[1] + points[i+1].coords[1]) / 2
