@@ -3476,6 +3476,13 @@ function myPlanToItinerary() {
         return { time: it.time || '', icon: '📌', title: c.name || it.cardId, tag: 'card',
                  desc: it.note || c.summary || '', coords: c.coords, _uid: it.uid, _source: 'card', _cardId: it.cardId };
       }
+      if (it.source === 'custom') {
+        // 커스텀: 좌표만(place 없음) → 지도에서 card pin 경로로 ★핀 렌더. 비용/이동수단은 _meta로 전달.
+        return { time: it.time || '', icon: it.icon || '📍', title: it.title || '내 일정',
+                 tag: it.tag || 'activity', desc: it.memo || '',
+                 coords: (it.coords && it.coords.length === 2) ? it.coords : undefined,
+                 _uid: it.uid, _source: 'custom', _custom: true, _mode: it.mode || '', _cost: it.cost || '' };
+      }
       return { time: it.time || '', icon: it.icon, title: it.title, tag: it.tag, desc: it.desc,
                place: it.place, _uid: it.uid, _source: 'preset' };
     });
@@ -3487,6 +3494,20 @@ function addCardToMyPlan(cardId, day, time) {
   if (!myPlan || !TRIP_DAYS.includes(day)) return false; // 시트에서 myPlan 생성·날짜 검증 보장
   if (!myPlan.days[day]) myPlan.days[day] = [];
   myPlan.days[day].push({ uid: _uid(), source: 'card', time: time || '', cardId });
+  _sortDay(myPlan.days[day]);
+  saveMyPlan();
+  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  return true;
+}
+
+// 커스텀 항목 추가: 후보카드 없이 제목·날짜·시각(+선택 위치/비용/메모)으로 직접 등록.
+// 데이터모델은 addCardToMyPlan 과 동일(days[day] 배열 + uid + _sortDay + saveMyPlan).
+function addCustomToMyPlan({ day, time = '', title, coords = null, icon = '📍', cat = null, tag = 'activity', mode = '', cost = '', memo = '' }) {
+  if (!myPlan || !title || !TRIP_DAYS.includes(day)) return false;
+  if (!myPlan.days[day]) myPlan.days[day] = [];
+  myPlan.days[day].push({ uid: _uid(), source: 'custom', time: time || '', title,
+    coords: (coords && coords.length === 2) ? coords : null,
+    icon: icon || '📍', cat, tag: tag || 'activity', mode, cost, memo });
   _sortDay(myPlan.days[day]);
   saveMyPlan();
   if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
