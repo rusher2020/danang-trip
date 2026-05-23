@@ -18,6 +18,12 @@
 | 6.2 | 사랑의 부두 (Love Pier / 용잉어상 Cá chép hóa rồng) | 6.2.jpg | Christophe95 | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0) | https://commons.wikimedia.org/wiki/File:Dragon_Carp_Da_Nang_2.jpg |
 | 1.8 | 한 강 산책로 (Han River walkway, 야경) | 1.8.jpg | Daderot | CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) | https://commons.wikimedia.org/wiki/File:Han_River_walkway_at_night_-_Da_Nang,_Vietnam_-_DSC02112.JPG |
 | 6.11 | 한강 선셋·야경 크루즈 (Han River at night) | 6.11.jpg | Daderot | CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) | https://commons.wikimedia.org/wiki/File:Han_River_at_night_-_Da_Nang,_Vietnam_-_DSC02111.JPG |
+| 1.1 | 미케 비치 (My Khe Beach) | 1.1.jpg | Ray in Manila | CC BY 2.0 (https://creativecommons.org/licenses/by/2.0) | https://commons.wikimedia.org/wiki/File:My_Khe_Beach,_Da_Nang,_Vietnam.jpg |
+| 1.3 | 남오 비치 / 다낭 바구니배 (Coracles in Da Nang) | 1.3.jpg | Christophe95 | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0) | https://commons.wikimedia.org/wiki/File:Coracles_in_Da_Nang_1.jpg |
+| 1.4 | 손짜 반도 (Son Tra Peninsula, 항공뷰) | 1.4.jpg | Phó Nháy | Public domain | https://commons.wikimedia.org/wiki/File:Ban_dao_Son_Tra.jpg |
+| 1.7 | Lap An 라군 (Lap An lagoon) | 1.7.jpg | Tran Anh Khoa (zorrotran) | CC BY-SA 2.0 (https://creativecommons.org/licenses/by-sa/2.0) | https://commons.wikimedia.org/wiki/File:Lap_An_lagoon_(42920751850).jpg |
+
+> 비고: 1.1·1.3·1.4·1.7은 옛 레퍼런스 레포(first6/family-trip-2605)의 외부 이미지를 참조하던 것을, 동일 원본의 Wikimedia Commons 자유 라이선스본을 받아 로컬화(≤800px)했습니다. 런타임 외부 의존(first6) 제거.
 
 ---
 
