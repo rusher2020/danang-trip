@@ -754,6 +754,11 @@
   .custom-row > .addplan-label { font-size: 12.5px; font-weight: 600; color: #444; }
   .custom-input, .custom-textarea { font-size: 14px; padding: 8px 10px; border: 1px solid var(--line, #ddd); border-radius: 8px; width: 100%; box-sizing: border-box; }
   .custom-textarea { resize: vertical; min-height: 48px; }
+  .custom-exact-time { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .custom-exact-label { font-size: 12px; color: #666; }
+  .custom-time-input { font-size: 14px; padding: 6px 8px; border: 1px solid var(--line, #ddd); border-radius: 8px; }
+  .custom-exact-hint { font-size: 11px; color: #999; }
+  .custom-select { font-size: 14px; padding: 8px 10px; border: 1px solid var(--line, #ddd); border-radius: 8px; width: 100%; box-sizing: border-box; background: #fff; }
   .custom-icon-chip { font-size: 18px; line-height: 1; padding: 6px 9px; border: 1px solid var(--line, #ddd); border-radius: 8px; background: #fff; cursor: pointer; }
   .custom-icon-chip.sel { background: #2d2a55; border-color: #2d2a55; box-shadow: 0 0 0 2px rgba(45,42,85,0.15); }
   /* 내가 추가 ＋버튼 */
@@ -3161,6 +3166,7 @@ function renderTimeline() {
     wrap.querySelectorAll('.mp-editor').forEach(ed => {
       const uid = ed.dataset.uid;
       ed.querySelectorAll('.mp-set-time').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, b.dataset.time); });
+      const exactT = ed.querySelector('.mp-set-time-exact'); if (exactT) { exactT.onclick = (ev) => ev.stopPropagation(); exactT.onchange = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, exactT.value); }; }
       ed.querySelectorAll('.mp-set-day').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; moveMyPlanItem(uid, b.dataset.day); });
       const cdel = ed.querySelector('.mp-confirm-del'); if (cdel) cdel.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; removeMyPlanItem(uid); };
       const cancel = ed.querySelector('.mp-cancel'); if (cancel) cancel.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; renderTimeline(); };
@@ -3704,6 +3710,7 @@ function mpControlsHtml(it) {
         <button class="addplan-chip mp-set-time ${!it.time ? 'sel' : ''}" data-time="">미정</button>
         ${MP_TIME_SLOTS.map(t => `<button class="addplan-chip mp-set-time ${it.time === t ? 'sel' : ''}" data-time="${t}">${t}</button>`).join('')}
       </div>
+      <div class="custom-exact-time"><span class="custom-exact-label">정확히</span><input type="time" class="custom-time-input mp-set-time-exact" value="${/^\d{1,2}:\d{2}$/.test(it.time || '') ? it.time : ''}" /><span class="custom-exact-hint">← 분까지</span></div>
       <div class="addplan-actions"><button class="mp-cancel">취소</button></div>
     </div>`;
   }
@@ -3852,7 +3859,8 @@ function _customFormMarkup() {
       <div class="custom-row"><span class="addplan-label">날짜 *</span>
         <div class="addplan-chips" data-role="cdays">${TRIP_DAYS.map(d => `<button type="button" class="addplan-chip" data-day="${d}">${d}</button>`).join('')}</div></div>
       <div class="custom-row"><span class="addplan-label">시각</span>
-        <div class="addplan-chips" data-role="ctimes"><button type="button" class="addplan-chip sel" data-time="">미정</button>${MP_TIME_SLOTS.map(t => `<button type="button" class="addplan-chip" data-time="${t}">${t}</button>`).join('')}</div></div>
+        <div class="addplan-chips" data-role="ctimes"><button type="button" class="addplan-chip sel" data-time="">미정</button>${MP_TIME_SLOTS.map(t => `<button type="button" class="addplan-chip" data-time="${t}">${t}</button>`).join('')}</div>
+        <div class="custom-exact-time"><span class="custom-exact-label">정확히</span><input type="time" class="custom-time-input" data-role="ctimeexact" /><span class="custom-exact-hint">← 분까지</span></div></div>
       <div class="custom-row"><span class="addplan-label">아이콘</span>
         <div class="addplan-chips" data-role="cicons">${CUSTOM_ICONS.map((ic, i) => `<button type="button" class="custom-icon-chip ${i === 0 ? 'sel' : ''}" data-icon="${ic}">${ic}</button>`).join('')}</div></div>
       <div class="custom-row"><span class="addplan-label">위치 (선택)</span>${buildLocationWidget()}</div>
@@ -3897,8 +3905,14 @@ function bindCustomForm(root, editUid) {
     set(b); root.querySelectorAll(sel).forEach(x => x.classList.toggle('sel', x === b));
   });
   pickChip('[data-role=cdays] .addplan-chip', b => selDay = b.dataset.day);
-  pickChip('[data-role=ctimes] .addplan-chip', b => selTime = b.dataset.time);
   pickChip('[data-role=cicons] .custom-icon-chip', b => selIcon = b.dataset.icon);
+  // 시각: 빠른 칩 + 시:분 입력 동기화 (칩=빠른 선택, 입력=분 단위 정밀)
+  const timeInput = root.querySelector('[data-role=ctimeexact]');
+  const syncTimeChips = () => root.querySelectorAll('[data-role=ctimes] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.time === selTime));
+  root.querySelectorAll('[data-role=ctimes] .addplan-chip').forEach(b => b.onclick = () => {
+    selTime = b.dataset.time; if (timeInput) timeInput.value = selTime; syncTimeChips();
+  });
+  if (timeInput) timeInput.onchange = () => { selTime = timeInput.value; syncTimeChips(); };
 
   // 편집 모드: 기존 값 prefill
   if (cur) {
@@ -3907,7 +3921,8 @@ function bindCustomForm(root, editUid) {
     root.querySelector('[data-role=ccost]').value = cur.cost || '';
     root.querySelector('[data-role=cmemo]').value = cur.memo || '';
     selTime = cur.time || ''; selIcon = cur.icon || '📍'; selDay = cur._day || '';
-    root.querySelectorAll('[data-role=ctimes] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.time === selTime));
+    if (timeInput && /^\d{1,2}:\d{2}$/.test(selTime)) timeInput.value = selTime;
+    syncTimeChips();
     root.querySelectorAll('[data-role=cicons] .custom-icon-chip').forEach(x => x.classList.toggle('sel', x.dataset.icon === selIcon));
     root.querySelectorAll('[data-role=cdays] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.day === selDay));
   }
