@@ -758,6 +758,8 @@
   .custom-icon-chip.sel { background: #2d2a55; border-color: #2d2a55; box-shadow: 0 0 0 2px rgba(45,42,85,0.15); }
   /* 내가 추가 ＋버튼 */
   .myplan-addcustom-btn { font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid #2d2a55; border-radius: 999px; background: #2d2a55; color: #fff; cursor: pointer; }
+  .myplan-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+  .myplan-toolbar .mp-reset { margin-top: 0; }
   .mp-badge.custom { background: #5fb1ad; }
 
   /* ===== 후보 카드 ＋담기 버튼 ===== */
@@ -3832,8 +3834,139 @@ function openQuickAddSheet(card) {
 }
 
 function closeQuickAddSheet() {
+  _teardownLocMiniMap(); // 커스텀 위치 위젯 미니맵 정리(재오픈 시 중복 초기화 방지)
   const backdrop = document.getElementById('quickAddBackdrop');
   if (backdrop) { backdrop.hidden = true; document.getElementById('quickAddBody').innerHTML = ''; }
+}
+
+// ===== 커스텀 ＋직접 추가 시트 (quickAdd 백드롭 재사용: 백드롭·✕·Esc 일관) =====
+const CUSTOM_ICONS = ['📍','🍜','☕','🏖️','🛕','🎨','🍽️','🌃','🛍️','🏨','✈️','🎫','😴','🚕','🛶','📸'];
+function openCustomAddSheet() {
+  const backdrop = document.getElementById('quickAddBackdrop');
+  const title = document.getElementById('quickAddTitle');
+  const body = document.getElementById('quickAddBody');
+  if (!backdrop || !body) return;
+  title.textContent = '📝 직접 추가';
+  body.innerHTML = `
+    <div class="custom-form" data-role="customform">
+      <div class="custom-row"><span class="addplan-label">제목 *</span>
+        <input type="text" class="custom-input" data-role="ctitle" placeholder="예: 공항 미팅 · 객실 낮잠 · 즉석 발견 식당" /></div>
+      <div class="custom-row"><span class="addplan-label">날짜 *</span>
+        <div class="addplan-chips" data-role="cdays">${TRIP_DAYS.map(d => `<button type="button" class="addplan-chip" data-day="${d}">${d}</button>`).join('')}</div></div>
+      <div class="custom-row"><span class="addplan-label">시각</span>
+        <div class="addplan-chips" data-role="ctimes"><button type="button" class="addplan-chip sel" data-time="">미정</button>${MP_TIME_SLOTS.map(t => `<button type="button" class="addplan-chip" data-time="${t}">${t}</button>`).join('')}</div></div>
+      <div class="custom-row"><span class="addplan-label">아이콘</span>
+        <div class="addplan-chips" data-role="cicons">${CUSTOM_ICONS.map((ic, i) => `<button type="button" class="custom-icon-chip ${i === 0 ? 'sel' : ''}" data-icon="${ic}">${ic}</button>`).join('')}</div></div>
+      <div class="custom-row"><span class="addplan-label">위치 (선택)</span>${buildLocationWidget()}</div>
+      <div class="custom-row"><span class="addplan-label">이동수단·비용 (선택)</span>
+        <input type="text" class="custom-input" data-role="cmode" placeholder="이동수단 예: 그랩카" />
+        <input type="text" class="custom-input" data-role="ccost" placeholder="비용 예: 5만동" /></div>
+      <div class="custom-row"><span class="addplan-label">메모 (선택)</span>
+        <textarea class="custom-textarea" data-role="cmemo" placeholder="자유 메모"></textarea></div>
+      <div class="addplan-actions"><button type="button" class="addplan-save" data-role="csave">담기</button><button type="button" data-role="ccancel">취소</button></div>
+      <div class="addplan-msg" data-role="cmsg" hidden></div>
+    </div>`;
+  backdrop.hidden = false;
+  bindCustomForm(body, null);
+}
+
+// 커스텀 폼 바인딩. editUid 주면 편집 모드(Task 5에서 사용).
+function bindCustomForm(root, editUid) {
+  let selDay = '', selTime = '', selIcon = '📍';
+  const cur = editUid ? _findMyPlanItem(editUid) : null;
+  const locInitial = (cur && cur.coords) ? { coords: cur.coords, name: cur.title || '' } : null;
+  const loc = bindLocationWidget(root.querySelector('[data-role=locwidget]'), locInitial);
+  const pickChip = (sel, set) => root.querySelectorAll(sel).forEach(b => b.onclick = () => {
+    set(b); root.querySelectorAll(sel).forEach(x => x.classList.toggle('sel', x === b));
+  });
+  pickChip('[data-role=cdays] .addplan-chip', b => selDay = b.dataset.day);
+  pickChip('[data-role=ctimes] .addplan-chip', b => selTime = b.dataset.time);
+  pickChip('[data-role=cicons] .custom-icon-chip', b => selIcon = b.dataset.icon);
+
+  // 편집 모드: 기존 값 prefill
+  if (cur) {
+    root.querySelector('[data-role=ctitle]').value = cur.title || '';
+    root.querySelector('[data-role=cmode]').value = cur.mode || '';
+    root.querySelector('[data-role=ccost]').value = cur.cost || '';
+    root.querySelector('[data-role=cmemo]').value = cur.memo || '';
+    selTime = cur.time || ''; selIcon = cur.icon || '📍'; selDay = cur._day || '';
+    root.querySelectorAll('[data-role=ctimes] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.time === selTime));
+    root.querySelectorAll('[data-role=cicons] .custom-icon-chip').forEach(x => x.classList.toggle('sel', x.dataset.icon === selIcon));
+    root.querySelectorAll('[data-role=cdays] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.day === selDay));
+  }
+
+  root.querySelector('[data-role=ccancel]').onclick = closeQuickAddSheet;
+  root.querySelector('[data-role=csave]').onclick = async () => {
+    const msg = root.querySelector('[data-role=cmsg]');
+    const show = (t, ok) => { msg.hidden = false; msg.style.color = ok ? '#2d7a4d' : '#c0392b'; msg.textContent = t; };
+    const title = root.querySelector('[data-role=ctitle]').value.trim();
+    if (!title) return show('제목을 입력해 주세요', false);
+    if (!selDay) return show('날짜를 선택해 주세요', false);
+    if (!myPlan) myPlan = { basedOn: 'custom', createdAt: new Date().toISOString().slice(0, 10), days: {} };
+    const coords = loc.getCoords();
+    const mode = root.querySelector('[data-role=cmode]').value.trim();
+    const cost = root.querySelector('[data-role=ccost]').value.trim();
+    const memo = root.querySelector('[data-role=cmemo]').value.trim();
+    activePlan = 'my';
+    if (editUid) {
+      _updateCustomItem(editUid, { day: selDay, time: selTime, title, coords, icon: selIcon, mode, cost, memo });
+    } else {
+      if (!addCustomToMyPlan({ day: selDay, time: selTime, title, coords, icon: selIcon, mode, cost, memo })) return show('추가 실패 — 입력 확인', false);
+    }
+    if (coords) { try { await _ensureRoutesForDay(selDay); } catch (e) {} }
+    ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); renderPlanTabs();
+    show(`✓ ${selDay} ${selTime || '(시간미정)'}에 ${editUid ? '저장' : '추가'}했어요`, true);
+    setTimeout(closeQuickAddSheet, 1000);
+  };
+}
+
+// 특정 myPlan 항목 찾기(+소속 날짜를 _day로 부착해 반환)
+function _findMyPlanItem(uid) {
+  if (!myPlan) return null;
+  for (const d of Object.keys(myPlan.days)) { const it = myPlan.days[d].find(i => i.uid === uid); if (it) return Object.assign({ _day: d }, it); }
+  return null;
+}
+// 커스텀 항목 편집(제목·시각·날짜·위치·비용 등). 날짜 바뀌면 이동.
+function _updateCustomItem(uid, fields) {
+  if (!myPlan) return false;
+  for (const d of Object.keys(myPlan.days)) {
+    const idx = myPlan.days[d].findIndex(i => i.uid === uid);
+    if (idx < 0) continue;
+    const it = myPlan.days[d][idx];
+    if (it.source !== 'custom') return false;
+    Object.assign(it, {
+      time: fields.time || '', title: fields.title || it.title,
+      coords: (fields.coords && fields.coords.length === 2) ? fields.coords : null,
+      icon: fields.icon || it.icon, mode: fields.mode || '', cost: fields.cost || '', memo: fields.memo || ''
+    });
+    const newDay = fields.day && TRIP_DAYS.includes(fields.day) ? fields.day : d;
+    if (newDay !== d) { myPlan.days[d].splice(idx, 1); if (!myPlan.days[newDay]) myPlan.days[newDay] = []; myPlan.days[newDay].push(it); _sortDay(myPlan.days[newDay]); }
+    else { _sortDay(myPlan.days[d]); }
+    saveMyPlan();
+    return true;
+  }
+  return false;
+}
+
+// 해당 날짜의 좌표 시퀀스에서 (좌표항목이 끼는) 인접 쌍의 도로경로를 OSRM로 1회 프리워밍 → 캐시 저장
+async function _ensureRoutesForDay(dayKey) {
+  const day = myPlanToItinerary().find(d => d.day === dayKey);
+  if (!day) return;
+  const stops = []; let lastKey = null;
+  day.items.forEach(x => {
+    let c = null, isPlace = false;
+    if (x.place && PLACES[x.place] && PLACES[x.place].coords) { c = PLACES[x.place].coords; isPlace = true; }
+    else if (x.coords && x.coords.length === 2) { c = x.coords; }
+    if (!c) return;
+    const k = isPlace ? x.place : (c[0] + ',' + c[1]);
+    if (k === lastKey) return; lastKey = k;
+    stops.push({ coords: c, isPlace });
+  });
+  for (let i = 0; i < stops.length - 1; i++) {
+    const A = stops[i], B = stops[i + 1];
+    if (A.isPlace && B.isPlace) continue; // 프리셋 place쌍은 ROUTES_CACHE 담당
+    await ensureCustomRoute(A.coords, B.coords);
+  }
 }
 
 function removeMyPlanItem(uid) {
@@ -3922,8 +4055,12 @@ function renderPlanTabs() {
   featEl.innerHTML = `
     <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
     <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
-    ${activePlan === 'my' ? `<button id="myPlanResetBtn" class="mp-reset">내 일정 비우기</button>` : ''}
+    ${activePlan === 'my' ? `<div class="myplan-toolbar"><button id="myPlanAddCustomBtn" class="myplan-addcustom-btn">＋ 직접 추가</button><button id="myPlanResetBtn" class="mp-reset">내 일정 비우기</button></div>` : ''}
   `;
+
+  // ＋ 직접 추가 버튼 이벤트
+  const ab = document.getElementById('myPlanAddCustomBtn');
+  if (ab) ab.onclick = () => openCustomAddSheet();
 
   // 내 일정 비우기 버튼 이벤트
   const rb = document.getElementById('myPlanResetBtn');
