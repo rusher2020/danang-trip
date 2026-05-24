@@ -988,6 +988,18 @@
     color: var(--ink-mute);
   }
   .prep-reset-btn:hover { background: #f3f1ec; }
+  /* 준비물 편집(CRUD) 컨트롤 */
+  .prep-item-edit-controls { display: inline-flex; gap: 4px; margin-left: auto; flex-shrink: 0; }
+  .prep-item-edit-controls button { font-size: 12px; padding: 2px 6px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
+  .prep-add-item { width: 100%; margin-top: 6px; padding: 7px; font-size: 12.5px; font-weight: 600; color: #2d2a55; background: #2d2a5510; border: 1px dashed #2d2a5560; border-radius: 7px; cursor: pointer; }
+  .prep-add-item:hover { background: #2d2a5520; }
+  .prep-item--editing { display: block; padding: 8px 4px; }
+  .prep-edit-form { display: flex; flex-direction: column; gap: 6px; }
+  .prep-edit-task, .prep-edit-detail { font-size: 13px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; width: 100%; box-sizing: border-box; }
+  .prep-edit-actions { display: flex; gap: 6px; }
+  .prep-edit-actions button { font-size: 12.5px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 7px; background: #fff; cursor: pointer; }
+  .prep-edit-save, .prep-del-confirm { background: #2d2a55 !important; color: #fff; border-color: #2d2a55 !important; font-weight: 600; }
+  .prep-del-label { font-size: 12.5px; color: #c0392b; display: block; margin-bottom: 6px; }
 
   .prep-cat {
     background: var(--panel);
@@ -2102,7 +2114,7 @@ function findCardById(cid) {
 const PREP_DETAIL = {};
 
 // ============ 준비물·사전준비 데이터 ============
-const PREP_DATA = [
+let PREP_DATA = [
   {
     "id": "pre",
     "name": "사전 신청·예약",
@@ -2620,13 +2632,15 @@ const PREP_DATA = [
   }
 ];
 
+function _attr(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
 function renderPrep() {
   const wrap = document.getElementById('prepWrap');
+  if (!wrap) return;
   let html = '';
   let total = 0, checked = 0;
   PREP_DATA.forEach(cat => {
     const catTotal = cat.items.length;
-    const catChecked = cat.items.reduce((acc, _, i) => acc + (localStorage.getItem(`prep-${cat.id}-${i}`) === '1' ? 1 : 0), 0);
+    const catChecked = cat.items.reduce((acc, it) => acc + (it.checked ? 1 : 0), 0);
     total += catTotal;
     checked += catChecked;
     html += `<div class="prep-cat ${cat.id === 'optional' ? 'prep-cat--optional' : ''}">
@@ -2635,63 +2649,86 @@ function renderPrep() {
         ${cat.deadline ? `<span class="prep-cat-deadline">${cat.deadline}</span>` : `<span class="prep-cat-count">${catChecked}/${catTotal}</span>`}
       </div>`;
     cat.items.forEach((it, i) => {
-      const id = `prep-${cat.id}-${i}`;
-      const isChecked = localStorage.getItem(id) === '1';
-      html += `<label class="prep-item ${isChecked?'checked':''}" data-key="${id}">
-        <input type="checkbox" ${isChecked?'checked':''}>
+      const taskStr = typeof it.task === 'string' ? it.task : (it.task && (it.task.label || it.task.text || it.task.title)) || '';
+      const isEditing = prepEditMode && prepEditing && prepEditing.catId === cat.id && prepEditing.idx === i;
+      if (isEditing && prepEditing.mode === 'del') {
+        html += `<div class="prep-item prep-item--editing" data-cat="${cat.id}" data-idx="${i}">
+          <span class="prep-del-label">🗑️ "${_attr(taskStr.slice(0,24))}" 삭제할까요?</span>
+          <div class="prep-edit-actions"><button type="button" class="prep-del-confirm">삭제</button><button type="button" class="prep-edit-cancel">취소</button></div>
+        </div>`;
+        return;
+      }
+      if (isEditing) {
+        html += `<div class="prep-item prep-item--editing" data-cat="${cat.id}" data-idx="${i}">
+          <div class="prep-edit-form">
+            <input class="prep-edit-task" type="text" placeholder="할 일" value="${_attr(taskStr)}">
+            <input class="prep-edit-detail" type="text" placeholder="메모 (선택)" value="${_attr(typeof it.detail === 'string' ? it.detail : '')}">
+            <div class="prep-edit-actions"><button type="button" class="prep-edit-save">저장</button><button type="button" class="prep-edit-cancel">취소</button></div>
+          </div>
+        </div>`;
+        return;
+      }
+      const editable = typeof it.task === 'string'; // 객체형(특수 링크) 항목은 삭제만
+      html += `<label class="prep-item ${it.checked?'checked':''}" data-cat="${cat.id}" data-idx="${i}">
+        <input type="checkbox" ${it.checked?'checked':''}>
         <div class="prep-item-body">
           <div class="prep-item-task">
-            <span>${typeof it.task === 'string' ? it.task : (it.task && (it.task.label || it.task.text || it.task.title)) || ''}</span>
+            <span>${taskStr}</span>
             ${it.link ? `<button class="prep-link-btn" data-prep-link="${it.link}" title="자세히 보기">ⓘ 자세히</button>` : ''}
             ${it.deadline ? `<span class="prep-item-deadline">${it.deadline}</span>` : ''}
           </div>
-          ${it.detail ? `<div class="prep-item-detail">${typeof it.detail === 'string' ? it.detail : ''}</div>` : ''}
+          ${it.detail && typeof it.detail === 'string' ? `<div class="prep-item-detail">${it.detail}</div>` : ''}
         </div>
+        ${prepEditMode ? `<span class="prep-item-edit-controls">${editable ? '<button type="button" class="prep-edit-btn" title="편집">✏️</button>' : ''}<button type="button" class="prep-del-btn" title="삭제">🗑️</button></span>` : ''}
       </label>`;
     });
+    if (prepEditMode) html += `<button type="button" class="prep-add-item" data-cat="${cat.id}">＋ 항목 추가</button>`;
     html += '</div>';
   });
-  // 진행률 바를 맨 위에 prepend
   const pct = total > 0 ? Math.round(checked / total * 100) : 0;
   const progressHtml = `<div class="prep-progress">
     <span class="prep-progress-num">${checked}/${total}</span>
     <div class="prep-progress-bar"><div class="prep-progress-fill" style="width:${pct}%"></div></div>
     <span class="prep-progress-num">${pct}%</span>
+    <button class="prep-reset-btn" id="prepEdit">${prepEditMode ? '✓ 완료' : '✏️ 편집'}</button>
     <button class="prep-reset-btn" id="prepReset">초기화</button>
   </div>`;
   wrap.innerHTML = progressHtml + html;
 
-  wrap.querySelectorAll('.prep-item').forEach(label => {
-    const cb = label.querySelector('input[type=checkbox]');
+  // 체크박스 토글
+  wrap.querySelectorAll('label.prep-item').forEach(label => {
+    const cb = label.querySelector('input[type=checkbox]'); if (!cb) return;
     cb.addEventListener('change', () => {
-      const key = label.dataset.key;
-      localStorage.setItem(key, cb.checked ? '1' : '0');
-      _syncPrepHash();
+      const cat = PREP_DATA.find(c => c.id === label.dataset.cat); if (!cat) return;
+      const it = cat.items[+label.dataset.idx]; if (!it) return;
+      it.checked = cb.checked; savePrepData();
       label.classList.toggle('checked', cb.checked);
-      // 진행률만 업데이트
-      const allCb = wrap.querySelectorAll('input[type=checkbox]');
-      const c = Array.from(allCb).filter(x => x.checked).length;
-      const t = allCb.length;
+      const t = PREP_DATA.reduce((a, c) => a + c.items.length, 0);
+      const c = PREP_DATA.reduce((a, cc) => a + cc.items.filter(x => x.checked).length, 0);
       const p = t > 0 ? Math.round(c / t * 100) : 0;
       wrap.querySelectorAll('.prep-progress-num')[0].textContent = `${c}/${t}`;
       wrap.querySelectorAll('.prep-progress-num')[1].textContent = `${p}%`;
       wrap.querySelector('.prep-progress-fill').style.width = `${p}%`;
     });
   });
+  // 편집 모드 토글
+  document.getElementById('prepEdit').addEventListener('click', () => { prepEditMode = !prepEditMode; prepEditing = null; renderPrep(); });
+  // 체크 초기화
   document.getElementById('prepReset').addEventListener('click', () => {
     if (!confirm('모든 체크 상태를 초기화하시겠습니까?')) return;
-    PREP_DATA.forEach(cat => cat.items.forEach((_, i) => localStorage.removeItem(`prep-${cat.id}-${i}`)));
-    _syncPrepHash();
-    renderPrep();
+    PREP_DATA.forEach(cat => cat.items.forEach(it => it.checked = false));
+    savePrepData(); renderPrep();
   });
-  // ⓘ 자세히 버튼 → prep 상세 뷰
-  wrap.querySelectorAll('.prep-link-btn').forEach(btn => {
-    btn.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      ev.stopPropagation();
-      openPrepDetail(btn.dataset.prepLink);
-    });
-  });
+  // ⓘ 자세히
+  wrap.querySelectorAll('.prep-link-btn').forEach(btn => btn.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); openPrepDetail(btn.dataset.prepLink); }));
+  // CRUD (편집 모드)
+  const _row = el => el.closest('.prep-item');
+  wrap.querySelectorAll('.prep-add-item').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); addPrepItem(b.dataset.cat); }));
+  wrap.querySelectorAll('.prep-edit-btn').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); const l = _row(b); prepEditing = { catId: l.dataset.cat, idx: +l.dataset.idx }; renderPrep(); }));
+  wrap.querySelectorAll('.prep-del-btn').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); const l = _row(b); prepEditing = { catId: l.dataset.cat, idx: +l.dataset.idx, mode: 'del' }; renderPrep(); }));
+  wrap.querySelectorAll('.prep-edit-save').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); const f = _row(b); const task = f.querySelector('.prep-edit-task').value.trim(); const detail = f.querySelector('.prep-edit-detail').value.trim(); if (!task) { deletePrepItem(f.dataset.cat, +f.dataset.idx); } else { updatePrepItem(f.dataset.cat, +f.dataset.idx, { task, detail }); } prepEditing = null; renderPrep(); }));
+  wrap.querySelectorAll('.prep-del-confirm').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); const f = _row(b); deletePrepItem(f.dataset.cat, +f.dataset.idx); prepEditing = null; renderPrep(); }));
+  wrap.querySelectorAll('.prep-edit-cancel').forEach(b => b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); const f = _row(b); const cat = PREP_DATA.find(c => c.id === f.dataset.cat); const it = cat && cat.items[+f.dataset.idx]; if (it && typeof it.task === 'string' && !it.task.trim()) deletePrepItem(f.dataset.cat, +f.dataset.idx); prepEditing = null; renderPrep(); }));
 }
 
 // ===== Prep State — URL hash backup (localStorage 소실 대비) =====
@@ -2699,8 +2736,8 @@ function _encodePrep() {
   const parts = [];
   PREP_DATA.forEach(cat => {
     let mask = 0;
-    cat.items.forEach((_, i) => {
-      if (localStorage.getItem(`prep-${cat.id}-${i}`) === '1') mask |= (1 << i);
+    cat.items.forEach((it, i) => {
+      if (it.checked) mask |= (1 << i);
     });
     if (mask > 0) parts.push(`${cat.id}:${mask.toString(36)}`);
   });
@@ -2716,10 +2753,48 @@ function _decodePrep() {
     const mask = parseInt(part.slice(sep + 1), 36);
     const cat = PREP_DATA.find(c => c.id === catId);
     if (!cat || isNaN(mask)) return;
-    cat.items.forEach((_, i) => {
-      if (mask & (1 << i)) localStorage.setItem(`prep-${catId}-${i}`, '1');
+    cat.items.forEach((it, i) => {
+      if (mask & (1 << i)) it.checked = true;
     });
   });
+  savePrepData();
+}
+
+// ===== 준비물 영속 + CRUD (항목별 checked 보유, localStorage 통째 저장 → 인덱스 의존 제거) =====
+const PREP_KEY = 'danang-prep';
+let prepEditMode = false;          // 편집 모드 토글
+let prepEditing = null;            // { catId, idx, mode?:'del' } 인라인 편집 상태
+function loadPrepData() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PREP_KEY));
+    if (saved && Array.isArray(saved) && saved.every(c => c && Array.isArray(c.items))) { PREP_DATA = saved; return; }
+  } catch (e) {}
+  // 구버전(인덱스 기반 체크상태) → item.checked 마이그레이션
+  PREP_DATA.forEach(cat => cat.items.forEach((it, i) => {
+    if (it.checked === undefined) it.checked = localStorage.getItem(`prep-${cat.id}-${i}`) === '1';
+  }));
+}
+function savePrepData() {
+  try { localStorage.setItem(PREP_KEY, JSON.stringify(PREP_DATA)); } catch (e) {}
+  _syncPrepHash();
+}
+function _prepUid() { return 'px' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
+function addPrepItem(catId) {
+  const cat = PREP_DATA.find(c => c.id === catId); if (!cat) return;
+  cat.items.push({ id: _prepUid(), task: '', detail: '', checked: false });
+  prepEditing = { catId, idx: cat.items.length - 1 }; // 새 항목 바로 편집 모드
+  savePrepData(); renderPrep();
+}
+function updatePrepItem(catId, idx, fields) {
+  const cat = PREP_DATA.find(c => c.id === catId); if (!cat || !cat.items[idx]) return;
+  const it = cat.items[idx];
+  if (fields.task !== undefined) it.task = fields.task;
+  if (fields.detail !== undefined) it.detail = fields.detail;
+  savePrepData();
+}
+function deletePrepItem(catId, idx) {
+  const cat = PREP_DATA.find(c => c.id === catId); if (!cat) return;
+  cat.items.splice(idx, 1); savePrepData();
 }
 function _syncPrepHash() {
   const enc = _encodePrep();
@@ -4650,7 +4725,8 @@ document.querySelectorAll('.mode-tab').forEach(el => {
 });
 
 // 첫 페이지 로드 시 prep 데이터 미리 렌더 (모드 전환 시 즉시 보이게)
-_decodePrep(); // URL hash → localStorage 복원 (Safari ITP 대비)
+loadPrepData();   // localStorage 저장본(편집 반영) 우선, 없으면 기본+구버전 체크 마이그레이션
+_decodePrep();    // URL hash → 체크상태 복원 (Safari ITP 대비)
 renderPrep();
 
 // 내 일정 복원: localStorage → 해시(공유 링크)가 우선
