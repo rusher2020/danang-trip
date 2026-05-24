@@ -416,6 +416,19 @@
     margin: 0 4px;
     color: var(--ink-soft);
   }
+  /* 커스텀 항목 메모/이동·비용: 행 전체 너비 별도 줄, 줄바꿈 허용, 전 화면(모바일 포함) 표시 */
+  .ti-custom-note {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: var(--ink-mute);
+    line-height: 1.45;
+    white-space: normal;
+    word-break: break-word;
+    margin: 2px 0 0;
+    padding: 4px 8px;
+    background: #2d2a5508;
+    border-radius: 6px;
+  }
   .ti-meta {
     display: flex; align-items: center;
     gap: 5px;
@@ -3130,13 +3143,14 @@ function renderTimeline() {
         <div class="ti-icon">${it.icon}</div>
         <div class="ti-content">
           <span class="ti-title">${it.title}</span>
-          ${it.desc ? `<span class="ti-desc">${it.desc}</span>` : ''}
+          ${(it.desc && !it._custom) ? `<span class="ti-desc">${it.desc}</span>` : ''}
         </div>
         <div class="ti-meta">
           ${it.tag ? `<span class="ti-tag tag-${it.tag}">${TAG_LABEL[it.tag]}</span>` : ''}
           ${cardId ? `<button class="ti-card-link" data-card-id="${cardId}" title="후보카드 상세 보기">📄 ${cardId}</button>` : ''}
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
+        ${(it._custom && (it.desc || it._mode || it._cost)) ? `<div class="ti-custom-note">${[it.desc ? '📝 ' + it.desc : '', (it._mode || it._cost) ? [it._mode ? '🚕 ' + it._mode : '', it._cost ? '💰 ' + it._cost : ''].filter(Boolean).join(' · ') : ''].filter(Boolean).join(' ')}</div>` : ''}
         ${(activePlan==='my' && it._uid) ? mpControlsHtml(it) : ''}
       </div>`;
       // 다음 항목과 장소가 다르면 이동 connector 삽입
@@ -3377,9 +3391,12 @@ function renderMap() {
         offset: [0, -2],
         className: 'marker-name-tip'
       });
+      const _meta = [item._mode ? '🚕 ' + item._mode : '', item._cost ? '💰 ' + item._cost : ''].filter(Boolean).join(' · ');
       cardMarker.bindPopup(
         `<div class="popup-title">${item.title || '카드 장소'}</div>` +
-        `<div style="margin-top:4px;font-size:13px;">${day.day} ${item.time || ''}</div>`
+        `<div style="margin-top:4px;font-size:13px;">${day.day} ${item.time || ''}</div>` +
+        (item.desc ? `<div style="margin-top:4px;font-size:12px;color:#555;">📝 ${item.desc}</div>` : '') +
+        (_meta ? `<div style="margin-top:2px;font-size:12px;color:#555;">${_meta}</div>` : '')
       );
       cardMarker.addTo(markerLayer);
       placeMarkers[pinKey] = cardMarker;
