@@ -4589,6 +4589,19 @@ if (hadHashMp && myPlan) {
   applyDayColors(ITINERARY);
 }
 renderPlanTabs(); // 내 일정 탭 레이블 갱신
+_prewarmCustomRoutesAll(); // 공유링크/복원 시 커스텀 도로경로 재생성(온라인·캐시미스만)
+
+// 공유링크/새로고침 복원: 커스텀 좌표 항목의 도로경로를 온라인이면 재생성(캐시 미스만), 완료 후 지도 갱신.
+// 오프라인이면 호출 안 함 → 기존 캐시/직선 폴백 사용.
+async function _prewarmCustomRoutesAll() {
+  if (!myPlan || !navigator.onLine) return;
+  const hasCustomCoords = Object.values(myPlan.days || {}).some(arr => (arr || []).some(it => it.source === 'custom' && it.coords));
+  if (!hasCustomCoords) return;
+  try {
+    for (const d of Object.keys(myPlan.days)) await _ensureRoutesForDay(d);
+    if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderMap(); }
+  } catch (e) {}
+}
 
 // Resize → re-fit map
 let resizeTimer;
