@@ -778,12 +778,6 @@
   .myplan-addcustom-btn { font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid #2d2a55; border-radius: 999px; background: #2d2a55; color: #fff; cursor: pointer; }
   .ti-add-custom { display: block; width: 100%; margin: 8px 0 2px; padding: 9px; font-size: 13px; font-weight: 600; color: #2d2a55; background: #2d2a5510; border: 1px dashed #2d2a5560; border-radius: 8px; cursor: pointer; }
   .ti-add-custom:hover { background: #2d2a5520; }
-  .ti-fork-banner { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0 12px; padding: 10px 12px; font-size: 12.5px; color: #2d2a55; background: #2d2a5510; border: 1px solid #2d2a5530; border-radius: 8px; }
-  .ti-fork-banner.ti-fork-confirm { color: #c0392b; background: #fff5f2; border-color: #e0705060; }
-  .ti-fork-banner button { font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 7px; border: 1px solid #2d2a55; background: #2d2a55; color: #fff; cursor: pointer; white-space: nowrap; }
-  .ti-fork-banner .ti-fork-no { background: #fff; color: #555; border-color: var(--line, #ddd); }
-  .ti-fork-actions { display: inline-flex; gap: 6px; margin-left: auto; }
-  .ti-fork-btn { margin-left: auto; }
   .myplan-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
   .myplan-toolbar .mp-reset { margin-top: 0; }
   .mp-badge.custom { background: #5fb1ad; color: #fff; }
@@ -3230,14 +3224,6 @@ function renderTimeline() {
   const wrap = document.getElementById('timelineWrap');
   const days = getActiveDays();
   let html = '';
-  // 프리셋(A~E)을 보는 중이면: 내 일정으로 복사해 편집하도록 안내 배너(전체 CRUD 진입점)
-  if (activePlan !== 'my') {
-    if (_pendingFork) {
-      html += `<div class="ti-fork-banner ti-fork-confirm">⚠️ 이미 만든 '내 일정'이 있어요. 이 플랜으로 교체하면 기존 내 일정 편집 내용이 사라집니다.<span class="ti-fork-actions"><button type="button" class="ti-fork-yes">교체하고 편집</button><button type="button" class="ti-fork-no">취소</button></span></div>`;
-    } else {
-      html += `<div class="ti-fork-banner"><span>✏️ 이 플랜을 직접 편집할 수 있어요 — '내 일정'으로 복사한 뒤 추가·수정·삭제</span><button type="button" class="ti-fork-btn">복사해서 편집</button></div>`;
-    }
-  }
   days.forEach(di => {
     const day = ITINERARY[di];
     const w = WEATHER[day.day];
@@ -3270,7 +3256,7 @@ function renderTimeline() {
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
         ${(it._custom && (it.desc || it._mode || it._cost)) ? `<div class="ti-custom-note">${[it.desc ? '📝 ' + it.desc : '', (it._mode || it._cost) ? [it._mode ? '🚕 ' + it._mode : '', it._cost ? '💰 ' + it._cost : ''].filter(Boolean).join(' · ') : ''].filter(Boolean).join(' ')}</div>` : ''}
-        ${(activePlan==='my' && it._uid) ? mpControlsHtml(it) : ''}
+        ${it._uid ? mpControlsHtml(it) : ''}
       </div>`;
       // 다음 항목과 장소가 다르면 이동 connector 삽입
       const next = day.items[ii + 1];
@@ -3300,11 +3286,7 @@ function renderTimeline() {
       const eb = ctrl.querySelector('.mp-edit'); if (eb) eb.onclick = (ev) => { ev.stopPropagation(); openCustomEditSheet(uid); };
     });
     // 날짜별 ＋ 직접 추가 (그 날짜 미리 선택)
-    wrap.querySelectorAll('.ti-add-custom').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); addCustomFromTimeline(b.dataset.addday); });
-    // 프리셋 편집 진입(포크) 배너
-    const fb = wrap.querySelector('.ti-fork-btn'); if (fb) fb.onclick = (ev) => { ev.stopPropagation(); _enterPresetEdit(); };
-    const fy = wrap.querySelector('.ti-fork-yes'); if (fy) fy.onclick = (ev) => { ev.stopPropagation(); _confirmFork(); };
-    const fn = wrap.querySelector('.ti-fork-no'); if (fn) fn.onclick = (ev) => { ev.stopPropagation(); _cancelFork(); };
+    wrap.querySelectorAll('.ti-add-custom').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); openCustomAddSheet(b.dataset.addday); });
     wrap.querySelectorAll('.mp-editor').forEach(ed => {
       const uid = ed.dataset.uid;
       ed.querySelectorAll('.mp-set-time').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, b.dataset.time); });
@@ -3664,8 +3646,10 @@ function renderTimetable() {
 }
 
 // ===== 내 일정 (My Plan) =====
-const MYPLAN_KEY = 'danang-myplan';
-let myPlan = null; // { basedOn, createdAt, days: { '7/24':[item,...] } }
+const MYPLAN_KEY = 'danang-myplan';   // (구) 단일 내일정 — 마이그레이션용
+const PLANS_KEY = 'danang-plans';     // 슬롯별 편집 플랜 저장 { A:{...}, B:..., my:{...} }
+let plansStore = {};                  // 6개 슬롯(A~E + my) 각자의 편집본
+let myPlan = null;                     // 현재 활성 슬롯의 편집 데이터 { basedOn, createdAt, days:{} }
 const cardById = Object.fromEntries(CANDIDATE_DATA.cards.map(c => [c.id, c]));
 const TRIP_DAYS = ['7/24','7/25','7/26','7/27','7/28','7/29']; // (Task 2+ 에서 사용)
 const MP_TIME_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
@@ -3675,15 +3659,9 @@ function _uid() { return 'm' + Date.now().toString(36) + Math.random().toString(
 function _timeMin(t) { const m = String(t||'').match(/(\d{1,2}):(\d{2})/); return m ? (+m[1])*60 + (+m[2]) : 9999; }
 function _sortDay(items) { items.sort((a,b) => _timeMin(a.time) - _timeMin(b.time)); }
 
-function loadMyPlan() {
-  try { const raw = localStorage.getItem(MYPLAN_KEY); if (raw) myPlan = JSON.parse(raw); } catch (e) {}
-}
-function saveMyPlan() {
-  if (!myPlan) return;
-  try { localStorage.setItem(MYPLAN_KEY, JSON.stringify(myPlan)); } catch (e) {}
-  _encodeMyPlanToHash();
-}
-function createMyPlanFrom(presetKey) {
+function _today() { return new Date().toISOString().slice(0, 10); }
+// 프리셋 → 편집 가능한 days 모델로 시드(깊은 복사). 원본 ITINERARIES는 불변.
+function _seedPlanFromPreset(presetKey) {
   const src = ITINERARIES[presetKey] || [];
   const days = {};
   src.forEach(d => {
@@ -3692,10 +3670,38 @@ function createMyPlanFrom(presetKey) {
       title: it.title || '', tag: it.tag || '', desc: it.desc || '', place: it.place
     }));
   });
-  myPlan = { basedOn: presetKey, createdAt: new Date().toISOString().slice(0,10), days };
-  saveMyPlan();
+  return { basedOn: presetKey, createdAt: _today(), days };
 }
-function resetMyPlan() { myPlan = null; try { localStorage.removeItem(MYPLAN_KEY); } catch (e) {} _encodeMyPlanToHash(); }
+function persistPlans() { try { localStorage.setItem(PLANS_KEY, JSON.stringify(plansStore)); } catch (e) {} }
+function loadPlansStore() {
+  try { const raw = localStorage.getItem(PLANS_KEY); if (raw) { const o = JSON.parse(raw); if (o && typeof o === 'object') plansStore = o; } } catch (e) {}
+  // 구 단일 '내 일정'(danang-myplan) → plansStore.my 마이그레이션
+  if (!plansStore.my) { try { const old = localStorage.getItem(MYPLAN_KEY); if (old) { const m = JSON.parse(old); if (m && m.days) plansStore.my = m; } } catch (e) {} }
+}
+// 슬롯 보장: 없으면 프리셋(A~E)에서 시드, 'my'는 빈 플랜(day 메타는 A 기준)
+function ensurePlan(key) {
+  if (plansStore[key]) return plansStore[key];
+  plansStore[key] = ITINERARIES[key] ? _seedPlanFromPreset(key) : { basedOn: 'A', createdAt: _today(), days: {} };
+  persistPlans();
+  return plansStore[key];
+}
+function loadMyPlan() { loadPlansStore(); } // 호환 별칭
+function saveMyPlan() {
+  if (!myPlan) return;
+  plansStore[activePlan] = myPlan;      // 현재 활성 슬롯에 저장
+  persistPlans();
+  _encodeMyPlanToHash();
+}
+// 호환: 'my' 슬롯을 프리셋으로 시드(후보 담기 등에서 사용)
+function createMyPlanFrom(presetKey) {
+  plansStore.my = _seedPlanFromPreset(presetKey);
+  myPlan = plansStore.my; activePlan = 'my'; persistPlans(); _encodeMyPlanToHash();
+}
+// 현재 플랜 기본값 복원(프리셋 재시드, 'my'는 비움)
+function resetCurrentPlan() {
+  plansStore[activePlan] = ITINERARIES[activePlan] ? _seedPlanFromPreset(activePlan) : { basedOn: 'A', createdAt: _today(), days: {} };
+  myPlan = plansStore[activePlan]; persistPlans(); _encodeMyPlanToHash();
+}
 
 function myPlanToItinerary() {
   if (!myPlan) return [];
@@ -3733,7 +3739,7 @@ function addCardToMyPlan(cardId, day, time) {
   myPlan.days[day].push({ uid: _uid(), source: 'card', time: time || '', cardId });
   _sortDay(myPlan.days[day]);
   saveMyPlan();
-  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
   return true;
 }
 
@@ -3747,7 +3753,7 @@ function addCustomToMyPlan({ day, time = '', title, coords = null, icon = '📍'
     icon: icon || '📍', cat, tag: tag || 'activity', mode, cost, memo, cardId: cardId || null });
   _sortDay(myPlan.days[day]);
   saveMyPlan();
-  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
   return true;
 }
 
@@ -3940,12 +3946,11 @@ function bindPicker(rootEl, card, { onCommit, onCancel }) {
   rootEl.querySelector('[data-role=save]').onclick = () => {
     const msg = rootEl.querySelector('[data-role=msg]');
     if (!selDay) { msg.hidden = false; msg.style.color = '#c0392b'; msg.textContent = '날짜를 먼저 선택해 주세요'; return; }
-    if (!myPlan) createMyPlanFrom(selPreset);
-    activePlan = 'my'; // 담기 성공 전 '내 일정'으로 전환 → addCardToMyPlan 내부 재렌더 가드 통과
+    myPlan = ensurePlan(activePlan); // 현재 보고 있는 플랜 슬롯에 담기(없으면 프리셋에서 시드)
     if (addCardToMyPlan(card.id, selDay, selTime)) {
-      renderPlanTabs(); // 내 일정 탭 활성 표시 갱신
+      renderPlanTabs();
       msg.hidden = false; msg.style.color = '#2d7a4d';
-      msg.textContent = `✓ ${selDay} ${selTime || '(시간미정)'}에 담았어요`;
+      msg.textContent = `✓ ${PLANS[activePlan] ? PLANS[activePlan].name : '내 일정'} · ${selDay} ${selTime || '(시간미정)'}에 담았어요`;
       setTimeout(() => onCommit(), 1300);
     }
   };
@@ -4047,32 +4052,6 @@ function openCustomAddSheet(prefillDay) {
   bindCustomForm(body, null, prefillDay);
 }
 
-// ===== 프리셋 편집: 내 일정으로 포크(복사) 후 전체 CRUD 가능 =====
-let _pendingFork = null; // { thenFn } — 기존 내 일정이 있어 덮어쓰기 확인 대기
-function _forkPresetToMyPlan(presetKey) {
-  createMyPlanFrom(presetKey);             // 프리셋 → 내 일정 복사(프리셋 원본 ITINERARIES 불변)
-  activePlan = 'my';
-  ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderPlanTabs(); renderAll();
-}
-function _enterPresetEdit(thenFn) {
-  if (activePlan === 'my') { if (thenFn) thenFn(); return; }
-  const presetKey = ITINERARIES[activePlan] ? activePlan : 'A';
-  if (!myPlan) { _forkPresetToMyPlan(presetKey); if (thenFn) thenFn(); return; }
-  _pendingFork = { presetKey, thenFn: thenFn || null }; // 기존 내 일정 존재 → 덮어쓰기 확인
-  renderTimeline();
-}
-function _confirmFork() {
-  if (!_pendingFork) return;
-  const { presetKey, thenFn } = _pendingFork; _pendingFork = null;
-  _forkPresetToMyPlan(presetKey);
-  if (thenFn) thenFn();
-}
-function _cancelFork() { _pendingFork = null; renderTimeline(); }
-// 타임라인 날짜별 ＋: 내 일정이면 바로, 프리셋이면 포크 후 추가
-function addCustomFromTimeline(day) {
-  if (activePlan !== 'my') { _enterPresetEdit(() => openCustomAddSheet(day)); return; }
-  openCustomAddSheet(day);
-}
 function openCustomEditSheet(uid) {
   const backdrop = document.getElementById('quickAddBackdrop');
   const body = document.getElementById('quickAddBody');
@@ -4222,13 +4201,13 @@ function removeMyPlanItem(uid) {
   if (!myPlan) return;
   for (const d of Object.keys(myPlan.days)) myPlan.days[d] = myPlan.days[d].filter(i => i.uid !== uid);
   saveMyPlan();
-  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
 }
 function setMyPlanItemTime(uid, time) {
   if (!myPlan) return;
   for (const d of Object.keys(myPlan.days)) { const it = myPlan.days[d].find(i=>i.uid===uid); if (it){ it.time = time||''; _sortDay(myPlan.days[d]); break; } }
   saveMyPlan();
-  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
 }
 function moveMyPlanItem(uid, newDay) {
   if (!myPlan || !TRIP_DAYS.includes(newDay)) return;
@@ -4239,7 +4218,7 @@ moved = myPlan.days[d].splice(idx,1)[0]; break; } }
   if (!myPlan.days[newDay]) myPlan.days[newDay] = [];
   myPlan.days[newDay].push(moved); _sortDay(myPlan.days[newDay]);
   saveMyPlan();
-  if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
+  if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderAll(); }
 }
 
 // ===== My Plan — URL hash backup (localStorage 소실 대비, prep의 p= 파라미터와 공존) =====
@@ -4265,7 +4244,7 @@ function _decodeMyPlanFromHash() {
     const m = location.hash.match(/[#&]mp=([^&]*)/);
     if (m && m[1]) {
       const obj = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
-      if (obj && obj.days) myPlan = obj;
+      if (obj && obj.days) { plansStore.my = obj; persistPlans(); } // 공유 링크 → 내 일정 슬롯에 복원
     }
   } catch (e) {}
 }
@@ -4301,45 +4280,34 @@ function renderPlanTabs() {
     summary: '내가 조립한 일정',
     features: myPlan ? ['직접 구성한 나만의 코스'] : ['➕ 탭을 클릭해 프리셋에서 시작하세요'],
   };
+  const resetLabel = activePlan === 'my' ? '내 일정 비우기' : '이 플랜 기본값 복원';
   featEl.innerHTML = `
     <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
     <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
-    ${activePlan === 'my' ? `<div class="myplan-toolbar"><button id="myPlanAddCustomBtn" class="myplan-addcustom-btn">＋ 직접 추가</button><button id="myPlanResetBtn" class="mp-reset">내 일정 비우기</button></div>` : ''}
+    <div class="myplan-toolbar"><button id="myPlanAddCustomBtn" class="myplan-addcustom-btn">＋ 직접 추가</button><button id="myPlanResetBtn" class="mp-reset">${resetLabel}</button></div>
   `;
 
-  // ＋ 직접 추가 버튼 이벤트
+  // ＋ 직접 추가 (현재 슬롯에 추가)
   const ab = document.getElementById('myPlanAddCustomBtn');
   if (ab) ab.onclick = () => openCustomAddSheet();
 
-  // 내 일정 비우기 버튼 이벤트
+  // 기본값 복원 / 내 일정 비우기
   const rb = document.getElementById('myPlanResetBtn');
   if (rb) rb.onclick = () => {
-    if (confirm('내 일정을 비울까요? (되돌릴 수 없음)')) {
-      resetMyPlan();
-      activePlan = 'A';
-      ITINERARY = ITINERARIES['A'];
-      activeTab = 'all';
-      renderPlanTabs();
-      renderAll();
-    }
+    const msg = activePlan === 'my' ? '내 일정을 비울까요?' : '이 플랜을 프리셋 기본값으로 되돌릴까요? (편집 내용 사라짐)';
+    if (!confirm(msg)) return;
+    resetCurrentPlan();
+    activeTab = 'all';
+    ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY);
+    renderPlanTabs(); renderAll();
   };
 
   tabsEl.querySelectorAll('.plan-tab').forEach(el => {
     el.addEventListener('click', () => {
-      const plan = el.dataset.plan;
-      if (plan === 'my') {
-        if (!myPlan) {
-          const k = prompt('어느 프리셋을 복사해 시작할까요? (A~E)', 'A');
-          if (!k || !ITINERARIES[k.toUpperCase()]) return; // 취소 또는 잘못된 입력 → 무시
-          createMyPlanFrom(k.toUpperCase());
-        }
-        activePlan = 'my';
-        ITINERARY = myPlanToItinerary();
-        applyDayColors(ITINERARY); // REQUIRED: colorHex/tint 주입
-      } else {
-        activePlan = plan;
-        ITINERARY = ITINERARIES[activePlan];
-      }
+      activePlan = el.dataset.plan;
+      myPlan = ensurePlan(activePlan);                  // 슬롯별 편집본(없으면 프리셋에서 시드)
+      ITINERARY = myPlanToItinerary();
+      applyDayColors(ITINERARY);                        // REQUIRED: colorHex/tint 주입
       activeTab = 'all';
       renderPlanTabs();
       renderAll();
@@ -4811,17 +4779,16 @@ loadPrepData();   // localStorage 저장본(편집 반영) 우선, 없으면 기
 _decodePrep();    // URL hash → 체크상태 복원 (Safari ITP 대비)
 renderPrep();
 
-// 내 일정 복원: localStorage → 해시(공유 링크)가 우선
+// 플랜 복원: 슬롯별 localStorage → 해시(공유 링크)는 'my' 슬롯으로
 const hadHashMp = /[#&]mp=/.test(location.hash);
-loadMyPlan();
-_decodeMyPlanFromHash(); // 해시에 mp= 가 있으면 localStorage를 덮어씀
-if (myPlan) saveMyPlan(); // 해시 → localStorage 동기화
-if (hadHashMp && myPlan) {
-  activePlan = 'my';
-  ITINERARY = myPlanToItinerary();
-  applyDayColors(ITINERARY);
-}
-renderPlanTabs(); // 내 일정 탭 레이블 갱신
+loadPlansStore();
+_decodeMyPlanFromHash();          // mp= 있으면 plansStore.my 로 복원
+if (hadHashMp && plansStore.my) activePlan = 'my';
+myPlan = ensurePlan(activePlan);  // 현재 슬롯 편집본(없으면 프리셋에서 시드)
+ITINERARY = myPlanToItinerary();
+applyDayColors(ITINERARY);
+renderPlanTabs();
+renderAll();
 _prewarmCustomRoutesAll(); // 공유링크/복원 시 커스텀 도로경로 재생성(온라인·캐시미스만)
 
 // 공유링크/새로고침 복원: 커스텀 좌표 항목의 도로경로를 온라인이면 재생성(캐시 미스만), 완료 후 지도 갱신.
@@ -4832,7 +4799,7 @@ async function _prewarmCustomRoutesAll() {
   if (!hasCustomCoords) return;
   try {
     for (const d of Object.keys(myPlan.days)) await _ensureRoutesForDay(d);
-    if (activePlan === 'my') { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderMap(); }
+    if (myPlan) { ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderMap(); }
   } catch (e) {}
 }
 
