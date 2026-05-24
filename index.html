@@ -763,6 +763,8 @@
   .custom-icon-chip.sel { background: #2d2a55; border-color: #2d2a55; box-shadow: 0 0 0 2px rgba(45,42,85,0.15); }
   /* 내가 추가 ＋버튼 */
   .myplan-addcustom-btn { font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid #2d2a55; border-radius: 999px; background: #2d2a55; color: #fff; cursor: pointer; }
+  .ti-add-custom { display: block; width: 100%; margin: 8px 0 2px; padding: 9px; font-size: 13px; font-weight: 600; color: #2d2a55; background: #2d2a5510; border: 1px dashed #2d2a5560; border-radius: 8px; cursor: pointer; }
+  .ti-add-custom:hover { background: #2d2a5520; }
   .myplan-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
   .myplan-toolbar .mp-reset { margin-top: 0; }
   .mp-badge.custom { background: #5fb1ad; color: #fff; }
@@ -3150,6 +3152,7 @@ function renderTimeline() {
         }
       }
     });
+    if (activePlan === 'my') html += `<button class="ti-add-custom" data-addday="${day.day}">＋ 이 날에 직접 추가</button>`;
     html += `</div>`;
   });
   wrap.innerHTML = html;
@@ -3163,6 +3166,8 @@ function renderTimeline() {
       ctrl.querySelector('.mp-del').onclick  = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'del' }; renderTimeline(); };
       const eb = ctrl.querySelector('.mp-edit'); if (eb) eb.onclick = (ev) => { ev.stopPropagation(); openCustomEditSheet(uid); };
     });
+    // 날짜별 ＋ 직접 추가 (그 날짜 미리 선택)
+    wrap.querySelectorAll('.ti-add-custom').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); openCustomAddSheet(b.dataset.addday); });
     wrap.querySelectorAll('.mp-editor').forEach(ed => {
       const uid = ed.dataset.uid;
       ed.querySelectorAll('.mp-set-time').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, b.dataset.time); });
@@ -3892,14 +3897,14 @@ function _customFormMarkup() {
       <div class="addplan-msg" data-role="cmsg" hidden></div>
     </div>`;
 }
-function openCustomAddSheet() {
+function openCustomAddSheet(prefillDay) {
   const backdrop = document.getElementById('quickAddBackdrop');
   const body = document.getElementById('quickAddBody');
   if (!backdrop || !body) return;
   document.getElementById('quickAddTitle').textContent = '📝 직접 추가';
   body.innerHTML = _customFormMarkup();
   backdrop.hidden = false;
-  bindCustomForm(body, null);
+  bindCustomForm(body, null, prefillDay);
 }
 function openCustomEditSheet(uid) {
   const backdrop = document.getElementById('quickAddBackdrop');
@@ -3914,8 +3919,8 @@ function openCustomEditSheet(uid) {
   bindCustomForm(body, uid);
 }
 
-// 커스텀 폼 바인딩. editUid 주면 편집 모드(Task 5에서 사용).
-function bindCustomForm(root, editUid) {
+// 커스텀 폼 바인딩. editUid=편집 모드, prefillDay=날짜 미리 선택(타임라인 날짜별 추가).
+function bindCustomForm(root, editUid, prefillDay) {
   let selDay = '', selTime = '', selIcon = '📍';
   const cur = editUid ? _findMyPlanItem(editUid) : null;
   const locInitial = (cur && cur.coords) ? { coords: cur.coords, name: cur.title || '' } : null;
@@ -3958,6 +3963,10 @@ function bindCustomForm(root, editUid) {
     root.querySelectorAll('[data-role=cicons] .custom-icon-chip').forEach(x => x.classList.toggle('sel', x.dataset.icon === selIcon));
     root.querySelectorAll('[data-role=cdays] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.day === selDay));
     if (cardSel && cur.cardId) { cardSel.value = cur.cardId; selCardId = cur.cardId; }
+  } else if (prefillDay && TRIP_DAYS.includes(prefillDay)) {
+    // 타임라인 날짜별 추가: 그 날짜 미리 선택
+    selDay = prefillDay;
+    root.querySelectorAll('[data-role=cdays] .addplan-chip').forEach(x => x.classList.toggle('sel', x.dataset.day === selDay));
   }
 
   root.querySelector('[data-role=ccancel]').onclick = closeQuickAddSheet;
