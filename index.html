@@ -778,6 +778,12 @@
   .myplan-addcustom-btn { font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid #2d2a55; border-radius: 999px; background: #2d2a55; color: #fff; cursor: pointer; }
   .ti-add-custom { display: block; width: 100%; margin: 8px 0 2px; padding: 9px; font-size: 13px; font-weight: 600; color: #2d2a55; background: #2d2a5510; border: 1px dashed #2d2a5560; border-radius: 8px; cursor: pointer; }
   .ti-add-custom:hover { background: #2d2a5520; }
+  .ti-fork-banner { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0 12px; padding: 10px 12px; font-size: 12.5px; color: #2d2a55; background: #2d2a5510; border: 1px solid #2d2a5530; border-radius: 8px; }
+  .ti-fork-banner.ti-fork-confirm { color: #c0392b; background: #fff5f2; border-color: #e0705060; }
+  .ti-fork-banner button { font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 7px; border: 1px solid #2d2a55; background: #2d2a55; color: #fff; cursor: pointer; white-space: nowrap; }
+  .ti-fork-banner .ti-fork-no { background: #fff; color: #555; border-color: var(--line, #ddd); }
+  .ti-fork-actions { display: inline-flex; gap: 6px; margin-left: auto; }
+  .ti-fork-btn { margin-left: auto; }
   .myplan-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
   .myplan-toolbar .mp-reset { margin-top: 0; }
   .mp-badge.custom { background: #5fb1ad; color: #fff; }
@@ -3224,6 +3230,14 @@ function renderTimeline() {
   const wrap = document.getElementById('timelineWrap');
   const days = getActiveDays();
   let html = '';
+  // 프리셋(A~E)을 보는 중이면: 내 일정으로 복사해 편집하도록 안내 배너(전체 CRUD 진입점)
+  if (activePlan !== 'my') {
+    if (_pendingFork) {
+      html += `<div class="ti-fork-banner ti-fork-confirm">⚠️ 이미 만든 '내 일정'이 있어요. 이 플랜으로 교체하면 기존 내 일정 편집 내용이 사라집니다.<span class="ti-fork-actions"><button type="button" class="ti-fork-yes">교체하고 편집</button><button type="button" class="ti-fork-no">취소</button></span></div>`;
+    } else {
+      html += `<div class="ti-fork-banner"><span>✏️ 이 플랜을 직접 편집할 수 있어요 — '내 일정'으로 복사한 뒤 추가·수정·삭제</span><button type="button" class="ti-fork-btn">복사해서 편집</button></div>`;
+    }
+  }
   days.forEach(di => {
     const day = ITINERARY[di];
     const w = WEATHER[day.day];
@@ -3271,7 +3285,7 @@ function renderTimeline() {
         }
       }
     });
-    if (activePlan === 'my') html += `<button class="ti-add-custom" data-addday="${day.day}">＋ 이 날에 직접 추가</button>`;
+    html += `<button class="ti-add-custom" data-addday="${day.day}">＋ 이 날에 직접 추가</button>`;
     html += `</div>`;
   });
   wrap.innerHTML = html;
@@ -3286,7 +3300,11 @@ function renderTimeline() {
       const eb = ctrl.querySelector('.mp-edit'); if (eb) eb.onclick = (ev) => { ev.stopPropagation(); openCustomEditSheet(uid); };
     });
     // 날짜별 ＋ 직접 추가 (그 날짜 미리 선택)
-    wrap.querySelectorAll('.ti-add-custom').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); openCustomAddSheet(b.dataset.addday); });
+    wrap.querySelectorAll('.ti-add-custom').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); addCustomFromTimeline(b.dataset.addday); });
+    // 프리셋 편집 진입(포크) 배너
+    const fb = wrap.querySelector('.ti-fork-btn'); if (fb) fb.onclick = (ev) => { ev.stopPropagation(); _enterPresetEdit(); };
+    const fy = wrap.querySelector('.ti-fork-yes'); if (fy) fy.onclick = (ev) => { ev.stopPropagation(); _confirmFork(); };
+    const fn = wrap.querySelector('.ti-fork-no'); if (fn) fn.onclick = (ev) => { ev.stopPropagation(); _cancelFork(); };
     wrap.querySelectorAll('.mp-editor').forEach(ed => {
       const uid = ed.dataset.uid;
       ed.querySelectorAll('.mp-set-time').forEach(b => b.onclick = (ev) => { ev.stopPropagation(); mpEditing = null; setMyPlanItemTime(uid, b.dataset.time); });
@@ -3831,7 +3849,7 @@ function mpControlsHtml(it) {
   const editing = mpEditing && mpEditing.uid === uid;
   if (!editing) {
     const isMine = it._source === 'card' || it._source === 'custom';
-    const editBtn = it._source === 'custom' ? '<button class="mp-edit" title="제목·위치·비용 편집">✏️ 편집</button>' : '';
+    const editBtn = (it._source === 'custom' || it._source === 'preset') ? '<button class="mp-edit" title="제목·시각·메모 편집">✏️ 편집</button>' : '';
     return `<div class="myplan-controls" data-uid="${uid}">
       <button class="mp-time" title="시간 변경">⏰ 시간</button><button class="mp-move" title="날짜 이동">📅 날짜</button>${editBtn}<button class="mp-del" title="삭제">🗑️</button>
       ${isMine ? `<span class="mp-badge${it._source === 'custom' ? ' custom' : ''}">내가 추가</span>` : ''}
@@ -4028,12 +4046,39 @@ function openCustomAddSheet(prefillDay) {
   backdrop.hidden = false;
   bindCustomForm(body, null, prefillDay);
 }
+
+// ===== 프리셋 편집: 내 일정으로 포크(복사) 후 전체 CRUD 가능 =====
+let _pendingFork = null; // { thenFn } — 기존 내 일정이 있어 덮어쓰기 확인 대기
+function _forkPresetToMyPlan(presetKey) {
+  createMyPlanFrom(presetKey);             // 프리셋 → 내 일정 복사(프리셋 원본 ITINERARIES 불변)
+  activePlan = 'my';
+  ITINERARY = myPlanToItinerary(); applyDayColors(ITINERARY); renderPlanTabs(); renderAll();
+}
+function _enterPresetEdit(thenFn) {
+  if (activePlan === 'my') { if (thenFn) thenFn(); return; }
+  const presetKey = ITINERARIES[activePlan] ? activePlan : 'A';
+  if (!myPlan) { _forkPresetToMyPlan(presetKey); if (thenFn) thenFn(); return; }
+  _pendingFork = { presetKey, thenFn: thenFn || null }; // 기존 내 일정 존재 → 덮어쓰기 확인
+  renderTimeline();
+}
+function _confirmFork() {
+  if (!_pendingFork) return;
+  const { presetKey, thenFn } = _pendingFork; _pendingFork = null;
+  _forkPresetToMyPlan(presetKey);
+  if (thenFn) thenFn();
+}
+function _cancelFork() { _pendingFork = null; renderTimeline(); }
+// 타임라인 날짜별 ＋: 내 일정이면 바로, 프리셋이면 포크 후 추가
+function addCustomFromTimeline(day) {
+  if (activePlan !== 'my') { _enterPresetEdit(() => openCustomAddSheet(day)); return; }
+  openCustomAddSheet(day);
+}
 function openCustomEditSheet(uid) {
   const backdrop = document.getElementById('quickAddBackdrop');
   const body = document.getElementById('quickAddBody');
   if (!backdrop || !body) return;
   const cur = _findMyPlanItem(uid);
-  if (!cur || cur.source !== 'custom') return; // 커스텀 항목만 편집(카드/프리셋은 칩 에디터로)
+  if (!cur || (cur.source !== 'custom' && cur.source !== 'preset')) return; // 커스텀/프리셋(포크본) 항목 편집
   document.getElementById('quickAddTitle').textContent = '✏️ 항목 편집';
   body.innerHTML = _customFormMarkup();
   body.querySelector('[data-role=csave]').textContent = '저장';
@@ -4078,7 +4123,7 @@ function bindCustomForm(root, editUid, prefillDay) {
     root.querySelector('[data-role=ctitle]').value = cur.title || '';
     root.querySelector('[data-role=cmode]').value = cur.mode || '';
     root.querySelector('[data-role=ccost]').value = cur.cost || '';
-    root.querySelector('[data-role=cmemo]').value = cur.memo || '';
+    root.querySelector('[data-role=cmemo]').value = cur.memo || cur.desc || '';
     selTime = cur.time || ''; selIcon = cur.icon || '📍'; selDay = cur._day || '';
     if (timeInput && /^\d{1,2}:\d{2}$/.test(selTime)) timeInput.value = selTime;
     syncTimeChips();
@@ -4129,13 +4174,20 @@ function _updateCustomItem(uid, fields) {
     const idx = myPlan.days[d].findIndex(i => i.uid === uid);
     if (idx < 0) continue;
     const it = myPlan.days[d][idx];
-    if (it.source !== 'custom') return false;
-    Object.assign(it, {
-      time: fields.time || '', title: fields.title || it.title,
-      coords: (fields.coords && fields.coords.length === 2) ? fields.coords : null,
-      icon: fields.icon || it.icon, mode: fields.mode || '', cost: fields.cost || '', memo: fields.memo || '',
-      cardId: fields.cardId || null
-    });
+    if (it.source === 'custom') {
+      Object.assign(it, {
+        time: fields.time || '', title: fields.title || it.title,
+        coords: (fields.coords && fields.coords.length === 2) ? fields.coords : null,
+        icon: fields.icon || it.icon, mode: fields.mode || '', cost: fields.cost || '', memo: fields.memo || '',
+        cardId: fields.cardId || null
+      });
+    } else {
+      // 프리셋(포크본) 항목: 제목·시각·아이콘·메모(desc)만 수정, place 등 원본 유지
+      it.title = fields.title || it.title;
+      it.time = fields.time || '';
+      if (fields.icon) it.icon = fields.icon;
+      it.desc = fields.memo || '';
+    }
     const newDay = fields.day && TRIP_DAYS.includes(fields.day) ? fields.day : d;
     if (newDay !== d) { myPlan.days[d].splice(idx, 1); if (!myPlan.days[newDay]) myPlan.days[newDay] = []; myPlan.days[newDay].push(it); _sortDay(myPlan.days[newDay]); }
     else { _sortDay(myPlan.days[d]); }
