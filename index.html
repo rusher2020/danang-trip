@@ -760,7 +760,7 @@
   .myplan-addcustom-btn { font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid #2d2a55; border-radius: 999px; background: #2d2a55; color: #fff; cursor: pointer; }
   .myplan-toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
   .myplan-toolbar .mp-reset { margin-top: 0; }
-  .mp-badge.custom { background: #5fb1ad; }
+  .mp-badge.custom { background: #5fb1ad; color: #fff; }
 
   /* ===== 후보 카드 ＋담기 버튼 ===== */
   .cand-add {
@@ -3156,6 +3156,7 @@ function renderTimeline() {
       ctrl.querySelector('.mp-time').onclick = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'time' }; renderTimeline(); };
       ctrl.querySelector('.mp-move').onclick = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'day' }; renderTimeline(); };
       ctrl.querySelector('.mp-del').onclick  = (ev) => { ev.stopPropagation(); mpEditing = { uid, mode: 'del' }; renderTimeline(); };
+      const eb = ctrl.querySelector('.mp-edit'); if (eb) eb.onclick = (ev) => { ev.stopPropagation(); openCustomEditSheet(uid); };
     });
     wrap.querySelectorAll('.mp-editor').forEach(ed => {
       const uid = ed.dataset.uid;
@@ -3689,9 +3690,11 @@ function mpControlsHtml(it) {
   const uid = it._uid;
   const editing = mpEditing && mpEditing.uid === uid;
   if (!editing) {
+    const isMine = it._source === 'card' || it._source === 'custom';
+    const editBtn = it._source === 'custom' ? '<button class="mp-edit" title="제목·위치·비용 편집">✏️ 편집</button>' : '';
     return `<div class="myplan-controls" data-uid="${uid}">
-      <button class="mp-time" title="시간 변경">⏰ 시간</button><button class="mp-move" title="날짜 이동">📅 날짜</button><button class="mp-del" title="삭제">🗑️</button>
-      ${it._source === 'card' ? '<span class="mp-badge">내가 추가</span>' : ''}
+      <button class="mp-time" title="시간 변경">⏰ 시간</button><button class="mp-move" title="날짜 이동">📅 날짜</button>${editBtn}<button class="mp-del" title="삭제">🗑️</button>
+      ${isMine ? `<span class="mp-badge${it._source === 'custom' ? ' custom' : ''}">내가 추가</span>` : ''}
     </div>`;
   }
   if (mpEditing.mode === 'time') {
@@ -3841,13 +3844,8 @@ function closeQuickAddSheet() {
 
 // ===== 커스텀 ＋직접 추가 시트 (quickAdd 백드롭 재사용: 백드롭·✕·Esc 일관) =====
 const CUSTOM_ICONS = ['📍','🍜','☕','🏖️','🛕','🎨','🍽️','🌃','🛍️','🏨','✈️','🎫','😴','🚕','🛶','📸'];
-function openCustomAddSheet() {
-  const backdrop = document.getElementById('quickAddBackdrop');
-  const title = document.getElementById('quickAddTitle');
-  const body = document.getElementById('quickAddBody');
-  if (!backdrop || !body) return;
-  title.textContent = '📝 직접 추가';
-  body.innerHTML = `
+function _customFormMarkup() {
+  return `
     <div class="custom-form" data-role="customform">
       <div class="custom-row"><span class="addplan-label">제목 *</span>
         <input type="text" class="custom-input" data-role="ctitle" placeholder="예: 공항 미팅 · 객실 낮잠 · 즉석 발견 식당" /></div>
@@ -3866,8 +3864,27 @@ function openCustomAddSheet() {
       <div class="addplan-actions"><button type="button" class="addplan-save" data-role="csave">담기</button><button type="button" data-role="ccancel">취소</button></div>
       <div class="addplan-msg" data-role="cmsg" hidden></div>
     </div>`;
+}
+function openCustomAddSheet() {
+  const backdrop = document.getElementById('quickAddBackdrop');
+  const body = document.getElementById('quickAddBody');
+  if (!backdrop || !body) return;
+  document.getElementById('quickAddTitle').textContent = '📝 직접 추가';
+  body.innerHTML = _customFormMarkup();
   backdrop.hidden = false;
   bindCustomForm(body, null);
+}
+function openCustomEditSheet(uid) {
+  const backdrop = document.getElementById('quickAddBackdrop');
+  const body = document.getElementById('quickAddBody');
+  if (!backdrop || !body) return;
+  const cur = _findMyPlanItem(uid);
+  if (!cur || cur.source !== 'custom') return; // 커스텀 항목만 편집(카드/프리셋은 칩 에디터로)
+  document.getElementById('quickAddTitle').textContent = '✏️ 항목 편집';
+  body.innerHTML = _customFormMarkup();
+  body.querySelector('[data-role=csave]').textContent = '저장';
+  backdrop.hidden = false;
+  bindCustomForm(body, uid);
 }
 
 // 커스텀 폼 바인딩. editUid 주면 편집 모드(Task 5에서 사용).
