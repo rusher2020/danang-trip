@@ -2764,15 +2764,45 @@ function _decodePrep() {
 const PREP_KEY = 'danang-prep';
 let prepEditMode = false;          // 편집 모드 토글
 let prepEditing = null;            // { catId, idx, mode?:'del' } 인라인 편집 상태
+// 최신 조사 기반 보강 항목(버전 게이트로 기존 사용자에게도 1회 추가). 출처: 외교부/주베트남대사관·트립닷컴·KKday·베트남가이드 (2025~2026)
+const PREP_SEED_VERSION = 2;
+const PREP_V2_CATEGORY = {
+  id: 'v2current', name: '🔎 2026 최신 점검 (조사 반영)',
+  items: [
+    { seedId: 'v2-visa', task: '무비자 45일 + 여권 6개월 확인', detail: '한국 여권 45일 무비자(2028.8.14까지 연장 확정). 가족 4명 여권 유효기간 6개월 이상·훼손 없는지 확인', deadline: 'D-30', checked: false },
+    { seedId: 'v2-plug', task: '전압·콘센트 (어댑터 불필요)', detail: '베트남 220V/50Hz로 한국 플러그 그대로 사용 가능. 돼지코 불필요, 멀티탭 1개면 충전 편리', checked: false },
+    { seedId: 'v2-grab', task: 'Grab 앱 설치·결제수단 등록', detail: '택시·배달 필수 앱. 출국 전 설치+카드 등록. 카시트 필요하면 \'Grab Family\' 차량 선택', deadline: 'D-3', checked: false },
+    { seedId: 'v2-heat', task: '폭염 대비 (7월 32~34℃)', detail: '자외선차단제·모자·선글라스 필수. 한낮 12~15시는 실내 휴식, 야외는 아침·저녁. 아이 수분·간식 자주', checked: false },
+    { seedId: 'v2-rain', task: '스콜성 소나기 대비', detail: '7월은 건기지만 갑작스런 소나기 가능. 접이식 우산·우비, 전자기기 방수 파우치', checked: false },
+    { seedId: 'v2-mosquito', task: '모기 기피제·가족 상비약', detail: '아이용 모기 기피제, 해열제·지사제·밴드·체온계·멀미약. 뎅기 대비 저녁엔 긴팔', checked: false },
+    { seedId: 'v2-money', task: '환전 전략 (USD→동)', detail: '한국에서 USD 환전 후 현지 금은방/은행에서 동(VND)으로 재환전이 유리. 소액권 충분히(택시·팁·시장·소원배)', deadline: 'D-7', checked: false },
+    { seedId: 'v2-water', task: '아이 물놀이 용품', detail: '래시가드·아쿠아슈즈·수영모, 4세 수영기저귀, 워터밴드. 미케비치·리조트 수영장용', checked: false },
+    { seedId: 'v2-hoian', task: '호이안 야간 현금', detail: '소원배·등불·야시장은 대부분 현금. 소액권 동 따로 준비, 저녁 인파 소지품 주의', checked: false },
+    { seedId: 'v2-health', task: '식수·위생', detail: '생수만 음용(수돗물·얼음 주의), 손소독제·물티슈. 아이 배탈 대비 익숙한 간식 약간', checked: false },
+  ]
+};
+function _applySeedAdditions() {
+  let v = 0; try { v = (+localStorage.getItem('danang-prep-seedv')) || 0; } catch (e) {}
+  if (v >= PREP_SEED_VERSION) return; // 이미 적용됨(이후 사용자가 삭제해도 재추가 안 함)
+  let cat = PREP_DATA.find(c => c.id === PREP_V2_CATEGORY.id);
+  if (!cat) { cat = { id: PREP_V2_CATEGORY.id, name: PREP_V2_CATEGORY.name, items: [] }; PREP_DATA.push(cat); }
+  PREP_V2_CATEGORY.items.forEach(seed => { if (!cat.items.some(it => it.seedId === seed.seedId)) cat.items.push({ ...seed }); });
+  try { localStorage.setItem('danang-prep-seedv', String(PREP_SEED_VERSION)); } catch (e) {}
+  savePrepData();
+}
 function loadPrepData() {
+  let loaded = false;
   try {
     const saved = JSON.parse(localStorage.getItem(PREP_KEY));
-    if (saved && Array.isArray(saved) && saved.every(c => c && Array.isArray(c.items))) { PREP_DATA = saved; return; }
+    if (saved && Array.isArray(saved) && saved.every(c => c && Array.isArray(c.items))) { PREP_DATA = saved; loaded = true; }
   } catch (e) {}
-  // 구버전(인덱스 기반 체크상태) → item.checked 마이그레이션
-  PREP_DATA.forEach(cat => cat.items.forEach((it, i) => {
-    if (it.checked === undefined) it.checked = localStorage.getItem(`prep-${cat.id}-${i}`) === '1';
-  }));
+  if (!loaded) {
+    // 구버전(인덱스 기반 체크상태) → item.checked 마이그레이션
+    PREP_DATA.forEach(cat => cat.items.forEach((it, i) => {
+      if (it.checked === undefined) it.checked = localStorage.getItem(`prep-${cat.id}-${i}`) === '1';
+    }));
+  }
+  _applySeedAdditions(); // 최신 보강 항목(없으면) 추가
 }
 function savePrepData() {
   try { localStorage.setItem(PREP_KEY, JSON.stringify(PREP_DATA)); } catch (e) {}
