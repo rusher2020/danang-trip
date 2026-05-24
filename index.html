@@ -1715,6 +1715,7 @@ const PLACES = {
   'new-orient': { name: 'New Orient Hotel Da Nang', short: 'New Orient', coords: [16.0707, 108.2212], detail: '20 Dong Da Street, Hai Chau · 7/24 늦은 도착용 0.5박', category: 'stay', koreaReviewTag: '공항 가까움 / 깔끔' },
   'hyatt': { name: 'Hyatt Regency Danang Resort & Spa', short: 'Hyatt', coords: [16.0117, 108.2629], detail: 'Non Nuoc Beach · 7/25-7/28 메인 리조트 · Camp Hyatt 키즈클럽 + 수영장', category: 'stay', koreaReviewTag: '가족 / 키즈클럽 / 비치' },
   'vanda': { name: 'Vanda Hotel Da Nang', short: 'Vanda', coords: [16.0607, 108.2225], detail: '3 Nguyen Van Linh, Hai Chau · 7/28 마지막날 베이스 (공항 5분)', category: 'stay', koreaReviewTag: '공항 5분 / 시내 / 깔끔' },
+  'DAD': { name: '다낭 국제공항 (DAD)', short: '다낭공항', coords: [16.0439, 108.1994], detail: '도착·출국 관문 · 시내 10~15분 · Vanda 5분', category: 'transport', koreaReviewTag: '관문 / 시내 가까움' },
   'hyatt-resort-time': { name: 'Hyatt 리조트 시간 (수영장·낮잠)', short: 'Hyatt 리조트', coords: [16.0117, 108.2629], detail: '리조트 내 수영장·Camp Hyatt·키즈풀', category: 'stay' },
   'hyatt-xanh-house': { name: 'Xanh House (Hyatt 내)', short: 'Xanh House', coords: [16.0117, 108.2629], detail: 'Hyatt 베트남식 캐주얼 다이닝', category: 'food' },
   'hyatt-osteria': { name: 'Green House Osteria (Hyatt 내)', short: 'Osteria', coords: [16.0117, 108.2629], detail: 'Hyatt 이탈리안 다이닝', category: 'food' },
@@ -1807,6 +1808,7 @@ const ITINERARIES = { A: [
         icon: '✈️',
         title: 'ZE593 인천 출발',
         tag: 'flight',
+        flyto: [37.4602, 126.4407],
         desc: '이스타항공 ZE593. 아이 동반 국제선이므로 공항 카운터 수속 시간을 여유 있게 잡습니다.',
       },
       {
@@ -1814,6 +1816,7 @@ const ITINERARIES = { A: [
         icon: '✈️',
         title: '다낭 도착',
         tag: 'flight',
+        place: 'DAD',
         desc: '현지 도착 후 입국, 수하물, 차량 이동으로 New Orient에 바로 갑니다.',
       },
     ],
@@ -2066,6 +2069,7 @@ const ITINERARIES = { A: [
         icon: '🚐',
         title: '공항 이동',
         tag: 'transport',
+        place: 'DAD',
         desc: '7/29 00:25 출국편 기준으로 여유 있게 이동합니다.',
       },
     ],
@@ -2081,6 +2085,7 @@ const ITINERARIES = { A: [
         icon: '✈️',
         title: 'ZE594 다낭 출국',
         tag: 'flight',
+        place: 'DAD',
         desc: '이스타항공 ZE594. 06:55 인천 도착 예정입니다.',
       },
       {
@@ -2088,6 +2093,7 @@ const ITINERARIES = { A: [
         icon: '✈️',
         title: '인천 도착',
         tag: 'flight',
+        flyto: [37.4602, 126.4407],
         desc: '입국, 수하물, 귀가 동선을 확인합니다.',
       },
     ],
@@ -3311,6 +3317,9 @@ function _focusMapForRow(el) {
   if (!marker && el.dataset.uid) marker = placeMarkers['_card_' + el.dataset.uid]; // 커스텀/카드 ★핀
   if (!coords && el.dataset.lat) coords = [parseFloat(el.dataset.lat), parseFloat(el.dataset.lng)];
   if (!coords && marker && marker.getLatLng) { const ll = marker.getLatLng(); coords = [ll.lat, ll.lng]; }
+  // flyto: 영구 핀 없이 클릭 시에만 이동(예: 인천공항 — 다낭 지도 밖이라 마커는 안 둠)
+  let flyZoom = 15;
+  if (!coords && el.dataset.flylat) { coords = [parseFloat(el.dataset.flylat), parseFloat(el.dataset.flylng)]; marker = null; flyZoom = 11; }
   if (!coords) return; // 위치 미지정 항목 → 이동 없음
   const mainEl = document.querySelector('.main');
   const mtBtn = document.getElementById('mapToggleBtn');
@@ -3319,7 +3328,7 @@ function _focusMapForRow(el) {
     if (mtBtn) mtBtn.classList.remove('collapsed');
     setTimeout(() => { try { map.invalidateSize(); } catch (e) {} }, 60);
   }
-  try { map.flyTo(coords, 15, { duration: 0.5 }); } catch (e) {}
+  try { map.flyTo(coords, flyZoom, { duration: 0.5 }); } catch (e) {}
   if (marker) setTimeout(() => { try { marker.openPopup(); } catch (e) {} }, 650);
 }
 function renderTimeline() {
@@ -3345,7 +3354,7 @@ function renderTimeline() {
       const place = PLACES[it.place];
       const pinNum = placeOrderMap[it.place];
       const cardId = PLACE_TO_CARD[it.place] || it._cardId || null; // 프리셋 place 매핑 또는 카드/커스텀 연결 카드
-      html += `<div class="ti-row ${it.tag==='transport'?'ti-row--transport':''}" data-place="${it.place||''}" data-uid="${it._uid||''}"${(it.coords&&it.coords.length===2)?` data-lat="${it.coords[0]}" data-lng="${it.coords[1]}"`:''} data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
+      html += `<div class="ti-row ${it.tag==='transport'?'ti-row--transport':''}" data-place="${it.place||''}" data-uid="${it._uid||''}"${(it.coords&&it.coords.length===2)?` data-lat="${it.coords[0]}" data-lng="${it.coords[1]}"`:''}${(it._flyto&&it._flyto.length===2)?` data-flylat="${it._flyto[0]}" data-flylng="${it._flyto[1]}"`:''} data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
         <div class="ti-time">${it.time}</div>
         <div class="ti-icon">${it.icon}</div>
         <div class="ti-content">
@@ -3708,7 +3717,7 @@ function renderTimetable() {
       html += `<td class="tt-cell">`;
       events.forEach(ev => {
         const isTransport = ev.tag === 'transport';
-        html += `<div class="tt-event${isTransport ? ' tt-event--transport' : ''}" style="--day-color:${day.colorHex}" data-place="${ev.place || ''}" data-uid="${ev._uid || ''}"${(ev.coords && ev.coords.length === 2) ? ` data-lat="${ev.coords[0]}" data-lng="${ev.coords[1]}"` : ''} title="${(ev.desc || ev.title).replace(/"/g, '&quot;')}">
+        html += `<div class="tt-event${isTransport ? ' tt-event--transport' : ''}" style="--day-color:${day.colorHex}" data-place="${ev.place || ''}" data-uid="${ev._uid || ''}"${(ev.coords && ev.coords.length === 2) ? ` data-lat="${ev.coords[0]}" data-lng="${ev.coords[1]}"` : ''}${(ev._flyto && ev._flyto.length === 2) ? ` data-flylat="${ev._flyto[0]}" data-flylng="${ev._flyto[1]}"` : ''} title="${(ev.desc || ev.title).replace(/"/g, '&quot;')}">
           <span class="tt-event-icon">${ev.icon}</span>
           <span class="tt-event-title">${ev.title}</span>
         </div>`;
@@ -3754,7 +3763,8 @@ function _seedPlanFromPreset(presetKey) {
   src.forEach(d => {
     days[d.day] = (d.items || []).map(it => ({
       uid: _uid(), source: 'preset', time: it.time || '', icon: it.icon || '📍',
-      title: it.title || '', tag: it.tag || '', desc: it.desc || '', place: it.place
+      title: it.title || '', tag: it.tag || '', desc: it.desc || '', place: it.place,
+      ...(it.flyto ? { flyto: it.flyto } : {})
     }));
   });
   return { basedOn: presetKey, createdAt: _today(), days };
@@ -3814,7 +3824,7 @@ function myPlanToItinerary() {
                  _uid: it.uid, _source: 'custom', _custom: true, _mode: it.mode || '', _cost: it.cost || '', _cardId: it.cardId || null };
       }
       return { time: it.time || '', icon: it.icon, title: it.title, tag: it.tag, desc: it.desc,
-               place: it.place, _uid: it.uid, _source: 'preset' };
+               place: it.place, _uid: it.uid, _source: 'preset', _flyto: it.flyto || null };
     });
     return { day: dayKey, weekday: pd.weekday || '', title: pd.title || '내 일정', summary: pd.summary || '', items };
   });
