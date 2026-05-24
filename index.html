@@ -3303,6 +3303,25 @@ function renderTabs() {
   });
 }
 
+// 일정 항목 → 지도 핀으로 이동·포커스. place(프리셋) + 커스텀/카드 좌표 항목 모두 지원.
+function _focusMapForRow(el) {
+  const placeKey = el.dataset.place;
+  let coords = null, marker = null;
+  if (placeKey && PLACES[placeKey]) { coords = PLACES[placeKey].coords; marker = placeMarkers[placeKey]; }
+  if (!marker && el.dataset.uid) marker = placeMarkers['_card_' + el.dataset.uid]; // 커스텀/카드 ★핀
+  if (!coords && el.dataset.lat) coords = [parseFloat(el.dataset.lat), parseFloat(el.dataset.lng)];
+  if (!coords && marker && marker.getLatLng) { const ll = marker.getLatLng(); coords = [ll.lat, ll.lng]; }
+  if (!coords) return; // 위치 미지정 항목 → 이동 없음
+  const mainEl = document.querySelector('.main');
+  const mtBtn = document.getElementById('mapToggleBtn');
+  if (mainEl && mainEl.classList.contains('map-collapsed')) { // 지도 접혀 있으면 펼치기
+    mainEl.classList.remove('map-collapsed');
+    if (mtBtn) mtBtn.classList.remove('collapsed');
+    setTimeout(() => { try { map.invalidateSize(); } catch (e) {} }, 60);
+  }
+  try { map.flyTo(coords, 15, { duration: 0.5 }); } catch (e) {}
+  if (marker) setTimeout(() => { try { marker.openPopup(); } catch (e) {} }, 650);
+}
 function renderTimeline() {
   const wrap = document.getElementById('timelineWrap');
   const days = getActiveDays();
@@ -3326,7 +3345,7 @@ function renderTimeline() {
       const place = PLACES[it.place];
       const pinNum = placeOrderMap[it.place];
       const cardId = PLACE_TO_CARD[it.place] || it._cardId || null; // 프리셋 place 매핑 또는 카드/커스텀 연결 카드
-      html += `<div class="ti-row ${it.tag==='transport'?'ti-row--transport':''}" data-place="${it.place||''}" data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
+      html += `<div class="ti-row ${it.tag==='transport'?'ti-row--transport':''}" data-place="${it.place||''}" data-uid="${it._uid||''}"${(it.coords&&it.coords.length===2)?` data-lat="${it.coords[0]}" data-lng="${it.coords[1]}"`:''} data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
         <div class="ti-time">${it.time}</div>
         <div class="ti-icon">${it.icon}</div>
         <div class="ti-content">
@@ -3386,13 +3405,7 @@ function renderTimeline() {
       if (ev.target.closest('.ti-card-link')) return;
       wrap.querySelectorAll('.ti-row').forEach(e => e.classList.remove('active'));
       el.classList.add('active');
-      const placeKey = el.dataset.place;
-      const place = PLACES[placeKey];
-      const marker = placeMarkers[placeKey];
-      if (place && marker) {
-        map.flyTo(place.coords, 14, { duration: 0.5 });
-        setTimeout(() => marker.openPopup(), 600);
-      }
+      _focusMapForRow(el);
     });
   });
 
@@ -3695,7 +3708,7 @@ function renderTimetable() {
       html += `<td class="tt-cell">`;
       events.forEach(ev => {
         const isTransport = ev.tag === 'transport';
-        html += `<div class="tt-event${isTransport ? ' tt-event--transport' : ''}" style="--day-color:${day.colorHex}" data-place="${ev.place || ''}" title="${(ev.desc || ev.title).replace(/"/g, '&quot;')}">
+        html += `<div class="tt-event${isTransport ? ' tt-event--transport' : ''}" style="--day-color:${day.colorHex}" data-place="${ev.place || ''}" data-uid="${ev._uid || ''}"${(ev.coords && ev.coords.length === 2) ? ` data-lat="${ev.coords[0]}" data-lng="${ev.coords[1]}"` : ''} title="${(ev.desc || ev.title).replace(/"/g, '&quot;')}">
           <span class="tt-event-icon">${ev.icon}</span>
           <span class="tt-event-title">${ev.title}</span>
         </div>`;
@@ -3713,18 +3726,9 @@ function renderTimetable() {
     el.addEventListener('click', () => { activeTab = el.dataset.tab; renderAll(); });
   });
 
-  // 클릭 → 지도 이동
-  wrap.querySelectorAll('.tt-event[data-place]').forEach(el => {
-    el.addEventListener('click', () => {
-      const pk = el.dataset.place;
-      if (!pk) return;
-      const place = PLACES[pk];
-      const marker = placeMarkers[pk];
-      if (place && marker) {
-        map.flyTo(place.coords, 14, { duration: 0.5 });
-        setTimeout(() => marker.openPopup(), 600);
-      }
-    });
+  // 클릭 → 지도 핀으로 이동 (place + 커스텀/카드 좌표 모두)
+  wrap.querySelectorAll('.tt-event').forEach(el => {
+    el.addEventListener('click', () => _focusMapForRow(el));
   });
 }
 
