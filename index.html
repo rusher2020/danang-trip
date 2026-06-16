@@ -1464,7 +1464,7 @@
       <h1 class="lnb-title">🌴 다낭 가족여행</h1>
       <div class="lnb-sub">
         2026.07.24 (금) ~ 07.29 (수)<br>
-        5박 6일 · 부부(39·39) + 딸 7세 · 아들 4세
+        5박 6일 · 부부(39·39) + 딸 9세 · 아들 6세
       </div>
     </div>
 
@@ -1576,7 +1576,7 @@
           <li><strong>매너</strong> 두 손 받기 · 머리 만지지 X · 모자 실내 X</li>
           <li><strong>안전</strong> 야간 단독 보행 자제 · 그랩 권장 · 택시 미터 확인</li>
           <li><strong>eSIM</strong> 유심사·도시락 사전 구매 · 출국일 새벽 활성화</li>
-          <li><strong>4세 카시트</strong> 한국어 단독차량 사전 요청 (D-7)</li>
+          <li><strong>6세 카시트</strong> 단독차량 사전 요청 (D-7)</li>
         </ul>
       </details>
     </div>
@@ -2240,7 +2240,7 @@ let PREP_DATA = [
         "deadline": "D-3"
       },
       {
-        "task": "4세·7세 자녀 카시트 사전 요청",
+        "task": "6세·9세 자녀 카시트 사전 요청",
         "detail": "공항 픽업·7/25 Hyatt 이동·7/27 호이안 풀데이·7/28 Vanda 이동 모두",
         "deadline": "D-7"
       },
@@ -3769,6 +3769,62 @@ function _seedPlanFromPreset(presetKey) {
   });
   return { basedOn: presetKey, createdAt: _today(), days };
 }
+// 내 일정 기본 시드(설계 spec 2026-06-01). card 항목은 cardId 참조, custom은 자체 필드.
+const DEFAULT_MY_PLAN = {
+  basedOn: 'A', createdAt: '2026-06-01', seedV: 1,
+  days: {
+    '7/24': [
+      { uid:'mp-2435a', source:'custom', time:'20:35', icon:'✈️', title:'ZE593 인천 출발', tag:'transport', memo:'이스타항공 · 소아 동반 카운터 체크인' },
+      { uid:'mp-2435b', source:'custom', time:'23:25', icon:'🛬', title:'다낭 도착 · 입국 패스트트랙(일반)', tag:'transport', memo:'다낭고스트 일반 패스트트랙으로 빠른 입국' },
+      { uid:'mp-2435c', source:'custom', time:'23:50', icon:'🚐', title:'공항 픽업차량 → New Orient', tag:'transport', mode:'픽업차량', memo:'심야 도착이라 그랩 대신 픽업', cardId:'8.17' },
+      { uid:'mp-2435d', source:'card', time:'00:30', cardId:'8.17', note:'체크인·취침 (관광 0)' }
+    ],
+    '7/25': [
+      { uid:'mp-2535a', source:'custom', time:'09:30', icon:'😴', title:'New Orient 회복·조식', tag:'rest', memo:'늦잠·회복, 오전 관광 0' },
+      { uid:'mp-2535b', source:'card', time:'12:00', cardId:'5.15', note:'점심(안전식). 대안: 피자 4P\'s(5.14)' },
+      { uid:'mp-2535c', source:'custom', time:'14:00', icon:'🚕', title:'GrabCar7로 하얏트 이동', tag:'transport', mode:'GrabCar 7' },
+      { uid:'mp-2535d', source:'card', time:'15:00', cardId:'8.16', note:'체크인 → 수영장·해변 첫 물놀이' },
+      { uid:'mp-2535e', source:'card', time:'18:30', cardId:'5.26', note:'저녁(풀사이드)' }
+    ],
+    '7/26': [
+      { uid:'mp-2635a', source:'custom', time:'09:30', icon:'🏊', title:'하얏트 풀·해변', tag:'activity', cardId:'8.16', memo:'5개 풀·해변' },
+      { uid:'mp-2635b', source:'card', time:'10:00', cardId:'3.8', note:'아이 키즈클럽 09–18시' },
+      { uid:'mp-2635c', source:'card', time:'12:30', cardId:'5.25', note:'점심(안전식)' },
+      { uid:'mp-2635d', source:'custom', time:'14:30', icon:'💆', title:'부부 스파 — 퀸 스파(커플 90분)', tag:'activity', mode:'그랩 왕복', cost:'커플 ~17만원', memo:'예약 필수 · 아이는 Camp Hyatt' },
+      { uid:'mp-2635e', source:'custom', time:'18:30', icon:'🍽️', title:'저녁 — 리조트 내부', tag:'food', memo:'컨디션 따라' },
+      { uid:'mp-2635f', source:'card', time:'21:00', cardId:'6.1', note:'(옵션) 일요일 21:00 · 아이 컨디션 좋을 때만' }
+    ],
+    '7/27': [
+      { uid:'mp-2735a', source:'custom', time:'10:00', icon:'🏖️', title:'오전 하얏트 휴식·물놀이', tag:'rest', memo:'한낮 더위 회피' },
+      { uid:'mp-2735b', source:'custom', time:'12:30', icon:'🍽️', title:'점심(안전식) — 하얏트', tag:'food' },
+      { uid:'mp-2735c', source:'custom', time:'15:00', icon:'🚐', title:'호이안 단독차량 출발(왕복)', tag:'transport', mode:'단독차량 왕복' },
+      { uid:'mp-2735d', source:'card', time:'15:40', cardId:'3.4', note:'코코넛마을 바구니배 + 마켓' },
+      { uid:'mp-2735e', source:'card', time:'16:30', cardId:'3.7', note:'반쎄오·짜조 → 만든 음식이 저녁(로컬). 지치면 쿠킹 생략→모닝글로리(5.8)' },
+      { uid:'mp-2735f', source:'card', time:'19:00', cardId:'1.18', note:'올드타운 등불 야경' },
+      { uid:'mp-2735g', source:'card', time:'19:20', cardId:'3.3', note:'소원배 양초 띄우기' },
+      { uid:'mp-2735h', source:'card', time:'19:45', cardId:'4.14', note:'차 한잔(선택)' },
+      { uid:'mp-2735i', source:'custom', time:'20:15', icon:'🚐', title:'하얏트 복귀', tag:'transport' }
+    ],
+    '7/28': [
+      { uid:'mp-2835a', source:'custom', time:'09:00', icon:'🏊', title:'하얏트 마지막 짧은 물놀이', tag:'activity' },
+      { uid:'mp-2835b', source:'custom', time:'11:00', icon:'🧳', title:'하얏트 체크아웃', tag:'transport' },
+      { uid:'mp-2835c', source:'card', time:'11:30', cardId:'8.14', note:'이동·체크인(공항 5분)' },
+      { uid:'mp-2835d', source:'custom', time:'13:00', icon:'😴', title:'점심(안전식) → Vanda 샤워·낮잠', tag:'rest', memo:'혼자 애 둘 대비 체력 비축' },
+      { uid:'mp-2835e', source:'custom', time:'16:00', icon:'✈️', title:'와이프 별도 출국', tag:'transport', memo:'출발 시각 확정 시 조정' },
+      { uid:'mp-2835f', source:'card', time:'17:00', cardId:'7.5', note:'쇼핑 60분: 커피·건망고·캐슈넛' },
+      { uid:'mp-2835g', source:'custom', time:'18:30', icon:'🍜', title:'저녁(로컬) — 안 토이(An Thôi)', tag:'food', memo:'미슐랭 빕구르망·에어컨·한시장 5분·한국인 입맛' },
+      { uid:'mp-2835h', source:'card', time:'20:00', cardId:'4.1', note:'코코넛커피' },
+      { uid:'mp-2835i', source:'custom', time:'21:30', icon:'🧳', title:'Vanda 복귀·짐정리·분리가방', tag:'rest' },
+      { uid:'mp-2835j', source:'custom', time:'22:30', icon:'🛫', title:'공항 이동 → 출국 VIP 패스트트랙(라운지)', tag:'transport', memo:'본인+애 둘 VIP' }
+    ],
+    '7/29': [
+      { uid:'mp-2935a', source:'custom', time:'00:25', icon:'✈️', title:'ZE594 다낭 출발', tag:'transport' },
+      { uid:'mp-2935b', source:'custom', time:'06:55', icon:'🛬', title:'인천 도착', tag:'transport' }
+    ]
+  }
+};
+function _clone(o){ return JSON.parse(JSON.stringify(o)); }
+function _planIsEmpty(p){ return !p || !p.days || !Object.values(p.days).some(a => Array.isArray(a) && a.length); }
 function persistPlans() { try { localStorage.setItem(PLANS_KEY, JSON.stringify(plansStore)); } catch (e) {} }
 function loadPlansStore() {
   try { const raw = localStorage.getItem(PLANS_KEY); if (raw) { const o = JSON.parse(raw); if (o && typeof o === 'object') plansStore = o; } } catch (e) {}
@@ -3777,8 +3833,9 @@ function loadPlansStore() {
 }
 // 슬롯 보장: 없으면 프리셋(A~E)에서 시드, 'my'는 빈 플랜(day 메타는 A 기준)
 function ensurePlan(key) {
+  if (key === 'my' && _planIsEmpty(plansStore.my)) { plansStore.my = _clone(DEFAULT_MY_PLAN); persistPlans(); return plansStore.my; }
   if (plansStore[key]) return plansStore[key];
-  plansStore[key] = ITINERARIES[key] ? _seedPlanFromPreset(key) : { basedOn: 'A', createdAt: _today(), days: {} };
+  plansStore[key] = ITINERARIES[key] ? _seedPlanFromPreset(key) : _clone(DEFAULT_MY_PLAN);
   persistPlans();
   return plansStore[key];
 }
