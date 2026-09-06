@@ -1512,10 +1512,10 @@
     <div class="lnb-section">
       <div class="lnb-h">일정 원칙</div>
       <ul class="lnb-list">
-        <li>한낮 11–15시 실내 (UV 9–11, 우기)</li>
-        <li>외출은 아침·저녁 골든타임</li>
+        <li>한낮 11–15시 실내 (UV 9–11, 폭염 체감 36℃↑)</li>
+        <li>외출은 아침·저녁 골든타임 · 물 자주</li>
         <li>6세 카시트 단독차량 사전 요청</li>
-        <li>7월 우기 시작 → 호이안 야간 우천 대비</li>
+        <li>7월 건기지만 오후 소나기 → 접이식 우산 상비</li>
         <li>여유롭게 · Hyatt 풀데이 우선</li>
       </ul>
     </div>
@@ -1700,14 +1700,14 @@
 </div>
 
 <script>
-// 7월 다낭 평년 (Vietnam Meteorological / Weather Atlas). 출국 1주일 전 갱신 권장.
+// 다낭 실측 예보 갱신 2026-07-22 (AccuWeather/weather25 종합). 태풍 경보 없음. 폭염(체감 36℃↑)이 핵심.
 const WEATHER = {
-  "7/24": { high: 33, low: 26, rain: 55, uv: 10, advice: "오후 소나기 대비 · 우산 + 실내 대안" },
-  "7/25": { high: 33, low: 26, rain: 50, uv: 11, advice: "야외 OK · 16시 이후 활동 권장" },
-  "7/26": { high: 32, low: 25, rain: 60, uv: 10, advice: "실내 비중↑ · 오후 강수 확률 높음" },
-  "7/27": { high: 33, low: 26, rain: 55, uv: 11, advice: "야외 OK · 자외선 차단 필수" },
-  "7/28": { high: 32, low: 25, rain: 65, uv: 9, advice: "실내·스파 권장 · 우천 시 호이안 X" },
-  "7/29": { high: 32, low: 25, rain: 60, uv: 10, advice: "새벽 출국 · 가볍게" }
+  "7/24": { high: 34, low: 28, rain: 45, uv: 11, advice: "심야 도착 · 오후 소나기 대비 · 폭염, 물 많이" },
+  "7/25": { high: 35, low: 28, rain: 45, uv: 11, advice: "폭염 정점 · 한낮 실내/수영장 · 오전·저녁만 야외" },
+  "7/26": { high: 34, low: 28, rain: 40, uv: 11, advice: "리조트 물놀이 최적 · 자외선 차단 필수" },
+  "7/27": { high: 33, low: 28, rain: 40, uv: 10, advice: "호이안 야간 OK · 오후 소나기 우산 · 낮 더위 회피" },
+  "7/28": { high: 32, low: 28, rain: 55, uv: 9, advice: "소나기 확률↑ · 실내·스파 위주 · 우천 대비 우산" },
+  "7/29": { high: 30, low: 27, rain: 65, uv: 9, advice: "새벽 출국 · 우천 가능 · 가볍게" }
 };
 
 const PLACES = {
@@ -1985,7 +1985,7 @@ const ITINERARIES = { A: [
     day: '7/27',
     weekday: '월',
     title: '호이안 등불 야경',
-    summary: '낮은 Hyatt에서 쉬고 저녁에만 호이안 야경. 7월 우기 오후 소나기를 피하는 안입니다.',
+    summary: '낮은 Hyatt에서 쉬고 저녁에만 호이안 야경. 한낮 폭염·오후 소나기를 피하는 안입니다.',
     items: [
       {
         time: '09:00-15:00',
@@ -3775,31 +3775,35 @@ const DEFAULT_MY_PLAN = {
   days: {
     '7/24': [
       { uid:'mp-2435a', source:'custom', time:'20:35', icon:'✈️', title:'ZE593 인천 출발', tag:'transport', memo:'이스타항공 · 소아 동반 카운터 체크인' },
-      { uid:'mp-2435b', source:'custom', time:'23:25', icon:'🛬', title:'다낭 도착 · 입국 패스트트랙(일반)', tag:'transport', memo:'다낭고스트 일반 패스트트랙으로 빠른 입국' },
-      { uid:'mp-2435c', source:'custom', time:'23:50', icon:'🚐', title:'공항 픽업차량 → New Orient', tag:'transport', mode:'픽업차량', memo:'심야 도착이라 그랩 대신 픽업', cardId:'8.17' },
+      { uid:'mp-2435b', source:'custom', time:'23:25', icon:'🛬', title:'다낭 도착 · 입국 패스트트랙(피크타임) ✅예약완료', tag:'transport', memo:'피크타임 패스트트랙 예약완료 — 심야 입국 빠르게' },
+      { uid:'mp-2435c', source:'custom', time:'23:50', icon:'🚐', title:'공항 픽업차량(다낭도깨비) → New Orient ✅예약완료', tag:'transport', mode:'다낭도깨비 픽업', memo:'다낭도깨비 픽업 예약완료 — 심야라 그랩 대신 픽업', cardId:'8.17' },
       { uid:'mp-2435d', source:'card', time:'00:30', cardId:'8.17', note:'체크인·취침 (관광 0)' }
     ],
     '7/25': [
-      { uid:'mp-2535a', source:'custom', time:'09:30', icon:'😴', title:'New Orient 회복·조식', tag:'rest', memo:'늦잠·회복, 오전 관광 0' },
+      { uid:'mp-2535a', source:'custom', time:'09:30', icon:'😴', title:'New Orient 회복·조식', tag:'rest', memo:'늦잠·회복' },
+      { uid:'mp-2535a2', source:'custom', time:'10:30', icon:'💆', title:'아리스파 (Ari Spa)', tag:'activity', memo:'25일 오전 · 예약 확인' },
       { uid:'mp-2535b', source:'card', time:'12:00', cardId:'5.15', note:'점심(안전식). 대안: 피자 4P\'s(5.14)' },
       { uid:'mp-2535c', source:'custom', time:'14:00', icon:'🚕', title:'GrabCar7로 하얏트 이동', tag:'transport', mode:'GrabCar 7' },
-      { uid:'mp-2535d', source:'card', time:'15:00', cardId:'8.16', note:'체크인 → 수영장·해변 첫 물놀이' },
+      { uid:'mp-2535d', source:'card', time:'15:00', cardId:'8.16', note:'체크인 → 객실 휴식(한낮 실내, 폭염 회피)' },
+      { uid:'mp-2535d2', source:'custom', time:'16:00', icon:'🏊', title:'수영장·해변 첫 물놀이', tag:'activity', cardId:'8.16', memo:'더위 꺾인 뒤 · 선크림·모자' },
       { uid:'mp-2535e', source:'card', time:'18:30', cardId:'5.26', note:'저녁(풀사이드)' }
     ],
     '7/26': [
-      { uid:'mp-2635a', source:'custom', time:'09:30', icon:'🏊', title:'하얏트 풀·해변', tag:'activity', cardId:'8.16', memo:'5개 풀·해변' },
-      { uid:'mp-2635b', source:'card', time:'10:00', cardId:'3.8', note:'아이 키즈클럽 09–18시' },
+      { uid:'mp-2635a', source:'custom', time:'08:00', icon:'🏊', title:'하얏트 풀·해변 (이른 오전)', tag:'activity', cardId:'8.16', memo:'폭염 전 시원할 때 물놀이 · 5개 풀' },
+      { uid:'mp-2635b', source:'card', time:'10:30', cardId:'3.8', note:'아이 키즈클럽(실내) 09–18시 · 한낮 더위 회피' },
       { uid:'mp-2635c', source:'card', time:'12:30', cardId:'5.25', note:'점심(안전식)' },
-      { uid:'mp-2635d', source:'custom', time:'14:30', icon:'💆', title:'부부 스파 — 퀸 스파(커플 90분)', tag:'activity', mode:'그랩 왕복', cost:'커플 ~17만원', memo:'예약 필수 · 아이는 Camp Hyatt' },
+      { uid:'mp-2635d', source:'custom', time:'14:30', icon:'💆', title:'부부 스파 — 퀸 스파(커플 90분)', tag:'activity', mode:'그랩 왕복', cost:'커플 ~17만원', memo:'실내 · 예약 필수 · 아이는 Camp Hyatt' },
+      { uid:'mp-2635d2', source:'custom', time:'16:30', icon:'🏖️', title:'오후 물놀이·해변', tag:'activity', cardId:'8.16', memo:'더위 꺾인 뒤 재입수' },
       { uid:'mp-2635e', source:'custom', time:'18:30', icon:'🍽️', title:'저녁 — 리조트 내부', tag:'food', memo:'컨디션 따라' },
       { uid:'mp-2635f', source:'card', time:'21:00', cardId:'6.1', note:'(옵션) 일요일 21:00 · 아이 컨디션 좋을 때만' }
     ],
     '7/27': [
-      { uid:'mp-2735a', source:'custom', time:'10:00', icon:'🏖️', title:'오전 하얏트 휴식·물놀이', tag:'rest', memo:'한낮 더위 회피' },
-      { uid:'mp-2735b', source:'custom', time:'12:30', icon:'🍽️', title:'점심(안전식) — 하얏트', tag:'food' },
-      { uid:'mp-2735c', source:'custom', time:'15:00', icon:'🚐', title:'호이안 단독차량 출발(왕복)', tag:'transport', mode:'단독차량 왕복' },
-      { uid:'mp-2735d', source:'card', time:'15:40', cardId:'3.4', note:'코코넛마을 바구니배 + 마켓' },
-      { uid:'mp-2735e', source:'card', time:'16:30', cardId:'3.7', note:'반쎄오·짜조 → 만든 음식이 저녁(로컬). 지치면 쿠킹 생략→모닝글로리(5.8)' },
+      { uid:'mp-2735a', source:'custom', time:'08:30', icon:'🏊', title:'오전 하얏트 물놀이 (이른 시간)', tag:'activity', memo:'폭염 전 시원할 때' },
+      { uid:'mp-2735a2', source:'custom', time:'11:00', icon:'🍽️', title:'점심(안전식) — 하얏트', tag:'food' },
+      { uid:'mp-2735b', source:'custom', time:'12:30', icon:'💆', title:'노아 스파 — 4인 가족 마사지(한 방)', tag:'activity', cardId:'8.4', mode:'노아 무료 픽드랍', cost:'4인 90분 ~7만원', memo:'가족 한 방 · 어린이(5~11세) 마사지 · 카톡 "다낭노아스파" 예약 · Hyatt 무료 픽업 · 11–15시 실내(폭염 회피)' },
+      { uid:'mp-2735c', source:'custom', time:'16:00', icon:'🚐', title:'호이안 단독차량 출발(왕복)', tag:'transport', mode:'단독차량 왕복', memo:'더위 꺾인 뒤 출발' },
+      { uid:'mp-2735d', source:'card', time:'16:40', cardId:'3.4', note:'코코넛마을 바구니배 + 마켓 (석양 전·덜 더움)' },
+      { uid:'mp-2735e', source:'card', time:'17:40', cardId:'3.7', note:'반쎄오·짜조 → 만든 음식이 저녁(로컬). 지치면 쿠킹 생략→모닝글로리(5.8)' },
       { uid:'mp-2735f', source:'card', time:'19:00', cardId:'1.18', note:'올드타운 등불 야경' },
       { uid:'mp-2735g', source:'card', time:'19:20', cardId:'3.3', note:'소원배 양초 띄우기' },
       { uid:'mp-2735h', source:'card', time:'19:45', cardId:'4.14', note:'차 한잔(선택)' },
@@ -3815,7 +3819,7 @@ const DEFAULT_MY_PLAN = {
       { uid:'mp-2835g', source:'custom', time:'18:30', icon:'🍜', title:'저녁(로컬) — 안 토이(An Thôi)', tag:'food', memo:'미슐랭 빕구르망·에어컨·한시장 5분·한국인 입맛' },
       { uid:'mp-2835h', source:'card', time:'20:00', cardId:'4.1', note:'코코넛커피' },
       { uid:'mp-2835i', source:'custom', time:'21:30', icon:'🧳', title:'Vanda 복귀·짐정리·분리가방', tag:'rest' },
-      { uid:'mp-2835j', source:'custom', time:'22:30', icon:'🛫', title:'공항 이동 → 출국 VIP 패스트트랙(라운지)', tag:'transport', memo:'본인+애 둘 VIP' }
+      { uid:'mp-2835j', source:'custom', time:'22:30', icon:'🛫', title:'공항 이동 → 출국 패스트트랙(피크타임) ✅예약완료', tag:'transport', memo:'피크타임 패스트트랙 예약완료 — 본인+애 둘' }
     ],
     '7/29': [
       { uid:'mp-2935a', source:'custom', time:'00:25', icon:'✈️', title:'ZE594 다낭 출발', tag:'transport' },
